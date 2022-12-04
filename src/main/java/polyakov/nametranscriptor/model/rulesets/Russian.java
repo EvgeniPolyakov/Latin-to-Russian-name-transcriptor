@@ -12,7 +12,7 @@ public class Russian extends Ruleset {
     private static final List<String> CUSTOM_ENDINGS = List.of("y", "iy", "ii", "yy");
 
     @Override
-    protected String transcribeName(String name) {
+    protected String transcribeName(String name, int mode) {
         Optional<String> os = checkPopularNames(name);
         if (os.isPresent()) {
             name = os.get();
@@ -70,6 +70,13 @@ public class Russian extends Ruleset {
         name = name.replace("z", "з");
         name = name.replace("Z", "З");
         name = name.replace("'", "ь");
+        return postcheck(name);
+    }
+
+    private String postcheck(String name) {
+        if (name.endsWith("иы")) {
+            name = name.replace("иы", "ий");
+        }
         return name;
     }
 
@@ -118,7 +125,7 @@ public class Russian extends Ruleset {
 
     private Optional<String> checkPopularNames(String name) {
         return Arrays.stream(RussianNames.values())
-                .filter(s -> s.getLatinName().equalsIgnoreCase(name))
+                .filter(s -> s.getLatinName().equalsIgnoreCase(name.toLowerCase()))
                 .findAny()
                 .map(RussianNames::getCyrillicName);
     }

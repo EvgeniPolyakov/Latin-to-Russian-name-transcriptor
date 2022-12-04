@@ -10,10 +10,10 @@ import polyakov.nametranscriptor.model.rulesets.Ruleset;
 @Slf4j
 public class TranscriptionService {
 
-    public String transcribe(IncomingDto dto) {
+    public String transcribe(IncomingDto dto, int mode) {
         log.info("Getting a ruleset for: {}", dto.getCountry());
         Ruleset ruleset = Rulesets.getRulesets().get(dto.getCountry());
         log.info("Transcribing text");
-        return ruleset.transcribeText(dto.getText());
+        return ruleset.transcribeText(dto.getText(), mode);
     }
 }

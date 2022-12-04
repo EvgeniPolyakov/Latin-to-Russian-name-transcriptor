@@ -1,6 +1,5 @@
 package polyakov.nametranscriptor.model.rulesets;
 
-
 import java.util.Map;
 
 public class Turkish extends Ruleset {
@@ -48,7 +47,7 @@ public class Turkish extends Ruleset {
         Map.entry("yü", "ю"),
         Map.entry("Yü", "Ю")
     );
-    private static final Map<String, String> UTILITY_CHARS = Map.ofEntries(
+    private static final Map<String, String> UTILITY_LETTERS = Map.ofEntries(
         Map.entry("e", "э"),
         Map.entry("ö", "о"),
         Map.entry("ü", "у"),
@@ -61,7 +60,7 @@ public class Turkish extends Ruleset {
     );
 
     @Override
-    protected String transcribeName(String name) {
+    protected String transcribeName(String name, int mode) {
         for (Map.Entry<String,String> i : INITIAL_LETTER.entrySet()) {
             if (name.startsWith(i.getKey())) {
                 name = name.replaceFirst(i.getKey(), i.getValue());
@@ -96,9 +95,9 @@ public class Turkish extends Ruleset {
         name = name.replace("I", "Ы");
         name = name.replace("î", "и");
         name = name.replace("Î", "И");
-        name = name.replace("k", "к");
         name = name.replace("j", "ж");
         name = name.replace("J", "Ж");
+        name = name.replace("k", "к");
         name = name.replace("K", "К");
         name = name.replace("l", "л");
         name = name.replace("L", "Л");
@@ -134,7 +133,7 @@ public class Turkish extends Ruleset {
     }
 
     private static String checkCombinations(String name) {
-        for (Map.Entry<String,String> u : UTILITY_CHARS.entrySet()) {
+        for (Map.Entry<String,String> u : UTILITY_LETTERS.entrySet()) {
             for (Map.Entry<String,String> v : VOWELS.entrySet()) {
                 name = name.replace(v.getKey() + u.getKey(), v.getValue() + u.getValue());
             }

@@ -35,7 +35,7 @@ class KazakhTest extends RulesetTest {
                 "Амирбек Надежда Иванюк Ольга Волкова Рано Акбаева Шынар Шарапиденова Щучинск";
         Kazakh service = new Kazakh();
 
-        String result = service.transcribeText(text);
+        String result = service.transcribeText(text, 0);
         assertNotNull(result);
         assertEquals(transcription, result);
     }

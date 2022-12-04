@@ -26,7 +26,7 @@ class TurkishTest {
                 "Кескин Бюшра Куру Дилан Ешим Ташкин Джансу Нур Пижамалы хаста ягыз шофере чабуджак гювенди";
         Turkish service = new Turkish();
 
-        String result = service.transcribeText(text);
+        String result = service.transcribeText(text, 0);
         assertNotNull(result);
         assertEquals(transcription, result);
     }
