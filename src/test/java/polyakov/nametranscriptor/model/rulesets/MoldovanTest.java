@@ -18,7 +18,7 @@ class MoldovanTest {
                 "Dijinari Andrei Macoviiciuc Anatolie Aurel Cătălin Constantin Dumitru Eugenia Eugeniu Eric Eduard " +
                 "Edward Evgheni Evghenia Evghenii Ghenadie Gheorghe Ianina Iaroslav Iouri Igor Liviu Ludmila " +
                 "Marcela Mihai Mihail Nadejda Natalia Nicolae Nicolai Olesea Olga Ruslan Semion Sergei Serghei " +
-                "Serghey Sergiu Tatiana Valerii Valeriu Vasile Veaceslav Vitalii Vitaliy";
+                "Serghey Sergiu Tatiana Valerii Valeriu Vasile Veaceslav Vitalii Vitaliy Cojocari";
         String transcription = "Бондарчук Ясер Цуркан Янош Брынзэ Чеботарь Приганюк Мырза Вдовченков " +
                 "Юрий Ерхан Чорный Кочановский Штефания Ротарь Федор Япэрэ Шмаленя Мустяцэ Сергей Татьяна " +
                 "Пештерян Лащенков Кожокарь Калмацуй Илинюк Шумкин Скоарцэ Кощуг Гынсарь Пантелейчук " +
@@ -28,7 +28,7 @@ class MoldovanTest {
                 "Аурел Кэтэлин Константин Думитру Эуджения Эуджениу Эрик Эдуард Эдвард Евгений Евгения Евгений " +
                 "Геннадий Георге Янина Ярослав Юрий Игорь Ливиу Людмила Марчела Михай Михаил Надежда Наталия Николае " +
                 "Николай Олеся Ольга Руслан Семен Сергей Сергей Сергей Серджу Татьяна Валерий Валериу Василе " +
-                "Вячеслав Виталий Виталий";
+                "Вячеслав Виталий Виталий Кожокарь";
         Moldovan service = new Moldovan();
 
         String result = service.transcribeText(text, 0);

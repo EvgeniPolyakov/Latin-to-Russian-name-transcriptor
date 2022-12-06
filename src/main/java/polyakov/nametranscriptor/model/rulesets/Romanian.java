@@ -1,54 +1,10 @@
 package polyakov.nametranscriptor.model.rulesets;
 
-import java.util.List;
 import java.util.Map;
 
+import static polyakov.nametranscriptor.model.rulesets.custom.Romanian.*;
+
 public class Romanian extends Ruleset {
-    private static final Map<String, String> CUSTOM_CONSONANTS = Map.ofEntries(
-            Map.entry("ch", "к"),
-            Map.entry("Ch", "К"),
-            Map.entry("gh", "г"),
-            Map.entry("Gh", "Г"),
-            Map.entry("th", "т"),
-            Map.entry("Th", "Т"),
-            Map.entry("c", "ч"),
-            Map.entry("C", "Ч"),
-            Map.entry("g", "дж"),
-            Map.entry("G", "Дж")
-    );
-    private static final Map<String, String> VOWELS = Map.ofEntries(
-            Map.entry("a", "а"),
-            Map.entry("A", "А"),
-            Map.entry("ă", "э"),
-            Map.entry("Ă", "Э"),
-            Map.entry("â", "ы"),
-            Map.entry("Â", "Ы"),
-            Map.entry("e", "е"),
-            Map.entry("E", "Е"),
-            Map.entry("i", "и"),
-            Map.entry("I", "И"),
-            Map.entry("î", "ы"),
-            Map.entry("Î", "Ы"),
-            Map.entry("o", "о"),
-            Map.entry("O", "О"),
-            Map.entry("u", "у"),
-            Map.entry("U", "У"),
-            Map.entry("y", "и"),
-            Map.entry("Y", "И")
-    );
-    private static final Map<String, String> STARTING_PART = Map.ofEntries(
-            Map.entry("ia", "я"),
-            Map.entry("Ia", "Я"),
-            Map.entry("ie", "е"),
-            Map.entry("Ie", "Е"),
-            Map.entry("io", "йо"),
-            Map.entry("Io", "Йо"),
-            Map.entry("Iu", "Ю"),
-            Map.entry("iu", "ю"),
-            Map.entry("Eric", "Эрик"),
-            Map.entry("Eugen", "Эуджен")
-    );
-    private static final List<String> UTILITY_VOWELS = List.of("e", "E", "i", "I");
 
     @Override
     protected String transcribeName(String name, int mode) {
@@ -127,7 +83,7 @@ public class Romanian extends Ruleset {
     protected String checkCustomCases(String name) {
         name = name.replace("ii", "ий");
         name = name.replace("îi", "ый");
-        for (Map.Entry<String,String> i : STARTING_PART.entrySet()) {
+        for (Map.Entry<String, String> i : STARTING_PART.entrySet()) {
             if (name.startsWith(i.getKey())) {
                 name = name.replaceFirst(i.getKey(), i.getValue());
             }
@@ -151,7 +107,7 @@ public class Romanian extends Ruleset {
         name = name.replace("giu", "джу");
         name = name.replace("Giu", "Джу");
         name = name.replace("ea", "я");
-        for (Map.Entry<String,String> c : VOWELS.entrySet()) {
+        for (Map.Entry<String, String> c : VOWELS.entrySet()) {
             name = name.replace(c.getKey() + "ia", c.getValue() + "я");
             name = name.replace(c.getKey() + "ie", c.getValue() + "е");
             name = name.replace(c.getKey() + "io", c.getValue() + "йо");
@@ -169,7 +125,7 @@ public class Romanian extends Ruleset {
             name = name.replace("ie", "ие");
             name = name.replace("iu", "иу");
         }
-        for (Map.Entry<String,String> c : CUSTOM_CONSONANTS.entrySet()) {
+        for (Map.Entry<String, String> c : CUSTOM_CONSONANTS.entrySet()) {
             for (String v : UTILITY_VOWELS) {
                 name = name.replace(c.getKey() + v, c.getValue() + v);
             }

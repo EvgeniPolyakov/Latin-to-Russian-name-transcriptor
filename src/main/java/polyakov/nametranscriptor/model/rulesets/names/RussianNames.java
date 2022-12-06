@@ -1,4 +1,4 @@
-package polyakov.nametranscriptor.model.rulesets;
+package polyakov.nametranscriptor.model.rulesets.names;
 
 public enum RussianNames {
     ADEL("Adel", "Адель"),
@@ -26,8 +26,8 @@ public enum RussianNames {
     ARTEMI("Artemi", "Артемий"),
     ARTEMIY("Artemiy", "Артемий"),
     ARTEMY("Artemy", "Артемий"),
-    ARTIOM("Artiom" , "Артем"),
-    ARTYOM("Artyom" , "Артем"),
+    ARTIOM("Artiom", "Артем"),
+    ARTYOM("Artyom", "Артем"),
     AVDOTIA("Avdotia", "Авдотья"),
     AVDOTYA("Avdotya", "Авдотья"),
     AZALIIA("Azaliia", "Азалия"),

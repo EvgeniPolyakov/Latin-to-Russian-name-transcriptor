@@ -1,30 +1,26 @@
 package polyakov.nametranscriptor.model;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import polyakov.nametranscriptor.model.rulesets.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Rulesets {
-    private static Map<String, Ruleset> countries = Map.ofEntries(
+    private static final Map<String, Ruleset> RULES = Map.ofEntries(
 //            Map.entry("Albania", new Albanian()),
 //            Map.entry("Andorra", new Catalan()),
             Map.entry("Armenia", new Armenian()),
 //            Map.entry("Austria", new German()),
 //            Map.entry("Azerbaijan", new Azerbaijan()),
 //            Map.entry("Basque", new Basque()),
-//            Map.entry("Bosnia and Herzegovina", new SerboCroatian()),
+            Map.entry("Bosnia and Herzegovina", new Serbocroatian()),
             Map.entry("Belarus", new Russian()),
 //            Map.entry("Belgium", new Dutch()),
             Map.entry("Bulgaria", new Russian()),
 //            Map.entry("Catalan", new Catalan()),
 //            Map.entry("China", new Chinese()),
-//            Map.entry("Croatia", new SerboCroatian()),
+            Map.entry("Croatia", new Serbocroatian()),
 //            Map.entry("Czechia", new Czech()),
-//            Map.entry("Cyprus", new Greek()),
+            Map.entry("Cyprus", new Greek()),
 //            Map.entry("Denmark", new Danish()),
 //            Map.entry("England", new English()),
 //            Map.entry("Estonia", new Estonian()),
@@ -34,7 +30,7 @@ public class Rulesets {
             Map.entry("Georgia", new Georgian()),
 //            Map.entry("Germany", new German()),
 //            Map.entry("Gibraltar", new English()),
-//            Map.entry("Greece", new Greek()),
+            Map.entry("Greece", new Greek()),
 //            Map.entry("Hungary", new Hungarian()),
 //            Map.entry("Iceland", new Icelandic()),
 //            Map.entry("Israel", new Israeli()),
@@ -46,7 +42,7 @@ public class Rulesets {
 //            Map.entry("Luxembourg", new German()),
 //            Map.entry("Malta", new Italian()),
             Map.entry("Moldova", new Moldovan()),
-//            Map.entry("Montenegro", new SerboCroatian()),
+            Map.entry("Montenegro", new Serbocroatian()),
 //            Map.entry("Netherlands", new Dutch()),
 //            Map.entry("Northern Macedonia", new Macedonian()),
 //            Map.entry("Northern Ireland", new Irish()),
@@ -58,21 +54,18 @@ public class Rulesets {
             Map.entry("Russia", new Russian()),
 //            Map.entry("San Marino", new Italian()),
 //            Map.entry("Scotland", new English()),
-//            Map.entry("Serbia", new SerboCroatian()),
+            Map.entry("Serbia", new Serbocroatian()),
 //            Map.entry("Slovakia", new Slovak()),
-//            Map.entry("Slovenia", new SerboCroatian()),
+            Map.entry("Slovenia", new Serbocroatian()),
 //            Map.entry("Spain", new Spanish()),
 //            Map.entry("Switzerland", new German()),
 //            Map.entry("Sweden", new Swedish()),
             Map.entry("Turkey", new Turkish())
 //            Map.entry("Ukraine", new Ukrainian()),
 //            Map.entry("Wales", new Welsh())
-            );
+    );
 
-    public static Map<String, Ruleset> getRulesets() {
-        if (countries == null) {
-            countries = new HashMap<>();
-        }
-        return countries;
+    public static Map<String, Ruleset> getRules() {
+        return RULES;
     }
 }

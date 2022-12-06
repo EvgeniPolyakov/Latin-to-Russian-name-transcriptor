@@ -1,5 +1,7 @@
 package polyakov.nametranscriptor.model.rulesets;
 
+import polyakov.nametranscriptor.model.rulesets.names.ArmenianNames;
+
 import java.util.Arrays;
 import java.util.Optional;
 

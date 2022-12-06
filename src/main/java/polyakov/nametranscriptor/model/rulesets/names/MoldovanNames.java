@@ -1,4 +1,4 @@
-package polyakov.nametranscriptor.model.rulesets;
+package polyakov.nametranscriptor.model.rulesets.names;
 
 public enum MoldovanNames {
     ANATOLIE("Anatolie", "Анатолий"),

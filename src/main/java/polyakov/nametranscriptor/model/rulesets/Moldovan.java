@@ -1,23 +1,16 @@
 package polyakov.nametranscriptor.model.rulesets;
 
+import polyakov.nametranscriptor.model.rulesets.names.MoldovanNames;
+import polyakov.nametranscriptor.model.rulesets.names.RussianNames;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
+import static polyakov.nametranscriptor.model.rulesets.custom.Moldovan.PRIMARY_ENDINGS;
+import static polyakov.nametranscriptor.model.rulesets.custom.Moldovan.SECONDARY_ENDINGS;
+
 public class Moldovan extends Romanian {
-    private static final Map<String, String> PRIMARY_ENDINGS = Map.ofEntries(
-            Map.entry("ri", "рь"),
-            Map.entry("şciu", "щу"),
-            Map.entry("ciuc", "чук"),
-            Map.entry("ciuk", "чук"),
-            Map.entry("schii", "ский"),
-            Map.entry("chii", "кий")
-    );
-    private static final Map<String, String> SECONDARY_ENDINGS = Map.ofEntries(
-            Map.entry("iuc", "юк"),
-            Map.entry("iuk", "юк"),
-            Map.entry("schi", "ский")
-    );
 
     @Override
     protected String checkCustomCases(String name) {
@@ -29,12 +22,12 @@ public class Moldovan extends Romanian {
         if (mn.isPresent()) {
             name = mn.get();
         }
-        for (Map.Entry<String,String> i : PRIMARY_ENDINGS.entrySet()) {
+        for (Map.Entry<String, String> i : PRIMARY_ENDINGS.entrySet()) {
             if (name.endsWith(i.getKey())) {
                 name = name.replace(i.getKey(), i.getValue());
             }
         }
-        for (Map.Entry<String,String> i : SECONDARY_ENDINGS.entrySet()) {
+        for (Map.Entry<String, String> i : SECONDARY_ENDINGS.entrySet()) {
             if (name.endsWith(i.getKey())) {
                 name = name.replace(i.getKey(), i.getValue());
             }

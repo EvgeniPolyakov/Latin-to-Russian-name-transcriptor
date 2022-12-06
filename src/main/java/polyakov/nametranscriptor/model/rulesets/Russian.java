@@ -1,15 +1,14 @@
 package polyakov.nametranscriptor.model.rulesets;
 
-import java.util.*;
+import polyakov.nametranscriptor.model.rulesets.names.RussianNames;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
+
+import static polyakov.nametranscriptor.model.rulesets.custom.Russian.*;
 
 public class Russian extends Ruleset {
-    private static final Map<String, String> ENDINGS = Map.ofEntries(
-            Map.entry("sky", "ский"),
-            Map.entry("ski", "ский"),
-            Map.entry("skiy", "ский"),
-            Map.entry("ii", "ий")
-    );
-    private static final List<String> CUSTOM_ENDINGS = List.of("y", "iy", "ii", "yy");
 
     @Override
     protected String transcribeName(String name, int mode) {
@@ -139,27 +138,24 @@ public class Russian extends Ruleset {
                 name = name.replace(s.getKey(), s.getValue());
             }
         }
+        name = checkEndings(name);
+        return name;
+    }
+
+    private static String checkEndings(String name) {
         for (String s : CUSTOM_ENDINGS) {
             if (name.length() > 1 && name.endsWith(s)) {
-                if (
-                        name.charAt(name.length() - (s.length() + 1)) == 'v' ||
-                                name.charAt(name.length() - (s.length() + 1)) == 'l' ||
-                                name.charAt(name.length() - (s.length() + 1)) == 's' ||
-                                name.charAt(name.length() - (s.length() + 1)) == 'd' ||
-                                name.charAt(name.length() - (s.length() + 1)) == 'm' ||
-                                name.charAt(name.length() - (s.length() + 1)) == 'b' ||
-                                name.charAt(name.length() - (s.length() + 1)) == 'n'
-                ) {
-                    String substring = name.substring(0, name.length() - s.length());
-                    name = substring + "ый";
+                for (String c : CUSTOM_CONSONANTS_PART1) {
+                    if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
+                        String substring = name.substring(0, name.length() - s.length());
+                        name = substring + "ый";
+                    }
                 }
-                if (
-                        name.charAt(name.length() - (s.length() + 1)) == 'g' ||
-                        name.charAt(name.length() - (s.length() + 1)) == 'k' ||
-                        name.charAt(name.length() - (s.length() + 1)) == 'h'
-                ) {
-                    String substring = name.substring(0, name.length() - s.length());
-                    name = substring + "ий";
+                for (String c : CUSTOM_CONSONANTS_PART2) {
+                    if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
+                        String substring = name.substring(0, name.length() - s.length());
+                        name = substring + "ий";
+                    }
                 }
             }
         }
