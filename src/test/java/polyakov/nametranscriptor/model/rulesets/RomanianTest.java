@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class RomanianTest {
 
     @Test
-    void transcribeName() {
+    void transcribe() {
         String text = "Ada Făcăeni Târgu Mureș Barbu Cezar Camil Mircea Chișinău Tecuci Cioran Ciurel Dan Eugen " +
                 "Nicolae Ezeriș Băneasa Aref Geta Grigore Gong Caragea Borgia George Gheorghe Geoagiu Mihu " +
                 "Irina Matei Botoșani Traian Demian Sofia Iernut Ploiești Miersig Ilie Cocorăștii Colț Viile " +
@@ -23,8 +23,13 @@ class RomanianTest {
                 "пицигэят зоофобул командэ вексат вхиски ши текуйла";
         Romanian service = new Romanian();
 
-        String result = service.transcribe(text, 0);
-        assertNotNull(result);
+        String[] words = text.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String w : words) {
+            sb.append(service.transcribe(w, 0)).append(" ");
+        }
+        String result = sb.toString().trim();
+        assertNotNull(sb);
         assertEquals(transcription, result);
     }
 }

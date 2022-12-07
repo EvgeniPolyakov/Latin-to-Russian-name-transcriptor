@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class GreekTest {
 
     @Test
-    void transcribeName() {
+    void transcribe() {
         String text = "Istiaia Vaios Karyai Kameni Yerakini Yides Pyrgi Giannitsa Achilleas Alkaios Emilios " +
                 "Vagionia Panagiouda Zagliveri Gkana Anchialos Karditsa Krieza Nea Psara Richea " +
                 "Evdokia Evvoikos Achaia Tria Kalymnos Mpampis Papaioannou Tsalouchidis Lyratzis Giakoumakis " +
@@ -35,8 +35,13 @@ class GreekTest {
                 "Вангелис Вассилики Зафирис Ахилеас Андреас";
         Greek service = new Greek();
 
-        String result = service.transcribe(text, 0);
-        assertNotNull(result);
+        String[] words = text.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String w : words) {
+            sb.append(service.transcribe(w, 0)).append(" ");
+        }
+        String result = sb.toString().trim();
+        assertNotNull(sb);
         assertEquals(transcription, result);
     }
 }
