@@ -8,10 +8,10 @@ import java.util.Optional;
 
 import static polyakov.nametranscriptor.model.rulesets.custom.Serbocroatian.*;
 
-public class Serbocroatian extends Ruleset {
+public class Serbocroatian implements Ruleset {
 
     @Override
-    protected String transcribeName(String name, int mode) {
+    public String transcribe(String name, int mode) {
         Optional<String> os = checkPopularNames(name);
         if (os.isPresent()) {
             name = os.get();

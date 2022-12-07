@@ -21,7 +21,7 @@ class GeorgianTest {
                 "Гурджаани Мтисдзири Джавахети Цхенисцкали Мтисдзири Уплисцихе";
         Georgian service = new Georgian();
 
-        String result = service.transcribeText(text, 0);
+        String result = service.transcribe(text, 0);
         assertNotNull(result);
         assertEquals(transcription, result);
     }

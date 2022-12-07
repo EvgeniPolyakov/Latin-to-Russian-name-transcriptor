@@ -20,7 +20,7 @@ class RussianTest {
                 "Зиястинова Саджая Шамсиддин Шанбиев Брейтвейт Бессердечная Цвилиховский Фазякс Чаяндяр";
         Russian service = new Russian();
 
-        String result = service.transcribeText(text, 0);
+        String result = service.transcribe(text, 0);
         assertNotNull(result);
         assertEquals(transcription, result);
     }

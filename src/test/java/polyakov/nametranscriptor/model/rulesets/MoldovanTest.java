@@ -31,7 +31,7 @@ class MoldovanTest {
                 "Вячеслав Виталий Виталий Кожокарь";
         Moldovan service = new Moldovan();
 
-        String result = service.transcribeText(text, 0);
+        String result = service.transcribe(text, 0);
         assertNotNull(result);
         assertEquals(transcription, result);
     }

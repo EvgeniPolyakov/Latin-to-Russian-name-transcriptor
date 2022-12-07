@@ -23,7 +23,7 @@ class RomanianTest {
                 "пицигэят зоофобул командэ вексат вхиски ши текуйла";
         Romanian service = new Romanian();
 
-        String result = service.transcribeText(text, 0);
+        String result = service.transcribe(text, 0);
         assertNotNull(result);
         assertEquals(transcription, result);
     }

@@ -8,10 +8,10 @@ import java.util.Optional;
 
 import static polyakov.nametranscriptor.model.rulesets.custom.Greek.*;
 
-public class Greek extends Ruleset {
+public class Greek implements Ruleset {
 
     @Override
-    protected String transcribeName(String name, int mode) {
+    public String transcribe(String name, int mode) {
         Optional<String> gn = checkGreekNames(name);
         if (gn.isPresent()) {
             name = gn.get();

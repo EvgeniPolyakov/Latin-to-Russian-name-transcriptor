@@ -4,10 +4,10 @@ import java.util.Map;
 
 import static polyakov.nametranscriptor.model.rulesets.custom.Romanian.*;
 
-public class Romanian extends Ruleset {
+public class Romanian implements Ruleset {
 
     @Override
-    protected String transcribeName(String name, int mode) {
+    public String transcribe(String name, int mode) {
         name = checkCustomCases(name);
         name = name.replace("a", "а");
         name = name.replace("A", "А");

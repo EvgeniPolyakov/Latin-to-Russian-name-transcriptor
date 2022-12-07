@@ -4,10 +4,10 @@ import java.util.Map;
 
 import static polyakov.nametranscriptor.model.rulesets.custom.Turkish.*;
 
-public class Turkish extends Ruleset {
+public class Turkish implements Ruleset {
 
     @Override
-    protected String transcribeName(String name, int mode) {
+    public String transcribe(String name, int mode) {
         for (Map.Entry<String, String> i : INITIAL_LETTER.entrySet()) {
             if (name.startsWith(i.getKey())) {
                 name = name.replaceFirst(i.getKey(), i.getValue());
