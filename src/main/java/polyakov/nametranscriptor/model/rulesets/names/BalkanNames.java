@@ -1,8 +1,8 @@
 package polyakov.nametranscriptor.model.rulesets.names;
 
 public enum BalkanNames {
-    NEMANJA("Nemanja", "Неманья"),
-    CETINJE("Cetinje", "Цетинье");
+    NEMANJA("nemanja", "неманья"),
+    CETINJE("cetinje", "цетинье");
 
     private final String latinName;
     private final String cyrillicName;

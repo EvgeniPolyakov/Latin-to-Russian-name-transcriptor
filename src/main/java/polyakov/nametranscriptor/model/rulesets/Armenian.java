@@ -13,20 +13,28 @@ public class Armenian extends Russian {
         if (os.isPresent()) {
             name = os.get();
         }
-        name = name.replace("Hay", "Ай");
-        name = name.replace("Hovhannes", "Оганес");
-        name = name.replace("Hambardz", "Амбарц");
-        name = name.replace("Hakob", "Акоп");
-        name = name.replace("Ha", "А");
-        name = name.replace("aha", "аа");
-        name = name.replace("Ghaza", "Каза");
-        name = name.replace("j", "дж");
-        name = name.replace("J", "Дж");
-        name = name.replace("Gh", "Г");
-        name = name.replace("gh", "г");
         if (name.endsWith("ian")) {
             name = name.replace("ian", "ян");
         }
+        if (name.startsWith("hay")) {
+            name = name.replace("hay", "оганес");
+        }
+        if (name.startsWith("hovhannes")) {
+            name = name.replace("hovhannes", "оганес");
+        }
+        if (name.startsWith("hambardz")) {
+            name = name.replace("hambardz", "амбарц");
+        }
+        if (name.startsWith("hakob")) {
+            name = name.replace("hakob", "акоп");
+        }
+        if (name.startsWith("ha")) {
+            name = name.replace("ha", "а");
+        }
+        name = name.replace("ghaza", "каза");
+        name = name.replace("j", "дж");
+        name = name.replace("gh", "г");
+        name = name.replace("aha", "аа");
         return super.checkCustomCases(name);
     }
 

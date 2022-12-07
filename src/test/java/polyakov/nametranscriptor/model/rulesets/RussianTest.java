@@ -9,15 +9,14 @@ class RussianTest {
 
     @Test
     void transcribe() {
-        String text = "AabBdD eEfF gGiI Kk hHlL MmNnoOpP RrSstTuU vVyYxXzZ Schennikov Borshchevoi Keldysh Shakhiya " +
-                "Chechnya rodnya Babayevski Yagaylo Aypetri yula Yuretsky Uygurets rayonniy Gor'ky yogurt Zhokhina " +
-                "Komsomol'skoye Bokii tikhy pologiy igor Olga Iaroslav Yuriev Yuri Kolomyts Yulia Zapotichnaya " +
-                "Elvira Ziyastinova Sadzhaya Shamsiddin Shanbiev Breytveyt Besserdechnaya Tsvilikhovski Fazyax " +
-                "Chayandyar";
-        String transcription = "АабБдД эЕфФ гГиИ Кк хХлЛ МмНноОпП РрСстТуУ вВыЙксКсзЗ Щенников Борщевой Келдыш Шахия " +
-                "Чечня родня Бабаевский Ягайло Айпетри юла Юрецкий Уйгурец районный Горький йогурт Жохина " +
-                "Комсомольское Бокий тихий пологий Игорь Ольга Ярослав Юриев Юрий Коломыц Юлия Запотичная Эльвира " +
-                "Зиястинова Саджая Шамсиддин Шанбиев Брейтвейт Бессердечная Цвилиховский Фазякс Чаяндяр";
+        String text = "schennikov borshchevoi keldysh shakhiya chechnya rodnya babayevski yagaylo aypetri yula " +
+                "yuretsky uygurets rayonniy gor'ky yogurt zhokhina komsomol'skoye bokii tikhy pologiy igor olga " +
+                "iaroslav yuriev yuri kolomyts yulia zapotichnaya elvira ziyastinova sadzhaya shamsiddin shanbiev " +
+                "breytveyt besserdechnaya tsvilikhovski fazyax chayandyar";
+        String transcription = "щенников борщевой келдыш шахия чечня родня бабаевский ягайло айпетри юла юрецкий " +
+                "уйгурец районный горький йогурт жохина комсомольское бокий тихий пологий игорь ольга ярослав " +
+                "юриев юрий коломыц юлия запотичная эльвира зиястинова саджая шамсиддин шанбиев брейтвейт " +
+                "бессердечная цвилиховский фазякс чаяндяр";
         Russian service = new Russian();
 
         String[] words = text.split(" ");

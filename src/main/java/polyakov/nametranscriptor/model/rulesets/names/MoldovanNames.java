@@ -1,17 +1,17 @@
 package polyakov.nametranscriptor.model.rulesets.names;
 
 public enum MoldovanNames {
-    ANATOLIE("Anatolie", "Анатолий"),
-    EDUARD("Eduard", "Эдуард"),
-    EDWARD("Edward", "Эдвард"),
-    EVGHENI("Evgheni", "Евгений"),
-    GHENADIE("Ghenadie", "Геннадий"),
-    GENADIE("Genadie", "Геннадий"),
-    GHENNADIE("Ghennadie", "Геннадий"),
-    GENNADIE("Gennadie", "Геннадий"),
-    MIHAIL("Mihail", "Михаил"),
-    SERGHEI("Serghei", "Сергей"),
-    SERGHEY("Serghey", "Сергей");
+    ANATOLIE("anatolie", "анатолий"),
+    EDUARD("eduard", "эдуард"),
+    EDWARD("edward", "эдвард"),
+    EVGHENI("evgheni", "евгений"),
+    GHENADIE("ghenadie", "геннадий"),
+    GENADIE("genadie", "геннадий"),
+    GHENNADIE("ghennadie", "геннадий"),
+    GENNADIE("gennadie", "геннадий"),
+    MIHAIL("mihail", "михаил"),
+    SERGHEI("serghei", "сергей"),
+    SERGHEY("serghey", "сергей");
 
     private final String latinName;
     private final String cyrillicName;

@@ -1,19 +1,19 @@
 package polyakov.nametranscriptor.model.rulesets.names;
 
 public enum GreekNames {
-    NEA("Nea", "Неа"),
-    GEORGIOS("Georgios", "Йоргос"),
-    GEORGOS("Georgos", "Йоргос"),
-    GIORGIOS("Giorgios", "Йоргос"),
-    GIORGOS("Giorgos", "Йоргос"),
-    ELIAS("Elias", "Элиас"),
-    TRIA("Tria", "Триа"),
-    VASILEIOS("Vasileios", "Василиос"),
-    VASSILEIOS("Vassileios", "Вассилиос"),
-    VASILIOS("Vasilios", "Василиос"),
-    VASSILIOS("Vassilios", "Вассилиос"),
-    VASILIS("Vasilis", "Василис"),
-    ILIAS("Ilias", "Илиас");
+    NEA("nea", "неа"),
+    GEORGIOS("georgios", "йоргос"),
+    GEORGOS("georgos", "йоргос"),
+    GIORGIOS("giorgios", "йоргос"),
+    GIORGOS("giorgos", "йоргос"),
+    ELIAS("elias", "элиас"),
+    TRIA("tria", "триа"),
+    VASILEIOS("vasileios", "василиос"),
+    VASSILEIOS("vassileios", "вассилиос"),
+    VASILIOS("vasilios", "василиос"),
+    VASSILIOS("vassilios", "вассилиос"),
+    VASILIS("vasilis", "василис"),
+    ILIAS("ilias", "илиас");
 
     private final String latinName;
     private final String cyrillicName;

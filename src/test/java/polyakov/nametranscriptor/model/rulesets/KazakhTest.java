@@ -9,31 +9,31 @@ class KazakhTest {
 
     @Test
     void transcribe() {
-        String text = "Alexandr Shirobokov Alisher Rakhimzhanov Arsen Azatov Askar Satyshev Vadim Yakovlev " +
-                "Galymzhan Kenzhebek Danil Ankudinov Daniil Somov Daniyar Dulatov Daniyar Urda Dias Kushkumbayev " +
-                "Yegor Tkachenko Zhannur Kukeyev Miras Amantayev Khalmatov Nikita Pivkin Roman Chirkov " +
-                "Sultan Askarov Adilet Kuanysh Adil Janaidar Dobay Aibar Janaozen Alexandr Shirobokov " +
-                "Alen Aimanov Arsen Azatov Baizhan Madelkhan Vladimir Biryukov Vladislav Butyrin Damir Kassabulat " +
-                "Zhassulan Yerzhigit Kakhramon Khassanov Konstantin Puzanov Lev Kurgin Magzhan Baurzhan Nurgaini " +
-                "Buribayev Tenizbay Abdurakhmanov Yuri Akhanov Aida Artykbay Aidana Kuztay Alexandra Burova Alina " +
-                "Khassanova Alina Shalmukhanbetova Sailaubekkyzy Aruzhan Orazbekova Kubessova Assemgul Aruova " +
-                "Bagully Gulim Kenzhetay Gulmira Tashmet Zhansaya Kopzhanova Leila Sadykova Burdakova Nazerke " +
-                "Shalmukhanbetova Elvira Narbek Smagulova Zhautikova Serikbay Ainur Jabylbayeva " +
-                "Aisha Sadykova Anastassiya Nizamutdinova Angelina Portnova Flyut Arailym Orynbassarova Assem " +
-                "Zhaksymbay Ayazhan Akhmoldanova Yekaterina Yelisseyeva Kamila Akshalova Kundyz Kozhakhmet Amirbek " +
-                "Nadezhda Ivanyuk Olga Volkova Rano Akbayeva Shynar Sharapidenova Schuchinsk";
-        String transcription = "Александр Широбоков Алишер Рахимжанов Арсен Азатов Аскар Сатышев Вадим Яковлев " +
-                "Галымжан Кенжебек Данил Анкудинов Даниил Сомов Данияр Дулатов Данияр Урда Диас Кушкумбаев Егор " +
-                "Ткаченко Жаннур Кукеев Мирас Амантаев Халматов Никита Пивкин Роман Чирков Султан Аскаров " +
-                "Адилет Куаныш Адиль Жанайдар Добай Айбар Жанаозен Александр Широбоков Ален Айманов Арсен " +
-                "Азатов Байжан Маделхан Владимир Бирюков Владислав Бутырин Дамир Касабулат Жасулан Ержигит Кахрамон " +
-                "Хасанов Константин Пузанов Лев Кургин Магжан Бауржан Нургайни Бурибаев Тенизбай Абдурахманов Юрий " +
-                "Аханов Аида Артыкбай Айдана Кузтай Александра Бурова Алина Хасанова Алина Шалмуханбетова " +
-                "Сайлаубеккызы Аружан Оразбекова Кубесова Асемгуль Аруова Багуллы Гулим Кенжетай Гульмира Ташмет " +
-                "Жансая Копжанова Лейла Садыкова Бурдакова Назерке Шалмуханбетова Эльвира Нарбек Смагулова Жаутикова " +
-                "Серикбай Айнур Жабылбаева Айша Садыкова Анастасия Низамутдинова Ангелина Портнова Флют Арайлым " +
-                "Орынбасарова Асем Жаксымбай Аяжан Ахмолданова Екатерина Елисеева Камила Акшалова Кундыз Кожахмет " +
-                "Амирбек Надежда Иванюк Ольга Волкова Рано Акбаева Шынар Шарапиденова Щучинск";
+        String text = "alexandr shirobokov alisher rakhimzhanov arsen azatov askar satyshev vadim yakovlev " +
+                "galymzhan kenzhebek danil ankudinov daniil somov daniyar dulatov daniyar urda dias kushkumbayev " +
+                "yegor tkachenko zhannur kukeyev miras amantayev khalmatov nikita pivkin roman chirkov " +
+                "sultan askarov adilet kuanysh adil janaidar dobay aibar janaozen alexandr shirobokov " +
+                "alen aimanov arsen azatov baizhan madelkhan vladimir biryukov vladislav butyrin damir kassabulat " +
+                "zhassulan yerzhigit kakhramon khassanov konstantin puzanov lev kurgin magzhan baurzhan nurgaini " +
+                "buribayev tenizbay abdurakhmanov yuri akhanov aida artykbay aidana kuztay alexandra burova alina " +
+                "khassanova alina shalmukhanbetova sailaubekkyzy aruzhan orazbekova kubessova assemgul aruova " +
+                "bagully gulim kenzhetay gulmira tashmet zhansaya kopzhanova leila sadykova burdakova nazerke " +
+                "shalmukhanbetova elvira narbek smagulova zhautikova serikbay ainur jabylbayeva " +
+                "aisha sadykova anastassiya nizamutdinova angelina portnova flyut arailym orynbassarova assem " +
+                "zhaksymbay ayazhan akhmoldanova yekaterina yelisseyeva kamila akshalova kundyz kozhakhmet amirbek " +
+                "nadezhda ivanyuk olga volkova rano akbayeva shynar sharapidenova schuchinsk";
+        String transcription = "александр широбоков алишер рахимжанов арсен азатов аскар сатышев вадим яковлев " +
+                "галымжан кенжебек данил анкудинов даниил сомов данияр дулатов данияр урда диас кушкумбаев егор " +
+                "ткаченко жаннур кукеев мирас амантаев халматов никита пивкин роман чирков султан аскаров " +
+                "адилет куаныш адиль жанайдар добай айбар жанаозен александр широбоков ален айманов арсен " +
+                "азатов байжан маделхан владимир бирюков владислав бутырин дамир касабулат жасулан ержигит кахрамон " +
+                "хасанов константин пузанов лев кургин магжан бауржан нургайни бурибаев тенизбай абдурахманов юрий " +
+                "аханов аида артыкбай айдана кузтай александра бурова алина хасанова алина шалмуханбетова " +
+                "сайлаубеккызы аружан оразбекова кубесова асемгуль аруова багуллы гулим кенжетай гульмира ташмет " +
+                "жансая копжанова лейла садыкова бурдакова назерке шалмуханбетова эльвира нарбек смагулова жаутикова " +
+                "серикбай айнур жабылбаева айша садыкова анастасия низамутдинова ангелина портнова флют арайлым " +
+                "орынбасарова асем жаксымбай аяжан ахмолданова екатерина елисеева камила акшалова кундыз кожахмет " +
+                "амирбек надежда иванюк ольга волкова рано акбаева шынар шарапиденова щучинск";
         Kazakh service = new Kazakh();
 
         String[] words = text.split(" ");

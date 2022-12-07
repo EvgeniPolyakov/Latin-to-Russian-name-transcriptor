@@ -9,20 +9,20 @@ class ArmenianTest {
 
     @Test
     void transcribe() {
-        String text = "Volodya Samsonyan Arman Nersesyan Arjanik Ghubasaryan Gevorg Tarakhchyan Sahradyan " +
-                "Arsen Galstyan Narek Alaverdyan Vahan Sargsyan Mirzoyan Grenik Petrosyan Muradyan " +
-                "Sergey Mkrtchyan Harutyun Melkonyan Petros Manukyan Vahagn Kolozyan Narek Grigoryan Arman Ghazaryan " +
-                "Narek Aghasaryan Artak Asatryan Zhirayr Shaghoyan Erik Vardanyan Derenik Sargsyan Davit Nalbandyan " +
-                "Mikhail Muradyan Grigorii Matevosian Albert Khachumyan Nikolas Melikian Armen Hovhannesyan Erik " +
-                "Azizyan Vahan Bichakhchyan Sadoyan Geghamyan Erik Gharibyan Gharibyan Armen Asilyan Armen " +
-                "Hovhannes Harutyunyan Karen Melkonyan Petrosyan Abraham Portugalyan Sargise Hambardzumyan";
-        String transcription = "Володя Самсонян Арман Нерсесян Арджаник Губасарян Геворг Тарахчян Сахрадян " +
-                "Арсен Галстян Нарек Алавердян Ваан Саргсян Мирзоян Греник Петросян Мурадян Сергей " +
-                "Мкртчян Арутюн Мелконян Петрос Манукян Ваагн Колозян Нарек Григорян Арман Казарян Нарек Агасарян " +
-                "Артак Асатрян Жирайр Шагоян Эрик Варданян Дереник Саргсян Давид Налбандян Михаил Мурадян Григорий " +
-                "Матевосян Альберт Хачумян Николас Меликян Армен Оганесян Эрик Азизян Ваан Бичахчян Садоян Гегамян " +
-                "Эрик Гарибян Гарибян Армен Асилян Армен Оганес Арутюнян Карен Мелконян Петросян Абраам Португалян " +
-                "Саркис Амбарцумян";
+        String text = "volodya samsonyan arman nersesyan arjanik ghubasaryan gevorg tarakhchyan sahradyan " +
+                "arsen galstyan narek alaverdyan vahan sargsyan mirzoyan grenik petrosyan muradyan " +
+                "sergey mkrtchyan harutyun melkonyan petros manukyan vahagn kolozyan grigoryan arman ghazaryan " +
+                "narek aghasaryan artak asatryan zhirayr shaghoyan erik vardanyan derenik sargsyan davit nalbandyan " +
+                "mikhail muradyan grigorii matevosian albert khachumyan nikolas melikian armen hovhannesyan erik " +
+                "azizyan vahan bichakhchyan sadoyan geghamyan erik gharibyan gharibyan armen asilyan armen " +
+                "hovhannes harutyunyan karen melkonyan petrosyan abraham portugalyan sargise hambardzumyan";
+        String transcription = "володя самсонян арман нерсесян арджаник губасарян геворг тарахчян сахрадян " +
+                "арсен галстян нарек алавердян ваан саргсян мирзоян греник петросян мурадян сергей " +
+                "мкртчян арутюн мелконян петрос манукян ваагн колозян григорян арман казарян нарек агасарян " +
+                "артак асатрян жирайр шагоян эрик варданян дереник саргсян давид налбандян михаил мурадян григорий " +
+                "матевосян альберт хачумян николас меликян армен оганесян эрик азизян ваан бичахчян садоян гегамян " +
+                "эрик гарибян гарибян армен асилян армен оганес арутюнян карен мелконян петросян абраам португалян " +
+                "саркис амбарцумян";
         Armenian service = new Armenian();
 
         String[] words = text.split(" ");

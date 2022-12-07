@@ -9,22 +9,22 @@ class TurkishTest {
 
     @Test
     void transcribe() {
-        String text = "Eyyub Yayla Konya Ünye Yiğit Akyiğit Yıldırım Akyıldız Karadayı Yozgat Bayortaç " +
-                "Yörük Yunus Niğde Divriği Bozdoğan Muğla Iğdır Hakkâri Elâzığ Bolat Hasan Ali Kaldırım Ömer Bayram " +
-                "Okay Yokuşlu Çalhanoğlu Kaan Ayhan Ozan Tufan Enes Ünal Deniz Türüç Zeki Çelik Merih Demiral Berkay " +
-                "Özcan Uğurcan Çakır Güven Yalçın Emre Kılınç Mert Müldür Yusuf Yazıcı Umut Meraş Ozan Kabak Altay " +
-                "Bayındır Ahmed Kutucu Mert Çetin Arzu Karabulut Yağmur Uraz Fatma Şahin Ezgi Çağlar Didem Karagenç " +
-                "Yaşam Göksu Hız Emine Ecem Esen Ebru Topçu Berna Yeniçeri İlayda Civelek Derya Arhan Ece " +
-                "Türkoğlu Sadıkoğlu İpek Kaya Sedanur İncik Irem Eren Melike Öztürk Gamze Yaman Elif Keskin " +
-                "Büşra Kuru Dilan Yeşim Taşkin Cansu Nur Pijamalı hasta yağız şoföre çabucak güvendi";
-        String transcription = "Эйюб Яйла Конья Унье Йигит Акйигит Йылдырым Акйылдыз Карадайы Йозгат " +
-                "Байортач Йорюк Юнус Нигде Дивриги Боздоган Мугла Ыгдыр Хаккяри Элязыг Болат Хасан Али Калдырым " +
-                "Омер Байрам Окай Йокушлу Чалханоглу Каан Айхан Озан Туфан Энес Унал Дениз Тюрюч Зеки Челик Мерих " +
-                "Демирал Беркай Озджан Угурджан Чакыр Гювен Ялчын Эмре Кылынч Мерт Мюлдюр Юсуф Языджы Умут Мераш Озан " +
-                "Кабак Алтай Байындыр Ахмед Кутуджу Мерт Четин Арзу Карабулут Ягмур Ураз Фатма Шахин Эзги Чаглар Дидем " +
-                "Карагенч Яшам Гексу Хыз Эмине Эджем Эсен Эбру Топчу Берна Еничери Илайда Дживелек Дерья Архан " +
-                "Эдже Тюркоглу Садыкоглу Ипек Кая Седанур Инджик Ырем Эрен Мелике Озтюрк Гамзе Яман Элиф " +
-                "Кескин Бюшра Куру Дилан Ешим Ташкин Джансу Нур Пижамалы хаста ягыз шофере чабуджак гювенди";
+        String text = "eyyub yayla konya ünye yiğit akyiğit yıldırım akyıldız karadayı yozgat bayortaç " +
+                "yörük yunus niğde divriği bozdoğan muğla ığdır hakkâri elâzığ bolat hasan ali kaldırım ömer bayram " +
+                "okay yokuşlu çalhanoğlu kaan ayhan ozan tufan enes ünal deniz türüç zeki çelik merih demiral berkay " +
+                "özcan uğurcan çakır güven yalçın emre kılınç mert müldür yusuf yazıcı umut meraş ozan kabak altay " +
+                "bayındır ahmed kutucu mert çetin arzu karabulut yağmur uraz fatma şahin ezgi çağlar didem karagenç " +
+                "yaşam göksu hız emine ecem esen ebru topçu berna yeniçeri ilayda civelek derya arhan ece " +
+                "türkoğlu sadıkoğlu ipek kaya sedanur incik ırem eren melike öztürk gamze yaman elif keskin " +
+                "büşra kuru dilan yeşim taşkin cansu nur pijamalı hasta yağız şoföre çabucak güvendi";
+        String transcription = "эйюб яйла конья унье йигит акйигит йылдырым акйылдыз карадайы йозгат " +
+                "байортач йорюк юнус нигде дивриги боздоган мугла ыгдыр хаккяри элязыг болат хасан али калдырым " +
+                "омер байрам окай йокушлу чалханоглу каан айхан озан туфан энес унал дениз тюрюч зеки челик мерих " +
+                "демирал беркай озджан угурджан чакыр гювен ялчын эмре кылынч мерт мюлдюр юсуф языджы умут мераш озан " +
+                "кабак алтай байындыр ахмед кутуджу мерт четин арзу карабулут ягмур ураз фатма шахин эзги чаглар дидем " +
+                "карагенч яшам гексу хыз эмине эджем эсен эбру топчу берна еничери илайда дживелек дерья архан " +
+                "эдже тюркоглу садыкоглу ипек кая седанур инджик ырем эрен мелике озтюрк гамзе яман элиф " +
+                "кескин бюшра куру дилан ешим ташкин джансу нур пижамалы хаста ягыз шофере чабуджак гювенди";
         Turkish service = new Turkish();
 
         String[] words = text.split(" ");

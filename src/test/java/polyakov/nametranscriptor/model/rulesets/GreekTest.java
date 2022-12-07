@@ -9,30 +9,30 @@ class GreekTest {
 
     @Test
     void transcribe() {
-        String text = "Istiaia Vaios Karyai Kameni Yerakini Yides Pyrgi Giannitsa Achilleas Alkaios Emilios " +
-                "Vagionia Panagiouda Zagliveri Gkana Anchialos Karditsa Krieza Nea Psara Richea " +
-                "Evdokia Evvoikos Achaia Tria Kalymnos Mpampis Papaioannou Tsalouchidis Lyratzis Giakoumakis " +
-                "Xanthi Veria Smolikas Kazantzakis Tsatsos Chalkida Onassis Tsiartas Chatzigiannidou Stogiannis " +
-                "Ieroklis Georgogiannis Papagiannakis Georgios Konstantinos Ioannis Nikolaos Dimitrios Christos " +
-                "Vasilios Panagiotis Antonios Athanasios Apostolos Alexandros Dimitris Anastasios Theodoros Nikos " +
-                "Evangelos Andreas Ilias Kostas Emmanouil Vasilis Michail Petros Giannis Maria Stavros Angelos " +
-                "Pavlos Spiridon Stefanos Stelios Takis Thomas Eleni Stylianos Vasileios Panayotis Pantelis " +
-                "Charalambos Kiriakos Loukas Michalis Sotirios Thanasis Aristidis Asterios Charalampos Elias Fotios " +
-                "Giorgios Grigorios Grigoris Lakis Mimis Nicolaos Periklis Sotiris Spyridon Tasos Vassilios Alexios " +
-                "Anastasia Dionisios Efstratios Efthymios Eleftherios Kyriaki Lazaros Leonidas Mihail Mihalis Minas " +
-                "Paraskevas Savas Sofia Sokratis Theocharis Theofanis Vangelis Vassiliki Zafiris Achileas Andreas";
-        String transcription = "Истиея Вейос Карье Камени Еракини Йидес Пирьи Янница Ахиллеас Алкейос Эмилиос " +
-                "Вайония Панаюда Загливери Гана Анхиалос Кардица Криеза Неа Псара Рихея Эвдокия " +
-                "Эввоикос Ахея Триа Калимнос Бамбис Папаиоанну Цалухидис Лирадзис Якумакис Ксанти Верия Змоликас " +
-                "Казандзакис Цацос Халкида Онассис Циартас Хадзиянниду Стояннис Иероклис Георгояннис Папаяннакис Йоргос " +
-                "Константинос Яннис Николаос Димитриос Христос Василиос Панайотис Антониос Атанасиос Апостолос " +
-                "Александрос Димитрис Анастасиос Теодорос Никос Эвангелос Андреас Илиас Костас Эммануил Василис " +
-                "Михаил Петрос Яннис Мария Ставрос Ангелос Павлос Спиридон Стефанос Стелиос Такис Томас Элени " +
-                "Стилианос Василиос Панайотис Пантелис Хараламбос Кириакос Лукас Михалис Сотириос Танасис Аристидис " +
-                "Астериос Хараламбос Элиас Фотиос Йоргос Григориос Григорис Лакис Мимис Николаос Периклис Сотирис " +
-                "Спиридон Тасос Вассилиос Алексиос Анастасия Дионисиос Эфстратиос Эфтимиос Элефтериос Кириаки " +
-                "Лазарос Леонидас Михаил Михалис Минас Параскевас Савас София Сократис Теохарис Теофанис " +
-                "Вангелис Вассилики Зафирис Ахилеас Андреас";
+        String text = "istiaia vaios karyai kameni yerakini yides pyrgi giannitsa achilleas alkaios emilios " +
+                "vagionia panagiouda zagliveri gkana anchialos karditsa krieza nea psara richea " +
+                "evdokia evvoikos achaia tria kalymnos mpampis papaioannou tsalouchidis lyratzis giakoumakis " +
+                "xanthi veria smolikas kazantzakis tsatsos chalkida onassis tsiartas chatzigiannidou stogiannis " +
+                "ieroklis georgogiannis papagiannakis georgios konstantinos ioannis nikolaos dimitrios christos " +
+                "vasilios panagiotis antonios athanasios apostolos alexandros dimitris anastasios theodoros nikos " +
+                "evangelos andreas ilias kostas emmanouil vasilis michail petros giannis maria stavros angelos " +
+                "pavlos spiridon stefanos stelios takis thomas eleni stylianos vasileios panayotis pantelis " +
+                "charalambos kiriakos loukas michalis sotirios thanasis aristidis asterios charalampos elias fotios " +
+                "giorgios grigorios grigoris lakis mimis nicolaos periklis sotiris spyridon tasos vassilios alexios " +
+                "anastasia dionisios efstratios efthymios eleftherios kyriaki lazaros leonidas mihail mihalis minas " +
+                "paraskevas savas sofia sokratis theocharis theofanis vangelis vassiliki zafiris achileas andreas";
+        String transcription = "истиея вейос карье камени еракини йидес пирьи янница ахиллеас алкейос эмилиос " +
+                "вайония панаюда загливери гана анхиалос кардица криеза неа псара рихея эвдокия " +
+                "эввоикос ахея триа калимнос бамбис папаиоанну цалухидис лирадзис якумакис ксанти верия змоликас " +
+                "казандзакис цацос халкида онассис циартас хадзиянниду стояннис иероклис георгояннис папаяннакис йоргос " +
+                "константинос яннис николаос димитриос христос василиос панайотис антониос атанасиос апостолос " +
+                "александрос димитрис анастасиос теодорос никос эвангелос андреас илиас костас эммануил василис " +
+                "михаил петрос яннис мария ставрос ангелос павлос спиридон стефанос стелиос такис томас элени " +
+                "стилианос василиос панайотис пантелис хараламбос кириакос лукас михалис сотириос танасис аристидис " +
+                "астериос хараламбос элиас фотиос йоргос григориос григорис лакис мимис николаос периклис сотирис " +
+                "спиридон тасос вассилиос алексиос анастасия дионисиос эфстратиос эфтимиос элефтериос кириаки " +
+                "лазарос леонидас михаил михалис минас параскевас савас софия сократис теохарис теофанис " +
+                "вангелис вассилики зафирис ахилеас андреас";
         Greek service = new Greek();
 
         String[] words = text.split(" ");

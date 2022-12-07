@@ -9,26 +9,26 @@ class MoldovanTest {
 
     @Test
     void transcribe() {
-        String text = "Bondarciuc Iaser Țurcan Ianoș Brînză Cebotari Priganiuc Mîrza Vdovcencov " +
-                "Iourii Erhan Ciornîi Coceanovschi Ștefania Rotari Fiodor Iapără Șmalenea Musteaţă Serghei Tatiana " +
-                "Peșterean Laşcencov Cojocari Calmațui Iliniuc Șumchin Scoarţă Coşciug Gînsari " +
-                "Panteleiciuc Cucereavenco Japalău Reabciuk Oxana Dicusar Darenscaia Nichita Murovanîi Corneencov " +
-                "Andronachi Repineţchii Nagornîi Cazacu Corneliu Țîbuleac Gurjui Ionuț Ciobanu Jupanova " +
-                "Ciumacenco Ojehovschii Cucereavîi Evghenii Zămosteanu Jitariuc Victoria Vîctărău " +
-                "Dijinari Andrei Macoviiciuc Anatolie Aurel Cătălin Constantin Dumitru Eugenia Eugeniu Eric Eduard " +
-                "Edward Evgheni Evghenia Evghenii Ghenadie Gheorghe Ianina Iaroslav Iouri Igor Liviu Ludmila " +
-                "Marcela Mihai Mihail Nadejda Natalia Nicolae Nicolai Olesea Olga Ruslan Semion Sergei Serghei " +
-                "Serghey Sergiu Tatiana Valerii Valeriu Vasile Veaceslav Vitalii Vitaliy Cojocari";
-        String transcription = "Бондарчук Ясер Цуркан Янош Брынзэ Чеботарь Приганюк Мырза Вдовченков " +
-                "Юрий Ерхан Чорный Кочановский Штефания Ротарь Федор Япэрэ Шмаленя Мустяцэ Сергей Татьяна " +
-                "Пештерян Лащенков Кожокарь Калмацуй Илинюк Шумкин Скоарцэ Кощуг Гынсарь Пантелейчук " +
-                "Кучерявенко Жапалэу Рябчук Оксана Дикусар Даренская Никита Мурованый Корнеенков Андронаки " +
-                "Репинецкий Нагорный Казаку Корнелиу Цыбуляк Гуржуй Йонуц Чобану Жупанова Чумаченко Ожеховский " +
-                "Кучерявый Евгений Зэмостяну Житарюк Виктория Выктэрэу Дижинарь Андрей Маковийчук Анатолий " +
-                "Аурел Кэтэлин Константин Думитру Эуджения Эуджениу Эрик Эдуард Эдвард Евгений Евгения Евгений " +
-                "Геннадий Георге Янина Ярослав Юрий Игорь Ливиу Людмила Марчела Михай Михаил Надежда Наталия Николае " +
-                "Николай Олеся Ольга Руслан Семен Сергей Сергей Сергей Серджу Татьяна Валерий Валериу Василе " +
-                "Вячеслав Виталий Виталий Кожокарь";
+        String text = "bondarciuc iaser țurcan ianoș brînză cebotari priganiuc mîrza vdovcencov " +
+                "iourii erhan ciornîi coceanovschi ștefania rotari fiodor iapără șmalenea musteaţă serghei tatiana " +
+                "peșterean laşcencov cojocari calmațui iliniuc șumchin scoarţă coşciug gînsari " +
+                "panteleiciuc cucereavenco japalău reabciuk oxana dicusar darenscaia nichita murovanîi corneencov " +
+                "andronachi repineţchii nagornîi cazacu corneliu țîbuleac gurjui ionuț ciobanu jupanova " +
+                "ciumacenco ojehovschii cucereavîi evghenii zămosteanu jitariuc victoria vîctărău " +
+                "dijinari andrei macoviiciuc anatolie aurel cătălin constantin dumitru eugenia eugeniu eric eduard " +
+                "edward evgheni evghenia evghenii ghenadie gheorghe ianina iaroslav iouri igor liviu ludmila " +
+                "marcela mihai mihail nadejda natalia nicolae nicolai olesea olga ruslan semion sergei serghei " +
+                "serghey sergiu tatiana valerii valeriu vasile veaceslav vitalii vitaliy cojocari";
+        String transcription = "бондарчук ясер цуркан янош брынзэ чеботарь приганюк мырза вдовченков " +
+                "юрий ерхан чорный кочановский штефания ротарь федор япэрэ шмаленя мустяцэ сергей татьяна " +
+                "пештерян лащенков кожокарь калмацуй илинюк шумкин скоарцэ кощуг гынсарь пантелейчук " +
+                "кучерявенко жапалэу рябчук оксана дикусар даренская никита мурованый корнеенков андронаки " +
+                "репинецкий нагорный казаку корнелиу цыбуляк гуржуй йонуц чобану жупанова чумаченко ожеховский " +
+                "кучерявый евгений зэмостяну житарюк виктория выктэрэу дижинарь андрей маковийчук анатолий " +
+                "аурел кэтэлин константин думитру эуджения эуджениу эрик эдуард эдвард евгений евгения евгений " +
+                "геннадий георге янина ярослав юрий игорь ливиу людмила марчела михай михаил надежда наталия николае " +
+                "николай олеся ольга руслан семен сергей сергей сергей серджу татьяна валерий валериу василе " +
+                "вячеслав виталий виталий кожокарь";
         Moldovan service = new Moldovan();
 
         String[] words = text.split(" ");

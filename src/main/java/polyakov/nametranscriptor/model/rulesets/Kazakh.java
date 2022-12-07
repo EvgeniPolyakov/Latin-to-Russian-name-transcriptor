@@ -8,8 +8,8 @@ public class Kazakh extends Russian {
         name = name.replace("ss", "с");
         name = name.replace("j", "ж");
         name = name.replace("J", "Ж");
-        name = name.replace("Gulm", "Гульм");
-        name = name.replace("Guln", "Гульн");
+        name = name.replace("gulm", "гульм");
+        name = name.replace("guln", "гульн");
         if (name.endsWith("gul")) {
             name = name.replace("gul", "гуль");
         }

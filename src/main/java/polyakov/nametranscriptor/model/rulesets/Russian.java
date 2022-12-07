@@ -20,54 +20,32 @@ public class Russian implements Ruleset {
         if (name.startsWith("e")) {
             name = name.replaceFirst("e", "э");
         }
-        if (name.startsWith("E")) {
-            name = name.replaceFirst("E", "Э");
+        if (name.startsWith("ia")) {
+            name = name.replaceFirst("ia", "я");
         }
         name = checkCombinations(name);
         name = name.replace("a", "а");
-        name = name.replace("A", "А");
         name = name.replace("b", "б");
-        name = name.replace("B", "Б");
         name = name.replace("d", "д");
-        name = name.replace("D", "Д");
         name = name.replace("e", "е");
-        name = name.replace("E", "Е");
         name = name.replace("f", "ф");
-        name = name.replace("F", "Ф");
         name = name.replace("g", "г");
-        name = name.replace("G", "Г");
         name = name.replace("i", "и");
-        name = name.replace("I", "И");
         name = name.replace("k", "к");
-        name = name.replace("K", "К");
         name = name.replace("h", "х");
-        name = name.replace("H", "Х");
         name = name.replace("l", "л");
-        name = name.replace("L", "Л");
         name = name.replace("m", "м");
-        name = name.replace("M", "М");
         name = name.replace("n", "н");
-        name = name.replace("N", "Н");
         name = name.replace("o", "о");
-        name = name.replace("O", "О");
         name = name.replace("p", "п");
-        name = name.replace("P", "П");
         name = name.replace("r", "р");
-        name = name.replace("R", "Р");
         name = name.replace("s", "с");
-        name = name.replace("S", "С");
         name = name.replace("t", "т");
-        name = name.replace("T", "Т");
         name = name.replace("u", "у");
-        name = name.replace("U", "У");
         name = name.replace("v", "в");
-        name = name.replace("V", "В");
         name = name.replace("y", "ы");
-        name = name.replace("Y", "Й");
         name = name.replace("x", "кс");
-        name = name.replace("X", "Кс");
         name = name.replace("z", "з");
-        name = name.replace("Z", "З");
         name = name.replace("'", "ь");
         return postcheck(name);
     }
@@ -82,33 +60,19 @@ public class Russian implements Ruleset {
     private static String checkCombinations(String name) {
         name = name.replace("sch", "щ");
         name = name.replace("sch", "щ");
-        name = name.replace("Sch", "Щ");
         name = name.replace("shch", "щ");
-        name = name.replace("Shch", "Щ");
         name = name.replace("sh", "ш");
-        name = name.replace("Sh", "Ш");
         name = name.replace("ch", "ч");
-        name = name.replace("Ch", "Ч");
-        name = name.replace("Ia", "Я");
         name = name.replace("iya", "ия");
         name = name.replace("ya", "я");
         name = name.replace("aye", "ае");
         name = name.replace("ay", "ай");
-        name = name.replace("Ya", "Я");
-        name = name.replace("Ay", "Ай");
-        name = name.replace("Ai", "Ай");
         name = name.replace("yu", "ю");
         name = name.replace("uy", "уй");
-        name = name.replace("Yu", "Ю");
-        name = name.replace("Uy", "Уй");
         name = name.replace("ye", "е");
         name = name.replace("ey", "ей");
-        name = name.replace("Ye", "Е");
-        name = name.replace("Ey", "Эй");
         name = name.replace("yo", "йо");
         name = name.replace("oy", "ой");
-        name = name.replace("Yo", "Йо");
-        name = name.replace("Oy", "Ой");
         name = name.replace("yi", "ьи");
         name = name.replace("ei", "ей");
         name = name.replace("oi", "ой");
@@ -116,9 +80,7 @@ public class Russian implements Ruleset {
         name = name.replace("ts", "ц");
         name = name.replace("Ts", "Ц");
         name = name.replace("zh", "ж");
-        name = name.replace("Zh", "Ж");
         name = name.replace("kh", "х");
-        name = name.replace("Kh", "Х");
         return name;
     }
 
@@ -131,7 +93,6 @@ public class Russian implements Ruleset {
 
     protected String checkCustomCases(String name) {
         name = name.replace("j", "y");
-        name = name.replace("J", "Y");
         name = name.replace("tsky", "цкий");
         for (Map.Entry<String, String> s : ENDINGS.entrySet()) {
             if (name.endsWith(s.getKey())) {

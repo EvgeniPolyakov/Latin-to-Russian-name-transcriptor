@@ -9,17 +9,17 @@ class RomanianTest {
 
     @Test
     void transcribe() {
-        String text = "Ada Făcăeni Târgu Mureș Barbu Cezar Camil Mircea Chișinău Tecuci Cioran Ciurel Dan Eugen " +
-                "Nicolae Ezeriș Băneasa Aref Geta Grigore Gong Caragea Borgia George Gheorghe Geoagiu Mihu " +
-                "Irina Matei Botoșani Traian Demian Sofia Iernut Ploiești Miersig Ilie Cocorăștii Colț Viile " +
-                "Întorsura Cîmpeni Cîineni Ion Ghiolț Iuda Porumboiu Iuliuș Ovidiu Cujmir Virgil Manole Nana Teofil " +
-                "Petre Petru Sanda Izvoarele Șercaia Tatu Cheț Ury Victor Alexandru Hydro Zoe Înjurând " +
+        String text = "ada făcăeni târgu mureș barbu cezar camil mircea chișinău tecuci cioran ciurel dan eugen " +
+                "nicolae ezeriș băneasa aref geta grigore gong caragea borgia george gheorghe geoagiu mihu " +
+                "irina matei botoșani traian demian sofia iernut ploiești miersig ilie cocorăștii colț viile " +
+                "întorsura cîmpeni cîineni ion ghiolț iuda porumboiu iuliuș ovidiu cujmir virgil manole nana teofil " +
+                "petre petru sanda izvoarele șercaia tatu cheț ury victor alexandru hydro zoe înjurând " +
                 "pițigăiat zoofobul comandă vexat whisky și tequila";
-        String transcription = "Ада Фэкэени Тыргу Муреш Барбу Чезар Камил Мирча Кишинэу Текуч Чоран Чурел Дан " +
-                "Эуджен Николае Езериш Бэняса Ареф Джета Григоре Гонг Караджа Борджа Джордже Георге Джоаджу " +
-                "Миху Ирина Матей Ботошани Траян Демьян София Ернут Плоешти Мьерсиг Илие Кокорэштий Колц " +
-                "Вийле Ынторсура Кымпени Кыйнени Йон Гьолц Юда Порумбою Юльюш Овидиу Кужмир Вирджил Маноле Нана " +
-                "Теофил Петре Петру Санда Извоареле Шеркая Тату Кец Ури Виктор Александру Хидро Зое Ынжурынд " +
+        String transcription = "ада фэкэени тыргу муреш барбу чезар камил мирча кишинэу текуч чоран чурел дан " +
+                "эуджен николае езериш бэняса ареф джета григоре гонг караджа борджа джордже георге джоаджу " +
+                "миху ирина матей ботошани траян демьян софия ернут плоешти мьерсиг илие кокорэштий колц " +
+                "вийле ынторсура кымпени кыйнени йон гьолц юда порумбою юльюш овидиу кужмир вирджил маноле нана " +
+                "теофил петре петру санда извоареле шеркая тату кец ури виктор александру хидро зое ынжурынд " +
                 "пицигэят зоофобул командэ вексат вхиски ши текуйла";
         Romanian service = new Romanian();
 
