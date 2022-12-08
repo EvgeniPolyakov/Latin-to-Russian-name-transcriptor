@@ -40,14 +40,14 @@ public class Moldovan extends Romanian {
 
     private Optional<String> checkRussianNames(String name) {
         return Arrays.stream(RussianNames.values())
-                .filter(s -> s.getLatinName().equalsIgnoreCase(name))
+                .filter(s -> s.getLatinName().equals(name))
                 .findAny()
                 .map(RussianNames::getCyrillicName);
     }
 
     private Optional<String> checkMoldovanNames(String name) {
         return Arrays.stream(MoldovanNames.values())
-                .filter(s -> s.getLatinName().equalsIgnoreCase(name))
+                .filter(s -> s.getLatinName().equals(name))
                 .findAny()
                 .map(MoldovanNames::getCyrillicName);
     }

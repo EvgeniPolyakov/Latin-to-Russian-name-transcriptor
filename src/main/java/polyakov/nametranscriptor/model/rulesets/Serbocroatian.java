@@ -78,7 +78,7 @@ public class Serbocroatian implements Ruleset {
 
     private Optional<String> checkPopularNames(String name) {
         return Arrays.stream(BalkanNames.values())
-                .filter(s -> s.getLatinName().equalsIgnoreCase(name.toLowerCase()))
+                .filter(s -> s.getLatinName().equals(name))
                 .findAny()
                 .map(BalkanNames::getCyrillicName);
     }

@@ -60,8 +60,8 @@ public class Rulesets {
 //            Map.entry("Spain", new Spanish()),
 //            Map.entry("Switzerland", new German()),
 //            Map.entry("Sweden", new Swedish()),
-            Map.entry("Turkey", new Turkish())
-//            Map.entry("Ukraine", new Ukrainian()),
+            Map.entry("Turkey", new Turkish()),
+            Map.entry("Ukraine", new Ukrainian())
 //            Map.entry("Wales", new Welsh())
     );
 

@@ -49,7 +49,7 @@ public class Greek implements Ruleset {
 
     private Optional<String> checkGreekNames(String name) {
         return Arrays.stream(GreekNames.values())
-                .filter(s -> s.getLatinName().equalsIgnoreCase(name))
+                .filter(s -> s.getLatinName().equals(name))
                 .findAny()
                 .map(GreekNames::getCyrillicName);
     }

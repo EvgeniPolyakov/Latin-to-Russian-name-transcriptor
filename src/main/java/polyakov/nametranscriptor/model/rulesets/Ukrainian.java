@@ -1,28 +1,28 @@
 package polyakov.nametranscriptor.model.rulesets;
 
 import polyakov.nametranscriptor.model.rulesets.names.RussianNames;
+import polyakov.nametranscriptor.model.rulesets.names.UkrainianNames;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
-import static polyakov.nametranscriptor.model.rulesets.custom.Russian.*;
+import static polyakov.nametranscriptor.model.rulesets.custom.Ukrainian.ENDINGS;
+import static polyakov.nametranscriptor.model.rulesets.custom.Ukrainian.STARTERS;
 
-public class Russian implements Ruleset {
+public class Ukrainian implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> os = checkPopularNames(name);
+        Optional<String> os = checkUkrainianNames(name);
+        if (os.isPresent()) {
+            name = os.get();
+        }
+        os = checkRussianNames(name);
         if (os.isPresent()) {
             name = os.get();
         }
         name = checkCustomCases(name);
-        if (name.startsWith("e")) {
-            name = name.replaceFirst("e", "э");
-        }
-        if (name.startsWith("ia")) {
-            name = name.replaceFirst("ia", "я");
-        }
         name = checkCombinations(name);
         name = name.replace("a", "а");
         name = name.replace("b", "б");
@@ -32,7 +32,7 @@ public class Russian implements Ruleset {
         name = name.replace("g", "г");
         name = name.replace("i", "и");
         name = name.replace("k", "к");
-        name = name.replace("h", "х");
+        name = name.replace("h", "г");
         name = name.replace("l", "л");
         name = name.replace("m", "м");
         name = name.replace("n", "н");
@@ -50,6 +50,13 @@ public class Russian implements Ruleset {
         return postcheck(name);
     }
 
+    private String postcheck(String name) {
+        if (name.endsWith("иы")) {
+            name = name.replace("иы", "ий");
+        }
+        return name;
+    }
+
     private static String checkCombinations(String name) {
         name = name.replace("sch", "щ");
         name = name.replace("sch", "щ");
@@ -57,26 +64,42 @@ public class Russian implements Ruleset {
         name = name.replace("sh", "ш");
         name = name.replace("ch", "ч");
         name = name.replace("iya", "ия");
+        name = name.replace("iia", "ия");
         name = name.replace("ya", "я");
+        name = name.replace("ia", "я");
         name = name.replace("aye", "ае");
+        name = name.replace("aie", "ае");
         name = name.replace("ay", "ай");
+        name = name.replace("ai", "ай");
+        name = name.replace("iu", "ю");
         name = name.replace("yu", "ю");
         name = name.replace("uy", "уй");
-        name = name.replace("ye", "е");
-        name = name.replace("ey", "ей");
-        name = name.replace("yo", "йо");
-        name = name.replace("oy", "ой");
-        name = name.replace("yi", "ьи");
-        name = name.replace("ei", "ей");
-        name = name.replace("oi", "ой");
         name = name.replace("ui", "уй");
+        name = name.replace("ye", "е");
+        name = name.replace("ie", "е");
+        name = name.replace("ey", "ей");
+        name = name.replace("ei", "ей");
+        name = name.replace("yi", "ий");
+        name = name.replace("yo", "йо");
+        name = name.replace("io", "йо");
+        name = name.replace("oy", "ой");
+        name = name.replace("oi", "ой");
+        name = name.replace("y", "и");
         name = name.replace("ts", "ц");
+        name = name.replace("zgh", "зг");
         name = name.replace("zh", "ж");
         name = name.replace("kh", "х");
         return name;
     }
 
-    private Optional<String> checkPopularNames(String name) {
+    private Optional<String> checkUkrainianNames(String name) {
+        return Arrays.stream(UkrainianNames.values())
+                .filter(s -> s.getLatinName().equals(name))
+                .findAny()
+                .map(UkrainianNames::getCyrillicName);
+    }
+
+    private Optional<String> checkRussianNames(String name) {
         return Arrays.stream(RussianNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()
@@ -84,6 +107,17 @@ public class Russian implements Ruleset {
     }
 
     protected String checkCustomCases(String name) {
+        for (Map.Entry<String, String> s : STARTERS.entrySet()) {
+            if (name.startsWith(s.getKey())) {
+                name = name.replace(s.getKey(), s.getValue());
+            }
+        }
+        if (name.startsWith("e")) {
+            name = name.replaceFirst("e", "э");
+        }
+        if (name.startsWith("y")) {
+            name = name.replaceFirst("y", "й");
+        }
         name = name.replace("j", "y");
         name = name.replace("tskyi", "цкий"); // should precede ENDINGS
         name = name.replace("tskiy", "цкий");
@@ -93,34 +127,6 @@ public class Russian implements Ruleset {
             if (name.endsWith(s.getKey())) {
                 name = name.replace(s.getKey(), s.getValue());
             }
-        }
-        name = checkEndings(name);
-        return name;
-    }
-
-    private static String checkEndings(String name) {
-        for (String s : CUSTOM_ENDINGS) {
-            if (name.length() > 1 && name.endsWith(s)) {
-                for (String c : CUSTOM_CONSONANTS_PART1) {
-                    if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
-                        String substring = name.substring(0, name.length() - s.length());
-                        name = substring + "ый";
-                    }
-                }
-                for (String c : CUSTOM_CONSONANTS_PART2) {
-                    if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
-                        String substring = name.substring(0, name.length() - s.length());
-                        name = substring + "ий";
-                    }
-                }
-            }
-        }
-        return name;
-    }
-
-    private String postcheck(String name) {
-        if (name.endsWith("иы")) {
-            name = name.replace("иы", "ий");
         }
         return name;
     }

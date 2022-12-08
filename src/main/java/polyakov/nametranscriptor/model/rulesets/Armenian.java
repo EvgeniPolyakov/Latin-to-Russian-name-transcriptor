@@ -40,7 +40,7 @@ public class Armenian extends Russian {
 
     private Optional<String> checkCustomNames(String name) {
         return Arrays.stream(ArmenianNames.values())
-                .filter(s -> s.getLatinName().equalsIgnoreCase(name))
+                .filter(s -> s.getLatinName().equals(name))
                 .findAny()
                 .map(ArmenianNames::getCyrillicName);
     }
