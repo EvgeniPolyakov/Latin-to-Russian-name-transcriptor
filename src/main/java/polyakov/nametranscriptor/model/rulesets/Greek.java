@@ -117,7 +117,7 @@ public class Greek implements Ruleset {
         return name;
     }
 
-    private static String checkVowelCombinations(String name) {
+    private String checkVowelCombinations(String name) {
         for (String v : VOWELS) {
             for (Map.Entry<String, String> a : AFTER_VOWELS_PART_ONE.entrySet()) {
                 if (name.contains(a.getKey())) {

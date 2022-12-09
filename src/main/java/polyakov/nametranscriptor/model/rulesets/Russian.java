@@ -50,7 +50,7 @@ public class Russian implements Ruleset {
         return postcheck(name);
     }
 
-    private static String checkCombinations(String name) {
+    private String checkCombinations(String name) {
         name = name.replace("sch", "щ");
         name = name.replace("sch", "щ");
         name = name.replace("shch", "щ");
@@ -98,7 +98,7 @@ public class Russian implements Ruleset {
         return name;
     }
 
-    private static String checkEndings(String name) {
+    private String checkEndings(String name) {
         for (String s : CUSTOM_ENDINGS) {
             if (name.length() > 1 && name.endsWith(s)) {
                 for (String c : CUSTOM_CONSONANTS_PART1) {

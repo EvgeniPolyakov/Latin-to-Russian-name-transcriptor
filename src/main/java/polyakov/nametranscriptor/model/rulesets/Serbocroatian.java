@@ -50,7 +50,7 @@ public class Serbocroatian implements Ruleset {
         return name;
     }
 
-    private static String checkCombinations(String name) {
+    private String checkCombinations(String name) {
         for (Map.Entry<String, String> s : UTILITY_CONSONANTS.entrySet()) {
             for (Map.Entry<String, String> c : VOWELS_FOR_UTILITY_CONSONANTS.entrySet()) {
                 name = name.replace(s.getKey() + c.getKey(), s.getValue() + c.getValue());

@@ -57,7 +57,7 @@ public class Ukrainian implements Ruleset {
         return name;
     }
 
-    private static String checkCombinations(String name) {
+    private String checkCombinations(String name) {
         name = name.replace("sch", "щ");
         name = name.replace("sch", "щ");
         name = name.replace("shch", "щ");

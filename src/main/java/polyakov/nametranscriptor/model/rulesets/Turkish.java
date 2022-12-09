@@ -48,7 +48,7 @@ public class Turkish implements Ruleset {
         return name;
     }
 
-    private static String checkCombinations(String name) {
+    private String checkCombinations(String name) {
         for (Map.Entry<String, String> u : UTILITY_LETTERS.entrySet()) {
             for (Map.Entry<String, String> v : VOWELS.entrySet()) {
                 name = name.replace(v.getKey() + u.getKey(), v.getValue() + u.getValue());
