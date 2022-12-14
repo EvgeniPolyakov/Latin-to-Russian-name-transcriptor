@@ -82,10 +82,15 @@ public class Czech implements Ruleset {
         name = name.replace("jó", "ье");
         name = name.replace("ju", "ью");
         name = name.replace("jů", "ью");
+        name = name.replace("yá", "иа");
+        name = name.replace("ya", "иа");
         return name;
     }
 
     protected String checkCustomCases(String name) {
+        if (name.endsWith("ia")) {
+            name = name.replaceFirst("ia", "ия");
+        }
         for (String v : VOWELS) {
             for (Map.Entry<String, String> s : STARTERS.entrySet()) {
                 name = name.replace(v + s.getKey(), v + s.getValue());
@@ -94,6 +99,7 @@ public class Czech implements Ruleset {
             name = name.replace(v + "jó", v + "е");
             name = name.replace(v + "y", v + "й");
             name = name.replace(v + "ý", v + "й");
+            name = name.replace(v + "ř", v + "рж");
         }
         for (String c : Y_CASE_CONSONANTS) {
             name = name.replace(c + "y", c + "и");
@@ -123,11 +129,8 @@ public class Czech implements Ruleset {
     protected String checkEnd(String name) {
         for (Map.Entry<String, String> e : ENDINGS.entrySet()) {
             if (name.endsWith(e.getKey())) {
-                name = name.replaceFirst(e.getKey(), e.getValue());
+                name = name.replace(e.getKey(), e.getValue());
             }
-        }
-        if (name.endsWith("ia")) {
-            name = name.replaceFirst("ia", "ия");
         }
         return name;
     }
