@@ -19,7 +19,7 @@ public class TranscriptionService {
         String[] names = dto.getText().split(String.format("(?=%s)|(?<=%s)", REGEX, REGEX));
         StringBuilder result = new StringBuilder();
         for (String w : names) {
-            if(w.equals(w.toLowerCase())) {
+            if (w.equals(w.toLowerCase())) {
                 result.append(ruleset.transcribe(w, mode));
             } else if (w.equals(w.toUpperCase())) {
                 result.append(ruleset.transcribe(w.toLowerCase(), mode).toUpperCase());

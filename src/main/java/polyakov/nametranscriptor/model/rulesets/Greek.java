@@ -17,6 +17,11 @@ public class Greek implements Ruleset {
             name = gn.get();
         }
         name = checkCustomCases(name);
+        name = checkSingleChars(name);
+        return name;
+    }
+
+    private String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("á", "а");
         name = name.replace("b", "б");

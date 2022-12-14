@@ -1,9 +1,12 @@
 package polyakov.nametranscriptor.model;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import polyakov.nametranscriptor.model.rulesets.*;
 
 import java.util.Map;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Rulesets {
     private static final Map<String, Ruleset> RULES = Map.ofEntries(
 //            Map.entry("Albania", new Albanian()),
@@ -19,7 +22,7 @@ public class Rulesets {
 //            Map.entry("Catalan", new Catalan()),
 //            Map.entry("China", new Chinese()),
             Map.entry("Croatia", new Serbocroatian()),
-//            Map.entry("Czechia", new Czech()),
+            Map.entry("Czechia", new Czech()),
             Map.entry("Cyprus", new Greek()),
 //            Map.entry("Denmark", new Danish()),
 //            Map.entry("England", new English()),
@@ -55,7 +58,7 @@ public class Rulesets {
 //            Map.entry("San Marino", new Italian()),
 //            Map.entry("Scotland", new English()),
             Map.entry("Serbia", new Serbocroatian()),
-//            Map.entry("Slovakia", new Slovak()),
+            Map.entry("Slovakia", new Slovak()),
             Map.entry("Slovenia", new Serbocroatian()),
 //            Map.entry("Spain", new Spanish()),
 //            Map.entry("Switzerland", new German()),

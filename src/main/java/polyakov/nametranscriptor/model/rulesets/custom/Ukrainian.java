@@ -3,7 +3,6 @@ package polyakov.nametranscriptor.model.rulesets.custom;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

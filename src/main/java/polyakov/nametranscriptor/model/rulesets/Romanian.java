@@ -9,6 +9,11 @@ public class Romanian implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
         name = checkCustomCases(name);
+        name = checkSingleChars(name);
+        return name;
+    }
+
+    private String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("ă", "э");
         name = name.replace("â", "ы");

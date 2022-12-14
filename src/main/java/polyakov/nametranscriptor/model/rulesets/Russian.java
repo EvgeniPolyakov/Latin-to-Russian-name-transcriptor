@@ -24,6 +24,11 @@ public class Russian implements Ruleset {
             name = name.replaceFirst("ia", "я");
         }
         name = checkCombinations(name);
+        name = checkSingleChars(name);
+        return postcheck(name);
+    }
+
+    private String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
         name = name.replace("d", "д");
@@ -47,7 +52,7 @@ public class Russian implements Ruleset {
         name = name.replace("x", "кс");
         name = name.replace("z", "з");
         name = name.replace("'", "ь");
-        return postcheck(name);
+        return name;
     }
 
     private String checkCombinations(String name) {

@@ -18,6 +18,11 @@ public class Serbocroatian implements Ruleset {
         }
         name = checkCombinations(name);
         name = checkCustomCases(name);
+        name = checkSingleChars(name);
+        return name;
+    }
+
+    private String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
         name = name.replace("c", "ц");

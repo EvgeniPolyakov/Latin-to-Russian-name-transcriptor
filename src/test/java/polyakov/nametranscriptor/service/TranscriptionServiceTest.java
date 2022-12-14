@@ -3,7 +3,7 @@ package polyakov.nametranscriptor.service;
 import org.junit.jupiter.api.Test;
 import polyakov.nametranscriptor.model.IncomingDto;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TranscriptionServiceTest {
 
