@@ -17,18 +17,13 @@ public class Russian implements Ruleset {
             name = os.get();
         }
         name = checkCustomCases(name);
-        if (name.startsWith("e")) {
-            name = name.replaceFirst("e", "э");
-        }
-        if (name.startsWith("ia")) {
-            name = name.replaceFirst("ia", "я");
-        }
+        name = checkStart(name);
         name = checkCombinations(name);
         name = checkSingleChars(name);
-        return postcheck(name);
+        return name;
     }
 
-    private String checkSingleChars(String name) {
+    protected String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
         name = name.replace("d", "д");
@@ -55,7 +50,7 @@ public class Russian implements Ruleset {
         return name;
     }
 
-    private String checkCombinations(String name) {
+    protected String checkCombinations(String name) {
         name = name.replace("sch", "щ");
         name = name.replace("sch", "щ");
         name = name.replace("shch", "щ");
@@ -75,13 +70,14 @@ public class Russian implements Ruleset {
         name = name.replace("ei", "ей");
         name = name.replace("oi", "ой");
         name = name.replace("ui", "уй");
+        name = name.replace("iy", "ий");
         name = name.replace("ts", "ц");
         name = name.replace("zh", "ж");
         name = name.replace("kh", "х");
         return name;
     }
 
-    private Optional<String> checkPopularNames(String name) {
+    protected Optional<String> checkPopularNames(String name) {
         return Arrays.stream(RussianNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()
@@ -103,6 +99,15 @@ public class Russian implements Ruleset {
         return name;
     }
 
+    protected String checkStart(String name) {
+        for (Map.Entry<String, String> s : STARTERS.entrySet()) {
+            if (name.startsWith(s.getKey())) {
+                name = name.replaceFirst(s.getKey(), s.getValue());
+            }
+        }
+        return name;
+    }
+
     private String checkEndings(String name) {
         for (String s : CUSTOM_ENDINGS) {
             if (name.length() > 1 && name.endsWith(s)) {
@@ -119,13 +124,6 @@ public class Russian implements Ruleset {
                     }
                 }
             }
-        }
-        return name;
-    }
-
-    private String postcheck(String name) {
-        if (name.endsWith("иы")) {
-            name = name.replace("иы", "ий");
         }
         return name;
     }

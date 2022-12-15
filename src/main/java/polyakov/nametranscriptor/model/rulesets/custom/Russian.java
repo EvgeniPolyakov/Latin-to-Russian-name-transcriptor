@@ -9,6 +9,10 @@ import java.util.Map;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Russian {
 
+    public static final Map<String, String> STARTERS = Map.ofEntries(
+            Map.entry("e", "э"),
+            Map.entry("ia", "я")
+    );
     public static final Map<String, String> ENDINGS = Map.ofEntries(
             Map.entry("sky", "ский"),
             Map.entry("ski", "ский"),
