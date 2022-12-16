@@ -26,6 +26,7 @@ public class Russian implements Ruleset {
     protected String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
+        name = name.replace("c", "ц");
         name = name.replace("d", "д");
         name = name.replace("e", "е");
         name = name.replace("f", "ф");
@@ -51,7 +52,6 @@ public class Russian implements Ruleset {
     }
 
     protected String checkCombinations(String name) {
-        name = name.replace("sch", "щ");
         name = name.replace("sch", "щ");
         name = name.replace("shch", "щ");
         name = name.replace("sh", "ш");
@@ -96,6 +96,9 @@ public class Russian implements Ruleset {
             }
         }
         name = checkEndings(name);
+        if (name.endsWith("ii")) {
+            name = name.replace("ii", "ий");
+        }
         return name;
     }
 
@@ -105,19 +108,22 @@ public class Russian implements Ruleset {
                 name = name.replaceFirst(s.getKey(), s.getValue());
             }
         }
+        if (name.startsWith("e")) {
+            name = name.replaceFirst("e", "э");
+        }
         return name;
     }
 
     private String checkEndings(String name) {
         for (String s : CUSTOM_ENDINGS) {
             if (name.length() > 1 && name.endsWith(s)) {
-                for (String c : CUSTOM_CONSONANTS_PART1) {
+                for (String c : Y_CONSONANTS_PART1) {
                     if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
                         String substring = name.substring(0, name.length() - s.length());
                         name = substring + "ый";
                     }
                 }
-                for (String c : CUSTOM_CONSONANTS_PART2) {
+                for (String c : Y_CONSONANTS_PART2) {
                     if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
                         String substring = name.substring(0, name.length() - s.length());
                         name = substring + "ий";

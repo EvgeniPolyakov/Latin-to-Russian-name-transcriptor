@@ -26,6 +26,8 @@ public class Bulgarian extends Russian {
         name = name.replace("š", "ш");
         name = name.replace("ž", "ж");
         name = name.replace("û", "ю");
+        name = name.replace("sch", "сч");
+        name = name.replace("shch", "шч");
         return name;
     }
 
@@ -43,7 +45,12 @@ public class Bulgarian extends Russian {
         return name;
     }
 
-    private String postcheck(String name) {
+    @Override
+    protected String checkCustomCases(String name) {
+        return name.replace("j", "y");
+    }
+
+        private String postcheck(String name) {
         if (!name.startsWith("йо")) {
             name = name.replace("йо", "е");
         }

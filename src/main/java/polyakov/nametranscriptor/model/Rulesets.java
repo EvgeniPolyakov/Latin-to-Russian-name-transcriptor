@@ -47,7 +47,7 @@ public class Rulesets {
             Map.entry("Moldova", new Moldovan()),
             Map.entry("Montenegro", new Serbocroatian()),
 //            Map.entry("Netherlands", new Dutch()),
-//            Map.entry("Northern Macedonia", new Macedonian()),
+            Map.entry("Northern Macedonia", new Macedonian()),
 //            Map.entry("Northern Ireland", new Irish()),
 //            Map.entry("Norway", new Norwegian()),
 //            Map.entry("Poland", new Polish()),
