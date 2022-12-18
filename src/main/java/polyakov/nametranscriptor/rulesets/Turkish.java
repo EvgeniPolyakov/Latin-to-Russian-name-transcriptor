@@ -19,11 +19,6 @@ public class Turkish implements Ruleset {
         return name;
     }
 
-    @Override
-    public String getName() {
-        return RulesetName.TURKISH.getName();
-    }
-
     private String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("â", "а");
@@ -80,5 +75,10 @@ public class Turkish implements Ruleset {
         name = name.replace("yu", "ью");
         name = name.replace("yü", "ью");
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.TURKISH.getName();
     }
 }

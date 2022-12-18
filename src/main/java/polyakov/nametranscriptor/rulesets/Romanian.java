@@ -14,11 +14,6 @@ public class Romanian implements Ruleset {
         return name;
     }
 
-    @Override
-    public String getName() {
-        return RulesetName.ROMANIAN.getName();
-    }
-
     private String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("ă", "э");
@@ -103,5 +98,10 @@ public class Romanian implements Ruleset {
         name = name.replace("io", "ьо");
         name = name.replace("iu", "ью");
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.ROMANIAN.getName();
     }
 }

@@ -22,11 +22,6 @@ public class Serbian implements Ruleset {
         return name;
     }
 
-    @Override
-    public String getName() {
-        return RulesetName.SERBIAN.getName();
-    }
-
     private String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
@@ -98,5 +93,10 @@ public class Serbian implements Ruleset {
             name = name.replaceFirst("e", "э");
         }
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.SERBIAN.getName();
     }
 }

@@ -30,11 +30,6 @@ public class Ukrainian implements Ruleset {
         return postcheck(name);
     }
 
-    @Override
-    public String getName() {
-        return RulesetName.UKRAINIAN.getName();
-    }
-
     private String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
@@ -141,5 +136,10 @@ public class Ukrainian implements Ruleset {
             }
         }
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.UKRAINIAN.getName();
     }
 }

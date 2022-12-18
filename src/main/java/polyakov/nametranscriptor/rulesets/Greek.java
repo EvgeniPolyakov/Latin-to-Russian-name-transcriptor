@@ -12,18 +12,13 @@ public class Greek implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> gn = checkGreekNames(name);
+        Optional<String> gn = checkPopularNames(name);
         if (gn.isPresent()) {
             name = gn.get();
         }
         name = checkCustomCases(name);
         name = checkSingleChars(name);
         return name;
-    }
-
-    @Override
-    public String getName() {
-        return RulesetName.GREEK.getName();
     }
 
     private String checkSingleChars(String name) {
@@ -57,7 +52,7 @@ public class Greek implements Ruleset {
         return name;
     }
 
-    private Optional<String> checkGreekNames(String name) {
+    private Optional<String> checkPopularNames(String name) {
         return Arrays.stream(GreekNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()
@@ -150,5 +145,10 @@ public class Greek implements Ruleset {
             }
         }
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.GREEK.getName();
     }
 }

@@ -19,11 +19,6 @@ public class Slovak extends Czech {
         return name;
     }
 
-    @Override
-    public String getName() {
-        return RulesetName.SLOVAK.getName();
-    }
-
     private String checkSlovakCombinations(String name) {
         name = name.replace("ľa", "ля");
         name = name.replace("ľo", "ле");
@@ -47,5 +42,10 @@ public class Slovak extends Czech {
         name = name.replace("ľ", "ль");
         name = name.replace("ŕ", "р");
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.SLOVAK.getName();
     }
 }

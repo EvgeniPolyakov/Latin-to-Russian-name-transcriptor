@@ -1,7 +1,6 @@
-package polyakov.nametranscriptor.rulesets.rulesets;
+package polyakov.nametranscriptor.rulesets;
 
 import org.junit.jupiter.api.Test;
-import polyakov.nametranscriptor.rulesets.Kazakh;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -23,7 +22,7 @@ class KazakhTest {
                 sadykova anastassiya nizamutdinova angelina portnova flyut arailym orynbassarova assem zhaksymbay \
                 ayazhan akhmoldanova yekaterina yelisseyeva kamila akshalova kundyz kozhakhmet amirbek nadezhda \
                 ivanyuk olga volkova rano akbayeva shynar sharapidenova schuchinsk""";
-                String transcription = """
+        String transcription = """
                 александр широбоков алишер рахимжанов арсен азатов аскар сатышев вадим яковлев адиль галымжан кенжебек \
                 данил анкудинов даниил сомов данияр дулатов данияр урда диас кушкумбаев егор ткаченко жаннур кукеев \
                 мирас амантаев халматов никита пивкин роман чирков султан аскаров адилет куаныш жанайдар добай айбар \
