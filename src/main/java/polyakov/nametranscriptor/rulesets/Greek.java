@@ -7,23 +7,20 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
+import static polyakov.nametranscriptor.rulesets.customrules.Greek.*;
+
 @Component
 public class Greek implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> gn = checkGreekNames(name);
+        Optional<String> gn = checkPopularNames(name);
         if (gn.isPresent()) {
             name = gn.get();
         }
         name = checkCustomCases(name);
         name = checkSingleChars(name);
         return name;
-    }
-
-    @Override
-    public String getName() {
-        return RulesetName.GREEK.getName();
     }
 
     private String checkSingleChars(String name) {
@@ -57,7 +54,7 @@ public class Greek implements Ruleset {
         return name;
     }
 
-    private Optional<String> checkGreekNames(String name) {
+    private Optional<String> checkPopularNames(String name) {
         return Arrays.stream(GreekNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()
@@ -65,7 +62,7 @@ public class Greek implements Ruleset {
     }
 
     protected String checkCustomCases(String name) {
-        for (Map.Entry<String, String> s : polyakov.nametranscriptor.rulesets.customrules.Greek.STARTERS.entrySet()) {
+        for (Map.Entry<String, String> s : STARTERS.entrySet()) {
             if (name.startsWith(s.getKey())) {
                 name = name.replaceFirst(s.getKey(), s.getValue());
             }
@@ -104,14 +101,14 @@ public class Greek implements Ruleset {
         name = name.replace("yí", "йи");
         name = name.replace("yií", "йи");
         name = name.replace("ío", "ьо");
-        for (String v : polyakov.nametranscriptor.rulesets.customrules.Greek.VOICELESS_CONSONANTS) {
+        for (String v : VOICELESS_CONSONANTS) {
             name = name.replace("mp" + v, "мп" + v);
         }
         name = name.replace("mp", "мб");
-        for (String s : polyakov.nametranscriptor.rulesets.customrules.Greek.S_CASE_CONSONANTS) {
+        for (String s : S_CASE_CONSONANTS) {
             name = name.replace("s" + s, "з" + s);
         }
-        for (Map.Entry<String, String> s : polyakov.nametranscriptor.rulesets.customrules.Greek.ENDINGS.entrySet()) {
+        for (Map.Entry<String, String> s : ENDINGS.entrySet()) {
             if (name.endsWith(s.getKey())) {
                 name = name.replace(s.getKey(), s.getValue());
             }
@@ -128,27 +125,37 @@ public class Greek implements Ruleset {
     }
 
     private String checkVowelCombinations(String name) {
-        for (String v : polyakov.nametranscriptor.rulesets.customrules.Greek.VOWELS) {
-            for (Map.Entry<String, String> a : polyakov.nametranscriptor.rulesets.customrules.Greek.AFTER_VOWELS_PART_ONE.entrySet()) {
-                if (name.contains(a.getKey())) {
-                    name = name.replace(v + a.getKey(), v + a.getValue());
-                }
-            }
-            for (Map.Entry<String, String> a : polyakov.nametranscriptor.rulesets.customrules.Greek.AFTER_VOWELS_PART_TWO.entrySet()) {
-                if (name.contains(a.getKey())) {
-                    name = name.replace(v + a.getKey(), v + a.getValue());
-                }
-            }
-            for (Map.Entry<String, String> a : polyakov.nametranscriptor.rulesets.customrules.Greek.AFTER_VOWELS_PART_THREE.entrySet()) {
-                if (name.contains(a.getKey())) {
-                    name = name.replace(v + a.getKey(), v + a.getValue());
-                }
-            }
+        for (String v : VOWELS) {
+            name = checkAfterVowelCases(name, v);
             if ((!v.equals("i")) && (!v.equals("y"))) {
                 name = name.replace(v + "e", v + "э");
                 name = name.replace(v + "ai", v + "э");
             }
         }
         return name;
+    }
+
+    private static String checkAfterVowelCases(String name, String v) {
+        for (Map.Entry<String, String> a : AFTER_VOWELS_PART_ONE.entrySet()) {
+            if (name.contains(a.getKey())) {
+                name = name.replace(v + a.getKey(), v + a.getValue());
+            }
+        }
+        for (Map.Entry<String, String> a : AFTER_VOWELS_PART_TWO.entrySet()) {
+            if (name.contains(a.getKey())) {
+                name = name.replace(v + a.getKey(), v + a.getValue());
+            }
+        }
+        for (Map.Entry<String, String> a : AFTER_VOWELS_PART_THREE.entrySet()) {
+            if (name.contains(a.getKey())) {
+                name = name.replace(v + a.getKey(), v + a.getValue());
+            }
+        }
+        return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.GREEK.getName();
     }
 }

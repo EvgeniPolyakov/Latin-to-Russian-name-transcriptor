@@ -21,11 +21,6 @@ public class Czech implements Ruleset {
         return name;
     }
 
-    @Override
-    public String getName() {
-        return RulesetName.CZECH.getName();
-    }
-
     protected String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("á", "а");
@@ -141,5 +136,10 @@ public class Czech implements Ruleset {
             }
         }
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.CZECH.getName();
     }
 }

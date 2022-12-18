@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+import static polyakov.nametranscriptor.rulesets.customrules.Romanian.*;
+
 @Component
 public class Romanian implements Ruleset {
 
@@ -12,11 +14,6 @@ public class Romanian implements Ruleset {
         name = checkCustomCases(name);
         name = checkSingleChars(name);
         return name;
-    }
-
-    @Override
-    public String getName() {
-        return RulesetName.ROMANIAN.getName();
     }
 
     private String checkSingleChars(String name) {
@@ -60,7 +57,7 @@ public class Romanian implements Ruleset {
     protected String checkCustomCases(String name) {
         name = name.replace("ii", "ий");
         name = name.replace("îi", "ый");
-        for (Map.Entry<String, String> i : polyakov.nametranscriptor.rulesets.customrules.Romanian.STARTING_PART.entrySet()) {
+        for (Map.Entry<String, String> i : STARTING_PART.entrySet()) {
             if (name.startsWith(i.getKey())) {
                 name = name.replaceFirst(i.getKey(), i.getValue());
             }
@@ -75,7 +72,7 @@ public class Romanian implements Ruleset {
         name = name.replace("gio", "джо");
         name = name.replace("giu", "джу");
         name = name.replace("ea", "я");
-        for (Map.Entry<String, String> c : polyakov.nametranscriptor.rulesets.customrules.Romanian.VOWELS.entrySet()) {
+        for (Map.Entry<String, String> c : VOWELS.entrySet()) {
             name = name.replace(c.getKey() + "ia", c.getValue() + "я");
             name = name.replace(c.getKey() + "ie", c.getValue() + "е");
             name = name.replace(c.getKey() + "io", c.getValue() + "йо");
@@ -93,8 +90,8 @@ public class Romanian implements Ruleset {
             name = name.replace("ie", "ие");
             name = name.replace("iu", "иу");
         }
-        for (Map.Entry<String, String> c : polyakov.nametranscriptor.rulesets.customrules.Romanian.CUSTOM_CONSONANTS.entrySet()) {
-            for (String v : polyakov.nametranscriptor.rulesets.customrules.Romanian.UTILITY_VOWELS) {
+        for (Map.Entry<String, String> c : CUSTOM_CONSONANTS.entrySet()) {
+            for (String v : UTILITY_VOWELS) {
                 name = name.replace(c.getKey() + v, c.getValue() + v);
             }
         }
@@ -103,5 +100,10 @@ public class Romanian implements Ruleset {
         name = name.replace("io", "ьо");
         name = name.replace("iu", "ью");
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.ROMANIAN.getName();
     }
 }

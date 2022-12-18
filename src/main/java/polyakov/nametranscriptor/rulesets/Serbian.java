@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
+import static polyakov.nametranscriptor.rulesets.customrules.Serbian.*;
+
 @Component
 public class Serbian implements Ruleset {
 
@@ -20,11 +22,6 @@ public class Serbian implements Ruleset {
         name = checkCustomCases(name);
         name = checkSingleChars(name);
         return name;
-    }
-
-    @Override
-    public String getName() {
-        return RulesetName.SERBIAN.getName();
     }
 
     private String checkSingleChars(String name) {
@@ -61,23 +58,23 @@ public class Serbian implements Ruleset {
     }
 
     private String checkCombinations(String name) {
-        for (Map.Entry<String, String> s : polyakov.nametranscriptor.rulesets.customrules.Serbocroatian.UTILITY_CONSONANTS.entrySet()) {
-            for (Map.Entry<String, String> c : polyakov.nametranscriptor.rulesets.customrules.Serbocroatian.VOWELS_FOR_UTILITY_CONSONANTS.entrySet()) {
+        for (Map.Entry<String, String> s : UTILITY_CONSONANTS.entrySet()) {
+            for (Map.Entry<String, String> c : VOWELS_FOR_UTILITY_CONSONANTS.entrySet()) {
                 name = name.replace(s.getKey() + c.getKey(), s.getValue() + c.getValue());
             }
         }
-        for (String v : polyakov.nametranscriptor.rulesets.customrules.Serbocroatian.VOWELS) {
-            for (Map.Entry<String, String> c : polyakov.nametranscriptor.rulesets.customrules.Serbocroatian.J_CASES_AFTER_VOWELS.entrySet()) {
+        for (String v : VOWELS) {
+            for (Map.Entry<String, String> c : J_CASES_AFTER_VOWELS.entrySet()) {
                 name = name.replace(v + c.getKey(), v + c.getValue());
             }
             name = name.replace(v + "e", v + "э");
         }
-        for (Map.Entry<String, String> c : polyakov.nametranscriptor.rulesets.customrules.Serbocroatian.J_FIRST_CASE.entrySet()) {
+        for (Map.Entry<String, String> c : J_FIRST_CASE.entrySet()) {
             if (name.startsWith(c.getKey())) {
                 name = name.replaceFirst(c.getKey(), c.getValue());
             }
         }
-        for (Map.Entry<String, String> c : polyakov.nametranscriptor.rulesets.customrules.Serbocroatian.J_CASES_AFTER_CONSONANTS.entrySet()) {
+        for (Map.Entry<String, String> c : J_CASES_AFTER_CONSONANTS.entrySet()) {
             name = name.replace(c.getKey(), c.getValue());
         }
         name = name.replace("nj", "нь");
@@ -98,5 +95,10 @@ public class Serbian implements Ruleset {
             name = name.replaceFirst("e", "э");
         }
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.SERBIAN.getName();
     }
 }

@@ -23,11 +23,6 @@ public class Bulgarian extends Russian {
         return postcheck(name);
     }
 
-    @Override
-    public String getName() {
-        return RulesetName.BULGARIAN.getName();
-    }
-
     private String checkBulgarianChars(String name) {
         name = name.replace("ŝ", "шт");
         name = name.replace("č", "ч");
@@ -58,11 +53,16 @@ public class Bulgarian extends Russian {
         return name.replace("j", "y");
     }
 
-        private String postcheck(String name) {
+    private String postcheck(String name) {
         if (!name.startsWith("йо")) {
             name = name.replace("йо", "е");
         }
         name = name.replace("ьо", "е");
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.BULGARIAN.getName();
     }
 }

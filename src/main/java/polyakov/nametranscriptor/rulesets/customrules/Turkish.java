@@ -19,7 +19,7 @@ public class Turkish {
             Map.entry("u", "у"),
             Map.entry("ü", "у")
     );
-    public static final Map<String, String> INITIAL_LETTER = Map.ofEntries(
+    public static final Map<String, String> STARTERS = Map.ofEntries(
             Map.entry("e", "э"),
             Map.entry("ü", "у"),
             Map.entry("ö", "о"),

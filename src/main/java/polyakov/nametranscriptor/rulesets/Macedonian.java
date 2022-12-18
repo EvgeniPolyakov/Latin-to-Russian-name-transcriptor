@@ -12,11 +12,6 @@ public class Macedonian extends Bulgarian {
         return super.transcribe(name, mode);
     }
 
-    @Override
-    public String getName() {
-        return RulesetName.MACEDONIAN.getName();
-    }
-
     private String mapBalkanChars(String name) {
         name = name.replace("ć", "ч");
         name = name.replace("đ", "дж");
@@ -49,5 +44,10 @@ public class Macedonian extends Bulgarian {
         name = name.replace("kj", "ч");
         name = name.replace("dj", "дж");
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.MACEDONIAN.getName();
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Serbocroatian {
+public class Serbian {
     public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u");
     public static final Map<String, String> J_CASES_AFTER_VOWELS = Map.ofEntries(
             Map.entry("ja", "я"),

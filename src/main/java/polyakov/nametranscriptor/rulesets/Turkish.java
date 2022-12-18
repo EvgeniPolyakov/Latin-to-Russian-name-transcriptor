@@ -4,12 +4,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+import static polyakov.nametranscriptor.rulesets.customrules.Turkish.*;
+
 @Component
 public class Turkish implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        for (Map.Entry<String, String> i : polyakov.nametranscriptor.rulesets.customrules.Turkish.INITIAL_LETTER.entrySet()) {
+        for (Map.Entry<String, String> i : STARTERS.entrySet()) {
             if (name.startsWith(i.getKey())) {
                 name = name.replaceFirst(i.getKey(), i.getValue());
             }
@@ -17,11 +19,6 @@ public class Turkish implements Ruleset {
         name = checkCombinations(name);
         name = checkSingleChars(name);
         return name;
-    }
-
-    @Override
-    public String getName() {
-        return RulesetName.TURKISH.getName();
     }
 
     private String checkSingleChars(String name) {
@@ -60,8 +57,8 @@ public class Turkish implements Ruleset {
     }
 
     private String checkCombinations(String name) {
-        for (Map.Entry<String, String> u : polyakov.nametranscriptor.rulesets.customrules.Turkish.UTILITY_LETTERS.entrySet()) {
-            for (Map.Entry<String, String> v : polyakov.nametranscriptor.rulesets.customrules.Turkish.VOWELS.entrySet()) {
+        for (Map.Entry<String, String> u : UTILITY_LETTERS.entrySet()) {
+            for (Map.Entry<String, String> v : VOWELS.entrySet()) {
                 name = name.replace(v.getKey() + u.getKey(), v.getValue() + u.getValue());
             }
         }
@@ -80,5 +77,10 @@ public class Turkish implements Ruleset {
         name = name.replace("yu", "ью");
         name = name.replace("yü", "ью");
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.TURKISH.getName();
     }
 }

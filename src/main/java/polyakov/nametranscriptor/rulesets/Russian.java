@@ -25,11 +25,6 @@ public class Russian implements Ruleset {
         return name;
     }
 
-    @Override
-    public String getName() {
-        return RulesetName.RUSSIAN.getName();
-    }
-
     protected String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
@@ -102,7 +97,11 @@ public class Russian implements Ruleset {
                 name = name.replace(s.getKey(), s.getValue());
             }
         }
-        name = checkEndings(name);
+        for (String s : CUSTOM_ENDINGS) {
+            if (name.length() > 1 && name.endsWith(s)) {
+                name = checkYCaseEndings(name, s);
+            }
+        }
         if (name.endsWith("ii")) {
             name = name.replace("ii", "ий");
         }
@@ -121,23 +120,24 @@ public class Russian implements Ruleset {
         return name;
     }
 
-    private String checkEndings(String name) {
-        for (String s : CUSTOM_ENDINGS) {
-            if (name.length() > 1 && name.endsWith(s)) {
-                for (String c : Y_CONSONANTS_PART1) {
-                    if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
-                        String substring = name.substring(0, name.length() - s.length());
-                        name = substring + "ый";
-                    }
-                }
-                for (String c : Y_CONSONANTS_PART2) {
-                    if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
-                        String substring = name.substring(0, name.length() - s.length());
-                        name = substring + "ий";
-                    }
-                }
+    private static String checkYCaseEndings(String name, String s) {
+        for (String c : Y_CONSONANTS_PART1) {
+            if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
+                String substring = name.substring(0, name.length() - s.length());
+                name = substring + "ый";
+            }
+        }
+        for (String c : Y_CONSONANTS_PART2) {
+            if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
+                String substring = name.substring(0, name.length() - s.length());
+                name = substring + "ий";
             }
         }
         return name;
+    }
+
+    @Override
+    public String getName() {
+        return RulesetName.RUSSIAN.getName();
     }
 }

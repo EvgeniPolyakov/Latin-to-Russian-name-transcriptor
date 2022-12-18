@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 import polyakov.nametranscriptor.model.IncomingDto;
 import polyakov.nametranscriptor.rulesets.Ruleset;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TranscriptionServiceTest {
 
@@ -19,10 +19,10 @@ class TranscriptionServiceTest {
         when(rf.findStrategy(any())).thenReturn(ruleset);
         when(ruleset.transcribe(anyString(), anyInt())).thenReturn("тест");
 
-        IncomingDto lowCase = new IncomingDto("test", "Test");
-        IncomingDto allCaps = new IncomingDto("TEST", "Test");
-        IncomingDto capitalized = new IncomingDto("Test", "Test");
-        IncomingDto mixedCase = new IncomingDto("tEsT", "Test");
+        IncomingDto lowCase = new IncomingDto("test", "country");
+        IncomingDto allCaps = new IncomingDto("TEST", "country");
+        IncomingDto capitalized = new IncomingDto("Test", "country");
+        IncomingDto mixedCase = new IncomingDto("tEsT", "country");
         TranscriptionService ts = new TranscriptionService(rf);
 
         assertNotNull(ts);
