@@ -277,6 +277,7 @@ public class Chinese implements Ruleset {
         name = name.replace("lai", "лай");
         name = name.replace("la", "ла");
         name = name.replace("kuo", "ко");
+        name = name.replace("kung", "кун");
         name = name.replace("kun", "кунь");
         name = name.replace("kui", "куй");
         name = name.replace("kuang", "куан");
