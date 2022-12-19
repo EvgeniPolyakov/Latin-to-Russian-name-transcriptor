@@ -90,7 +90,7 @@ public class Serbian implements Ruleset {
                 .map(BalkanNames::getCyrillicName);
     }
 
-    protected String checkCustomCases(String name) {
+    private String checkCustomCases(String name) {
         if (name.startsWith("e")) {
             name = name.replaceFirst("e", "э");
         }

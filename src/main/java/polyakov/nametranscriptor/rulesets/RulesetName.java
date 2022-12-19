@@ -1,6 +1,7 @@
 package polyakov.nametranscriptor.rulesets;
 
 public enum RulesetName {
+    ALBANIAN("Albania"),
     ARMENIAN("Armenia"),
     BELORUSSIAN("Belarus"),
     BOSNIAN("Bosnia and Herzegovina"),

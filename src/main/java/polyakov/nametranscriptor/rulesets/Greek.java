@@ -61,7 +61,7 @@ public class Greek implements Ruleset {
                 .map(GreekNames::getCyrillicName);
     }
 
-    protected String checkCustomCases(String name) {
+    private String checkCustomCases(String name) {
         for (Map.Entry<String, String> s : STARTERS.entrySet()) {
             if (name.startsWith(s.getKey())) {
                 name = name.replaceFirst(s.getKey(), s.getValue());

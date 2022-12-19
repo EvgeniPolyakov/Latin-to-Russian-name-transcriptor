@@ -113,7 +113,7 @@ public class Ukrainian implements Ruleset {
                 .map(RussianNames::getCyrillicName);
     }
 
-    protected String checkCustomCases(String name) {
+    private String checkCustomCases(String name) {
         for (Map.Entry<String, String> s : STARTERS.entrySet()) {
             if (name.startsWith(s.getKey())) {
                 name = name.replace(s.getKey(), s.getValue());
