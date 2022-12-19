@@ -1,8 +1,11 @@
 package polyakov.nametranscriptor.rulesets;
 
 import org.springframework.stereotype.Component;
+import polyakov.nametranscriptor.rulesets.names.AlbanianNames;
 
+import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 
 import static polyakov.nametranscriptor.rulesets.customrules.Albanian.*;
 
@@ -11,6 +14,10 @@ public class Albanian implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
+        Optional<String> os = checkPopularNames(name);
+        if (os.isPresent()) {
+            name = os.get();
+        }
         name = checkStart(name);
         name = checkEDiaeresisCases(name);
         name = checkCustomCases(name);
@@ -130,6 +137,13 @@ public class Albanian implements Ruleset {
             name = sub + "а";
         }
         return name;
+    }
+
+    private Optional<String> checkPopularNames(String name) {
+        return Arrays.stream(AlbanianNames.values())
+                .filter(s -> s.getLatinName().equals(name))
+                .findAny()
+                .map(AlbanianNames::getCyrillicName);
     }
 
     @Override
