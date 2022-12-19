@@ -1,7 +1,7 @@
-# Name Transcriptor
-**Name transcriptor** is a tool for proper name orthographic transcription from various languages into Russian. It turns proper name spelling from Latin script to Cyrillic script using standard spelling system of respective language.
+# Latin to Russian name transcriptor
+**L2R Name transcriptor** is a tool for proper name orthographic transcription from various Latin-script using languages into Russian. It turns proper name spelling from Latin script to Cyrillic script using standard spelling system of respective language. L2R also supports Latin to Russian transliteration for a few non-Roman alphabet based languages like Greek and Chinese.
 
-**Name transcriptor** is a project in process. As for now it presents only the back-end logics for name transcription. Basic GUI will be introduced at a later point. At this time app supports only a number of languages but new ones are added on a weekly basis.
+**Name transcriptor** is a project in process. As for now it presents only the back-end logics for name transcription. Basic GUI support will be introduced at a later point. At this time app supports a dozen languages and new ones are added on a weekly basis.
 
 ## Features
 
