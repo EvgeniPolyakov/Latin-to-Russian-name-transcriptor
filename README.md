@@ -14,11 +14,13 @@ List of currently supported languages:
 * Albanian
 * Armenain (from Romanized form to Cyrillic)
 * Bulgarian (from Romanized form back to Cyrillic)
+* Brazilian Portuguese
 * Chinese (from Romanized form to Cyrillic)
 * Czech
 * Georgian (from Romanized form to Cyrillic)
 * Greek (from Romanized form to Cyrillic)
 * Macedonian (from Romanized form back to Cyrillic)
+* Portuguese
 * Romanian / Moldovan
 * Serbocroatian
 * Slovak
