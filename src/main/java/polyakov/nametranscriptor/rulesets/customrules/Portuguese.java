@@ -8,8 +8,9 @@ import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Portuguese {
-    public static final List<String> VOWELS =
-            List.of("a", "à", "á", "â", "ã", "e", "é", "ê", "i", "o", "ó", "õ", "ô", "u", "ü", "е", "и", "у");
+    public static final List<String> VOWELS = List.of(
+            "a", "à", "á", "â", "ã", "e", "é", "ê", "i", "í", "o", "ó", "õ", "ô", "u", "ü", "а", "е", "и", "о", "у", "ю"
+    );
 
     public static final Map<String, String> BEFORE_VOWELS = Map.ofEntries(
             Map.entry("m", "м"),

@@ -12,26 +12,23 @@ class PortugueseTest {
         String text = """
                 adalmo carvalhal maria meã maracanã covilhã ruivães magalhães são paulo tristão joão farminhão branco \
                 curral cidadela victória monção chapa cachaça domingo évora eugénio edgardo manuel peneda friestas \
-                janeiro daniel de sá diogo bernardes gomes eanes zurara montes verdes os sales palma \
-                cima cáceres costa e silva manica e sofala fausto gustavo gilberto magdalena guilhermino horta \
-                bahia isabel cintra boim jaime niteroi maiorga baião campia sabóia maxial viana iaco maiorga \
-                diogo vimioso leio papagaio loios antónio vinicius iuira bocaiúva jorge leonam manuel silva \
-                carvalho miran lomba bomfim joaquim nélson minho antónio novidades josé joaquim soares quadros \
-                século manoel carvalho minho simões couto moura sousa palma sophia cinqüenta queluz ricardo sales \
-                monserrate trancoso vasco novas os montes nascimento passo fundo tomas theo urbano \
-                guilhermino agüeiro garanhuns viriato pungwe xavier corixa máximo maximalista felix extrema \
-                hygino euryalo nazaré luizmina""";
+                janeiro daniel de sá diogo bernardes gomes eanes zurara montes verdes os sales palma cima cáceres \
+                costa e silva manica e sofala fausto gustavo gilberto magdalena guilhermino horta bahia isabel cintra \
+                boim jaime niteroi maiorga baião campia sabóia maxial viana iaco maiorga vimioso leio papagaio loios \
+                antónio vinicius iuira bocaiúva jorge leonam silva miran lomba bomfim joaquim nélson minho antónio \
+                novidades josé joaquim soares quadros século manoel carvalho simões couto moura sousa palma sophia \
+                cinqüenta queluz monserrate trancoso vasco novas nascimento passo fundo tomas theo urbano guilhermino \
+                agüeiro garanhuns viriato xavier corixa máximo maximalista felix extrema hygino euryalo nazaré luizmina""";
         String transcription = """
                 адалму карвальял мария меан маракана ковильян руйвайнш магальяйнш сан паулу триштан жуан фарминьян \
                 бранку куррал сидадела витория монсан шапа кашаса домингу эвора эужениу эдгарду мануэл пенеда фриешташ \
-                жанейру даниел де са диогу бернардеш гомеш эанеш зурара монтеш вердеш уш салеш палма \
-                сима касереш кошта и силва маника и софала фаушту гуштаву жилберту мадалена гильермину орта баия \
-                изабел синтра боин жайме нитерой майорга байан кампия сабоя машиал виана иаку майорга диогу \
-                вимиозу лею папагаю лоюш антониу винисиуш иуйра бокаюва жорже леонам мануэл силва карвалью \
-                миран ломба бонфин жуакин нелсон минью антониу новидадеш жозе жуакин суареш куадруш секулу мануэл \
-                карвалью минью симойнш коту мора соза палма софия синкуэнта келуш рикарду салеш монсеррате транкозу \
-                вашку новаш уш монтеш нашсименту пасу фунду томаш теу урбану гильермину агуэйру гараньюнш \
-                вириату пунгве шавиер кориша масиму максималишта фелиш эштрема ижину эуриалу назаре луйжмина""";
+                жанейру даниел де са диогу бернардеш гомеш эанеш зурара монтеш вердеш уш салеш палма сима касереш \
+                кошта и силва маника и софала фаушту гуштаву жилберту мадалена гильермину орта баия изабел синтра \
+                боин жайме нитерой майорга байан кампия сабоя машиал виана иаку майорга вимиозу лею папагаю лоюш \
+                антониу винисиуш иуйра бокаюва жорже леонам силва миран ломба бонфин жуакин нелсон минью антониу \
+                новидадеш жозе жуакин суареш куадруш секулу мануэл карвалью симойнш коту мора соза палма софия \
+                синкуэнта келуш монсеррате транкозу вашку новаш нашсименту пасу фунду томаш теу урбану гильермину \
+                агуэйру гараньюнш вириату шавиер кориша масиму максималишта фелиш эштрема ижину эуриалу назаре луйжмина""";
         String names = """
                 diogo monteiro luis gomes gustavo varela henrique arreiol guilherme santos marlon junior rodrigo \
                 ribeiro afonso moreira joão veloso rafael rego gonçalves alfa baldé gonçalo francisco machado josé \

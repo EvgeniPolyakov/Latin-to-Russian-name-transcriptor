@@ -1,26 +1,26 @@
 package polyakov.nametranscriptor.rulesets.names;
 
-public enum PortugueseNames {
+public enum BrazilianNames {
     ALEX("alex", "алекс"),
     BRASILIA("brasília", "бразилиа"),
-    DO("do", "ду"),
-    DOS("dos", "душ"),
+    DO("do", "до"),
+    DOS("dos", "дос"),
     E("e", "и"),
-    JOAAO("joão", "жуан"),
-    JOAO("joao", "жуан"),
-    O("o", "у"),
-    OS("os", "уш"),
-    LUIS("luis", "луиш"),
+    JOAAO("joão", "жоао"),
+    JOAO("joao", "жоао"),
+    O("o", "о"),
+    OS("os", "ос"),
+    LUIS("luis", "луис"),
     LUISA("luisa", "луиза"),
-    LUIZ("luiz", "луиш"),
+    LUIZ("luiz", "луис"),
     MAGDALENA("magdalena", "мадалена"),
     RIA("ria", "риа"),
-    TIAGO("tiago", "тьягу");
+    TIAGO("tiago", "тьяго");
 
     private final String latinName;
     private final String cyrillicName;
 
-    PortugueseNames(String latinName, String cyrillicName) {
+    BrazilianNames(String latinName, String cyrillicName) {
         this.latinName = latinName;
         this.cyrillicName = cyrillicName;
     }

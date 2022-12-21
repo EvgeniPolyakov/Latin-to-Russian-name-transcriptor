@@ -27,7 +27,7 @@ public class Portuguese implements Ruleset {
         return name;
     }
 
-    private String checkSingleChars(String name) {
+    protected String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("à", "а");
         name = name.replace("á", "а");
@@ -44,6 +44,7 @@ public class Portuguese implements Ruleset {
         name = name.replace("g", "г");
         name = name.replace("h", "х");
         name = name.replace("i", "и");
+        name = name.replace("í", "и");
         name = name.replace("j", "ж");
         name = name.replace("k", "к");
         name = name.replace("l", "л");
@@ -100,6 +101,10 @@ public class Portuguese implements Ruleset {
         name = name.replace("st", "шт");
         name = name.replace("sc", "шк");
         name = name.replace("sq", "шк");
+        name = name.replace("zp", "шп");
+        name = name.replace("zt", "шт");
+        name = name.replace("zc", "шк");
+        name = name.replace("zq", "шк");
         name = name.replace("th", "т");
         name = name.replace("ph", "ф");
         for (String vc : VOICED_CONSONANTS) {
@@ -172,7 +177,6 @@ public class Portuguese implements Ruleset {
             for (String vowel2 : VOWELS) {
                 name = name.replace(vowel + "ss" + vowel2, vowel + "с" + vowel2);
                 name = name.replace(vowel + "s" + vowel2, vowel + "з" + vowel2);
-                name = name.replace(vowel + "z" + vowel2, vowel + "з" + vowel2);
                 name = name.replace(vowel + "h" + vowel2, vowel + vowel2);
             }
             for (Map.Entry<String, String> bv : BEFORE_VOWELS.entrySet()) {

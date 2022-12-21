@@ -14,7 +14,7 @@ import polyakov.nametranscriptor.model.IncomingDto;
 import polyakov.nametranscriptor.service.TranscriptionService;
 
 @RestController
-@Tag(name="Main controller")
+@Tag(name = "Main controller")
 @Slf4j
 @AllArgsConstructor
 @RequestMapping(path = "/transcribe")

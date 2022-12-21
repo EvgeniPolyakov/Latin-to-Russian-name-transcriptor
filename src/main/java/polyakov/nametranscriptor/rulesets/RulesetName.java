@@ -6,6 +6,7 @@ public enum RulesetName {
     BELORUSSIAN("Belarus"),
     BOSNIAN("Bosnia and Herzegovina"),
     BULGARIAN("Bulgaria"),
+    BRAZILIAN("Brazil"),
     CHINESE("China"),
     CROATIAN("Croatia"),
     CZECH("Czechia"),
