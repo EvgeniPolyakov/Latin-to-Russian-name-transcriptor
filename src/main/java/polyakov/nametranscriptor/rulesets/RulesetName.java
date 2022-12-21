@@ -18,6 +18,7 @@ public enum RulesetName {
     MONTENEGRIN("Montenegro"),
     MOLDOVAN("Moldova"),
     ROMANIAN("Romania"),
+    PORTUGUESE("Portugal"),
     RUSSIAN("Russia"),
     SERBIAN("Serbia"),
     SLOVAK("Slovakia"),
