@@ -124,9 +124,9 @@ public class Portuguese implements Ruleset {
         if (name.startsWith("h")) {
             name = name.substring(1);
         }
-        for (Map.Entry<String, String> e : STARTERS.entrySet()) {
-            if (name.startsWith(e.getKey())) {
-                name = name.replaceFirst(e.getKey(), e.getValue());
+        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                name = name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
         for (String vowel : VOWELS) {

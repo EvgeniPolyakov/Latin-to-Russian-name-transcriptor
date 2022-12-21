@@ -11,9 +11,9 @@ public class Turkish implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        for (Map.Entry<String, String> i : STARTERS.entrySet()) {
-            if (name.startsWith(i.getKey())) {
-                name = name.replaceFirst(i.getKey(), i.getValue());
+        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                name = name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
         name = checkCombinations(name);
@@ -57,9 +57,9 @@ public class Turkish implements Ruleset {
     }
 
     private String checkCombinations(String name) {
-        for (Map.Entry<String, String> u : UTILITY_LETTERS.entrySet()) {
-            for (Map.Entry<String, String> v : VOWELS.entrySet()) {
-                name = name.replace(v.getKey() + u.getKey(), v.getValue() + u.getValue());
+        for (Map.Entry<String, String> ul : UTILITY_LETTERS.entrySet()) {
+            for (Map.Entry<String, String> vowel : VOWELS.entrySet()) {
+                name = name.replace(vowel.getKey() + ul.getKey(), vowel.getValue() + ul.getValue());
             }
         }
         name = name.replace("gâ", "гя");

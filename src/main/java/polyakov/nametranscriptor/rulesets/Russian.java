@@ -92,26 +92,28 @@ public class Russian implements Ruleset {
         name = name.replace("tskiy", "цкий");
         name = name.replace("tskii", "цкий");
         name = name.replace("tsky", "цкий");
-        for (Map.Entry<String, String> s : ENDINGS.entrySet()) {
-            if (name.endsWith(s.getKey())) {
-                name = name.replace(s.getKey(), s.getValue());
+        for (Map.Entry<String, String> endning : ENDINGS.entrySet()) {
+            if (name.endsWith(endning.getKey())) {
+                String sub = name.substring(0, name.length() - endning.getKey().length());
+                name = sub + endning.getValue();
             }
         }
-        for (String s : CUSTOM_ENDINGS) {
-            if (name.length() > 1 && name.endsWith(s)) {
-                name = checkYCaseEndings(name, s);
+        for (String ending : CUSTOM_ENDINGS) {
+            if (name.length() > 1 && name.endsWith(ending)) {
+                name = checkYCaseEndings(name, ending);
             }
         }
         if (name.endsWith("ii")) {
-            name = name.replace("ii", "ий");
+            String sub = name.substring(0, name.length() - 2);
+            name = sub + "ий";
         }
         return name;
     }
 
     protected String checkStart(String name) {
-        for (Map.Entry<String, String> s : STARTERS.entrySet()) {
-            if (name.startsWith(s.getKey())) {
-                name = name.replaceFirst(s.getKey(), s.getValue());
+        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                name = name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
         if (name.startsWith("e")) {
@@ -121,14 +123,14 @@ public class Russian implements Ruleset {
     }
 
     private static String checkYCaseEndings(String name, String s) {
-        for (String c : Y_CONSONANTS_PART1) {
-            if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
+        for (String yc : Y_CONSONANTS_PART1) {
+            if (name.charAt(name.length() - (s.length() + 1)) == yc.charAt(0)) {
                 String substring = name.substring(0, name.length() - s.length());
                 name = substring + "ый";
             }
         }
-        for (String c : Y_CONSONANTS_PART2) {
-            if (name.charAt(name.length() - (s.length() + 1)) == c.charAt(0)) {
+        for (String yc : Y_CONSONANTS_PART2) {
+            if (name.charAt(name.length() - (s.length() + 1)) == yc.charAt(0)) {
                 String substring = name.substring(0, name.length() - s.length());
                 name = substring + "ий";
             }

@@ -14,6 +14,7 @@ public class Russian {
             Map.entry("ey", "эй"),
             Map.entry("ia", "я")
     );
+
     public static final Map<String, String> ENDINGS = Map.ofEntries(
             Map.entry("aia", "ая"),
             Map.entry("uia", "уя"),
@@ -24,9 +25,8 @@ public class Russian {
             Map.entry("ski", "ский"),
             Map.entry("skiy", "ский")
     );
+
     public static final List<String> CUSTOM_ENDINGS = List.of("y", "iy", "ii", "yy");
-
     public static final List<String> Y_CONSONANTS_PART1 = List.of("v", "l", "t", "z", "p", "s", "d", "m", "b", "n");
-
     public static final List<String> Y_CONSONANTS_PART2 = List.of("g", "k", "h");
 }

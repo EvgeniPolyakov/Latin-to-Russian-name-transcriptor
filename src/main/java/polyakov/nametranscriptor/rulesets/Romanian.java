@@ -57,11 +57,7 @@ public class Romanian implements Ruleset {
     protected String checkCustomCases(String name) {
         name = name.replace("ii", "ий");
         name = name.replace("îi", "ый");
-        for (Map.Entry<String, String> i : STARTING_PART.entrySet()) {
-            if (name.startsWith(i.getKey())) {
-                name = name.replaceFirst(i.getKey(), i.getValue());
-            }
-        }
+        name = checkStarters(name);
         name = name.replace("cea", "ча");
         name = name.replace("cia", "ча");
         name = name.replace("cio", "чо");
@@ -72,6 +68,36 @@ public class Romanian implements Ruleset {
         name = name.replace("gio", "джо");
         name = name.replace("giu", "джу");
         name = name.replace("ea", "я");
+        name = checkVowels(name);
+        name = checkEndings(name);
+        name = checkConsonants(name);
+        name = name.replace("ia", "ья");
+        name = name.replace("ie", "ье");
+        name = name.replace("io", "ьо");
+        name = name.replace("iu", "ью");
+        return name;
+    }
+
+    private static String checkStarters(String name) {
+        for (Map.Entry<String, String> i : STARTERS.entrySet()) {
+            if (name.startsWith(i.getKey())) {
+                name = name.replaceFirst(i.getKey(), i.getValue());
+            }
+        }
+        return name;
+    }
+
+    private static String checkEndings(String name) {
+        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                name = sub + ending.getValue();
+            }
+        }
+        return name;
+    }
+
+    private static String checkVowels(String name) {
         for (Map.Entry<String, String> c : VOWELS.entrySet()) {
             name = name.replace(c.getKey() + "ia", c.getValue() + "я");
             name = name.replace(c.getKey() + "ie", c.getValue() + "е");
@@ -80,25 +106,15 @@ public class Romanian implements Ruleset {
             name = name.replace(c.getKey() + "i", c.getValue() + "й");
             name = name.replace(c.getKey() + "i", c.getValue() + "й");
         }
+        return name;
+    }
 
-        if (name.endsWith("йu")) {
-            name = name.replace("йu", "й");
-        }
-        if (name.endsWith("ci") || name.endsWith("ia") || name.endsWith("ie") || name.endsWith("iu")) {
-            name = name.replace("ci", "ч");
-            name = name.replace("ia", "ия");
-            name = name.replace("ie", "ие");
-            name = name.replace("iu", "иу");
-        }
-        for (Map.Entry<String, String> c : CUSTOM_CONSONANTS.entrySet()) {
+    private static String checkConsonants(String name) {
+        for (Map.Entry<String, String> consonants : CUSTOM_CONSONANTS.entrySet()) {
             for (String v : UTILITY_VOWELS) {
-                name = name.replace(c.getKey() + v, c.getValue() + v);
+                name = name.replace(consonants.getKey() + v, consonants.getValue() + v);
             }
         }
-        name = name.replace("ia", "ья");
-        name = name.replace("ie", "ье");
-        name = name.replace("io", "ьо");
-        name = name.replace("iu", "ью");
         return name;
     }
 

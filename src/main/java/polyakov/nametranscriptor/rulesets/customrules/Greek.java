@@ -36,6 +36,7 @@ public class Greek {
             Map.entry("yiiou", "ю"),
             Map.entry("giiou", "ю")
     );
+
     public static final Map<String, String> AFTER_VOWELS_PART_ONE = Map.ofEntries(
             Map.entry("ye", "йе"),
             Map.entry("yai", "йе"),
@@ -52,16 +53,19 @@ public class Greek {
             Map.entry("yiiou", "ю"),
             Map.entry("giiou", "ю")
     );
+
     public static final Map<String, String> AFTER_VOWELS_PART_TWO = Map.ofEntries(
             Map.entry("yia", "я"),
             Map.entry("gia", "я"),
             Map.entry("yio", "йо"),
             Map.entry("gio", "йо")
     );
+
     public static final Map<String, String> AFTER_VOWELS_PART_THREE = Map.ofEntries(
             Map.entry("yo", "йо"),
             Map.entry("io", "йо")
     );
+
     public static final Map<String, String> ENDINGS = Map.ofEntries(
             Map.entry("ea", "ея"),
             Map.entry("aia", "ея"),
@@ -70,6 +74,7 @@ public class Greek {
             Map.entry("gi", "ьи"),
             Map.entry("aiá", "еа")
     );
+
     public static final List<String> S_CASE_CONSONANTS = List.of("v", "g", "d", "m", "n");
     public static final List<String> VOICELESS_CONSONANTS = List.of("p", "t", "k", "f", "s");
     public static final List<String> VOWELS = List.of("ou", "Ou", "a", "e", "i", "ï", "í", "o", "u", "y");

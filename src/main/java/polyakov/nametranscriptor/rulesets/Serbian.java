@@ -58,24 +58,24 @@ public class Serbian implements Ruleset {
     }
 
     private String checkCombinations(String name) {
-        for (Map.Entry<String, String> s : UTILITY_CONSONANTS.entrySet()) {
-            for (Map.Entry<String, String> c : VOWELS_FOR_UTILITY_CONSONANTS.entrySet()) {
-                name = name.replace(s.getKey() + c.getKey(), s.getValue() + c.getValue());
+        for (Map.Entry<String, String> uc : UTILITY_CONSONANTS.entrySet()) {
+            for (Map.Entry<String, String> vowel : VOWELS_FOR_UTILITY_CONSONANTS.entrySet()) {
+                name = name.replace(uc.getKey() + vowel.getKey(), uc.getValue() + vowel.getValue());
             }
         }
-        for (String v : VOWELS) {
+        for (String vowel : VOWELS) {
             for (Map.Entry<String, String> c : J_CASES_AFTER_VOWELS.entrySet()) {
-                name = name.replace(v + c.getKey(), v + c.getValue());
+                name = name.replace(vowel + c.getKey(), vowel + c.getValue());
             }
-            name = name.replace(v + "e", v + "э");
+            name = name.replace(vowel + "e", vowel + "э");
         }
-        for (Map.Entry<String, String> c : J_FIRST_CASE.entrySet()) {
-            if (name.startsWith(c.getKey())) {
-                name = name.replaceFirst(c.getKey(), c.getValue());
+        for (Map.Entry<String, String> jfc : J_FIRST_CASE.entrySet()) {
+            if (name.startsWith(jfc.getKey())) {
+                name = name.replaceFirst(jfc.getKey(), jfc.getValue());
             }
         }
-        for (Map.Entry<String, String> c : J_CASES_AFTER_CONSONANTS.entrySet()) {
-            name = name.replace(c.getKey(), c.getValue());
+        for (Map.Entry<String, String> jcac : J_CASES_AFTER_CONSONANTS.entrySet()) {
+            name = name.replace(jcac.getKey(), jcac.getValue());
         }
         name = name.replace("nj", "нь");
         name = name.replace("lj", "ль");

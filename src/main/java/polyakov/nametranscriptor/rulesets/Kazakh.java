@@ -14,10 +14,12 @@ public class Kazakh extends Russian {
         name = name.replace("gulm", "гульм");
         name = name.replace("guln", "гульн");
         if (name.endsWith("gul")) {
-            name = name.replace("gul", "гуль");
+            String sub = name.substring(0, name.length() - 3);
+            name = sub + "гуль";
         }
         if (name.endsWith("dil")) {
-            name = name.replace("dil", "диль");
+            String sub = name.substring(0, name.length() - 3);
+            name = sub + "диль";
         }
         return name;
     }

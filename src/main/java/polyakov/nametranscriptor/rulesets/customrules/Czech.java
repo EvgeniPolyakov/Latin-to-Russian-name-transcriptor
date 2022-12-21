@@ -12,11 +12,13 @@ public class Czech {
             List.of("a", "á", "ä", "é", "e", "ě", "i", "í", "o", "ó", "ô", "u", "ů", "ú", "y", "ý");
     public static final List<String> VOICED_CONSONANTS = List.of("b", "v", "d", "ď", "z", "ž", "g", "h");
     public static final List<String> Y_CASE_CONSONANTS = List.of("g", "k", "h", "ch", "c", "č", "š");
+
     public static final Map<String, String> UTILITY_CONSONANTS = Map.ofEntries(
             Map.entry("ď", "д"),
             Map.entry("ň", "н"),
             Map.entry("ť", "т")
     );
+
     public static final Map<String, String> AFTER_DNT = Map.ofEntries(
             Map.entry("a", "я"),
             Map.entry("á", "я"),
@@ -26,6 +28,7 @@ public class Czech {
             Map.entry("ú", "ю"),
             Map.entry("ů", "ю")
     );
+
     public static final Map<String, String> STARTERS = Map.ofEntries(
             Map.entry("e", "э"),
             Map.entry("é", "э"),
@@ -38,6 +41,7 @@ public class Czech {
             Map.entry("jú", "ю"),
             Map.entry("jů", "ю")
     );
+
     public static final Map<String, String> ENDINGS = Map.ofEntries(
             Map.entry("cký", "цкий"),
             Map.entry("cky", "цкий"),

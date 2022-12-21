@@ -24,14 +24,16 @@ public class Moldovan extends Romanian {
         if (mn.isPresent()) {
             name = mn.get();
         }
-        for (Map.Entry<String, String> i : PRIMARY_ENDINGS.entrySet()) {
-            if (name.endsWith(i.getKey())) {
-                name = name.replace(i.getKey(), i.getValue());
+        for (Map.Entry<String, String> ending : PRIMARY_ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                name = sub + ending.getValue();
             }
         }
-        for (Map.Entry<String, String> i : SECONDARY_ENDINGS.entrySet()) {
-            if (name.endsWith(i.getKey())) {
-                name = name.replace(i.getKey(), i.getValue());
+        for (Map.Entry<String, String> ending : SECONDARY_ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                name = sub + ending.getValue();
             }
         }
         name = name.replace("şciu", "щу");

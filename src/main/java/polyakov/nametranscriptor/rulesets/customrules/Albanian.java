@@ -10,6 +10,7 @@ import java.util.Map;
 public class Albanian {
     public static final List<String> VOWELS =
             List.of("a", "e", "ë", "i", "o", "u", "y");
+
     public static final Map<String, String> J_VOWEL_CASES = Map.ofEntries(
             Map.entry("ja", "я"),
             Map.entry("je", "е"),
@@ -19,6 +20,7 @@ public class Albanian {
             Map.entry("ju", "ю"),
             Map.entry("jy", "ю")
     );
+
     public static final Map<String, String> SOFTENED_VOWELS = Map.ofEntries(
             Map.entry("a", "я"),
             Map.entry("ë", "е"),
@@ -27,6 +29,7 @@ public class Albanian {
             Map.entry("o", "е"),
             Map.entry("u", "ю")
     );
+
     public static final Map<String, String> SOFT_CONSONANTS = Map.ofEntries(
             Map.entry("gj", "г"),
             Map.entry("nj", "н"),

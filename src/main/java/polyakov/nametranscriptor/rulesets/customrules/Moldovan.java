@@ -16,6 +16,7 @@ public class Moldovan {
             Map.entry("schii", "ский"),
             Map.entry("chii", "кий")
     );
+
     public static final Map<String, String> SECONDARY_ENDINGS = Map.ofEntries(
             Map.entry("iuc", "юк"),
             Map.entry("iuk", "юк"),

@@ -59,7 +59,8 @@ public class Ukrainian implements Ruleset {
 
     private String postcheck(String name) {
         if (name.endsWith("иы")) {
-            name = name.replace("иы", "ий");
+            String sub = name.substring(0, name.length() - 2);
+            name = sub + "ий";
         }
         return name;
     }
@@ -114,9 +115,9 @@ public class Ukrainian implements Ruleset {
     }
 
     private String checkCustomCases(String name) {
-        for (Map.Entry<String, String> s : STARTERS.entrySet()) {
-            if (name.startsWith(s.getKey())) {
-                name = name.replace(s.getKey(), s.getValue());
+        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                name = name.replace(starter.getKey(), starter.getValue());
             }
         }
         if (name.startsWith("e")) {
@@ -130,9 +131,10 @@ public class Ukrainian implements Ruleset {
         name = name.replace("tskiy", "цкий");
         name = name.replace("tskii", "цкий");
         name = name.replace("tsky", "цкий");
-        for (Map.Entry<String, String> s : ENDINGS.entrySet()) {
-            if (name.endsWith(s.getKey())) {
-                name = name.replace(s.getKey(), s.getValue());
+        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                name = sub + ending.getValue();
             }
         }
         return name;

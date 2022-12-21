@@ -62,9 +62,9 @@ public class Greek implements Ruleset {
     }
 
     private String checkCustomCases(String name) {
-        for (Map.Entry<String, String> s : STARTERS.entrySet()) {
-            if (name.startsWith(s.getKey())) {
-                name = name.replaceFirst(s.getKey(), s.getValue());
+        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                name = name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
         if (name.startsWith("yi")) {
@@ -101,23 +101,26 @@ public class Greek implements Ruleset {
         name = name.replace("yí", "йи");
         name = name.replace("yií", "йи");
         name = name.replace("ío", "ьо");
-        for (String v : VOICELESS_CONSONANTS) {
-            name = name.replace("mp" + v, "мп" + v);
+        for (String vc : VOICELESS_CONSONANTS) {
+            name = name.replace("mp" + vc, "мп" + vc);
         }
         name = name.replace("mp", "мб");
-        for (String s : S_CASE_CONSONANTS) {
-            name = name.replace("s" + s, "з" + s);
+        for (String scc : S_CASE_CONSONANTS) {
+            name = name.replace("s" + scc, "з" + scc);
         }
-        for (Map.Entry<String, String> s : ENDINGS.entrySet()) {
-            if (name.endsWith(s.getKey())) {
-                name = name.replace(s.getKey(), s.getValue());
+        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                name = sub + ending.getValue();
             }
         }
         if (name.endsWith("ia")) {
-            name = name.replace("ia", "ия");
+            String sub = name.substring(0, name.length() - 2);
+            name = sub + "ия";
         }
         if (name.endsWith("ïa")) {
-            name = name.replace("ïa", "ия");
+            String sub = name.substring(0, name.length() - 2);
+            name = sub + "ия";
         }
         name = name.replace("ia", "иа");
         name = name.replace("ïa", "иа");
@@ -125,30 +128,30 @@ public class Greek implements Ruleset {
     }
 
     private String checkVowelCombinations(String name) {
-        for (String v : VOWELS) {
-            name = checkAfterVowelCases(name, v);
-            if ((!v.equals("i")) && (!v.equals("y"))) {
-                name = name.replace(v + "e", v + "э");
-                name = name.replace(v + "ai", v + "э");
+        for (String vowel : VOWELS) {
+            name = checkAfterVowelCases(name, vowel);
+            if ((!vowel.equals("i")) && (!vowel.equals("y"))) {
+                name = name.replace(vowel + "e", vowel + "э");
+                name = name.replace(vowel + "ai", vowel + "э");
             }
         }
         return name;
     }
 
     private static String checkAfterVowelCases(String name, String v) {
-        for (Map.Entry<String, String> a : AFTER_VOWELS_PART_ONE.entrySet()) {
-            if (name.contains(a.getKey())) {
-                name = name.replace(v + a.getKey(), v + a.getValue());
+        for (Map.Entry<String, String> avpo : AFTER_VOWELS_PART_ONE.entrySet()) {
+            if (name.contains(avpo.getKey())) {
+                name = name.replace(v + avpo.getKey(), v + avpo.getValue());
             }
         }
-        for (Map.Entry<String, String> a : AFTER_VOWELS_PART_TWO.entrySet()) {
-            if (name.contains(a.getKey())) {
-                name = name.replace(v + a.getKey(), v + a.getValue());
+        for (Map.Entry<String, String> avpt : AFTER_VOWELS_PART_TWO.entrySet()) {
+            if (name.contains(avpt.getKey())) {
+                name = name.replace(v + avpt.getKey(), v + avpt.getValue());
             }
         }
-        for (Map.Entry<String, String> a : AFTER_VOWELS_PART_THREE.entrySet()) {
-            if (name.contains(a.getKey())) {
-                name = name.replace(v + a.getKey(), v + a.getValue());
+        for (Map.Entry<String, String> avpt : AFTER_VOWELS_PART_THREE.entrySet()) {
+            if (name.contains(avpt.getKey())) {
+                name = name.replace(v + avpt.getKey(), v + avpt.getValue());
             }
         }
         return name;

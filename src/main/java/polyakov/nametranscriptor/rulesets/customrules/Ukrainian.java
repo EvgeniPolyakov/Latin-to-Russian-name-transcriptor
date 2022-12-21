@@ -14,6 +14,7 @@ public class Ukrainian {
             Map.entry("yi", "и"),
             Map.entry("ya", "я")
     );
+
     public static final Map<String, String> ENDINGS = Map.ofEntries(
             Map.entry("skyi", "ский"),
             Map.entry("sky", "ский"),

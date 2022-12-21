@@ -8,10 +8,12 @@ public class Georgian extends Russian {
     @Override
     protected String checkCustomCases(String name) {
         if (name.endsWith("aia")) {
-            name = name.replace("aia", "ая");
+            String sub = name.substring(0, name.length() - 3);
+            name = sub + "ая";
         }
         if (name.endsWith("ia")) {
-            name = name.replace("ia", "ия");
+            String sub = name.substring(0, name.length() - 2);
+            name = sub + "ия";
         }
         if (name.equals("davit")) {
             name = "давид";

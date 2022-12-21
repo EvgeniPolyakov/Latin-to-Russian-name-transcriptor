@@ -19,6 +19,7 @@ public class Turkish {
             Map.entry("u", "у"),
             Map.entry("ü", "у")
     );
+
     public static final Map<String, String> STARTERS = Map.ofEntries(
             Map.entry("e", "э"),
             Map.entry("ü", "у"),
@@ -32,6 +33,7 @@ public class Turkish {
             Map.entry("yu", "ю"),
             Map.entry("yü", "ю")
     );
+
     public static final Map<String, String> UTILITY_LETTERS = Map.ofEntries(
             Map.entry("e", "э"),
             Map.entry("ö", "о"),

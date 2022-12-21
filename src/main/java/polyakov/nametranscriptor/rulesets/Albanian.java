@@ -108,9 +108,9 @@ public class Albanian implements Ruleset {
             name = name.replace(vowel + "e", vowel + "э");
             name = name.replace(vowel + "ë", vowel + "э");
         }
-        for (Map.Entry<String, String> s : J_VOWEL_CASES.entrySet()) {
-            if (name.startsWith(s.getKey())) {
-                name = name.replaceFirst(s.getKey(), s.getValue());
+        for (Map.Entry<String, String> jwc : J_VOWEL_CASES.entrySet()) {
+            if (name.startsWith(jwc.getKey())) {
+                name = name.replaceFirst(jwc.getKey(), jwc.getValue());
             }
         }
         for (Map.Entry<String, String> sc : SOFT_CONSONANTS.entrySet()) {

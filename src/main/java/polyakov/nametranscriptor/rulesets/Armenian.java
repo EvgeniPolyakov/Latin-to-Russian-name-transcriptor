@@ -16,22 +16,23 @@ public class Armenian extends Russian {
             name = os.get();
         }
         if (name.endsWith("ian")) {
-            name = name.replace("ian", "ян");
+            String sub = name.substring(0, name.length() - 3);
+            name = sub + "ян";
         }
         if (name.startsWith("hay")) {
-            name = name.replace("hay", "оганес");
+            name = name.replaceFirst("hay", "ай");
         }
         if (name.startsWith("hovhannes")) {
-            name = name.replace("hovhannes", "оганес");
+            name = name.replaceFirst("hovhannes", "оганес");
         }
         if (name.startsWith("hambardz")) {
-            name = name.replace("hambardz", "амбарц");
+            name = name.replaceFirst("hambardz", "амбарц");
         }
         if (name.startsWith("hakob")) {
-            name = name.replace("hakob", "акоп");
+            name = name.replaceFirst("hakob", "акоп");
         }
         if (name.startsWith("ha")) {
-            name = name.replace("ha", "а");
+            name = name.replaceFirst("ha", "а");
         }
         name = name.replace("ghaza", "каза");
         name = name.replace("j", "дж");

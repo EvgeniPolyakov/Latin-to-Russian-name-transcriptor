@@ -17,6 +17,14 @@ public class Romanian {
             Map.entry("g", "дж")
     );
 
+    public static final Map<String, String> ENDINGS = Map.ofEntries(
+            Map.entry("йu", "й"),
+            Map.entry("ci", "ч"),
+            Map.entry("ia", "ия"),
+            Map.entry("ie", "ие"),
+            Map.entry("iu", "иу")
+    );
+
     public static final Map<String, String> VOWELS = Map.ofEntries(
             Map.entry("a", "а"),
             Map.entry("ă", "э"),
@@ -29,7 +37,7 @@ public class Romanian {
             Map.entry("y", "и")
     );
 
-    public static final Map<String, String> STARTING_PART = Map.ofEntries(
+    public static final Map<String, String> STARTERS = Map.ofEntries(
             Map.entry("ia", "я"),
             Map.entry("ie", "е"),
             Map.entry("io", "йо"),

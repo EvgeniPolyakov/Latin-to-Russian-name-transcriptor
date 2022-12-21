@@ -67,13 +67,13 @@ public class Czech implements Ruleset {
     }
 
     protected String checkCombinations(String name) {
-        for (Map.Entry<String, String> u : UTILITY_CONSONANTS.entrySet()) {
-            for (Map.Entry<String, String> c : AFTER_DNT.entrySet()) {
-                name = name.replace(u.getKey() + c.getKey(), u.getValue() + c.getValue());
+        for (Map.Entry<String, String> uc : UTILITY_CONSONANTS.entrySet()) {
+            for (Map.Entry<String, String> vowel : AFTER_DNT.entrySet()) {
+                name = name.replace(uc.getKey() + vowel.getKey(), uc.getValue() + vowel.getValue());
             }
         }
-        for (String v : VOICED_CONSONANTS) {
-            name = name.replace(v + "ř", v + "рж");
+        for (String vc : VOICED_CONSONANTS) {
+            name = name.replace(vc + "ř", vc + "рж");
         }
         name = name.replace("ch", "х");
         name = name.replace("qu", "ку");
@@ -94,27 +94,27 @@ public class Czech implements Ruleset {
         if (name.endsWith("ia")) {
             name = name.replaceFirst("ia", "ия");
         }
-        for (String v : VOWELS) {
+        for (String vowel : VOWELS) {
             for (Map.Entry<String, String> s : STARTERS.entrySet()) {
-                name = name.replace(v + s.getKey(), v + s.getValue());
+                name = name.replace(vowel + s.getKey(), vowel + s.getValue());
             }
-            name = name.replace(v + "jo", v + "е");
-            name = name.replace(v + "jó", v + "е");
-            name = name.replace(v + "y", v + "й");
-            name = name.replace(v + "ý", v + "й");
-            name = name.replace(v + "ř", v + "рж");
+            name = name.replace(vowel + "jo", vowel + "е");
+            name = name.replace(vowel + "jó", vowel + "е");
+            name = name.replace(vowel + "y", vowel + "й");
+            name = name.replace(vowel + "ý", vowel + "й");
+            name = name.replace(vowel + "ř", vowel + "рж");
         }
-        for (String c : Y_CASE_CONSONANTS) {
-            name = name.replace(c + "y", c + "и");
-            name = name.replace(c + "ý", c + "и");
+        for (String consonant : Y_CASE_CONSONANTS) {
+            name = name.replace(consonant + "y", consonant + "и");
+            name = name.replace(consonant + "ý", consonant + "и");
         }
         return name;
     }
 
     protected String checkStart(String name) {
-        for (Map.Entry<String, String> s : STARTERS.entrySet()) {
-            if (name.startsWith(s.getKey())) {
-                name = name.replaceFirst(s.getKey(), s.getValue());
+        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                name = name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
         if (name.startsWith("jo")) {
@@ -130,9 +130,9 @@ public class Czech implements Ruleset {
     }
 
     protected String checkEnd(String name) {
-        for (Map.Entry<String, String> e : ENDINGS.entrySet()) {
-            if (name.endsWith(e.getKey())) {
-                name = name.replace(e.getKey(), e.getValue());
+        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                name = name.replace(ending.getKey(), ending.getValue());
             }
         }
         return name;
