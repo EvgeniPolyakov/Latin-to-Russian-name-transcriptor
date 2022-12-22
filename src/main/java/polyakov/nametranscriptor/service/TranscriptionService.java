@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import polyakov.nametranscriptor.model.IncomingDto;
+import polyakov.nametranscriptor.model.OutgoingDto;
 import polyakov.nametranscriptor.rulesets.Ruleset;
 
 @Service
@@ -15,7 +16,7 @@ public class TranscriptionService {
 
     private RulesetFactory rulesetFactory;
 
-    public String transcribe(IncomingDto dto, int mode) {
+    public OutgoingDto transcribe(IncomingDto dto, int mode) {
         log.info("Getting a ruleset for: {}", dto.getCountry());
         Ruleset ruleset = rulesetFactory.findStrategy(dto.getCountry());
         if (ruleset == null) {
@@ -33,6 +34,6 @@ public class TranscriptionService {
                 result.append(StringUtils.capitalize(ruleset.transcribe(w.toLowerCase(), mode)));
             }
         }
-        return result.toString();
+        return new OutgoingDto(result.toString());
     }
 }

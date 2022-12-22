@@ -29,6 +29,10 @@ List of currently supported languages:
 
 Any feedback is kindly welcome.
 
+## API
+
+[Swagger specification (JSON format)](https://raw.githubusercontent.com/EvgeniPolyakov/L2R-name-transcriptor/main/api-description.json)
+
 ## Launch
 
 App can be launched by building a project in Maven and running a .jar file.
