@@ -1,1 +1,79 @@
-{"openapi":"3.0.1","info":{"title":"OpenAPI definition","version":"v0"},"servers":[{"url":"http://localhost:8080","description":"Generated server url"}],"paths":{"/transcribe":{"post":{"tags":["Main controller"],"summary":"Transcribe text","operationId":"transcribe","parameters":[{"name":"mode","in":"query","description":"Used to define specific transcription modes if several are supported","required":false,"schema":{"type":"integer","format":"int32","default":0}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/IncomingDto"}}},"required":true},"responses":{"200":{"description":"Transcription done","content":{"string":{"schema":{"type":"string","example":"Сунь Цзы Кун Лао Юнлэ"}}}}}}}},"components":{"schemas":{"IncomingDto":{"type":"object","properties":{"text":{"type":"string","description":"Text for transcription","example":"Sun Zi Kung Lao Yongle"},"country":{"type":"string","description":"Country of origin. Used to specify ruleset for transcription","example":"China"}}}}}}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/transcribe": {
+      "post": {
+        "tags": [
+          "Main controller"
+        ],
+        "summary": "Transcribe text",
+        "operationId": "transcribe",
+        "parameters": [
+          {
+            "name": "mode",
+            "in": "query",
+            "description": "Used to define specific transcription modes if several are supported",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncomingDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Transcription done",
+            "content": {
+              "string": {
+                "schema": {
+                  "type": "string",
+                  "example": "Сунь Цзы Кун Лао Юнлэ"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IncomingDto": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Text for transcription",
+            "example": "Sun Zi Kung Lao Yongle"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country of origin. Used to specify ruleset for transcription",
+            "example": "China"
+          }
+        }
+      }
+    }
+  }
+}
