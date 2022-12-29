@@ -21,6 +21,7 @@ public class French {
             Map.entry("cquэ", "к"),
             Map.entry("ger", "же"),
             Map.entry("iers", "ье"),
+            Map.entry("ийes", "иль"),
             Map.entry("оx", "о"),
             Map.entry("еx", "е"),
             Map.entry("эx", "э"),
@@ -40,7 +41,6 @@ public class French {
     );
 
     public static final Map<String, String> SECOND_TIER_ENDINGS = Map.ofEntries(
-            Map.entry("ville", "виль"),
             Map.entry("quэs", "к"),
             Map.entry("quэ", "к"),
             Map.entry("cts", ""),
@@ -70,7 +70,8 @@ public class French {
             Map.entry("œu", "э"),
             Map.entry("aim", "эн"),
             Map.entry("ain", "эн"),
-            Map.entry("ay", "э")
+            Map.entry("ay", "э"),
+            Map.entry("ya", "я")
     );
 
     public static final Map<String, String> SECOND_TIER_STARTERS = Map.ofEntries(
@@ -94,8 +95,6 @@ public class French {
     );
 
     public static final Map<String, String> BEFORE_VOWELS = Map.ofEntries(
-            Map.entry("ville", "виллe"),
-            Map.entry("vийe", "виллe"),
             Map.entry("ch", "ш"),
             Map.entry("om", "ом"),
             Map.entry("um", "юм"),

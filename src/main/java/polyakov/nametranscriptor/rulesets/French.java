@@ -22,8 +22,8 @@ public class French implements Ruleset {
         name = checkPrimaryCases(name);
         name = checkStarters(name);
         name = checkVowels(name);
-        name = checkEndings(name);
         name = checkConsonants(name);
+        name = checkEndings(name);
         name = checkCombinations(name);
         name = checkSingleChars(name);
         return postcheck(name);
@@ -39,6 +39,7 @@ public class French implements Ruleset {
             name = name.replace("c" + aou, "к" + aou);
             name = name.replace("ge" + aou, "ж" + aou);
         }
+        name = name.replace("guen", "ген");
         for (String eiy : EIY_VOWELS) {
             name = name.replace("sc" + eiy, "с" + eiy);
             name = name.replace("gu" + eiy, "г" + eiy);
@@ -59,16 +60,6 @@ public class French implements Ruleset {
             name = name.replaceFirst("eu", "э");
         }
         name = name.replace("eu", "е");
-        return name;
-    }
-
-    private String checkVilleCases(String name) {
-        name = name.replace("villeur", "виллер");
-        name = name.replace("villeut", "виллет");
-        name = name.replace("villeuz", "вилле");
-        name = name.replace("viller", "виллер");
-        name = name.replace("villet", "виллет");
-        name = name.replace("villez", "вилле");
         return name;
     }
 
@@ -233,7 +224,8 @@ public class French implements Ruleset {
                 name = name.replace("en" + vowel, "эн" + vowel);
             }
             if (name.endsWith("ille")) {
-                name = name.replace(vowel + "ille", vowel + "й");
+                String sub = name.substring(0, name.length() - 4);
+                name = sub + "й";
             }
             if (name.endsWith(vowel + "c")) {
                 String sub = name.substring(0, name.length() - 1);
@@ -301,17 +293,20 @@ public class French implements Ruleset {
         }
         for (Map.Entry<String, String> e : FIRST_TIER_ENDINGS.entrySet()) {
             if (name.endsWith(e.getKey())) {
-                name = name.replace(e.getKey(), e.getValue());
+                String sub = name.substring(0, name.length() - e.getKey().length());
+                name = sub + e.getValue();
             }
         }
         for (Map.Entry<String, String> e : SECOND_TIER_ENDINGS.entrySet()) {
             if (name.endsWith(e.getKey())) {
-                name = name.replace(e.getKey(), e.getValue());
+                String sub = name.substring(0, name.length() - e.getKey().length());
+                name = sub + e.getValue();
             }
         }
         for (Map.Entry<String, String> e : THIRD_TIER_ENDINGS.entrySet()) {
             if (name.endsWith(e.getKey())) {
-                name = name.replace(e.getKey(), e.getValue());
+                String sub = name.substring(0, name.length() - e.getKey().length());
+                name = sub + e.getValue();
             }
         }
         if (name.endsWith("ien")) {
@@ -337,6 +332,24 @@ public class French implements Ruleset {
         name = name.replace("lю", "лю");
         name = name.replace("lя", "ля");
         name = name.replace("lь", "ль");
+        return name;
+    }
+
+    private String checkVilleCases(String name) {
+        name = name.replace("villeur", "виллер");
+        name = name.replace("villeut", "виллет");
+        name = name.replace("villeuz", "вилле");
+        name = name.replace("viller", "виллер");
+        name = name.replace("villet", "виллет");
+        name = name.replace("villez", "вилле");
+        for (String vowel : VOWELS) {
+            name = name.replace("ville" + vowel, "виллe" + vowel);
+            name = name.replace("vийe" + vowel, "виллe" + vowel);
+        }
+        if (name.endsWith("ville")) {
+            String sub = name.substring(0, name.length() - 5);
+            name = sub + "виль";
+        }
         return name;
     }
 
