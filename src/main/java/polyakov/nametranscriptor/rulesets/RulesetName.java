@@ -12,6 +12,7 @@ public enum RulesetName {
     CZECH("Czechia"),
     CYPRIOT("Cyprus"),
     GEORGIAN("Georgia"),
+    GERMAN("Germany"),
     GREEK("Greece"),
     FRENCH("France"),
     KAZAKH("Kazakhstan"),

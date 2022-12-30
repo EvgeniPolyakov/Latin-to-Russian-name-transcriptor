@@ -29,6 +29,7 @@ List of currently supported languages:
 * Czech
 * French
 * Georgian (from Romanized form to Cyrillic)
+* German
 * Greek (from Romanized form to Cyrillic)
 * Macedonian (from Romanized form back to Cyrillic)
 * Portuguese
