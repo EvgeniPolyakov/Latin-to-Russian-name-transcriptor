@@ -12,7 +12,7 @@ import polyakov.nametranscriptor.rulesets.Ruleset;
 @Slf4j
 @AllArgsConstructor
 public class TranscriptionService {
-    private static final String REGEX = "[!#@%^:;+._,?|/`’'{}~&№ ]";
+    private static final String REGEX = "[-–—!#@%^:;+._,?|/`’'{}~&№ ]";
 
     private RulesetFactory rulesetFactory;
 
