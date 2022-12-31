@@ -20,24 +20,24 @@ possible.
 
 List of currently supported languages:
 
-* Russian (from Romanized form back to Cyrillic)
+* Russian (from Roman script back to Cyrillic)
 * Albanian
-* Armenain (from Romanized form to Cyrillic)
-* Bulgarian (from Romanized form back to Cyrillic)
+* Armenian (from Roman script to Cyrillic)
 * Brazilian Portuguese
-* Chinese (from Romanized form to Cyrillic)
+* Bulgarian (from Roman script back to Cyrillic)
+* Chinese (from Roman script to Cyrillic)
 * Czech
 * French
-* Georgian (from Romanized form to Cyrillic)
+* Georgian (from Roman script to Cyrillic)
 * German
-* Greek (from Romanized form to Cyrillic)
-* Macedonian (from Romanized form back to Cyrillic)
+* Greek (from Roman script to Cyrillic)
+* Macedonian (from Roman script  back to Cyrillic)
 * Portuguese
 * Romanian / Moldovan
-* Serbocroatian
+* Serbocroat
 * Slovak
 * Turkish
-* Ukrainian (from Romanized form back to Cyrillic)
+* Ukrainian (from Roman script back to Cyrillic)
 
 Any feedback is kindly welcome.
 

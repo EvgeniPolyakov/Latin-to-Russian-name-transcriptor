@@ -10,7 +10,7 @@ import java.util.Optional;
 import static polyakov.nametranscriptor.rulesets.customrules.Serbian.*;
 
 @Component
-public class Serbian implements Ruleset {
+public class Serbocroat implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
@@ -99,6 +99,6 @@ public class Serbian implements Ruleset {
 
     @Override
     public String getName() {
-        return RulesetName.SERBIAN.getName();
+        return RulesetName.SERBOCROAT.getName();
     }
 }

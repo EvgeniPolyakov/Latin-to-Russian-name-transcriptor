@@ -21,7 +21,7 @@ class SerbianTest {
                 деклинь зезколю ея ие йои юйо мокье комьи лупьо полю ляле леля лиле лели люлю \
                 няне неня нине нени нюню нора раниц цучич чуфеч чохидж джафтец тихас суджу джядже джеджя \
                 джидже джеджи джюджю""";
-        Serbian service = new Serbian();
+        Serbocroat service = new Serbocroat();
 
         String[] words = text.split(" ");
         StringBuilder sb = new StringBuilder();
