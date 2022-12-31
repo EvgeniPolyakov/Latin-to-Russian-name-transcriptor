@@ -175,6 +175,7 @@ public class German implements Ruleset {
                 name = name.replace(vowel + c.getKey(), vowel + c.getValue());
             }
             for (String vowel2 : VOWELS) {
+                name = name.replace(vowel + "ck" + vowel2, vowel + "кк" + vowel2);
                 name = name.replace(vowel + "tz" + vowel2, vowel + "тц" + vowel2);
                 name = name.replace(vowel + "ll" + vowel2, vowel + "лл" + vowel2);
             }
