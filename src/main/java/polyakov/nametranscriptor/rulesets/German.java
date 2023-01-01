@@ -1,7 +1,6 @@
 package polyakov.nametranscriptor.rulesets;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.rulesets.customrules.Serbian;
 import polyakov.nametranscriptor.rulesets.names.GermanNames;
 
 import java.util.Arrays;
@@ -154,7 +153,7 @@ public class German implements Ruleset {
                 name = name.replaceFirst(jfc.getKey(), jfc.getValue());
             }
         }
-        for (String vowel : Serbian.VOWELS) {
+        for (String vowel : VOWELS) {
             for (Map.Entry<String, String> c : J_CASES.entrySet()) {
                 name = name.replace(vowel + c.getKey(), vowel + c.getValue());
             }
