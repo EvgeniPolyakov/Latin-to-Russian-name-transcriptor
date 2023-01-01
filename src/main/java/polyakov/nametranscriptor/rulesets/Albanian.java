@@ -51,6 +51,7 @@ public class Albanian implements Ruleset {
         name = name.replace("q", "кь");
         name = name.replace("r", "р");
         name = name.replace("s", "с");
+        name = name.replace("š", "ш");
         name = name.replace("t", "т");
         name = name.replace("u", "у");
         name = name.replace("v", "в");
@@ -58,7 +59,7 @@ public class Albanian implements Ruleset {
         name = name.replace("x", "дз");
         name = name.replace("y", "ю");
         name = name.replace("z", "з");
-        name = name.replace("ž", "з");
+        name = name.replace("ž", "ж");
         return name;
     }
 
