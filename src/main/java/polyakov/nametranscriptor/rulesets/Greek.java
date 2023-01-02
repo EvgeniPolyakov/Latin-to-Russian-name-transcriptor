@@ -62,7 +62,12 @@ public class Greek implements Ruleset {
     }
 
     private String checkCustomCases(String name) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+        for (Map.Entry<String, String> starter : FIRST_TIER_STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                name = name.replaceFirst(starter.getKey(), starter.getValue());
+            }
+        }
+        for (Map.Entry<String, String> starter : SECOND_TIER_STARTERS.entrySet()) {
             if (name.startsWith(starter.getKey())) {
                 name = name.replaceFirst(starter.getKey(), starter.getValue());
             }
@@ -103,6 +108,7 @@ public class Greek implements Ruleset {
         name = name.replace("ío", "ьо");
         for (String vc : VOICELESS_CONSONANTS) {
             name = name.replace("mp" + vc, "мп" + vc);
+            name = name.replace("mp" + vc, "мп" + vc);
         }
         name = name.replace("mp", "мб");
         for (String scc : S_CASE_CONSONANTS) {
@@ -139,17 +145,17 @@ public class Greek implements Ruleset {
     }
 
     private static String checkAfterVowelCases(String name, String v) {
-        for (Map.Entry<String, String> avpo : AFTER_VOWELS_PART_ONE.entrySet()) {
+        for (Map.Entry<String, String> avpo : AFTER_VOWELS_TIER_ONE.entrySet()) {
             if (name.contains(avpo.getKey())) {
                 name = name.replace(v + avpo.getKey(), v + avpo.getValue());
             }
         }
-        for (Map.Entry<String, String> avpt : AFTER_VOWELS_PART_TWO.entrySet()) {
+        for (Map.Entry<String, String> avpt : AFTER_VOWELS_TIER_TWO.entrySet()) {
             if (name.contains(avpt.getKey())) {
                 name = name.replace(v + avpt.getKey(), v + avpt.getValue());
             }
         }
-        for (Map.Entry<String, String> avpt : AFTER_VOWELS_PART_THREE.entrySet()) {
+        for (Map.Entry<String, String> avpt : AFTER_VOWELS_TIER_THREE.entrySet()) {
             if (name.contains(avpt.getKey())) {
                 name = name.replace(v + avpt.getKey(), v + avpt.getValue());
             }
