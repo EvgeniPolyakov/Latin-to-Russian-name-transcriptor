@@ -130,9 +130,11 @@ public class French implements Ruleset {
         name = name.replace("ioû", "ью");
         name = name.replace("gna", "нья");
         name = name.replace("gn", "нь");
-        name = name.replace("aim", "ен"); // было aim
-        name = name.replace("aiм", "ен"); // было aim
-        name = name.replace("aэн", "ен"); // было ain
+        name = name.replace("aim", "ен");
+        name = name.replace("aiм", "ен");
+        name = name.replace("aэн", "ен");
+        name = name.replace("ays", "аи");
+        name = name.replace("aye", "ей");
         name = name.replace("tioux", "сью");
         name = name.replace("ai", "е");
         name = name.replace("ey", "е");
@@ -207,25 +209,21 @@ public class French implements Ruleset {
 
     private String checkVowels(String name) {
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> c : AFTER_VOWELS.entrySet()) {
-                name = name.replace(vowel + c.getKey(), vowel + c.getValue());
+            for (Map.Entry<String, String> av : AFTER_VOWELS.entrySet()) {
+                name = name.replace(vowel + av.getKey(), vowel + av.getValue());
             }
-            for (Map.Entry<String, String> c : BEFORE_VOWELS.entrySet()) {
-                name = name.replace(c.getKey() + vowel, c.getValue() + vowel);
+            for (Map.Entry<String, String> bv : BEFORE_VOWELS.entrySet()) {
+                name = name.replace(bv.getKey() + vowel, bv.getValue() + vowel);
             }
             if (!vowel.equals("i")) {
                 name = name.replace(vowel + "e", vowel + "э");
                 name = name.replace(vowel + "un", vowel + "эн");
             }
-            if (name.startsWith("em")) {
+            if (name.startsWith("em" + vowel)) {
                 name = name.replace("em" + vowel, "эм" + vowel);
             }
-            if (name.startsWith("en")) {
+            if (name.startsWith("en" + vowel)) {
                 name = name.replace("en" + vowel, "эн" + vowel);
-            }
-            if (name.endsWith("ille")) {
-                String sub = name.substring(0, name.length() - 4);
-                name = sub + "й";
             }
             if (name.endsWith(vowel + "c")) {
                 String sub = name.substring(0, name.length() - 1);
@@ -241,18 +239,7 @@ public class French implements Ruleset {
     }
 
     private String checkConsonants(String name) {
-        for (String bmp : BMP_CONSONANTS) {
-            for (Map.Entry<String, String> s : BEFORE_BMP.entrySet()) {
-                name = name.replace(s.getKey() + bmp, s.getValue() + bmp);
-            }
-            if (name.startsWith("im" + bmp)) {
-                name = name.replaceFirst("im" + bmp, "эм" + bmp);
-            }
-            if (name.startsWith("ym" + bmp)) {
-                name = name.replaceFirst("ym" + bmp, "эм" + bmp);
-            }
-            name = name.replace("m" + bmp, "м" + bmp);
-        }
+        name = checkBMPCases(name);
         if (name.startsWith("im") || name.startsWith("ym")) {
             name = name.replaceFirst("im", "им");
             name = name.replaceFirst("ym", "им");
@@ -271,14 +258,14 @@ public class French implements Ruleset {
     }
 
     private String checkStarters(String name) {
-        for (Map.Entry<String, String> s : FIRST_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(s.getKey())) {
-                name = name.replaceFirst(s.getKey(), s.getValue());
+        for (Map.Entry<String, String> starter : FIRST_TIER_STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                name = name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
-        for (Map.Entry<String, String> s : SECOND_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(s.getKey())) {
-                name = name.replaceFirst(s.getKey(), s.getValue());
+        for (Map.Entry<String, String> starter : SECOND_TIER_STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                name = name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
         if (name.startsWith("in") && !name.startsWith("inn")) {
@@ -290,33 +277,64 @@ public class French implements Ruleset {
     private String checkEndings(String name) {
         if (name.endsWith("уайes") || name.endsWith("уайés")) {
             name = name.substring(0, name.length() - 3);
+            return name;
         }
         for (Map.Entry<String, String> e : FIRST_TIER_ENDINGS.entrySet()) {
             if (name.endsWith(e.getKey())) {
                 String sub = name.substring(0, name.length() - e.getKey().length());
                 name = sub + e.getValue();
+                return name;
             }
         }
         for (Map.Entry<String, String> e : SECOND_TIER_ENDINGS.entrySet()) {
             if (name.endsWith(e.getKey())) {
                 String sub = name.substring(0, name.length() - e.getKey().length());
                 name = sub + e.getValue();
+                return name;
             }
         }
         for (Map.Entry<String, String> e : THIRD_TIER_ENDINGS.entrySet()) {
             if (name.endsWith(e.getKey())) {
                 String sub = name.substring(0, name.length() - e.getKey().length());
                 name = sub + e.getValue();
+                return name;
             }
         }
         if (name.endsWith("ien")) {
             String sub = name.substring(0, name.length() - 3);
             name = sub + "ьен";
+            return name;
         }
         for (String e : EMPTY_ENDINGS) {
             if (name.endsWith(e)) {
                 name = StringUtils.chop(name);
-                break;
+                return name;
+            }
+        }
+        return name;
+    }
+
+    private static String checkBMPCases(String name) {
+        for (String bmp : BM_CONSONANTS) {
+            for (Map.Entry<String, String> precedingPart : BEFORE_BMP.entrySet()) {
+                name = name.replace(precedingPart.getKey() + bmp, precedingPart.getValue() + bmp);
+            }
+            if (name.startsWith("im" + bmp)) {
+                name = name.replaceFirst("im" + bmp, "эм" + bmp);
+            }
+            if (name.startsWith("ym" + bmp)) {
+                name = name.replaceFirst("ym" + bmp, "эм" + bmp);
+            }
+        }
+        for (Map.Entry<String, String> precedingPart : BEFORE_BMP.entrySet()) {
+            if (!name.endsWith(precedingPart.getKey() + "p")) {
+                name = name.replace(precedingPart.getKey() + "p", precedingPart.getValue() + "p");
+            }
+            if (name.startsWith("im" + "p")) {
+                name = name.replaceFirst("im" + "p", "эм" + "p");
+            }
+            if (name.startsWith("ym" + "p")) {
+                name = name.replaceFirst("ym" + "p", "эм" + "p");
             }
         }
         return name;

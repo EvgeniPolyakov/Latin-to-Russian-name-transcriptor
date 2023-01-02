@@ -21,6 +21,7 @@ public class French {
             Map.entry("cquэ", "к"),
             Map.entry("ger", "же"),
             Map.entry("iers", "ье"),
+            Map.entry("йers", "йе"),
             Map.entry("ийes", "иль"),
             Map.entry("оx", "о"),
             Map.entry("еx", "е"),
@@ -35,12 +36,15 @@ public class French {
             Map.entry("yn", "ен"),
             Map.entry("ès", "ес"),
             Map.entry("ais", "е"),
+            Map.entry("ays", "еи"),
+            Map.entry("aye", "ай"),
             Map.entry("ois", "уа"),
             Map.entry("eis", "ей"),
             Map.entry("ouis", "уи")
     );
 
     public static final Map<String, String> SECOND_TIER_ENDINGS = Map.ofEntries(
+            Map.entry("ille", "й"),
             Map.entry("quэs", "к"),
             Map.entry("quэ", "к"),
             Map.entry("cts", ""),
@@ -48,6 +52,7 @@ public class French {
             Map.entry("aux", "о"),
             Map.entry("uis", "юи"),
             Map.entry("ier", "ье"),
+            Map.entry("йer", "йе"),
             Map.entry("eil", "ей"),
             Map.entry("en", "ен")
     );
@@ -118,7 +123,7 @@ public class French {
     );
 
     public static final List<String> EMPTY_ENDINGS = List.of("e", "g", "s", "c", "d", "t", "p");
-    public static final List<String> BMP_CONSONANTS = List.of("b", "m", "p", "б", "м", "п");
+    public static final List<String> BM_CONSONANTS = List.of("b", "m", "б", "м");
     public static final List<String> AOU_VOWELS = List.of("a", "o", "u", "а", "о");
     public static final List<String> EIY_VOWELS = List.of("e", "é", "è", "ê", "ë", "i", "y", "э");
     public static final List<String> VOWELS = List.of("a", "à", "â", "e", "é", "é", "ë", "è", "ê", "i", "î",
