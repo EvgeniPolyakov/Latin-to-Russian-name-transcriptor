@@ -34,7 +34,7 @@ public class Turkish {
             Map.entry("yü", "ю")
     );
 
-    public static final Map<String, String> UTILITY_LETTERS = Map.ofEntries(
+    public static final Map<String, String> AFTER_VOWELS = Map.ofEntries(
             Map.entry("e", "э"),
             Map.entry("ö", "о"),
             Map.entry("ü", "у"),

@@ -17,7 +17,7 @@ class TurkishTest {
                 kutucu mert çetin arzu karabulut yağmur uraz fatma şahin ezgi çağlar didem karagenç yaşam göksu hız \
                 emine ecem esen ebru topçu berna yeniçeri ilayda civelek derya arhan ece türkoğlu sadıkoğlu ipek \
                 kaya sedanur incik ırem eren melike öztürk gamze yaman elif keskin büşra kuru dilan yeşim taşkin \
-                cansu nur pijamalı hasta yağız şoföre çabucak güvendi""";
+                cansu nur pijamalı hasta yağız şoföre çabucak güvendi çıldır""";
         String transcription = """
                 эйюб яйла конья унье йигит акйигит йылдырым акйылдыз карадайы йозгат байортач йорюк юнус нигде дивриги \
                 боздоган мугла ыгдыр хаккяри элязыг болат хасан али калдырым омер байрам окай йокушлу чалханоглу \
@@ -26,7 +26,7 @@ class TurkishTest {
                 мерт четин арзу карабулут ягмур ураз фатма шахин эзги чаглар дидем карагенч яшам гексу хыз эмине \
                 эджем эсен эбру топчу берна еничери илайда дживелек дерья архан эдже тюркоглу садыкоглу ипек кая \
                 седанур инджик ырем эрен мелике озтюрк гамзе яман элиф кескин бюшра куру дилан ешим ташкин джансу \
-                нур пижамалы хаста ягыз шофере чабуджак гювенди""";
+                нур пижамалы хаста ягыз шофере чабуджак гювенди чылдыр""";
         Turkish service = new Turkish();
 
         String[] words = text.split(" ");
