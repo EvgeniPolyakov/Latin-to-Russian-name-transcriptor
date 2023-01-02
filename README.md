@@ -32,6 +32,7 @@ List of currently supported languages:
 * German
 * Greek (from Roman script to Cyrillic)
 * Japanese (from Hepburn romanization system to Cyrillic)
+* Latvian
 * Macedonian (from Roman script  back to Cyrillic)
 * Portuguese
 * Romanian / Moldovan

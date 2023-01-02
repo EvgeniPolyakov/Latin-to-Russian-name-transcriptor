@@ -13,6 +13,7 @@ public enum RulesetName {
     GREEK("Greek"),
     JAPANESE("Japanese"),
     KAZAKH("Kazakh"),
+    LATVIAN("Latvian"),
     MACEDONIAN("Macedonian"),
     MOLDOVAN("Moldovan"),
     PORTUGUESE("Portuguese"),
