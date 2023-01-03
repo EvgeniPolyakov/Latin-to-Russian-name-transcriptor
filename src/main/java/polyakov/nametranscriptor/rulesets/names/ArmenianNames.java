@@ -15,6 +15,8 @@ public enum ArmenianNames {
     HENRI("henri", "генри"),
     HAMLET("hamlet", "гамлет"),
     HRACH("hrach", "грач"),
+    HRACHIA("hrachia", "грачья"),
+    HRACHYA("hrachya", "грачья"),
     LIOVA("liova", "лева"),
     LYOVA("lyova", "лева"),
     MARIAM("mariam", "мариам"),

@@ -14,8 +14,10 @@ public class Bulgarian extends Russian {
         if (os.isPresent()) {
             name = os.get();
         }
-        name = checkCustomCases(name);
+        name = checkPrimaryCases(name);
         name = checkStart(name);
+        name = checkEndings(name);
+        name = checkVowels(name);
         name = checkBulgarianChars(name);
         name = checkCombinations(name);
         name = checkSingleChars(name);
@@ -48,16 +50,14 @@ public class Bulgarian extends Russian {
         return name;
     }
 
-    @Override
-    protected String checkCustomCases(String name) {
-        return name.replace("j", "y");
-    }
-
     private String postcheck(String name) {
         if (!name.startsWith("йо")) {
             name = name.replace("йо", "е");
         }
         name = name.replace("ьо", "е");
+        if (name.endsWith("ский")) {
+            name = name.substring(0, name.length() - 1);
+        }
         return name;
     }
 

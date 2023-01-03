@@ -4,32 +4,35 @@ import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.rulesets.names.ArmenianNames;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Optional;
 
 @Component
 public class Armenian extends Russian {
+    public static final Map<String, String> STARTERS = Map.ofEntries(
+            Map.entry("hay", "ай"),
+            Map.entry("hakob", "акоп"),
+            Map.entry("hovhann", "оган"),
+            Map.entry("hambardz", "амбарц")
+    );
 
     @Override
-    protected String checkCustomCases(String name) {
+    protected String checkPrimaryCases(String name) {
         Optional<String> os = checkCustomNames(name);
         if (os.isPresent()) {
             name = os.get();
         }
-        if (name.endsWith("ian")) {
+        if (name.endsWith("ian") || name.endsWith("yan")) {
             String sub = name.substring(0, name.length() - 3);
             name = sub + "ян";
         }
-        if (name.startsWith("hay")) {
-            name = name.replaceFirst("hay", "ай");
+        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                name = name.replaceFirst(starter.getKey(), starter.getValue());
+            }
         }
-        if (name.startsWith("hovhannes")) {
-            name = name.replaceFirst("hovhannes", "оганес");
-        }
-        if (name.startsWith("hambardz")) {
-            name = name.replaceFirst("hambardz", "амбарц");
-        }
-        if (name.startsWith("hakob")) {
-            name = name.replaceFirst("hakob", "акоп");
+        if (name.startsWith("hovhan")) {
+            name = name.replaceFirst("hovhan", "оган");
         }
         if (name.startsWith("ha")) {
             name = name.replaceFirst("ha", "а");
@@ -38,7 +41,7 @@ public class Armenian extends Russian {
         name = name.replace("j", "дж");
         name = name.replace("gh", "г");
         name = name.replace("aha", "аа");
-        return super.checkCustomCases(name);
+        return super.checkEndings(name);
     }
 
     private Optional<String> checkCustomNames(String name) {

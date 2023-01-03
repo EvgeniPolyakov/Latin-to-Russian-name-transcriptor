@@ -18,10 +18,10 @@ class BulgarianTest {
                 yanis karabelyov stefan nikolay lazar terziev tsvetelin chunchukov mihail mihaylov bozhidar kraev \
                 ventsislav kerchev stoycho atanasov petar kristiyan katsarev dimitar velkovski nasko milev zhivko \
                 hadzhiev krasimir vladimir semerdzhiev trayanov tasev yomov kristiyana dimitrova stoyanova stoycheva \
-                zornitsa todorova yana yordanova maria dikelova bozhidara vanesa kristiana karaivanova karakoleva \
+                zornitsa todorova yana yordanova maria dikelova bozhidara vanesa kristiana elena karakoleva \
                 naydenova mayya yoanna stefanova ekaterina zheleva yanitsa aleksandra goranova nedret viktoriya \
                 naydenova shopska aleksandra yaneva silviya viktoria gabriela naydenova beleva iliycheva palagacheva \
-                silvia dzhaleva ekaterina roshchin roschin elena""";
+                silvia dzhaleva ekaterina roshchin roschin""";
         String transcription = """
                 попадийн серкан юсейн чижи янис карабелев стефан николай крастев венцислав керчев стойчо уштя наско \
                 милев коштю костадинов петко даниел наумов тонислав йорданов ангел лясков калоян крастев антонио \
@@ -31,9 +31,9 @@ class BulgarianTest {
                 николай лазар терзиев цветелин чунчуков михаил михайлов божидар краев венцислав керчев стойчо \
                 атанасов петар кристиян кацарев димитар велковски наско милев живко хаджиев красимир владимир \
                 семерджиев траянов тасев йомов кристияна димитрова стоянова стойчева зорница тодорова яна йорданова \
-                мария дикелова божидара ванеса кристиана караиванова караколева найденова майя йоанна стефанова \
+                мария дикелова божидара ванеса кристиана елена караколева найденова майя йоанна стефанова \
                 екатерина желева яница александра горанова недрет виктория найденова шопска александра янева сильвия \
-                виктория габриела найденова белева илийчева палагачева сильвия джалева екатерина рошчин росчин елена""";
+                виктория габриела найденова белева илийчева палагачева сильвия джалева екатерина рошчин росчин""";
         Bulgarian service = new Bulgarian();
 
         String[] words = text.split(" ");

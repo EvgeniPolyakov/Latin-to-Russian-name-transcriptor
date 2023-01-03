@@ -15,7 +15,7 @@ class MacedonianTest {
                 sheji bojan miovski david denkovski davor zdravkovski enis fazlagić filip antovski jani atanasov \
                 kristijan ackovski kristijan trapanovski mario ilievski marko alchevski marko gjorgjievski martin \
                 stojanov nikola serafimov oliver stoimenovski risto jankov slave markoski todor todoroski tomche \
-                grozdanovski viktor krstevski aleksandra jovanovska ana milchevska angela zafirovska anida jahji \
+                grozdanovski viktor krstevski aleksandra jovanovska ana milchevska angela zafirovska anida jahoi \
                 berna kabakchi bojana petkova brikena shakiri dajana ristovska edina sulejmani era stableva jana \
                 luba zvrlevska kristina mojsoska mia golovska olivera cokleska radica velkova sanja perchinkovska \
                 tea bozhinoska teodora nikolovska viktorija nedeva""";
@@ -25,8 +25,8 @@ class MacedonianTest {
                 миовски давид денковски давор здравковски энис фазлагич филип антовски яни атанасов кристиян ацковски \
                 кристиян трапановски марио илиевски марко алчевски марко джерджиевски мартин стоянов никола серафимов \
                 оливер стойменовски ристо янков славе маркоски тодор тодороски томче гроздановски виктор крстевски \
-                александра йовановска ана милчевска ангела зафировска анида яхьи берна кабакчи бояна петкова брикена \
-                шакири даяна ристовска эдина сулеймани эра стаблева яна луба зврлевска кристина мойсоска миа головска \
+                александра йовановска ана милчевска ангела зафировска анида яхой берна кабакчи бояна петкова брикена \
+                шакири даяна ристовска эдина сулеймани эра стаблева яна луба зврлевска кристина мойсоска мия головска \
                 оливера цоклеска радица велкова саня перчинковска теа божиноска теодора николовска виктория недева""";
         Macedonian service = new Macedonian();
 
