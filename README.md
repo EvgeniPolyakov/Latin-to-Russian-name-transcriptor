@@ -42,8 +42,8 @@ List of currently supported languages:
 * 🇱🇻 Latvian
 * 🇲🇰 Macedonian (from Roman script back to Cyrillic)
 * 🇵🇹 Portuguese
-* 🇷🇴 Romanian / Moldovan
-* 🇷🇸🇭🇷 Serbocroat
+* 🇷🇴 Romanian / 🇲🇩 Moldovan
+* 🇷🇸🇭🇷 Serbo-Croatian
 * 🇸🇰 Slovak
 * 🇹🇷 Turkish
 * 🇺🇦 Ukrainian (from Roman script back to Cyrillic)
@@ -56,7 +56,9 @@ Any feedback is kindly welcome.
 
 ## Launch
 
-App can be launched by building a project in Maven and running a .jar file.
+App can be launched by compiling and installing it via standard Maven procedure.
+
+---
 
 ---
 
@@ -103,7 +105,7 @@ App can be launched by building a project in Maven and running a .jar file.
 * 🇲🇰 македонский (с латиницы на кириллицу с транскрипцией на русский)
 * 🇩🇪 немецкий
 * 🇵🇹 португальский
-* 🇷🇴 румынский / молдавский
+* 🇷🇴 румынский / 🇲🇩 молдавский
 * 🇷🇸🇭🇷 сербохорватский
 * 🇸🇰 словацкий
 * 🇹🇷 турецкий
@@ -120,4 +122,4 @@ App can be launched by building a project in Maven and running a .jar file.
 
 ## Запуск
 
-Приложение можно запустить, построив Maven-проект и запустив jar-файл.
+Приложение можно скомпилировать и запустить, используя стандартную процедуру сборщика Maven.
