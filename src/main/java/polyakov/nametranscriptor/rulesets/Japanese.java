@@ -5,14 +5,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class Japanese implements Ruleset {
 
-    /***
-    Слоговое "н" перед гласными иногда обозначается как "нъ" во избежание путаницы со слогами ряда "на": Гэнъити.
-    Чтобы различать такие слова при кириллизации, между "н" и гласной ставится твердый знак. Определить, слоговое
-    "н" или неслоговое по латинской транскрипции обычно нельзя (хотя иногда слоговое "н" выделяется
-    апострофом: "Gen’ichi" — "Гэнъичи", если произнести имя по Хэпбёрну).
-    Source: ria-stk.ru/mmq/adetail.php?ID=18477
-    ***/
-
     @Override
     public String transcribe(String name, int mode) {
         name = checkCombinations(name, mode);
