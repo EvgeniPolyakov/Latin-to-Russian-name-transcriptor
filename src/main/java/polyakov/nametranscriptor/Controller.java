@@ -7,8 +7,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import polyakov.nametranscriptor.model.IncomingDto;
 import polyakov.nametranscriptor.model.OutgoingDto;
@@ -19,6 +21,7 @@ import polyakov.nametranscriptor.service.TranscriptionService;
 @Slf4j
 @AllArgsConstructor
 @RequestMapping(path = "/transcribe")
+@Validated
 public class Controller {
     private final TranscriptionService transcriptionService;
 
@@ -30,7 +33,7 @@ public class Controller {
     })
     @PostMapping
     public OutgoingDto transcribe(
-            @RequestBody IncomingDto dto,
+            @Valid @RequestBody IncomingDto dto,
             @RequestParam(required = false, defaultValue = "0")
             @Parameter(description = "Used to define specific transcription modes if several are supported") int mode) {
         log.info("Received GET request on /transcribe. Country: {}, mode: {}", dto.getCountry(), mode);
