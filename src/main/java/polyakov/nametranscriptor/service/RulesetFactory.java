@@ -2,7 +2,7 @@ package polyakov.nametranscriptor.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import polyakov.nametranscriptor.rulesets.Ruleset;
+import polyakov.nametranscriptor.ruleset.Ruleset;
 
 import java.util.HashMap;
 import java.util.Map;

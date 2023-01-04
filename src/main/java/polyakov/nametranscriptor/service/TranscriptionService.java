@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import polyakov.nametranscriptor.exception.BadRequestException;
 import polyakov.nametranscriptor.model.IncomingDto;
 import polyakov.nametranscriptor.model.OutgoingDto;
-import polyakov.nametranscriptor.rulesets.Ruleset;
+import polyakov.nametranscriptor.ruleset.Ruleset;
 
 @Service
 @Slf4j

@@ -2,7 +2,7 @@ package polyakov.nametranscriptor.service;
 
 import org.junit.jupiter.api.Test;
 import polyakov.nametranscriptor.model.IncomingDto;
-import polyakov.nametranscriptor.rulesets.Ruleset;
+import polyakov.nametranscriptor.ruleset.Ruleset;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

@@ -1,7 +1,7 @@
 package polyakov.nametranscriptor.service;
 
 import org.junit.jupiter.api.Test;
-import polyakov.nametranscriptor.rulesets.Ruleset;
+import polyakov.nametranscriptor.ruleset.Ruleset;
 
 import java.util.Set;
 
