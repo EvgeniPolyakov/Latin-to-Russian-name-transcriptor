@@ -14,6 +14,7 @@ public enum RulesetName {
     JAPANESE("Japanese"),
     KAZAKH("Kazakh"),
     LATVIAN("Latvian"),
+    LITHUANIAN("Lithuanian"),
     MACEDONIAN("Macedonian"),
     MOLDOVAN("Moldovan"),
     PORTUGUESE("Portuguese"),
