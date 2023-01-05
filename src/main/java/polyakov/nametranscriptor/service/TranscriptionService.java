@@ -18,10 +18,10 @@ public class TranscriptionService {
     private RulesetFactory rulesetFactory;
 
     public OutgoingDto transcribe(IncomingDto dto, int mode) {
-        log.info("Getting a ruleset for: {}", dto.getCountry());
-        Ruleset ruleset = rulesetFactory.findStrategy(dto.getCountry());
+        log.info("Getting a ruleset for: {}", dto.getLanguage());
+        Ruleset ruleset = rulesetFactory.findStrategy(dto.getLanguage());
         if (ruleset == null) {
-            throw new BadRequestException("Ruleset for wrong or unsupported country requested");
+            throw new BadRequestException("Ruleset for wrong or unsupported language requested");
         }
         log.info("Transcribing text. Mode: {}", mode);
         String[] names = dto.getText().split(String.format("(?=%s)|(?<=%s)", REGEX, REGEX));

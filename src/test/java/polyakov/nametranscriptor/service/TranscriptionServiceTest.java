@@ -19,10 +19,10 @@ class TranscriptionServiceTest {
         when(rf.findStrategy(any())).thenReturn(ruleset);
         when(ruleset.transcribe(anyString(), anyInt())).thenReturn("тест");
 
-        IncomingDto lowCase = new IncomingDto("test", "country");
-        IncomingDto allCaps = new IncomingDto("TEST", "country");
-        IncomingDto capitalized = new IncomingDto("Test", "country");
-        IncomingDto mixedCase = new IncomingDto("tEsT", "country");
+        IncomingDto lowCase = new IncomingDto("test", "language");
+        IncomingDto allCaps = new IncomingDto("TEST", "language");
+        IncomingDto capitalized = new IncomingDto("Test", "language");
+        IncomingDto mixedCase = new IncomingDto("tEsT", "language");
         TranscriptionService ts = new TranscriptionService(rf);
 
         assertNotNull(ts);

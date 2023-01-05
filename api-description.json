@@ -67,9 +67,9 @@
             "description": "Text for transcription",
             "example": "Sun Zi Kung Lao Yongle"
           },
-          "country": {
+          "language": {
             "type": "string",
-            "description": "Country of origin. Used to specify ruleset for transcription",
+            "description": "Language of the country of origin. Used to specify ruleset for transcription",
             "example": "China"
           }
         }

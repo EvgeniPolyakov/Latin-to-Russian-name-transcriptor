@@ -36,7 +36,7 @@ public class Controller {
             @Valid @RequestBody IncomingDto dto,
             @RequestParam(required = false, defaultValue = "0")
             @Parameter(description = "Used to define specific transcription modes if several are supported") int mode) {
-        log.info("Received GET request on /transcribe. Country: {}, mode: {}", dto.getCountry(), mode);
+        log.info("Received GET request on /transcribe. Language: {}, mode: {}", dto.getLanguage(), mode);
         return transcriptionService.transcribe(dto, mode);
     }
 }

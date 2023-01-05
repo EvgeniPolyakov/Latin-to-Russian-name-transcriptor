@@ -12,7 +12,7 @@ public class IncomingDto {
     @Schema(description = "Text for transcription", example = "Sun Zi Kung Lao Yongle")
     @NotNull
     private String text;
-    @Schema(description = "Country of origin. Used to specify ruleset for transcription", example = "Chinese")
+    @Schema(description = "Language of the country of origin. Used to specify ruleset for transcription", example = "Chinese")
     @NotBlank
-    private String country;
+    private String language;
 }
