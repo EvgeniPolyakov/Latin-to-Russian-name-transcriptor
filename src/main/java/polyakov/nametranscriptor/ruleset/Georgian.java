@@ -17,16 +17,15 @@ public class Georgian extends Russian {
     @Override
     protected String checkPrimaryCases(String name) {
         if (name.endsWith("aia")) {
-            String sub = name.substring(0, name.length() - 3);
-            name = sub + "ая";
+            name = name.substring(0, name.length() - 3) + "ая";
         }
         if (name.endsWith("ia")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "ия";
+            name = name.substring(0, name.length() - 2) + "ия";
         }
         for (Map.Entry<String, String> firstName : NAMES.entrySet()) {
             if (name.equals(firstName.getKey())) {
                 name = name.replace(firstName.getKey(), firstName.getValue());
+                break;
             }
         }
         name = name.replace("mja", "мжа");

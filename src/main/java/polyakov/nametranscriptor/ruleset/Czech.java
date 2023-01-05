@@ -13,15 +13,15 @@ public class Czech implements Ruleset {
     public String transcribe(String name, int mode) {
         name = checkStart(name);
         if (mode == 1) {
-            name = checkEnd(name);
+            name = checkEndings(name);
         }
-        name = checkCustomCases(name);
+        name = checkVowels(name);
         name = checkCombinations(name);
         name = checkSingleChars(name);
         return name;
     }
 
-    protected String checkSingleChars(String name) {
+    protected static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("á", "а");
         name = name.replace("b", "б");
@@ -66,7 +66,7 @@ public class Czech implements Ruleset {
         return name;
     }
 
-    protected String checkCombinations(String name) {
+    protected static String checkCombinations(String name) {
         for (Map.Entry<String, String> uc : UTILITY_CONSONANTS.entrySet()) {
             for (Map.Entry<String, String> vowel : AFTER_DNT.entrySet()) {
                 name = name.replace(uc.getKey() + vowel.getKey(), uc.getValue() + vowel.getValue());
@@ -90,13 +90,13 @@ public class Czech implements Ruleset {
         return name;
     }
 
-    protected String checkCustomCases(String name) {
+    protected static String checkVowels(String name) {
         if (name.endsWith("ia")) {
             name = name.replaceFirst("ia", "ия");
         }
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> s : STARTERS.entrySet()) {
-                name = name.replace(vowel + s.getKey(), vowel + s.getValue());
+            for (Map.Entry<String, String> afterVowel : STARTERS.entrySet()) {
+                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
             }
             name = name.replace(vowel + "jo", vowel + "е");
             name = name.replace(vowel + "jó", vowel + "е");
@@ -111,10 +111,10 @@ public class Czech implements Ruleset {
         return name;
     }
 
-    protected String checkStart(String name) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                name = name.replaceFirst(starter.getKey(), starter.getValue());
+    protected static String checkStart(String name) {
+        for (Map.Entry<String, String> startingPart : STARTERS.entrySet()) {
+            if (name.startsWith(startingPart.getKey())) {
+                return name.replaceFirst(startingPart.getKey(), startingPart.getValue());
             }
         }
         if (name.startsWith("jo")) {
@@ -129,10 +129,10 @@ public class Czech implements Ruleset {
         return name;
     }
 
-    protected String checkEnd(String name) {
+    protected static String checkEndings(String name) {
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
-                name = name.replace(ending.getKey(), ending.getValue());
+                return name.replace(ending.getKey(), ending.getValue());
             }
         }
         return name;

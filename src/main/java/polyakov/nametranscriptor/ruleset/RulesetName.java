@@ -7,6 +7,7 @@ public enum RulesetName {
     BULGARIAN("Bulgarian"),
     CHINESE("Chinese"),
     CZECH("Czech"),
+    ESTONIAN("Estonian"),
     FRENCH("French"),
     GEORGIAN("Georgian"),
     GERMAN("German"),

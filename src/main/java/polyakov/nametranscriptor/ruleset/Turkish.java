@@ -11,17 +11,13 @@ public class Turkish implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                name = name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
+        name = checkStart(name);
         name = checkCombinations(name);
         name = checkSingleChars(name);
         return name;
     }
 
-    private String checkSingleChars(String name) {
+    private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("â", "а");
         name = name.replace("b", "б");
@@ -56,7 +52,7 @@ public class Turkish implements Ruleset {
         return name;
     }
 
-    private String checkCombinations(String name) {
+    private static String checkCombinations(String name) {
         for (Map.Entry<String, String> aw : AFTER_VOWELS.entrySet()) {
             for (Map.Entry<String, String> vowel : VOWELS.entrySet()) {
                 name = name.replace(vowel.getKey() + aw.getKey(), vowel.getValue() + aw.getValue());
@@ -76,6 +72,15 @@ public class Turkish implements Ruleset {
         name = name.replace("yö", "ье");
         name = name.replace("yu", "ью");
         name = name.replace("yü", "ью");
+        return name;
+    }
+
+    private static String checkStart(String name) {
+        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                return name.replaceFirst(starter.getKey(), starter.getValue());
+            }
+        }
         return name;
     }
 

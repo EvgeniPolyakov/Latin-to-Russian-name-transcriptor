@@ -19,14 +19,14 @@ public class German implements Ruleset {
             name = os.get();
         }
         name = checkPrimaryCases(name);
-        name = checkCustomCases(name);
+        name = checkStartAndEndings(name);
         name = checkVowels(name);
         name = checkCombinations(name);
         name = checkSingleChars(name);
         return name;
     }
 
-    private String checkSingleChars(String name) {
+    private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("ä", "е");
         name = name.replace("b", "б");
@@ -60,7 +60,7 @@ public class German implements Ruleset {
         return name;
     }
 
-    private String checkPrimaryCases(String name) {
+    private static String checkPrimaryCases(String name) {
         name = name.replace("aa", "a");
         name = name.replace("ae", "ä");
         name = name.replace("aie", "айе");
@@ -110,7 +110,7 @@ public class German implements Ruleset {
         return name;
     }
 
-    private String checkCombinations(String name) {
+    private static String checkCombinations(String name) {
         name = name.replace("äu", "ой");
         name = name.replace("chh", "хх");
         name = name.replace("ck", "к");
@@ -131,33 +131,37 @@ public class German implements Ruleset {
         return name;
     }
 
-    private String checkCustomCases(String name) {
-        name = checkJCases(name);
+    private static String checkStartAndEndings(String name) {
+        if (name.contains("j")) {
+            name = checkCasesOfJ(name);
+        }
         for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
             if (name.startsWith(starter.getKey())) {
                 name = name.replaceFirst(starter.getKey(), starter.getValue());
+                break;
             }
         }
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
                 String sub = name.substring(0, name.length() - ending.getKey().length());
                 name = sub + ending.getValue();
+                break;
             }
         }
         return name;
     }
 
-    private String checkJCases(String name) {
-        for (Map.Entry<String, String> jfc : J_CASES.entrySet()) {
-            if (name.startsWith(jfc.getKey())) {
-                name = name.replaceFirst(jfc.getKey(), jfc.getValue());
+    private static String checkCasesOfJ(String name) {
+        for (Map.Entry<String, String> jc : J_CASES.entrySet()) {
+            if (name.startsWith(jc.getKey())) {
+                name = name.replaceFirst(jc.getKey(), jc.getValue());
+                break;
             }
         }
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> c : J_CASES.entrySet()) {
-                name = name.replace(vowel + c.getKey(), vowel + c.getValue());
+            for (Map.Entry<String, String> jc : J_CASES.entrySet()) {
+                name = name.replace(vowel + jc.getKey(), vowel + jc.getValue());
             }
-            name = name.replace(vowel + "e", vowel + "э");
         }
         for (Map.Entry<String, String> jcac : J_CASES_AFTER_CONSONANTS.entrySet()) {
             name = name.replace(jcac.getKey(), jcac.getValue());
@@ -165,13 +169,14 @@ public class German implements Ruleset {
         return name;
     }
 
-    private String checkVowels(String name) {
+    private static String checkVowels(String name) {
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> c : BEFORE_VOWELS.entrySet()) {
-                name = name.replace(c.getKey() + vowel, c.getValue() + vowel);
+            name = name.replace(vowel + "e", vowel + "э");
+            for (Map.Entry<String, String> bv : BEFORE_VOWELS.entrySet()) {
+                name = name.replace(bv.getKey() + vowel, bv.getValue() + vowel);
             }
-            for (Map.Entry<String, String> c : AFTER_VOWELS.entrySet()) {
-                name = name.replace(vowel + c.getKey(), vowel + c.getValue());
+            for (Map.Entry<String, String> av : AFTER_VOWELS.entrySet()) {
+                name = name.replace(vowel + av.getKey(), vowel + av.getValue());
             }
             for (String vowel2 : VOWELS) {
                 name = name.replace(vowel + "ck" + vowel2, vowel + "кк" + vowel2);
@@ -182,7 +187,7 @@ public class German implements Ruleset {
         return name;
     }
 
-    private Optional<String> checkPopularNames(String name) {
+    private static Optional<String> checkPopularNames(String name) {
         return Arrays.stream(GermanNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()

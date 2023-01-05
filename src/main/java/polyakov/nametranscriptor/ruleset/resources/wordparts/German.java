@@ -58,6 +58,6 @@ public class German {
     );
 
     public static final List<String> VOWELS = List.of(
-            "a", "ä", "e", "i", "o", "ö", "u", "ü", "а", "е", "и", "о", "у"
+            "a", "ä", "e", "i", "o", "ö", "u", "ü", "а", "е", "и", "о", "у", "э"
     );
 }

@@ -16,7 +16,7 @@ public class Romanian implements Ruleset {
         return name;
     }
 
-    private String checkSingleChars(String name) {
+    private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("ă", "э");
         name = name.replace("â", "ы");
@@ -68,7 +68,9 @@ public class Romanian implements Ruleset {
         name = name.replace("gio", "джо");
         name = name.replace("giu", "джу");
         name = name.replace("ea", "я");
-        name = checkVowels(name);
+        if (name.contains("i")) {
+            name = checkVowels(name);
+        }
         name = checkEndings(name);
         name = checkConsonants(name);
         name = name.replace("ia", "ья");
@@ -79,9 +81,9 @@ public class Romanian implements Ruleset {
     }
 
     private static String checkStarters(String name) {
-        for (Map.Entry<String, String> i : STARTERS.entrySet()) {
-            if (name.startsWith(i.getKey())) {
-                name = name.replaceFirst(i.getKey(), i.getValue());
+        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                return name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
         return name;
@@ -91,28 +93,28 @@ public class Romanian implements Ruleset {
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
                 String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
+                return sub + ending.getValue();
             }
         }
         return name;
     }
 
     private static String checkVowels(String name) {
-        for (Map.Entry<String, String> c : VOWELS.entrySet()) {
-            name = name.replace(c.getKey() + "ia", c.getValue() + "я");
-            name = name.replace(c.getKey() + "ie", c.getValue() + "е");
-            name = name.replace(c.getKey() + "io", c.getValue() + "йо");
-            name = name.replace(c.getKey() + "iu", c.getValue() + "ю");
-            name = name.replace(c.getKey() + "i", c.getValue() + "й");
-            name = name.replace(c.getKey() + "i", c.getValue() + "й");
+        for (Map.Entry<String, String> vowel : VOWELS.entrySet()) {
+            name = name.replace(vowel.getKey() + "ia", vowel.getValue() + "я");
+            name = name.replace(vowel.getKey() + "ie", vowel.getValue() + "е");
+            name = name.replace(vowel.getKey() + "io", vowel.getValue() + "йо");
+            name = name.replace(vowel.getKey() + "iu", vowel.getValue() + "ю");
+            name = name.replace(vowel.getKey() + "i", vowel.getValue() + "й");
+            name = name.replace(vowel.getKey() + "i", vowel.getValue() + "й");
         }
         return name;
     }
 
     private static String checkConsonants(String name) {
         for (Map.Entry<String, String> consonants : CUSTOM_CONSONANTS.entrySet()) {
-            for (String v : UTILITY_VOWELS) {
-                name = name.replace(consonants.getKey() + v, consonants.getValue() + v);
+            for (String vowel : UTILITY_VOWELS) {
+                name = name.replace(consonants.getKey() + vowel, consonants.getValue() + vowel);
             }
         }
         return name;

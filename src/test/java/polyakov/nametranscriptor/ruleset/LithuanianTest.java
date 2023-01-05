@@ -24,7 +24,7 @@ class LithuanianTest {
                 švarcaitė ligita toropovaitė veronika zelenina livija gedgaudaitė emilija kaselytė agneta patilskyte \
                 urtė šmigelskaitė vitovskytė simona bagavičiūtė bajorinaitė gintarė blažytė deventinaitė odeta \
                 kalendauskaitė rugilė lygnugarytė monika markevičiūtė kamilė pranulytė gabrielė ragauskaitė loreta \
-                rogačiova vaida rutkauskaitė silvija šafronovič sarkanaitė""";
+                rogačiova vaida rutkauskaitė silvija šafronovič sarkanaitė lnilnolnelniulnialnylnalntlnulnelnelne""";
         String transcription = """
                 адакавас прялгава эгле довейка вегеле халямполис хилда игналина пайльгяй уйкяй эйгуляй салямонас ева \
                 лепинис толетас касюлис мачюйка ецайте паесис гудйонене пьюкла калналис стульпинайте вильнюс плокщяй \
@@ -40,7 +40,7 @@ class LithuanianTest {
                 вероника зеленина ливия гедгаудайте эмилия каселите агнета патилските урте шмигелскайте витовските \
                 симона багавичюте байоринайте гинтаре блажите девентинайте одета календаускайте ругиле лигнугарите \
                 моника маркявичюте камиле пранулите габриэле рагаускайте лорета рогачева вайда руткаускайте сильвия \
-                шафронович сарканайте""";
+                шафронович сарканайте льнилнольнельнюльняльнилналнтлнульнельнельне""";
         Lithuanian service = new Lithuanian();
 
         String[] words = text.split(" ");

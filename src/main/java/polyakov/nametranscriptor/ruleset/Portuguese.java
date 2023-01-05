@@ -68,7 +68,7 @@ public class Portuguese implements Ruleset {
         return name;
     }
 
-    private String checkCombinations(String name) {
+    private static String checkCombinations(String name) {
         name = name.replace("ãу", "ан");
         name = name.replace("ãэ", "айн");
         name = name.replace("ou", "о");
@@ -114,7 +114,7 @@ public class Portuguese implements Ruleset {
         return name;
     }
 
-    private String checkPrimaryCases(String name) {
+    private static String checkPrimaryCases(String name) {
         name = name.replace("y", "i");
         name = name.replace("gue", "гe");
         name = name.replace("gui", "гi");
@@ -125,54 +125,51 @@ public class Portuguese implements Ruleset {
         return name;
     }
 
-    private String checkStart(String name) {
+    private static String checkStart(String name) {
         if (name.startsWith("h")) {
             name = name.substring(1);
         }
         for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
             if (name.startsWith(starter.getKey())) {
-                name = name.replaceFirst(starter.getKey(), starter.getValue());
+                return name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
         for (String vowel : VOWELS) {
             if (name.startsWith("ex" + vowel)) {
-                name = name.replaceFirst("ex" + vowel, "эз" + vowel);
+                return name.replaceFirst("ex" + vowel, "эз" + vowel);
             }
         }
         return name;
     }
 
-    private String checkEnd(String name) {
+    private static String checkEnd(String name) {
         for (String vowel : VOWELS) {
             for (Map.Entry<String, String> eav : ENDINGS_AFTER_VOWELS.entrySet()) {
                 if (name.endsWith(vowel + eav.getKey())) {
                     String sub = name.substring(0, name.length() - eav.getKey().length());
-                    name = sub + eav.getValue();
+                    return sub + eav.getValue();
                 }
             }
         }
         if (name.endsWith("ios")) {
-            String sub = name.substring(0, name.length() - 3);
-            name = sub + "иуш";
+            return name.substring(0, name.length() - 3) + "иуш";
         }
         if (name.endsWith("os")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "уш";
+            return name.substring(0, name.length() - 2) + "уш";
         }
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
                 String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
+                return sub + ending.getValue();
             }
         }
         if (name.endsWith("m")) {
-            String sub = name.substring(0, name.length() - 1);
-            name = sub + "м";
+            name = name.substring(0, name.length() - 1) + "м";
         }
         return name;
     }
 
-    private String checkVowels(String name) {
+    private static String checkVowels(String name) {
         for (String vowel : VOWELS) {
             for (String vowel2 : VOWELS) {
                 name = name.replace(vowel + "ss" + vowel2, vowel + "с" + vowel2);
@@ -200,7 +197,7 @@ public class Portuguese implements Ruleset {
         return name;
     }
 
-    private Optional<String> checkPopularNames(String name) {
+    private static Optional<String> checkPopularNames(String name) {
         return Arrays.stream(PortugueseNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()

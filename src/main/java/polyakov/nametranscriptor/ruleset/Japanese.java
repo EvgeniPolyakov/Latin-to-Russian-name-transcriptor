@@ -12,7 +12,7 @@ public class Japanese implements Ruleset {
         return name;
     }
 
-    public String checkCombinations(String name, int mode) {
+    private static String checkCombinations(String name, int mode) {
         name = name.replace("ō", "o");
         name = name.replace("ū", "u");
         name = name.replace("oo", "о");
@@ -55,7 +55,7 @@ public class Japanese implements Ruleset {
         return name;
     }
 
-    public String checkSingleChars(String name) {
+    private static String checkSingleChars(String name) {
         name = name.replace("k", "к");
         name = name.replace("s", "с");
         name = name.replace("t", "т");

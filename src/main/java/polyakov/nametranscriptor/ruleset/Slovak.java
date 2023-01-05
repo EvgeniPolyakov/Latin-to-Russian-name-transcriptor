@@ -9,9 +9,9 @@ public class Slovak extends Czech {
     public String transcribe(String name, int mode) {
         name = checkStart(name);
         if (mode == 1) {
-            name = checkEnd(name);
+            name = checkEndings(name);
         }
-        name = checkCustomCases(name);
+        name = checkVowels(name);
         name = checkSlovakCombinations(name);
         name = checkCombinations(name);
         name = checkSlovakChars(name);
@@ -19,7 +19,7 @@ public class Slovak extends Czech {
         return name;
     }
 
-    private String checkSlovakCombinations(String name) {
+    private static String checkSlovakCombinations(String name) {
         name = name.replace("ľa", "ля");
         name = name.replace("ľo", "ле");
         name = name.replace("ľó", "ле");
@@ -35,7 +35,7 @@ public class Slovak extends Czech {
         return name;
     }
 
-    private String checkSlovakChars(String name) {
+    private static String checkSlovakChars(String name) {
         name = name.replace("ä", "е");
         name = name.replace("ô", "уо");
         name = name.replace("ĺ", "л");

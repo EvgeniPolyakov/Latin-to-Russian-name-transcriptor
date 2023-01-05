@@ -26,11 +26,13 @@ public class Brazilian extends Portuguese {
         if (os.isPresent()) {
             name = os.get();
         }
-        name = checkCustomCases(name);
+        name = checkVowels(name);
+        name = checkEndings(name);
+        name = checkConsonants(name);
         return super.transcribe(name, mode);
     }
 
-    private String checkCustomCases(String name) {
+    private static String checkVowels(String name) {
         name = name.replace("y", "i");
         name = name.replace("gue", "ге");
         name = name.replace("gui", "ги");
@@ -38,32 +40,35 @@ public class Brazilian extends Portuguese {
         name = name.replace("qui", "ки");
         for (String vowel : VOWELS) {
             if (name.endsWith(vowel + "ios")) {
-                String sub = name.substring(0, name.length() - 3);
-                name = sub + "йос";
+                return name.substring(0, name.length() - 3) + "йос";
             }
             if (name.endsWith(vowel + "os")) {
-                String sub = name.substring(0, name.length() - 2);
-                name = sub + "ос";
+                return name.substring(0, name.length() - 2) + "ос";
             }
         }
         if (name.endsWith("ios")) {
-            String sub = name.substring(0, name.length() - 3);
-            name = sub + "иос";
+            return name.substring(0, name.length() - 3) + "иос";
         }
         if (name.endsWith("os")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "ос";
+            name = name.substring(0, name.length() - 2) + "ос";
         }
+        return name;
+    }
+
+    private static String checkEndings(String name) {
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
                 String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
+                return sub + ending.getValue();
             }
         }
         if (name.endsWith("s")) {
-            String sub = name.substring(0, name.length() - 1);
-            name = sub + "с";
+            name = name.substring(0, name.length() - 1) + "с";
         }
+        return name;
+    }
+
+    private static String checkConsonants(String name) {
         for (String sc : SOFT_CONSONANTS) {
             name = name.replace(sc + "ãи", sc + "яйн");
             name = name.replace(sc + "ãо", sc + "ян");
@@ -96,7 +101,7 @@ public class Brazilian extends Portuguese {
         return super.checkSingleChars(name);
     }
 
-    private Optional<String> checkPopularNames(String name) {
+    private static Optional<String> checkPopularNames(String name) {
         return Arrays.stream(BrazilianNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()

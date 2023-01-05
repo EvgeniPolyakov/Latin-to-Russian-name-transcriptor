@@ -24,32 +24,37 @@ public class Moldovan extends Romanian {
         if (mn.isPresent()) {
             name = mn.get();
         }
-        for (Map.Entry<String, String> ending : PRIMARY_ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
-            }
-        }
-        for (Map.Entry<String, String> ending : SECONDARY_ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
-            }
-        }
+        name = checkEndings(name);
         name = name.replace("şciu", "щу");
         name = name.replace("şcia", "ща");
         name = name.replace("şc", "щ");
         return super.checkCustomCases(name);
     }
 
-    private Optional<String> checkRussianNames(String name) {
+    private static String checkEndings(String name) {
+        for (Map.Entry<String, String> ending : PRIMARY_ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                return sub + ending.getValue();
+            }
+        }
+        for (Map.Entry<String, String> ending : SECONDARY_ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                return sub + ending.getValue();
+            }
+        }
+        return name;
+    }
+
+    private static Optional<String> checkRussianNames(String name) {
         return Arrays.stream(RussianNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()
                 .map(RussianNames::getCyrillicName);
     }
 
-    private Optional<String> checkMoldovanNames(String name) {
+    private static Optional<String> checkMoldovanNames(String name) {
         return Arrays.stream(MoldovanNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()

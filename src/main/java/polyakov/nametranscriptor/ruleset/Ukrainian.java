@@ -24,13 +24,14 @@ public class Ukrainian implements Ruleset {
         if (os.isPresent()) {
             name = os.get();
         }
-        name = checkCustomCases(name);
+        name = checkStart(name);
+        name = checkEndings(name);
         name = checkCombinations(name);
         name = checkSingleChars(name);
         return postcheck(name);
     }
 
-    private String checkSingleChars(String name) {
+    private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
         name = name.replace("d", "д");
@@ -54,14 +55,6 @@ public class Ukrainian implements Ruleset {
         name = name.replace("x", "кс");
         name = name.replace("z", "з");
         name = name.replace("'", "ь");
-        return name;
-    }
-
-    private String postcheck(String name) {
-        if (name.endsWith("иы")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "ий";
-        }
         return name;
     }
 
@@ -100,24 +93,10 @@ public class Ukrainian implements Ruleset {
         return name;
     }
 
-    private Optional<String> checkUkrainianNames(String name) {
-        return Arrays.stream(UkrainianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(UkrainianNames::getCyrillicName);
-    }
-
-    private Optional<String> checkRussianNames(String name) {
-        return Arrays.stream(RussianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(RussianNames::getCyrillicName);
-    }
-
-    private String checkCustomCases(String name) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                name = name.replace(starter.getKey(), starter.getValue());
+    private static String checkStart(String name) {
+        for (Map.Entry<String, String> startingPart : STARTERS.entrySet()) {
+            if (name.startsWith(startingPart.getKey())) {
+                return name.replace(startingPart.getKey(), startingPart.getValue());
             }
         }
         if (name.startsWith("e")) {
@@ -126,18 +105,43 @@ public class Ukrainian implements Ruleset {
         if (name.startsWith("y")) {
             name = name.replaceFirst("y", "й");
         }
+        return name;
+    }
+
+    private static String checkEndings(String name) {
         name = name.replace("j", "y");
-        name = name.replace("tskyi", "цкий"); // should precede ENDINGS
+        name = name.replace("tskyi", "цкий");
         name = name.replace("tskiy", "цкий");
         name = name.replace("tskii", "цкий");
         name = name.replace("tsky", "цкий");
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
                 String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
+                return sub + ending.getValue();
             }
         }
         return name;
+    }
+
+    private static String postcheck(String name) {
+        if (name.endsWith("иы")) {
+            name = name.substring(0, name.length() - 2) + "ий";
+        }
+        return name;
+    }
+
+    private static Optional<String> checkUkrainianNames(String name) {
+        return Arrays.stream(UkrainianNames.values())
+                .filter(s -> s.getLatinName().equals(name))
+                .findAny()
+                .map(UkrainianNames::getCyrillicName);
+    }
+
+    private static Optional<String> checkRussianNames(String name) {
+        return Arrays.stream(RussianNames.values())
+                .filter(s -> s.getLatinName().equals(name))
+                .findAny()
+                .map(RussianNames::getCyrillicName);
     }
 
     @Override

@@ -18,12 +18,16 @@ public class Latvian implements Ruleset {
             name = os.get();
         }
         name = checkPrimaryCases(name);
-        name = checkCustomCases(name, mode);
+        name = checkCustomCases(name);
+        name = checkSoftConsonants(name, mode);
+        if (name.contains("j")) {
+            name = checkCasesOfJ(name);
+        }
         name = checkSingleChars(name);
         return name;
     }
 
-    private String checkSingleChars(String name) {
+    private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
         name = name.replace("c", "ц");
@@ -57,7 +61,7 @@ public class Latvian implements Ruleset {
         return name;
     }
 
-    private String checkPrimaryCases(String name) {
+    private static String checkPrimaryCases(String name) {
         name = name.replace("ā", "a");
         name = name.replace("ē", "e");
         name = name.replace("ī", "i");
@@ -69,7 +73,7 @@ public class Latvian implements Ruleset {
         return name;
     }
 
-    private String checkCustomCases(String name, int mode) {
+    private static String checkCustomCases(String name) {
         if (name.startsWith("e")) {
             name = name.replaceFirst("e", "э");
         }
@@ -77,6 +81,7 @@ public class Latvian implements Ruleset {
             if (name.endsWith(ending.getKey())) {
                 String sub = name.substring(0, name.length() - ending.getKey().length());
                 name = sub + ending.getValue();
+                break;
             }
         }
         for (String vowel : VOWELS) {
@@ -85,12 +90,10 @@ public class Latvian implements Ruleset {
                 name = name.replace(vowel + "i", vowel + "й");
             }
         }
-        name = checkSoftConsonants(name, mode);
-        name = checkJCases(name);
         return name;
     }
 
-    private String checkSoftConsonants(String name, int mode) {
+    private static String checkSoftConsonants(String name, int mode) {
         for (Map.Entry<String, String> cons : SOFT_CONSONANTS.entrySet()) {
             if (mode == 1) {
                 name = name.replace(cons.getKey() + "o", cons.getValue() + "ё");
@@ -103,15 +106,16 @@ public class Latvian implements Ruleset {
         return name;
     }
 
-    private String checkJCases(String name) {
+    private static String checkCasesOfJ(String name) {
         for (Map.Entry<String, String> jfc : J_CASES.entrySet()) {
             if (name.startsWith(jfc.getKey())) {
                 name = name.replaceFirst(jfc.getKey(), jfc.getValue());
+                break;
             }
         }
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> c : J_CASES.entrySet()) {
-                name = name.replace(vowel + c.getKey(), vowel + c.getValue());
+            for (Map.Entry<String, String> jc : J_CASES.entrySet()) {
+                name = name.replace(vowel + jc.getKey(), vowel + jc.getValue());
             }
         }
         for (Map.Entry<String, String> jcac : J_CASES_AFTER_CONSONANTS.entrySet()) {
@@ -120,7 +124,7 @@ public class Latvian implements Ruleset {
         return name;
     }
 
-    private Optional<String> checkPopularNames(String name) {
+    private static Optional<String> checkPopularNames(String name) {
         return Arrays.stream(LatvianNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()

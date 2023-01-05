@@ -21,13 +21,15 @@ public class Russian implements Ruleset {
         }
         name = checkStart(name);
         name = checkEndings(name);
-        name = checkVowels(name);
+        if (name.contains("i") || name.contains("y")) {
+            name = checkVowels(name);
+        }
         name = checkCombinations(name);
         name = checkSingleChars(name);
         return name;
     }
 
-    protected String checkSingleChars(String name) {
+    protected static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
         name = name.replace("c", "ц");
@@ -55,7 +57,7 @@ public class Russian implements Ruleset {
         return name;
     }
 
-    protected String checkCombinations(String name) {
+    protected static String checkCombinations(String name) {
         name = name.replace("sch", "щ");
         name = name.replace("shch", "щ");
         name = name.replace("sh", "ш");
@@ -75,75 +77,71 @@ public class Russian implements Ruleset {
     protected String checkPrimaryCases(String name) {
         name = name.replace("j", "y");
         if (name.endsWith("ii")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "iy";
+            return name.substring(0, name.length() - 2) + "iy";
         }
         return name;
     }
 
-    protected Optional<String> checkPopularNames(String name) {
+    protected static Optional<String> checkPopularNames(String name) {
         return Arrays.stream(RussianNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()
                 .map(RussianNames::getCyrillicName);
     }
 
-    protected String checkStart(String name) {
+    protected static String checkStart(String name) {
         for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
             if (name.startsWith(starter.getKey())) {
-                name = name.replaceFirst(starter.getKey(), starter.getValue());
+                return name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
         if (name.startsWith("e")) {
-            name = name.replaceFirst("e", "э");
+            return name.replaceFirst("e", "э");
         }
         return name;
     }
 
     protected String checkEndings(String name) {
         if (name.endsWith("tskyi") || name.endsWith("tskiy")) {
-            String sub = name.substring(0, name.length() - 5);
-            name = sub + "цкий";
+            return name.substring(0, name.length() - 5) + "цкий";
         }
         if (name.endsWith("tsky") || name.endsWith("tski")) {
-            String sub = name.substring(0, name.length() - 4);
-            name = sub + "цкий";
+            return name.substring(0, name.length() - 4) + "цкий";
         }
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
                 String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
+                return sub + ending.getValue();
             }
         }
         if (name.endsWith("ia")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "ия";
+            return name.substring(0, name.length() - 2) + "ия";
         }
-        for (String ending : CUSTOM_ENDINGS) {
-            if (name.length() > 1 && name.endsWith(ending)) {
-                name = checkYCaseEndings(name, ending);
+        if (name.contains("y")) {
+            for (String ending : CUSTOM_ENDINGS) {
+                if (name.length() > 1 && name.endsWith(ending)) {
+                    name = checkCasesOfYEndings(name, ending);
+                }
             }
         }
         return name;
     }
 
-    private String checkYCaseEndings(String name, String ending) {
-        for (String yc : Y_CONSONANTS_PART1) {
-            if (name.charAt(name.length() - (ending.length() + 1)) == yc.charAt(0)) {
-                String substring = name.substring(0, name.length() - ending.length());
-                name = substring + "ый";
+    private static String checkCasesOfYEndings(String name, String ending) {
+        for (String ycto : Y_CONSONANTS_TIER_ONE) {
+            if (name.charAt(name.length() - (ending.length() + 1)) == ycto.charAt(0)) {
+                return name.substring(0, name.length() - ending.length()) + "ый";
             }
         }
-        for (String yc : Y_CONSONANTS_PART2) {
-            if (name.charAt(name.length() - (ending.length() + 1)) == yc.charAt(0)) {
-                String substring = name.substring(0, name.length() - ending.length());
-                name = substring + "ий";
+        for (String yctt : Y_CONSONANTS_TIER_TWO) {
+            if (name.charAt(name.length() - (ending.length() + 1)) == yctt.charAt(0)) {
+                return name.substring(0, name.length() - ending.length()) + "ий";
             }
         }
         return name;
     }
 
-    protected String checkVowels(String name) {
+    protected static String checkVowels(String name) {
         for (Map.Entry<String, String> iyc : IY_CASES.entrySet()) {
             if (name.startsWith(iyc.getKey())) {
                 name = name.replaceFirst(iyc.getKey(), iyc.getValue());

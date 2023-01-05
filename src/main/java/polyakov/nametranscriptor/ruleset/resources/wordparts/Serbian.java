@@ -36,7 +36,6 @@ public class Serbian {
 
     public static final Map<String, String> UTILITY_CONSONANTS = Map.ofEntries(
             Map.entry("dj", "дж"),
-            Map.entry("đ", "дж"),
             Map.entry("lj", "л"),
             Map.entry("nj", "н")
     );

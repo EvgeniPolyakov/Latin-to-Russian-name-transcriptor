@@ -43,6 +43,6 @@ public class Russian {
 
     public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u", "y", "е", "и", "й", "о", "ю", "я");
     public static final List<String> CUSTOM_ENDINGS = List.of("y", "iy", "yy");
-    public static final List<String> Y_CONSONANTS_PART1 = List.of("v", "l", "t", "z", "p", "d", "m", "b", "n");
-    public static final List<String> Y_CONSONANTS_PART2 = List.of("g", "k", "h");
+    public static final List<String> Y_CONSONANTS_TIER_ONE = List.of("v", "l", "t", "z", "p", "d", "m", "b", "n");
+    public static final List<String> Y_CONSONANTS_TIER_TWO = List.of("g", "k", "h");
 }

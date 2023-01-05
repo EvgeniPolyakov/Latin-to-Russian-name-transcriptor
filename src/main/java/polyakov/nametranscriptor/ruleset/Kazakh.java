@@ -17,12 +17,10 @@ public class Kazakh extends Russian {
         name = name.replace("gulm", "гульм");
         name = name.replace("guln", "гульн");
         if (name.endsWith("gul")) {
-            String sub = name.substring(0, name.length() - 3);
-            name = sub + "гуль";
+            name = name.substring(0, name.length() - 3) + "гуль";
         }
         if (name.endsWith("dil")) {
-            String sub = name.substring(0, name.length() - 3);
-            name = sub + "диль";
+            name = name.substring(0, name.length() - 3) + "диль";
         }
         return name;
     }
@@ -30,22 +28,19 @@ public class Kazakh extends Russian {
     @Override
     protected String checkEndings(String name) {
         if (name.endsWith("tskyi") || name.endsWith("tskiy")) {
-            String sub = name.substring(0, name.length() - 5);
-            name = sub + "цкий";
+            name = name.substring(0, name.length() - 5) + "цкий";
         }
         if (name.endsWith("tsky") || name.endsWith("tski")) {
-            String sub = name.substring(0, name.length() - 4);
-            name = sub + "цкий";
+            name = name.substring(0, name.length() - 4) + "цкий";
         }
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
                 String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
+                return sub + ending.getValue();
             }
         }
         if (name.endsWith("ia")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "ия";
+            name = name.substring(0, name.length() - 2) + "ия";
         }
         return name;
     }

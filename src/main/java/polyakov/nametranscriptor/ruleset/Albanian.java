@@ -19,14 +19,19 @@ public class Albanian implements Ruleset {
             name = os.get();
         }
         name = checkStart(name);
-        name = checkEDiaeresisCases(name);
-        name = checkCustomCases(name);
+        if (name.contains("ë")) {
+            name = checkCasesOfDiaeresisE(name);
+        }
+        if (name.contains("j")) {
+            name = checkCasesOfJ(name);
+        }
+        name = checkVowels(name);
         name = checkCombinations(name);
         name = checkSingleChars(name);
         return postCheck(name);
     }
 
-    private String checkSingleChars(String name) {
+    private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
         name = name.replace("c", "ц");
@@ -63,7 +68,7 @@ public class Albanian implements Ruleset {
         return name;
     }
 
-    private String checkCombinations(String name) {
+    private static String checkCombinations(String name) {
         name = name.replace("dh", "д");
         name = name.replace("th", "т");
         name = name.replace("rr", "рр");
@@ -82,7 +87,7 @@ public class Albanian implements Ruleset {
         return name;
     }
 
-    private String checkStart(String name) {
+    private static String checkStart(String name) {
         name = name.replace("ll", "л");
         if (name.startsWith("ë")) {
             name = name.replaceFirst("ë", "э");
@@ -93,26 +98,24 @@ public class Albanian implements Ruleset {
         return name;
     }
 
-    private String postCheck(String name) {
-        if (name.endsWith("кь")) {
-            return name.replace("кь", "ч");
-        }
-        name = name.replaceFirst("льь", "ль");
-        return name;
-    }
-
-    private String checkCustomCases(String name) {
+    private static String checkCasesOfJ(String name) {
         for (String vowel : VOWELS) {
             for (Map.Entry<String, String> jwc : J_VOWEL_CASES.entrySet()) {
                 name = name.replace(vowel + jwc.getKey(), vowel + jwc.getValue());
             }
-            name = name.replace(vowel + "e", vowel + "э");
-            name = name.replace(vowel + "ë", vowel + "э");
         }
         for (Map.Entry<String, String> jwc : J_VOWEL_CASES.entrySet()) {
             if (name.startsWith(jwc.getKey())) {
                 name = name.replaceFirst(jwc.getKey(), jwc.getValue());
             }
+        }
+        return name;
+    }
+
+    private static String checkVowels(String name) {
+        for (String vowel : VOWELS) {
+            name = name.replace(vowel + "e", vowel + "э");
+            name = name.replace(vowel + "ë", vowel + "э");
         }
         for (Map.Entry<String, String> sc : SOFT_CONSONANTS.entrySet()) {
             for (Map.Entry<String, String> sv : SOFTENED_VOWELS.entrySet()) {
@@ -122,7 +125,7 @@ public class Albanian implements Ruleset {
         return name;
     }
 
-    private String checkEDiaeresisCases(String name) {
+    private static String checkCasesOfDiaeresisE(String name) {
         for (Map.Entry<String, String> sc : SOFT_CONSONANTS.entrySet()) {
             if (name.endsWith(sc.getKey() + "ë")) {
                 String sub = name.substring(0, name.length() - sc.getKey().length() - 1);
@@ -130,17 +133,23 @@ public class Albanian implements Ruleset {
             }
         }
         if (name.endsWith("jë")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "я";
+            name = name.substring(0, name.length() - 2) + "я";
         }
         if (name.endsWith("ë")) {
-            String sub = name.substring(0, name.length() - 1);
-            name = sub + "а";
+            name = name.substring(0, name.length() - 1) + "а";
         }
         return name;
     }
 
-    private Optional<String> checkPopularNames(String name) {
+    private static String postCheck(String name) {
+        if (name.endsWith("кь")) {
+            return name.replace("кь", "ч");
+        }
+        name = name.replaceFirst("льь", "ль");
+        return name;
+    }
+
+    private static Optional<String> checkPopularNames(String name) {
         return Arrays.stream(AlbanianNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()

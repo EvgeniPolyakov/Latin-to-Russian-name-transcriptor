@@ -7,28 +7,24 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Armenian.STARTERS;
+
 @Component
 public class Armenian extends Russian {
-    public static final Map<String, String> STARTERS = Map.ofEntries(
-            Map.entry("hay", "ай"),
-            Map.entry("hakob", "акоп"),
-            Map.entry("hovhann", "оган"),
-            Map.entry("hambardz", "амбарц")
-    );
 
     @Override
     protected String checkPrimaryCases(String name) {
-        Optional<String> os = checkCustomNames(name);
+        Optional<String> os = checkArmenianNames(name);
         if (os.isPresent()) {
             name = os.get();
         }
         if (name.endsWith("ian") || name.endsWith("yan")) {
-            String sub = name.substring(0, name.length() - 3);
-            name = sub + "ян";
+            name = name.substring(0, name.length() - 3) + "ян";
         }
         for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
             if (name.startsWith(starter.getKey())) {
                 name = name.replaceFirst(starter.getKey(), starter.getValue());
+                break;
             }
         }
         if (name.startsWith("hovhan")) {
@@ -44,7 +40,7 @@ public class Armenian extends Russian {
         return super.checkEndings(name);
     }
 
-    private Optional<String> checkCustomNames(String name) {
+    private static Optional<String> checkArmenianNames(String name) {
         return Arrays.stream(ArmenianNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()

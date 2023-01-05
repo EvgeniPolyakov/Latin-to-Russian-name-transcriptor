@@ -18,20 +18,22 @@ public class Serbocroat implements Ruleset {
         if (os.isPresent()) {
             name = os.get();
         }
-        name = checkCombinations(name);
-        name = checkCustomCases(name);
+        name = name.replace("đ", "dj");
+        if (name.contains("j")) {
+            name = checkCombinations(name);
+        }
+        name = checkStart(name);
         name = checkSingleChars(name);
         return name;
     }
 
-    private String checkSingleChars(String name) {
+    private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
         name = name.replace("c", "ц");
         name = name.replace("č", "ч");
         name = name.replace("ć", "ч");
         name = name.replace("d", "д");
-        name = name.replace("đ", "дж");
         name = name.replace("e", "е");
         name = name.replace("f", "ф");
         name = name.replace("g", "г");
@@ -57,7 +59,7 @@ public class Serbocroat implements Ruleset {
         return name;
     }
 
-    private String checkCombinations(String name) {
+    private static String checkCombinations(String name) {
         for (Map.Entry<String, String> uc : UTILITY_CONSONANTS.entrySet()) {
             for (Map.Entry<String, String> vowel : VOWELS_FOR_UTILITY_CONSONANTS.entrySet()) {
                 name = name.replace(uc.getKey() + vowel.getKey(), uc.getValue() + vowel.getValue());
@@ -72,6 +74,7 @@ public class Serbocroat implements Ruleset {
         for (Map.Entry<String, String> jfc : J_FIRST_CASE.entrySet()) {
             if (name.startsWith(jfc.getKey())) {
                 name = name.replaceFirst(jfc.getKey(), jfc.getValue());
+                break;
             }
         }
         for (Map.Entry<String, String> jcac : J_CASES_AFTER_CONSONANTS.entrySet()) {
@@ -79,22 +82,21 @@ public class Serbocroat implements Ruleset {
         }
         name = name.replace("nj", "нь");
         name = name.replace("lj", "ль");
-        name = name.replace("dž", "дж");
         return name;
     }
 
-    private Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(BalkanNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(BalkanNames::getCyrillicName);
-    }
-
-    private String checkCustomCases(String name) {
+    private static String checkStart(String name) {
         if (name.startsWith("e")) {
             name = name.replaceFirst("e", "э");
         }
         return name;
+    }
+
+    private static Optional<String> checkPopularNames(String name) {
+        return Arrays.stream(BalkanNames.values())
+                .filter(s -> s.getLatinName().equals(name))
+                .findAny()
+                .map(BalkanNames::getCyrillicName);
     }
 
     @Override

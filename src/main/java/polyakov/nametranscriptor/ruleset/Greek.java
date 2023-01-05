@@ -14,16 +14,19 @@ public class Greek implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> gn = checkPopularNames(name);
-        if (gn.isPresent()) {
-            name = gn.get();
+        Optional<String> os = checkPopularNames(name);
+        if (os.isPresent()) {
+            name = os.get();
         }
-        name = checkCustomCases(name);
+        name = checkStart(name);
+        name = checkCombinations(name);
+        name = checkConsonantCombinations(name);
+        name = checkEndings(name);
         name = checkSingleChars(name);
         return name;
     }
 
-    private String checkSingleChars(String name) {
+    private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("á", "а");
         name = name.replace("b", "б");
@@ -54,24 +57,21 @@ public class Greek implements Ruleset {
         return name;
     }
 
-    private Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(GreekNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(GreekNames::getCyrillicName);
+    private static String checkStart(String name) {
+        for (Map.Entry<String, String> startingPart : FIRST_TIER_STARTERS.entrySet()) {
+            if (name.startsWith(startingPart.getKey())) {
+                return name.replaceFirst(startingPart.getKey(), startingPart.getValue());
+            }
+        }
+        for (Map.Entry<String, String> startingPart : SECOND_TIER_STARTERS.entrySet()) {
+            if (name.startsWith(startingPart.getKey())) {
+                return name.replaceFirst(startingPart.getKey(), startingPart.getValue());
+            }
+        }
+        return name;
     }
 
-    private String checkCustomCases(String name) {
-        for (Map.Entry<String, String> starter : FIRST_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                name = name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
-        for (Map.Entry<String, String> starter : SECOND_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                name = name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
+    private static String checkCombinations(String name) {
         if (name.startsWith("yi")) {
             name = name.replaceFirst("yi", "йи");
         }
@@ -106,34 +106,10 @@ public class Greek implements Ruleset {
         name = name.replace("yí", "йи");
         name = name.replace("yií", "йи");
         name = name.replace("ío", "ьо");
-        for (String vc : VOICELESS_CONSONANTS) {
-            name = name.replace("mp" + vc, "мп" + vc);
-            name = name.replace("mp" + vc, "мп" + vc);
-        }
-        name = name.replace("mp", "мб");
-        for (String scc : S_CASE_CONSONANTS) {
-            name = name.replace("s" + scc, "з" + scc);
-        }
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
-            }
-        }
-        if (name.endsWith("ia")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "ия";
-        }
-        if (name.endsWith("ïa")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "ия";
-        }
-        name = name.replace("ia", "иа");
-        name = name.replace("ïa", "иа");
         return name;
     }
 
-    private String checkVowelCombinations(String name) {
+    private static String checkVowelCombinations(String name) {
         for (String vowel : VOWELS) {
             name = checkAfterVowelCases(name, vowel);
             if ((!vowel.equals("i")) && (!vowel.equals("y"))) {
@@ -144,23 +120,61 @@ public class Greek implements Ruleset {
         return name;
     }
 
-    private static String checkAfterVowelCases(String name, String v) {
+    private static String checkConsonantCombinations(String name) {
+        for (String vc : VOICELESS_CONSONANTS) {
+            name = name.replace("mp" + vc, "мп" + vc);
+            name = name.replace("mp" + vc, "мп" + vc);
+        }
+        name = name.replace("mp", "мб");
+        for (String scc : S_CASE_CONSONANTS) {
+            name = name.replace("s" + scc, "з" + scc);
+        }
+        return name;
+    }
+
+    private static String checkEndings(String name) {
+        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                name = sub + ending.getValue();
+                break;
+            }
+        }
+        if (name.endsWith("ia")) {
+            name = name.substring(0, name.length() - 2) + "ия";
+        }
+        if (name.endsWith("ïa")) {
+            name = name.substring(0, name.length() - 2) + "ия";
+        }
+        name = name.replace("ia", "иа");
+        name = name.replace("ïa", "иа");
+        return name;
+    }
+
+    private static String checkAfterVowelCases(String name, String vowel) {
         for (Map.Entry<String, String> avpo : AFTER_VOWELS_TIER_ONE.entrySet()) {
             if (name.contains(avpo.getKey())) {
-                name = name.replace(v + avpo.getKey(), v + avpo.getValue());
+                name = name.replace(vowel + avpo.getKey(), vowel + avpo.getValue());
             }
         }
         for (Map.Entry<String, String> avpt : AFTER_VOWELS_TIER_TWO.entrySet()) {
             if (name.contains(avpt.getKey())) {
-                name = name.replace(v + avpt.getKey(), v + avpt.getValue());
+                name = name.replace(vowel + avpt.getKey(), vowel + avpt.getValue());
             }
         }
         for (Map.Entry<String, String> avpt : AFTER_VOWELS_TIER_THREE.entrySet()) {
             if (name.contains(avpt.getKey())) {
-                name = name.replace(v + avpt.getKey(), v + avpt.getValue());
+                name = name.replace(vowel + avpt.getKey(), vowel + avpt.getValue());
             }
         }
         return name;
+    }
+
+    private static Optional<String> checkPopularNames(String name) {
+        return Arrays.stream(GreekNames.values())
+                .filter(s -> s.getLatinName().equals(name))
+                .findAny()
+                .map(GreekNames::getCyrillicName);
     }
 
     @Override

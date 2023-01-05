@@ -9,7 +9,6 @@ import java.util.Optional;
 
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Lithuanian.*;
 
-
 @Component
 public class Lithuanian implements Ruleset {
     @Override
@@ -20,12 +19,18 @@ public class Lithuanian implements Ruleset {
         }
         name = checkPrimaryCases(name);
         name = checkCustomCases(name);
+        if (name.contains("j")) {
+            name = checkCasesOfJ(name);
+        }
+        if (name.contains("l")) {
+            name = checkCasesOfL(name);
+        }
         name = checkCombinations(name, mode);
         name = checkSingleChars(name);
         return name;
     }
 
-    private String checkSingleChars(String name) {
+    private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
         name = name.replace("c", "ц");
@@ -55,7 +60,7 @@ public class Lithuanian implements Ruleset {
         return name;
     }
 
-    private String checkPrimaryCases(String name) {
+    private static String checkPrimaryCases(String name) {
         name = name.replace("ą", "a");
         name = name.replace("ę", "e");
         name = name.replace("é", "ė");
@@ -73,7 +78,7 @@ public class Lithuanian implements Ruleset {
         return name;
     }
 
-    private String checkCustomCases(String name) {
+    private static String checkCustomCases(String name) {
         if (name.startsWith("e")) {
             name = name.replaceFirst("e", "э");
         }
@@ -88,16 +93,10 @@ public class Lithuanian implements Ruleset {
             name = name.replace("l" + vowel, "л" + vowel);
             name = name.replace(vowel + "i", vowel + "й");
         }
-        if (name.contains("j")) {
-            name = checkCasesOfJ(name);
-        }
-        if (name.contains("l")) {
-            name = checkCasesOfL(name);
-        }
         return name;
     }
 
-    private String checkCombinations(String name, int mode) {
+    private static String checkCombinations(String name, int mode) {
         name = name.replace("ji", "йи");
         name = name.replace("jo", "йо");
         name = name.replace("ch", "х");
@@ -113,15 +112,16 @@ public class Lithuanian implements Ruleset {
         return name;
     }
 
-    private String checkCasesOfJ(String name) {
+    private static String checkCasesOfJ(String name) {
         for (Map.Entry<String, String> jfc : J_CASES.entrySet()) {
             if (name.startsWith(jfc.getKey())) {
                 name = name.replaceFirst(jfc.getKey(), jfc.getValue());
+                break;
             }
         }
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> c : J_CASES.entrySet()) {
-                name = name.replace(vowel + c.getKey(), vowel + c.getValue());
+            for (Map.Entry<String, String> jc : J_CASES.entrySet()) {
+                name = name.replace(vowel + jc.getKey(), vowel + jc.getValue());
             }
         }
         for (Map.Entry<String, String> jcac : J_CASES_AFTER_CONSONANTS.entrySet()) {
@@ -130,14 +130,12 @@ public class Lithuanian implements Ruleset {
         return name;
     }
 
-    private String checkCasesOfL(String name) {
+    private static String checkCasesOfL(String name) {
         if (name.endsWith("ll")) {
-            String sub = name.substring(0, name.length() - 2);
-            name = sub + "лль";
+            name = name.substring(0, name.length() - 2) + "лль";
         }
         if (name.endsWith("l")) {
-            String sub = name.substring(0, name.length() - 1);
-            name = sub + "ль";
+            name = name.substring(0, name.length() - 1) + "ль";
         }
         while (name.contains("l")) {
             int indexOfL = name.indexOf("l");
@@ -145,18 +143,18 @@ public class Lithuanian implements Ruleset {
                 return name;
             }
             String charToCheck = String.valueOf(name.charAt(indexOfL + 2));
-            for (String sc : CONSONANT_SOFTENERS) {
-                if (charToCheck.equals(sc)) {
+            for (String soft : CONSONANT_SOFTENERS) {
+                if (charToCheck.equals(soft)) {
                     name = name.substring(0, indexOfL) + "ль" + name.substring(indexOfL + 1);
-                } else {
-                    name = name.substring(0, indexOfL) + "л" + name.substring(indexOfL + 1);
+                    break;
                 }
             }
+            name = name.substring(0, indexOfL) + "л" + name.substring(indexOfL + 1);
         }
         return name;
     }
 
-    private Optional<String> checkPopularNames(String name) {
+    private static Optional<String> checkPopularNames(String name) {
         return Arrays.stream(LithuanianNames.values())
                 .filter(s -> s.getLatinName().equals(name))
                 .findAny()
