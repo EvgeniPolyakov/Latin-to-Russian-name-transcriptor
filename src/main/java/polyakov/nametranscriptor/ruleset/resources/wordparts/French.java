@@ -114,7 +114,7 @@ public class French {
             Map.entry("ï", "й")
     );
 
-    public static final Map<String, String> BEFORE_BMP = Map.ofEntries(
+    public static final Map<String, String> BEFORE_BM = Map.ofEntries(
             Map.entry("ain", "эм"),
             Map.entry("aim", "эм"),
             Map.entry("am", "ам"),
@@ -123,7 +123,7 @@ public class French {
     );
 
     public static final List<String> EMPTY_ENDINGS = List.of("e", "g", "s", "c", "d", "t", "p");
-    public static final List<String> BM_CONSONANTS = List.of("b", "m", "б", "м");
+    public static final List<String> BMP_CONSONANTS = List.of("b", "m", "б", "м");
     public static final List<String> AOU_VOWELS = List.of("a", "o", "u", "а", "о");
     public static final List<String> EIY_VOWELS = List.of("e", "é", "è", "ê", "ë", "i", "y", "э");
     public static final List<String> VOWELS = List.of("a", "à", "â", "e", "é", "é", "ë", "è", "ê", "i", "î",

@@ -15,9 +15,9 @@ public class French implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> os = checkPopularNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> checkedName = checkPopularNames(name);
+        if (checkedName.isPresent()) {
+            return checkedName.get();
         }
         name = checkPrimaryCases(name);
         name = checkStart(name);
@@ -25,6 +25,7 @@ public class French implements Ruleset {
         name = checkConsonants(name);
         name = checkEndings(name);
         name = checkCombinations(name);
+        name = checkCasesOfL(name);
         name = checkSingleChars(name);
         return postcheck(name);
     }
@@ -34,17 +35,17 @@ public class French implements Ruleset {
         name = name.replace("gueil", "гейль");
         name = name.replace("cueuil", "сейль");
         name = name.replace("cueil", "сейль");
-        for (String aou : AOU_VOWELS) {
-            name = name.replace("cc" + aou, "кк" + aou);
-            name = name.replace("c" + aou, "к" + aou);
-            name = name.replace("ge" + aou, "ж" + aou);
+        for (String vowel : AOU_VOWELS) {
+            name = name.replace("cc" + vowel, "кк" + vowel);
+            name = name.replace("c" + vowel, "к" + vowel);
+            name = name.replace("ge" + vowel, "ж" + vowel);
         }
         name = name.replace("guen", "ген");
-        for (String eiy : EIY_VOWELS) {
-            name = name.replace("sc" + eiy, "с" + eiy);
-            name = name.replace("gu" + eiy, "г" + eiy);
-            name = name.replace("g" + eiy, "ж" + eiy);
-            name = name.replace("c" + eiy, "с" + eiy);
+        for (String vowel : EIY_VOWELS) {
+            name = name.replace("sc" + vowel, "с" + vowel);
+            name = name.replace("gu" + vowel, "г" + vowel);
+            name = name.replace("g" + vowel, "ж" + vowel);
+            name = name.replace("c" + vowel, "с" + vowel);
         }
         name = name.replace("aé", "аэ");
         name = name.replace("aë", "аэ");
@@ -110,9 +111,9 @@ public class French implements Ruleset {
         name = name.replace("aille", "ай");
         name = name.replace("aill", "ай");
         name = name.replace("ilh", "ий");
-        for (String v : VOWELS) {
-            name = name.replace(v + "il", v + "й");
-            name = name.replace("l" + v, "л" + v);
+        for (String vowel : VOWELS) {
+            name = name.replace(vowel + "il", vowel + "й");
+            name = name.replace("l" + vowel, "л" + vowel);
         }
         name = name.replace("tion", "сьон");
         name = name.replace("tioux", "сью");
@@ -203,17 +204,16 @@ public class French implements Ruleset {
         name = name.replace("iо", "ьо");
         name = name.replace("eû", "е");
         name = name.replace("hен", "эн");
-        name = checkCasesOfL(name);
         return name;
     }
 
     private static String checkVowels(String name) {
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> av : AFTER_VOWELS.entrySet()) {
-                name = name.replace(vowel + av.getKey(), vowel + av.getValue());
+            for (Map.Entry<String, String> afterVowel : AFTER_VOWELS.entrySet()) {
+                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
             }
-            for (Map.Entry<String, String> bv : BEFORE_VOWELS.entrySet()) {
-                name = name.replace(bv.getKey() + vowel, bv.getValue() + vowel);
+            for (Map.Entry<String, String> beforeVowel : BEFORE_VOWELS.entrySet()) {
+                name = name.replace(beforeVowel.getKey() + vowel, beforeVowel.getValue() + vowel);
             }
             if (!vowel.equals("i")) {
                 name = name.replace(vowel + "e", vowel + "э");
@@ -249,8 +249,8 @@ public class French implements Ruleset {
                 name = name.replace(vowel1 + "ill" + vowel2, vowel1 + "й" + vowel2);
             }
         }
-        for (String vowel1 : VOWELS) {
-            name = name.replace("ill" + vowel1, "ий" + vowel1);
+        for (String vowel : VOWELS) {
+            name = name.replace("ill" + vowel, "ий" + vowel);
         }
         return name;
     }
@@ -267,7 +267,7 @@ public class French implements Ruleset {
             }
         }
         if (name.startsWith("in") && !name.startsWith("inn")) {
-            name = name.replaceFirst("in", "эн");
+            return name.replaceFirst("in", "эн");
         }
         return name;
     }
@@ -276,29 +276,29 @@ public class French implements Ruleset {
         if (name.endsWith("уайes") || name.endsWith("уайés")) {
             return name.substring(0, name.length() - 3);
         }
-        for (Map.Entry<String, String> e : FIRST_TIER_ENDINGS.entrySet()) {
-            if (name.endsWith(e.getKey())) {
-                String sub = name.substring(0, name.length() - e.getKey().length());
-                return sub + e.getValue();
+        for (Map.Entry<String, String> ending : FIRST_TIER_ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                return sub + ending.getValue();
             }
         }
-        for (Map.Entry<String, String> e : SECOND_TIER_ENDINGS.entrySet()) {
-            if (name.endsWith(e.getKey())) {
-                String sub = name.substring(0, name.length() - e.getKey().length());
-                return sub + e.getValue();
+        for (Map.Entry<String, String> ending : SECOND_TIER_ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                return sub + ending.getValue();
             }
         }
-        for (Map.Entry<String, String> e : THIRD_TIER_ENDINGS.entrySet()) {
-            if (name.endsWith(e.getKey())) {
-                String sub = name.substring(0, name.length() - e.getKey().length());
-                return sub + e.getValue();
+        for (Map.Entry<String, String> ending : THIRD_TIER_ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                return sub + ending.getValue();
             }
         }
         if (name.endsWith("ien")) {
             return name.substring(0, name.length() - 3) + "ьен";
         }
-        for (String e : EMPTY_ENDINGS) {
-            if (name.endsWith(e)) {
+        for (String ending : EMPTY_ENDINGS) {
+            if (name.endsWith(ending)) {
                 return StringUtils.chop(name);
             }
         }
@@ -306,18 +306,18 @@ public class French implements Ruleset {
     }
 
     private static String checkBMPCases(String name) {
-        for (String bmp : BM_CONSONANTS) {
-            for (Map.Entry<String, String> precedingPart : BEFORE_BMP.entrySet()) {
-                name = name.replace(precedingPart.getKey() + bmp, precedingPart.getValue() + bmp);
+        for (String cons : BMP_CONSONANTS) {
+            for (Map.Entry<String, String> precedingPart : BEFORE_BM.entrySet()) {
+                name = name.replace(precedingPart.getKey() + cons, precedingPart.getValue() + cons);
             }
-            if (name.startsWith("im" + bmp)) {
-                name = name.replaceFirst("im" + bmp, "эм" + bmp);
+            if (name.startsWith("im" + cons)) {
+                name = name.replaceFirst("im" + cons, "эм" + cons);
             }
-            if (name.startsWith("ym" + bmp)) {
-                name = name.replaceFirst("ym" + bmp, "эм" + bmp);
+            if (name.startsWith("ym" + cons)) {
+                name = name.replaceFirst("ym" + cons, "эм" + cons);
             }
         }
-        for (Map.Entry<String, String> precedingPart : BEFORE_BMP.entrySet()) {
+        for (Map.Entry<String, String> precedingPart : BEFORE_BM.entrySet()) {
             if (!name.endsWith(precedingPart.getKey() + "p")) {
                 name = name.replace(precedingPart.getKey() + "p", precedingPart.getValue() + "p");
             }
@@ -356,7 +356,7 @@ public class French implements Ruleset {
             name = name.replace("vийe" + vowel, "виллe" + vowel);
         }
         if (name.endsWith("ville")) {
-            name = name.substring(0, name.length() - 5) + "виль";
+            return name.substring(0, name.length() - 5) + "виль";
         }
         return name;
     }

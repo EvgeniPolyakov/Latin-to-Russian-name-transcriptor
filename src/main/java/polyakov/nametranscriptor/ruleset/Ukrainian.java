@@ -16,13 +16,13 @@ public class Ukrainian implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> os = checkUkrainianNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> ukrainianName = checkUkrainianNames(name);
+        if (ukrainianName.isPresent()) {
+            return ukrainianName.get();
         }
-        os = checkRussianNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> russianName = checkRussianNames(name);
+        if (russianName.isPresent()) {
+            return russianName.get();
         }
         name = checkStart(name);
         name = checkEndings(name);
@@ -34,13 +34,14 @@ public class Ukrainian implements Ruleset {
     private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
         name = name.replace("b", "б");
+        name = name.replace("c", "ц");
         name = name.replace("d", "д");
         name = name.replace("e", "е");
         name = name.replace("f", "ф");
         name = name.replace("g", "г");
+        name = name.replace("h", "г");
         name = name.replace("i", "и");
         name = name.replace("k", "к");
-        name = name.replace("h", "г");
         name = name.replace("l", "л");
         name = name.replace("m", "м");
         name = name.replace("n", "н");
@@ -51,6 +52,7 @@ public class Ukrainian implements Ruleset {
         name = name.replace("t", "т");
         name = name.replace("u", "у");
         name = name.replace("v", "в");
+        name = name.replace("w", "в");
         name = name.replace("y", "ы");
         name = name.replace("x", "кс");
         name = name.replace("z", "з");
@@ -94,16 +96,16 @@ public class Ukrainian implements Ruleset {
     }
 
     private static String checkStart(String name) {
-        for (Map.Entry<String, String> startingPart : STARTERS.entrySet()) {
-            if (name.startsWith(startingPart.getKey())) {
-                return name.replace(startingPart.getKey(), startingPart.getValue());
+        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                return name.replace(starter.getKey(), starter.getValue());
             }
         }
         if (name.startsWith("e")) {
-            name = name.replaceFirst("e", "э");
+            return name.replaceFirst("e", "э");
         }
         if (name.startsWith("y")) {
-            name = name.replaceFirst("y", "й");
+            return name.replaceFirst("y", "й");
         }
         return name;
     }
@@ -125,7 +127,7 @@ public class Ukrainian implements Ruleset {
 
     private static String postcheck(String name) {
         if (name.endsWith("иы")) {
-            name = name.substring(0, name.length() - 2) + "ий";
+            return name.substring(0, name.length() - 2) + "ий";
         }
         return name;
     }

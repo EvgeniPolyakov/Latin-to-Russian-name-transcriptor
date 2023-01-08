@@ -17,10 +17,10 @@ public class Kazakh extends Russian {
         name = name.replace("gulm", "гульм");
         name = name.replace("guln", "гульн");
         if (name.endsWith("gul")) {
-            name = name.substring(0, name.length() - 3) + "гуль";
+            return name.substring(0, name.length() - 3) + "гуль";
         }
         if (name.endsWith("dil")) {
-            name = name.substring(0, name.length() - 3) + "диль";
+            return name.substring(0, name.length() - 3) + "диль";
         }
         return name;
     }
@@ -28,10 +28,10 @@ public class Kazakh extends Russian {
     @Override
     protected String checkEndings(String name) {
         if (name.endsWith("tskyi") || name.endsWith("tskiy")) {
-            name = name.substring(0, name.length() - 5) + "цкий";
+            return name.substring(0, name.length() - 5) + "цкий";
         }
         if (name.endsWith("tsky") || name.endsWith("tski")) {
-            name = name.substring(0, name.length() - 4) + "цкий";
+            return name.substring(0, name.length() - 4) + "цкий";
         }
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
@@ -40,7 +40,7 @@ public class Kazakh extends Russian {
             }
         }
         if (name.endsWith("ia")) {
-            name = name.substring(0, name.length() - 2) + "ия";
+            return name.substring(0, name.length() - 2) + "ия";
         }
         return name;
     }

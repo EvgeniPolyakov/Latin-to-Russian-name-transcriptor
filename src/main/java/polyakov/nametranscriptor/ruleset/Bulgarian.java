@@ -10,9 +10,9 @@ public class Bulgarian extends Russian {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> os = checkPopularNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> checkedName = checkPopularNames(name);
+        if (checkedName.isPresent()) {
+            return checkedName.get();
         }
         name = checkPrimaryCases(name);
         name = checkStart(name);

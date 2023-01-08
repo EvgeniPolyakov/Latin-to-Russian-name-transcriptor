@@ -13,9 +13,9 @@ import static polyakov.nametranscriptor.ruleset.resources.wordparts.Lithuanian.*
 public class Lithuanian implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> os = checkPopularNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> checkedName = checkPopularNames(name);
+        if (checkedName.isPresent()) {
+            return checkedName.get();
         }
         name = checkPrimaryCases(name);
         name = checkCustomCases(name);
@@ -113,19 +113,19 @@ public class Lithuanian implements Ruleset {
     }
 
     private static String checkCasesOfJ(String name) {
-        for (Map.Entry<String, String> jfc : J_CASES.entrySet()) {
-            if (name.startsWith(jfc.getKey())) {
-                name = name.replaceFirst(jfc.getKey(), jfc.getValue());
+        for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
+            if (name.startsWith(jCombination.getKey())) {
+                name = name.replaceFirst(jCombination.getKey(), jCombination.getValue());
                 break;
             }
         }
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> jc : J_CASES.entrySet()) {
-                name = name.replace(vowel + jc.getKey(), vowel + jc.getValue());
+            for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
+                name = name.replace(vowel + jCombination.getKey(), vowel + jCombination.getValue());
             }
         }
-        for (Map.Entry<String, String> jcac : J_CASES_AFTER_CONSONANTS.entrySet()) {
-            name = name.replace(jcac.getKey(), jcac.getValue());
+        for (Map.Entry<String, String> jCombination : J_CASES_AFTER_CONSONANTS.entrySet()) {
+            name = name.replace(jCombination.getKey(), jCombination.getValue());
         }
         return name;
     }

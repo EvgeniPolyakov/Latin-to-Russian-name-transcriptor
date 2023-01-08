@@ -53,9 +53,9 @@ public class Turkish implements Ruleset {
     }
 
     private static String checkCombinations(String name) {
-        for (Map.Entry<String, String> aw : AFTER_VOWELS.entrySet()) {
+        for (Map.Entry<String, String> av : AFTER_VOWELS.entrySet()) {
             for (Map.Entry<String, String> vowel : VOWELS.entrySet()) {
-                name = name.replace(vowel.getKey() + aw.getKey(), vowel.getValue() + aw.getValue());
+                name = name.replace(vowel.getKey() + av.getKey(), vowel.getValue() + av.getValue());
             }
         }
         name = name.replace("gâ", "гя");

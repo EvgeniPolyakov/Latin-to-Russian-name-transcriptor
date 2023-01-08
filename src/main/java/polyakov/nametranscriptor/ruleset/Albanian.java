@@ -14,9 +14,9 @@ public class Albanian implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> os = checkPopularNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> checkedName = checkPopularNames(name);
+        if (checkedName.isPresent()) {
+            return checkedName.get();
         }
         name = checkStart(name);
         if (name.contains("ë")) {
@@ -100,13 +100,13 @@ public class Albanian implements Ruleset {
 
     private static String checkCasesOfJ(String name) {
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> jwc : J_VOWEL_CASES.entrySet()) {
-                name = name.replace(vowel + jwc.getKey(), vowel + jwc.getValue());
+            for (Map.Entry<String, String> jCombination : J_VOWEL_CASES.entrySet()) {
+                name = name.replace(vowel + jCombination.getKey(), vowel + jCombination.getValue());
             }
         }
-        for (Map.Entry<String, String> jwc : J_VOWEL_CASES.entrySet()) {
-            if (name.startsWith(jwc.getKey())) {
-                name = name.replaceFirst(jwc.getKey(), jwc.getValue());
+        for (Map.Entry<String, String> jCombination : J_VOWEL_CASES.entrySet()) {
+            if (name.startsWith(jCombination.getKey())) {
+                name = name.replaceFirst(jCombination.getKey(), jCombination.getValue());
             }
         }
         return name;
@@ -117,26 +117,26 @@ public class Albanian implements Ruleset {
             name = name.replace(vowel + "e", vowel + "э");
             name = name.replace(vowel + "ë", vowel + "э");
         }
-        for (Map.Entry<String, String> sc : SOFT_CONSONANTS.entrySet()) {
-            for (Map.Entry<String, String> sv : SOFTENED_VOWELS.entrySet()) {
-                name = name.replace(sc.getKey() + sv.getKey(), sc.getValue() + sv.getValue());
+        for (Map.Entry<String, String> cons : SOFT_CONSONANTS.entrySet()) {
+            for (Map.Entry<String, String> vowel : SOFTENED_VOWELS.entrySet()) {
+                name = name.replace(cons.getKey() + vowel.getKey(), cons.getValue() + vowel.getValue());
             }
         }
         return name;
     }
 
     private static String checkCasesOfDiaeresisE(String name) {
-        for (Map.Entry<String, String> sc : SOFT_CONSONANTS.entrySet()) {
-            if (name.endsWith(sc.getKey() + "ë")) {
-                String sub = name.substring(0, name.length() - sc.getKey().length() - 1);
-                name = sub + sc.getValue() + "я";
+        for (Map.Entry<String, String> consonant : SOFT_CONSONANTS.entrySet()) {
+            if (name.endsWith(consonant.getKey() + "ë")) {
+                String sub = name.substring(0, name.length() - consonant.getKey().length() - 1);
+                return sub + consonant.getValue() + "я";
             }
         }
         if (name.endsWith("jë")) {
-            name = name.substring(0, name.length() - 2) + "я";
+            return name.substring(0, name.length() - 2) + "я";
         }
         if (name.endsWith("ë")) {
-            name = name.substring(0, name.length() - 1) + "а";
+            return name.substring(0, name.length() - 1) + "а";
         }
         return name;
     }

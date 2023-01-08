@@ -15,9 +15,9 @@ public class Russian implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
         name = checkPrimaryCases(name);
-        Optional<String> os = checkPopularNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> checkedName = checkPopularNames(name);
+        if (checkedName.isPresent()) {
+            return checkedName.get();
         }
         name = checkStart(name);
         name = checkEndings(name);
@@ -37,9 +37,9 @@ public class Russian implements Ruleset {
         name = name.replace("e", "е");
         name = name.replace("f", "ф");
         name = name.replace("g", "г");
+        name = name.replace("h", "х");
         name = name.replace("i", "и");
         name = name.replace("k", "к");
-        name = name.replace("h", "х");
         name = name.replace("l", "л");
         name = name.replace("m", "м");
         name = name.replace("n", "н");
@@ -50,6 +50,7 @@ public class Russian implements Ruleset {
         name = name.replace("t", "т");
         name = name.replace("u", "у");
         name = name.replace("v", "в");
+        name = name.replace("w", "в");
         name = name.replace("y", "ы");
         name = name.replace("x", "кс");
         name = name.replace("z", "з");
@@ -80,13 +81,6 @@ public class Russian implements Ruleset {
             return name.substring(0, name.length() - 2) + "iy";
         }
         return name;
-    }
-
-    protected static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(RussianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(RussianNames::getCyrillicName);
     }
 
     protected static String checkStart(String name) {
@@ -128,13 +122,13 @@ public class Russian implements Ruleset {
     }
 
     private static String checkCasesOfYEndings(String name, String ending) {
-        for (String ycto : Y_CONSONANTS_TIER_ONE) {
-            if (name.charAt(name.length() - (ending.length() + 1)) == ycto.charAt(0)) {
+        for (String consonant : Y_CONSONANTS_TIER_ONE) {
+            if (name.charAt(name.length() - (ending.length() + 1)) == consonant.charAt(0)) {
                 return name.substring(0, name.length() - ending.length()) + "ый";
             }
         }
-        for (String yctt : Y_CONSONANTS_TIER_TWO) {
-            if (name.charAt(name.length() - (ending.length() + 1)) == yctt.charAt(0)) {
+        for (String consonant : Y_CONSONANTS_TIER_TWO) {
+            if (name.charAt(name.length() - (ending.length() + 1)) == consonant.charAt(0)) {
                 return name.substring(0, name.length() - ending.length()) + "ий";
             }
         }
@@ -142,19 +136,26 @@ public class Russian implements Ruleset {
     }
 
     protected static String checkVowels(String name) {
-        for (Map.Entry<String, String> iyc : IY_CASES.entrySet()) {
-            if (name.startsWith(iyc.getKey())) {
-                name = name.replaceFirst(iyc.getKey(), iyc.getValue());
+        for (Map.Entry<String, String> vowels : IY_CASES.entrySet()) {
+            if (name.startsWith(vowels.getKey())) {
+                name = name.replaceFirst(vowels.getKey(), vowels.getValue());
             }
         }
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> iyc : IY_CASES.entrySet()) {
-                name = name.replace(vowel + iyc.getKey(), vowel + iyc.getValue());
+            for (Map.Entry<String, String> afterVowels : IY_CASES.entrySet()) {
+                name = name.replace(vowel + afterVowels.getKey(), vowel + afterVowels.getValue());
             }
             name = name.replace(vowel + "i", vowel + "й");
             name = name.replace(vowel + "y", vowel + "й");
         }
         return name;
+    }
+
+    protected static Optional<String> checkPopularNames(String name) {
+        return Arrays.stream(RussianNames.values())
+                .filter(s -> s.getLatinName().equals(name))
+                .findAny()
+                .map(RussianNames::getCyrillicName);
     }
 
     @Override

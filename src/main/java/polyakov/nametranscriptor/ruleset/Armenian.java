@@ -14,9 +14,9 @@ public class Armenian extends Russian {
 
     @Override
     protected String checkPrimaryCases(String name) {
-        Optional<String> os = checkArmenianNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> checkedName = checkArmenianNames(name);
+        if (checkedName.isPresent()) {
+            return checkedName.get();
         }
         if (name.endsWith("ian") || name.endsWith("yan")) {
             name = name.substring(0, name.length() - 3) + "ян";

@@ -16,13 +16,13 @@ public class Moldovan extends Romanian {
 
     @Override
     protected String checkCustomCases(String name) {
-        Optional<String> rn = checkRussianNames(name);
-        if (rn.isPresent()) {
-            name = rn.get();
+        Optional<String> russianName = checkRussianNames(name);
+        if (russianName.isPresent()) {
+            return russianName.get();
         }
-        Optional<String> mn = checkMoldovanNames(name);
-        if (mn.isPresent()) {
-            name = mn.get();
+        Optional<String> moldovanName = checkMoldovanNames(name);
+        if (moldovanName.isPresent()) {
+            return moldovanName.get();
         }
         name = checkEndings(name);
         name = name.replace("şciu", "щу");

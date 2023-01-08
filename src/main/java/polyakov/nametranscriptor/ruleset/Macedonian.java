@@ -7,14 +7,14 @@ public class Macedonian extends Bulgarian {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = mapBalkanChars(name);
+        name = checkBalkanChars(name);
         if (name.contains("j")) {
             name = checkMacedonianCases(name);
         }
         return super.transcribe(name, mode);
     }
 
-    private static String mapBalkanChars(String name) {
+    private static String checkBalkanChars(String name) {
         name = name.replace("ć", "ч");
         name = name.replace("đ", "дж");
         name = name.replace("š", "ш");

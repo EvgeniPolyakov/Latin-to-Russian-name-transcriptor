@@ -14,9 +14,9 @@ public class Greek implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> os = checkPopularNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> checkedName = checkPopularNames(name);
+        if (checkedName.isPresent()) {
+            return checkedName.get();
         }
         name = checkStart(name);
         name = checkCombinations(name);
@@ -58,14 +58,14 @@ public class Greek implements Ruleset {
     }
 
     private static String checkStart(String name) {
-        for (Map.Entry<String, String> startingPart : FIRST_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(startingPart.getKey())) {
-                return name.replaceFirst(startingPart.getKey(), startingPart.getValue());
+        for (Map.Entry<String, String> starter : FIRST_TIER_STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                return name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
-        for (Map.Entry<String, String> startingPart : SECOND_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(startingPart.getKey())) {
-                return name.replaceFirst(startingPart.getKey(), startingPart.getValue());
+        for (Map.Entry<String, String> starter : SECOND_TIER_STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                return name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
         return name;
@@ -121,13 +121,13 @@ public class Greek implements Ruleset {
     }
 
     private static String checkConsonantCombinations(String name) {
-        for (String vc : VOICELESS_CONSONANTS) {
-            name = name.replace("mp" + vc, "мп" + vc);
-            name = name.replace("mp" + vc, "мп" + vc);
+        for (String consonant : VOICELESS_CONSONANTS) {
+            name = name.replace("mp" + consonant, "мп" + consonant);
+            name = name.replace("mp" + consonant, "мп" + consonant);
         }
         name = name.replace("mp", "мб");
-        for (String scc : S_CASE_CONSONANTS) {
-            name = name.replace("s" + scc, "з" + scc);
+        for (String consonant : S_CASE_CONSONANTS) {
+            name = name.replace("s" + consonant, "з" + consonant);
         }
         return name;
     }
@@ -152,19 +152,19 @@ public class Greek implements Ruleset {
     }
 
     private static String checkAfterVowelCases(String name, String vowel) {
-        for (Map.Entry<String, String> avpo : AFTER_VOWELS_TIER_ONE.entrySet()) {
-            if (name.contains(avpo.getKey())) {
-                name = name.replace(vowel + avpo.getKey(), vowel + avpo.getValue());
+        for (Map.Entry<String, String> afterVowel : AFTER_VOWELS_TIER_ONE.entrySet()) {
+            if (name.contains(afterVowel.getKey())) {
+                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
             }
         }
-        for (Map.Entry<String, String> avpt : AFTER_VOWELS_TIER_TWO.entrySet()) {
-            if (name.contains(avpt.getKey())) {
-                name = name.replace(vowel + avpt.getKey(), vowel + avpt.getValue());
+        for (Map.Entry<String, String> afterVowel : AFTER_VOWELS_TIER_TWO.entrySet()) {
+            if (name.contains(afterVowel.getKey())) {
+                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
             }
         }
-        for (Map.Entry<String, String> avpt : AFTER_VOWELS_TIER_THREE.entrySet()) {
-            if (name.contains(avpt.getKey())) {
-                name = name.replace(vowel + avpt.getKey(), vowel + avpt.getValue());
+        for (Map.Entry<String, String> afterVowel : AFTER_VOWELS_TIER_THREE.entrySet()) {
+            if (name.contains(afterVowel.getKey())) {
+                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
             }
         }
         return name;

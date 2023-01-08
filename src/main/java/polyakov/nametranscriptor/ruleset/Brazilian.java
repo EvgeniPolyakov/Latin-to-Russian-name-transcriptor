@@ -22,9 +22,9 @@ public class Brazilian extends Portuguese {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> os = checkPopularNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> checkedName = checkPopularNames(name);
+        if (checkedName.isPresent()) {
+            return checkedName.get();
         }
         name = checkVowels(name);
         name = checkEndings(name);
@@ -63,16 +63,16 @@ public class Brazilian extends Portuguese {
             }
         }
         if (name.endsWith("s")) {
-            name = name.substring(0, name.length() - 1) + "с";
+            return name.substring(0, name.length() - 1) + "с";
         }
         return name;
     }
 
     private static String checkConsonants(String name) {
-        for (String sc : SOFT_CONSONANTS) {
-            name = name.replace(sc + "ãи", sc + "яйн");
-            name = name.replace(sc + "ãо", sc + "ян");
-            name = name.replace(sc + "o", sc + "о");
+        for (String consonant : SOFT_CONSONANTS) {
+            name = name.replace(consonant + "ãи", consonant + "яйн");
+            name = name.replace(consonant + "ãо", consonant + "ян");
+            name = name.replace(consonant + "o", consonant + "о");
         }
         name = name.replace("ãо", "ан");
         name = name.replace("ãи", "айн");
@@ -88,9 +88,9 @@ public class Brazilian extends Portuguese {
         name = name.replace("zt", "ст");
         name = name.replace("zc", "ск");
         name = name.replace("zq", "ск");
-        for (String vc : VOICED_CONSONANTS) {
-            name = name.replace("z" + vc, "з" + vc);
-            name = name.replace("s" + vc, "с" + vc);
+        for (String consonant : VOICED_CONSONANTS) {
+            name = name.replace("z" + consonant, "з" + consonant);
+            name = name.replace("s" + consonant, "с" + consonant);
         }
         return name;
     }

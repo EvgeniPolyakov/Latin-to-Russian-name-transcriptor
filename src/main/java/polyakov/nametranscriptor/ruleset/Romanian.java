@@ -57,7 +57,7 @@ public class Romanian implements Ruleset {
     protected String checkCustomCases(String name) {
         name = name.replace("ii", "ий");
         name = name.replace("îi", "ый");
-        name = checkStarters(name);
+        name = checkStart(name);
         name = name.replace("cea", "ча");
         name = name.replace("cia", "ча");
         name = name.replace("cio", "чо");
@@ -80,7 +80,7 @@ public class Romanian implements Ruleset {
         return name;
     }
 
-    private static String checkStarters(String name) {
+    private static String checkStart(String name) {
         for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
             if (name.startsWith(starter.getKey())) {
                 return name.replaceFirst(starter.getKey(), starter.getValue());
@@ -112,9 +112,9 @@ public class Romanian implements Ruleset {
     }
 
     private static String checkConsonants(String name) {
-        for (Map.Entry<String, String> consonants : CUSTOM_CONSONANTS.entrySet()) {
+        for (Map.Entry<String, String> consonant : CUSTOM_CONSONANTS.entrySet()) {
             for (String vowel : UTILITY_VOWELS) {
-                name = name.replace(consonants.getKey() + vowel, consonants.getValue() + vowel);
+                name = name.replace(consonant.getKey() + vowel, consonant.getValue() + vowel);
             }
         }
         return name;

@@ -67,13 +67,13 @@ public class Czech implements Ruleset {
     }
 
     protected static String checkCombinations(String name) {
-        for (Map.Entry<String, String> uc : UTILITY_CONSONANTS.entrySet()) {
+        for (Map.Entry<String, String> cons : UTILITY_CONSONANTS.entrySet()) {
             for (Map.Entry<String, String> vowel : AFTER_DNT.entrySet()) {
-                name = name.replace(uc.getKey() + vowel.getKey(), uc.getValue() + vowel.getValue());
+                name = name.replace(cons.getKey() + vowel.getKey(), cons.getValue() + vowel.getValue());
             }
         }
-        for (String vc : VOICED_CONSONANTS) {
-            name = name.replace(vc + "ř", vc + "рж");
+        for (String consonant : VOICED_CONSONANTS) {
+            name = name.replace(consonant + "ř", consonant + "рж");
         }
         name = name.replace("ch", "х");
         name = name.replace("qu", "ку");
@@ -118,13 +118,13 @@ public class Czech implements Ruleset {
             }
         }
         if (name.startsWith("jo")) {
-            name = name.replaceFirst("jo", "йо");
+            return name.replaceFirst("jo", "йо");
         }
         if (name.startsWith("jó")) {
-            name = name.replaceFirst("jó", "йо");
+            return name.replaceFirst("jó", "йо");
         }
         if (name.startsWith("ř")) {
-            name = name.replaceFirst("ř", "рж");
+            return name.replaceFirst("ř", "рж");
         }
         return name;
     }

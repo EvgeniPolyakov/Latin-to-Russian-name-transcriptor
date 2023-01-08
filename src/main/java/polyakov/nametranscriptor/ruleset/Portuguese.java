@@ -14,9 +14,9 @@ public class Portuguese implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> os = checkPopularNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> checkedName = checkPopularNames(name);
+        if (checkedName.isPresent()) {
+            return checkedName.get();
         }
         name = checkPrimaryCases(name);
         name = checkStart(name);
@@ -38,8 +38,8 @@ public class Portuguese implements Ruleset {
         name = name.replace("ç", "с");
         name = name.replace("d", "д");
         name = name.replace("e", "е");
-        name = name.replace("é", "е");
         name = name.replace("ê", "е");
+        name = name.replace("é", "е");
         name = name.replace("f", "ф");
         name = name.replace("g", "г");
         name = name.replace("h", "х");
@@ -54,13 +54,13 @@ public class Portuguese implements Ruleset {
         name = name.replace("ó", "о");
         name = name.replace("ô", "о");
         name = name.replace("p", "п");
-        name = name.replace("q", "к");
         name = name.replace("r", "р");
+        name = name.replace("q", "к");
         name = name.replace("s", "с");
         name = name.replace("t", "т");
         name = name.replace("u", "у");
-        name = name.replace("ü", "у");
         name = name.replace("ú", "у");
+        name = name.replace("ü", "у");
         name = name.replace("v", "в");
         name = name.replace("w", "в");
         name = name.replace("x", "ш");
@@ -107,9 +107,9 @@ public class Portuguese implements Ruleset {
         name = name.replace("zq", "шк");
         name = name.replace("th", "т");
         name = name.replace("ph", "ф");
-        for (String vc : VOICED_CONSONANTS) {
-            name = name.replace("z" + vc, "ж" + vc);
-            name = name.replace("s" + vc, "з" + vc);
+        for (String consonant : VOICED_CONSONANTS) {
+            name = name.replace("z" + consonant, "ж" + consonant);
+            name = name.replace("s" + consonant, "з" + consonant);
         }
         return name;
     }
@@ -144,10 +144,10 @@ public class Portuguese implements Ruleset {
 
     private static String checkEnd(String name) {
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> eav : ENDINGS_AFTER_VOWELS.entrySet()) {
-                if (name.endsWith(vowel + eav.getKey())) {
-                    String sub = name.substring(0, name.length() - eav.getKey().length());
-                    return sub + eav.getValue();
+            for (Map.Entry<String, String> afterVowel : ENDINGS_AFTER_VOWELS.entrySet()) {
+                if (name.endsWith(vowel + afterVowel.getKey())) {
+                    String sub = name.substring(0, name.length() - afterVowel.getKey().length());
+                    return sub + afterVowel.getValue();
                 }
             }
         }
@@ -176,23 +176,23 @@ public class Portuguese implements Ruleset {
                 name = name.replace(vowel + "s" + vowel2, vowel + "з" + vowel2);
                 name = name.replace(vowel + "h" + vowel2, vowel + vowel2);
             }
-            for (Map.Entry<String, String> bv : BEFORE_VOWELS.entrySet()) {
-                name = name.replace(bv.getKey() + vowel, bv.getValue() + vowel);
+            for (Map.Entry<String, String> beforeVowel : BEFORE_VOWELS.entrySet()) {
+                name = name.replace(beforeVowel.getKey() + vowel, beforeVowel.getValue() + vowel);
             }
-            for (Map.Entry<String, String> av : AFTER_VOWELS.entrySet()) {
-                name = name.replace(vowel + av.getKey(), vowel + av.getValue());
+            for (Map.Entry<String, String> afterVowel : AFTER_VOWELS.entrySet()) {
+                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
                 if (!vowel.equals("i")) {
                     name = name.replace(vowel + "e", vowel + "э");
                 }
             }
             name = name.replace(vowel + "i", vowel + "й");
         }
-        for (String sc : SOFT_CONSONANTS) {
-            for (Map.Entry<String, String> sf : SOFTENED_VOWELS.entrySet()) {
-                name = name.replace(sc + sf.getKey(), sc + sf.getValue());
+        for (String consonant : SOFT_CONSONANTS) {
+            for (Map.Entry<String, String> vowel : SOFTENED_VOWELS.entrySet()) {
+                name = name.replace(consonant + vowel.getKey(), consonant + vowel.getValue());
             }
-            name = name.replace(sc + "ãу", sc + "ян");
-            name = name.replace(sc + "ã", sc + "ян");
+            name = name.replace(consonant + "ãу", consonant + "ян");
+            name = name.replace(consonant + "ã", consonant + "ян");
         }
         return name;
     }
