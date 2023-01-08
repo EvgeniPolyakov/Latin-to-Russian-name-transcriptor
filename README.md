@@ -34,6 +34,7 @@ List of currently supported languages:
 * 🇧🇬 Bulgarian (from Roman script back to Cyrillic)
 * 🇨🇳 Chinese (from Roman script to Cyrillic)
 * 🇨🇿 Czech
+* 🇳🇱 Dutch
 * 🇪🇪 Estonian
 * 🇫🇷 French
 * 🇬🇪 Georgian (from Roman script to Cyrillic)
@@ -108,6 +109,7 @@ App can be launched by compiling and installing it via standard Maven procedure.
 * 🇱🇹 литовский
 * 🇲🇰 македонский (с латиницы на кириллицу с транскрипцией на русский)
 * 🇩🇪 немецкий
+* 🇳🇱 нидерландский
 * 🇵🇹 португальский
 * 🇷🇴 румынский / 🇲🇩 молдавский
 * 🇷🇸🇭🇷 сербохорватский
