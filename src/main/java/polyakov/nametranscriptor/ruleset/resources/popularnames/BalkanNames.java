@@ -1,8 +1,24 @@
 package polyakov.nametranscriptor.ruleset.resources.popularnames;
 
 public enum BalkanNames {
+    BENJAMIN("benjamin", "беньямин"),
+    CETINJE("cetinje", "цетинье"),
+    GLORIA("gloria", "глория"),
+    DANJEL("danjel", "даньел"),
+    FRANJO("franjo", "франьо"),
+    IVICIA("ivicia", "ивиция"),
+    LIA("lia", "лия"),
+    LUCIA("lucia", "луция"),
+    MIA("mia", "мия"),
+    MARIA("maria", "мария"),
+    MELANIA("melania", "мелания"),
+    NATALIA("natalia", "наталия"),
     NEMANJA("nemanja", "неманья"),
-    CETINJE("cetinje", "цетинье");
+    PIA("pia", "пия"),
+    TIA("tia", "тия"),
+    RUNJE("runje", "рунье"),
+    SOFIA("sofia", "софия"),
+    VRANJES("vranješ", "враньеш");
 
     private final String latinName;
     private final String cyrillicName;

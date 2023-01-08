@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Serbian {
-    public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u");
+public class Serbocroat
+{
+    public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u", "э");
 
     public static final Map<String, String> J_CASES_AFTER_VOWELS = Map.ofEntries(
             Map.entry("ja", "я"),
@@ -32,6 +33,12 @@ public class Serbian {
             Map.entry("ji", "и"),
             Map.entry("jo", "йо"),
             Map.entry("ju", "ю")
+    );
+
+    public static final Map<String, String> ENDINGS = Map.ofEntries(
+            Map.entry("njić", "ньич"),
+            Map.entry("njič", "ньич"),
+            Map.entry("njic", "ньиц")
     );
 
     public static final Map<String, String> UTILITY_CONSONANTS = Map.ofEntries(

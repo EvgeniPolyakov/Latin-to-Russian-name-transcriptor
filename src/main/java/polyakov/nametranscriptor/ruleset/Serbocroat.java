@@ -7,22 +7,22 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
-import static polyakov.nametranscriptor.ruleset.resources.wordparts.Serbian.*;
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Serbocroat.*;
 
 @Component
 public class Serbocroat implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> os = checkPopularNames(name);
-        if (os.isPresent()) {
-            name = os.get();
+        Optional<String> checkedName = checkPopularNames(name);
+        if (checkedName.isPresent()) {
+            return checkedName.get();
         }
-        name = name.replace("đ", "dj");
+        name = checkPrimaryCases(name);
+        name = checkEndings(name);
         if (name.contains("j")) {
-            name = checkCombinations(name);
+            name = checkCasesOfJ(name);
         }
-        name = checkStart(name);
         name = checkSingleChars(name);
         return name;
     }
@@ -59,36 +59,48 @@ public class Serbocroat implements Ruleset {
         return name;
     }
 
-    private static String checkCombinations(String name) {
-        for (Map.Entry<String, String> uc : UTILITY_CONSONANTS.entrySet()) {
-            for (Map.Entry<String, String> vowel : VOWELS_FOR_UTILITY_CONSONANTS.entrySet()) {
-                name = name.replace(uc.getKey() + vowel.getKey(), uc.getValue() + vowel.getValue());
-            }
-        }
+    private static String checkPrimaryCases(String name) {
+        name = name.replace("đ", "dj");
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> c : J_CASES_AFTER_VOWELS.entrySet()) {
-                name = name.replace(vowel + c.getKey(), vowel + c.getValue());
-            }
             name = name.replace(vowel + "e", vowel + "э");
         }
-        for (Map.Entry<String, String> jfc : J_FIRST_CASE.entrySet()) {
-            if (name.startsWith(jfc.getKey())) {
-                name = name.replaceFirst(jfc.getKey(), jfc.getValue());
-                break;
-            }
+        if (name.startsWith("e")) {
+            return name.replaceFirst("e", "э");
         }
-        for (Map.Entry<String, String> jcac : J_CASES_AFTER_CONSONANTS.entrySet()) {
-            name = name.replace(jcac.getKey(), jcac.getValue());
-        }
-        name = name.replace("nj", "нь");
-        name = name.replace("lj", "ль");
         return name;
     }
 
-    private static String checkStart(String name) {
-        if (name.startsWith("e")) {
-            name = name.replaceFirst("e", "э");
+    private static String checkEndings(String name) {
+        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                return name.replace(ending.getKey(), ending.getValue());
+            }
         }
+        return name;
+    }
+
+    private static String checkCasesOfJ(String name) {
+        for (Map.Entry<String, String> cons : UTILITY_CONSONANTS.entrySet()) {
+            for (Map.Entry<String, String> vowel : VOWELS_FOR_UTILITY_CONSONANTS.entrySet()) {
+                name = name.replace(cons.getKey() + vowel.getKey(), cons.getValue() + vowel.getValue());
+            }
+        }
+        for (String vowel : VOWELS) {
+            for (Map.Entry<String, String> jCombination : J_CASES_AFTER_VOWELS.entrySet()) {
+                name = name.replace(vowel + jCombination.getKey(), vowel + jCombination.getValue());
+            }
+        }
+        for (Map.Entry<String, String> jCombination : J_FIRST_CASE.entrySet()) {
+            if (name.startsWith(jCombination.getKey())) {
+                name = name.replaceFirst(jCombination.getKey(), jCombination.getValue());
+                break;
+            }
+        }
+        for (Map.Entry<String, String> jCombination : J_CASES_AFTER_CONSONANTS.entrySet()) {
+            name = name.replace(jCombination.getKey(), jCombination.getValue());
+        }
+        name = name.replace("nj", "нь");
+        name = name.replace("lj", "ль");
         return name;
     }
 
