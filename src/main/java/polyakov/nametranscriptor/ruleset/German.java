@@ -19,7 +19,11 @@ public class German implements Ruleset {
             name = os.get();
         }
         name = checkPrimaryCases(name);
-        name = checkStartAndEndings(name);
+        if (name.contains("j")) {
+            name = checkCasesOfJ(name);
+        }
+        name = checkStart(name);
+        name = checkEndings(name);
         name = checkVowels(name);
         name = checkCombinations(name);
         name = checkSingleChars(name);
@@ -131,21 +135,20 @@ public class German implements Ruleset {
         return name;
     }
 
-    private static String checkStartAndEndings(String name) {
-        if (name.contains("j")) {
-            name = checkCasesOfJ(name);
-        }
+    private static String checkStart(String name) {
         for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
             if (name.startsWith(starter.getKey())) {
-                name = name.replaceFirst(starter.getKey(), starter.getValue());
-                break;
+                return name.replaceFirst(starter.getKey(), starter.getValue());
             }
         }
+        return name;
+    }
+
+    private static String checkEndings(String name) {
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
                 String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
-                break;
+                return sub + ending.getValue();
             }
         }
         return name;
@@ -172,8 +175,8 @@ public class German implements Ruleset {
     private static String checkVowels(String name) {
         for (String vowel : VOWELS) {
             name = name.replace(vowel + "e", vowel + "э");
-            for (Map.Entry<String, String> bv : BEFORE_VOWELS.entrySet()) {
-                name = name.replace(bv.getKey() + vowel, bv.getValue() + vowel);
+            for (Map.Entry<String, String> beforeVowel : BEFORE_VOWELS.entrySet()) {
+                name = name.replace(beforeVowel.getKey() + vowel, beforeVowel.getValue() + vowel);
             }
             for (Map.Entry<String, String> av : AFTER_VOWELS.entrySet()) {
                 name = name.replace(vowel + av.getKey(), vowel + av.getValue());
