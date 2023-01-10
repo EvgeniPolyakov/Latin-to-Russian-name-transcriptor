@@ -42,6 +42,7 @@ public class Turkish implements Ruleset {
         name = name.replace("p", "п");
         name = name.replace("r", "р");
         name = name.replace("s", "с");
+        name = name.replace("ș", "ш");
         name = name.replace("ş", "ш");
         name = name.replace("t", "т");
         name = name.replace("u", "у");
@@ -53,9 +54,14 @@ public class Turkish implements Ruleset {
     }
 
     private static String checkCombinations(String name) {
-        for (Map.Entry<String, String> av : AFTER_VOWELS.entrySet()) {
+        for (Map.Entry<String, String> av : STARTERS_AND_AFTER_VOWELS.entrySet()) {
             for (Map.Entry<String, String> vowel : VOWELS.entrySet()) {
                 name = name.replace(vowel.getKey() + av.getKey(), vowel.getValue() + av.getValue());
+            }
+        }
+        for (Map.Entry<String, String> afterVowel : STARTERS_AND_AFTER_VOWELS.entrySet()) {
+            for (String vowel : CYRILLIC_VOWELS) {
+                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
             }
         }
         name = name.replace("gâ", "гя");
@@ -76,7 +82,7 @@ public class Turkish implements Ruleset {
     }
 
     private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
+        for (Map.Entry<String, String> starter : STARTERS_AND_AFTER_VOWELS.entrySet()) {
             if (name.startsWith(starter.getKey())) {
                 return name.replaceFirst(starter.getKey(), starter.getValue());
             }
