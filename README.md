@@ -60,7 +60,12 @@ Any feedback is kindly welcome.
 
 ## Launch
 
-App can be launched by compiling and installing it via standard Maven procedure.
+Docker container can be built and launched by:
+1. cloning this project
+2. installing and running Docker (if it has been not already installed)
+3. running container in the terminal by command: `docker-compose up` 
+
+App can also be launched by compiling and installing it via standard Maven procedure.
 
 ---
 
@@ -131,4 +136,9 @@ App can be launched by compiling and installing it via standard Maven procedure.
 
 ## Запуск
 
-Приложение можно скомпилировать и запустить, используя стандартную процедуру сборщика Maven.
+Чтобы запустить Docker-контейнер, надо:
+1. склонировать проект
+2. установить и запустить Docker (если не установлен ранее)
+3. запустить контейнер в терминале посредством команды: `docker-compose up`
+
+Приложение можно также скомпилировать и запустить, используя стандартную процедуру сборщика Maven.

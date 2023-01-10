@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  transcriptor:
+    build: .
+    container_name: transcriptor
+    ports:
+      - "8080:8080"
