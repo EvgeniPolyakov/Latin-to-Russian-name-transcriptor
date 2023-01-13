@@ -10,23 +10,31 @@ class TurkishTest {
     @Test
     void transcribe() {
         String text = """
-                eyyub yayla konya ünye yiğit akyiğit yıldırım akyıldız karadayı yozgat bayortaç yörük yunus niğde \
-                divriği bozdoğan muğla ığdır hakkâri elâzığ bolat hasan ali kaldırım ömer bayram okay yokuşlu \
-                çalhanoğlu kaan ayhan ozan tufan enes ünal deniz türüç zeki çelik merih demiral berkay özcan uğurcan \
-                çakır güven yalçın emre kılınç mert müldür yusuf yazıcı umut meraş ozan kabak altay bayındır ahmed \
-                kutucu mert çetin arzu karabulut yağmur uraz fatma şahin ezgi çağlar didem karagenç yaşam göksu hız \
-                emine ecem esen ebru topçu berna yeniçeri ilayda civelek derya arhan ece türkoğlu sadıkoğlu ipek \
-                kaya sedanur incik ırem eren melike öztürk gamze yaman elif keskin büşra kuru dilan yeşim taşkin \
-                cansu nur pijamalı hasta yağız şoföre çabucak güvendi çıldır""";
+                abdussamed karnuçu atakan akyol atalay babacan batuhan özdemir bekir gökçimen berkay görmez berke özer \
+                doğucan haspolat enes i̇lkin ercan şirin hasan adıgüzel kerem kesgin malik karaahmet mehmet üzümcü \
+                muhammet can tuncer mutlu aksu dogan onur taha takir abdullah doğan bahadir çiloğlu birhan vatansever \
+                emirhan aydoğan emre mor enes ünal ertuğrul ersoy furkan ünver hayrullah alıcı mehmet karadağ karakoç \
+                okan çelik sabit yılmaz savaş polat tarık çetin übeyd adıyaman uğur tezel zeki zübeyir kaya aleyna \
+                gültekin berivan içen cansu gürel didem dülber ebru şahin ece tekmen elanur düz elif keskin ezgi otlu \
+                kevser gündoğdu leyla ilter mesude alayont mine okaytu nilay güreler özge tosun rabiya isgi sadakat \
+                nazlı saygılı selin türkoğlu susanne firat sude nur sözüdoğru tülay ateş ayça tekmen aylin dişli ayşe \
+                taslak ayşenur büyükçiğer bahar güvenç damla bozyel dilara arslan fadime kurnaz funda payan gülbahar \
+                hilal çetinkaya i̇layda civelek pelin tekneci dişli sivrikaya serra çağan şevval alpavut zeynep erdoğan \
+                tülay ateş eyyub yayla konya ünye yiğit akyiğit yıldırım akyıldız karadayı yozgat bayortaç yörük yunus \
+                niğde divriği bozdoğan elazığ muğla iğdır hakkâri elâzığ""";
         String transcription = """
-                эйюб яйла конья унье йигит акйигит йылдырым акйылдыз карадайы йозгат байортач йорюк юнус нигде дивриги \
-                боздоган мугла ыгдыр хаккяри элязыг болат хасан али калдырым омер байрам окай йокушлу чалханоглу \
-                каан айхан озан туфан энес унал дениз тюрюч зеки челик мерих демирал беркай озджан угурджан чакыр \
-                гювен ялчын эмре кылынч мерт мюлдюр юсуф языджы умут мераш озан кабак алтай байындыр ахмед кутуджу \
-                мерт четин арзу карабулут ягмур ураз фатма шахин эзги чаглар дидем карагенч яшам гексу хыз эмине \
-                эджем эсен эбру топчу берна еничери илайда дживелек дерья архан эдже тюркоглу садыкоглу ипек кая \
-                седанур инджик ырем эрен мелике озтюрк гамзе яман элиф кескин бюшра куру дилан ешим ташкин джансу \
-                нур пижамалы хаста ягыз шофере чабуджак гювенди чылдыр""";
+                абдуссамед карнучу атакан акьол аталай бабаджан батухан оздемир бекир гекчимен беркай гермез берке \
+                озер догуджан хасполат энес и̇лкин эрджан ширин хасан адыгюзел керем кесгин малик караахмет мехмет \
+                узюмджю мухаммет джан тунджер мутлу аксу доган онур таха такир абдуллах доган бахадир чилоглу бирхан \
+                ватансевер эмирхан айдоган эмре мор энес унал эртугрул эрсой фуркан унвер хайруллах алыджы мехмет \
+                карадаг каракоч окан челик сабит йылмаз саваш полат тарык четин убейд адыяман угур тезел зеки зюбейир \
+                кая алейна гюлтекин бериван ичен джансу гюрел дидем дюлбер эбру шахин эдже текмен эланур дюз элиф \
+                кескин эзги отлу кевсер гюндогду лейла илтер месуде алайонт мине окайту нилай гюрелер озге тосун \
+                рабия исги садакат назлы сайгылы селин тюркоглу сусанне фират суде нур сезюдогру тюлай атеш айча \
+                текмен айлин дишли айше таслак айшенур буюкчигер бахар гювенч дамла бозьел дилара арслан фадиме \
+                курназ фунда паян гюлбахар хилал четинкая и̇лайда дживелек пелин текнеджи дишли сиврикая серра чаган \
+                шеввал алпавут зейнеп эрдоган тюлай атеш эйюб яйла конья унье йигит акйигит йылдырым акйылдыз карадайы \
+                йозгат байортач йорюк юнус нигде дивриги боздоган элазыг мугла игдыр хаккяри элязыг""";
         Turkish service = new Turkish();
 
         String[] words = text.split(" ");
