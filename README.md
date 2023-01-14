@@ -6,7 +6,7 @@ respective language. L2R also supports Latin to Russian transliteration for a fe
 like Greek or Chinese. Full list can be found below.
 
 **Name transcriptor** is a project in process. As for now it presents only the back-end logics for name transcription.
-Basic GUI support will be introduced at a later point. At this time app supports 26 languages and new ones are
+Basic GUI support will be introduced at a later point. At this time app supports almost 30 languages and new ones are
 added on a weekly basis.
 
 ## Features
@@ -42,6 +42,7 @@ List of currently supported languages:
 * 🇬🇪 Georgian (from Roman script to Cyrillic)
 * 🇩🇪 German
 * 🇬🇷 Greek (from Roman script to Cyrillic)
+* 🇮🇹 Italian
 * 🇯🇵 Japanese (from Hepburn romanization system to Cyrillic)
 * 🇱🇹 Lithuanian
 * 🇱🇻 Latvian
@@ -79,7 +80,7 @@ Docker container can be built and launched by:
 
 **Транскриптор L2R** все еще находится в стадии разработки. На данный момент он представляет только внутреннюю логику
 транскрипции имен. Базовый графический интерфейс будет представлена позже. На данный момент приложение поддерживает
-26 языков. Новые языки добавляются еженедельно. Полный пречень доступен ниже.
+почти 30 языков. Новые языки добавляются еженедельно. Полный пречень доступен ниже.
 
 ## Рабочие характеристики
 
@@ -110,6 +111,7 @@ Docker container can be built and launched by:
 * 🇧🇷 бразильский португальский
 * 🇬🇷 греческий (с латиницы на кириллицу)
 * 🇬🇪 грузинский (с латиницы на кириллицу)
+* 🇮🇹 итальянский
 * 🇨🇳 китайский (с латиницы на кириллицу по системе Палладия)
 * 🇱🇻 латышский
 * 🇱🇹 литовский
