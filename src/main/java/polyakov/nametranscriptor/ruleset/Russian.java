@@ -1,5 +1,6 @@
 package polyakov.nametranscriptor.ruleset;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.ruleset.resources.popularnames.RussianNames;
 
@@ -14,6 +15,7 @@ public class Russian implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
+        name = StringUtils.stripAccents(name);
         name = checkPrimaryCases(name);
         Optional<String> checkedName = checkPopularNames(name);
         if (checkedName.isPresent()) {

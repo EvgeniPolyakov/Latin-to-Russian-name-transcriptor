@@ -1,5 +1,6 @@
 package polyakov.nametranscriptor.ruleset;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -7,6 +8,7 @@ public class Japanese implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
+        name = StringUtils.stripAccents(name);
         name = checkCombinations(name, mode);
         name = checkSingleChars(name);
         return name;

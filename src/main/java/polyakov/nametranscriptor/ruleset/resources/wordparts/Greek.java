@@ -80,5 +80,5 @@ public class Greek {
 
     public static final List<String> S_CASE_CONSONANTS = List.of("v", "g", "d", "m", "n");
     public static final List<String> VOICELESS_CONSONANTS = List.of("p", "t", "k", "f", "s");
-    public static final List<String> VOWELS = List.of("a", "e", "i", "ï", "í", "o", "u", "y");
+    public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u", "y");
 }

@@ -1,5 +1,6 @@
 package polyakov.nametranscriptor.ruleset;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.ruleset.resources.popularnames.GreekNames;
 
@@ -14,13 +15,14 @@ public class Greek implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
+        name = StringUtils.stripAccents(name);
         Optional<String> checkedName = checkPopularNames(name);
         if (checkedName.isPresent()) {
             return checkedName.get();
         }
         name = checkStart(name);
         name = checkCombinations(name);
-        name = checkConsonantCombinations(name);
+        name = checkConsonants(name);
         name = checkEndings(name);
         name = checkSingleChars(name);
         return name;
@@ -28,7 +30,6 @@ public class Greek implements Ruleset {
 
     private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
-        name = name.replace("á", "а");
         name = name.replace("b", "б");
         name = name.replace("c", "к");
         name = name.replace("d", "д");
@@ -37,8 +38,6 @@ public class Greek implements Ruleset {
         name = name.replace("g", "г");
         name = name.replace("h", "х");
         name = name.replace("i", "и");
-        name = name.replace("ï", "и");
-        name = name.replace("í", "и");
         name = name.replace("k", "к");
         name = name.replace("l", "л");
         name = name.replace("m", "м");
@@ -57,27 +56,13 @@ public class Greek implements Ruleset {
         return name;
     }
 
-    private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : FIRST_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
-        for (Map.Entry<String, String> starter : SECOND_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
-        return name;
-    }
-
     private static String checkCombinations(String name) {
         if (name.startsWith("yi")) {
             name = name.replaceFirst("yi", "йи");
         }
         name = name.replace("aioa", "аиоа");
         name = name.replace("aio", "ейо");
-        name = checkVowelCombinations(name);
+        name = checkVowels(name);
         name = name.replace("ye", "ье");
         name = name.replace("yai", "ье");
         name = name.replace("yi", "ьи");
@@ -109,7 +94,7 @@ public class Greek implements Ruleset {
         return name;
     }
 
-    private static String checkVowelCombinations(String name) {
+    private static String checkVowels(String name) {
         for (String vowel : VOWELS) {
             name = checkAfterVowelCases(name, vowel);
             if ((!vowel.equals("i")) && (!vowel.equals("y"))) {
@@ -120,7 +105,7 @@ public class Greek implements Ruleset {
         return name;
     }
 
-    private static String checkConsonantCombinations(String name) {
+    private static String checkConsonants(String name) {
         for (String consonant : VOICELESS_CONSONANTS) {
             name = name.replace("mp" + consonant, "мп" + consonant);
             name = name.replace("mp" + consonant, "мп" + consonant);
@@ -128,6 +113,20 @@ public class Greek implements Ruleset {
         name = name.replace("mp", "мб");
         for (String consonant : S_CASE_CONSONANTS) {
             name = name.replace("s" + consonant, "з" + consonant);
+        }
+        return name;
+    }
+
+    private static String checkStart(String name) {
+        for (Map.Entry<String, String> starter : FIRST_TIER_STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                return name.replaceFirst(starter.getKey(), starter.getValue());
+            }
+        }
+        for (Map.Entry<String, String> starter : SECOND_TIER_STARTERS.entrySet()) {
+            if (name.startsWith(starter.getKey())) {
+                return name.replaceFirst(starter.getKey(), starter.getValue());
+            }
         }
         return name;
     }
@@ -143,11 +142,7 @@ public class Greek implements Ruleset {
         if (name.endsWith("ia")) {
             name = name.substring(0, name.length() - 2) + "ия";
         }
-        if (name.endsWith("ïa")) {
-            name = name.substring(0, name.length() - 2) + "ия";
-        }
         name = name.replace("ia", "иа");
-        name = name.replace("ïa", "иа");
         return name;
     }
 

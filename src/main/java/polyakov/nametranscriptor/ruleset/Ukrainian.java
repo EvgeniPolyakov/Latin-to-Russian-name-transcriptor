@@ -1,5 +1,6 @@
 package polyakov.nametranscriptor.ruleset;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.ruleset.resources.popularnames.RussianNames;
 import polyakov.nametranscriptor.ruleset.resources.popularnames.UkrainianNames;
@@ -16,6 +17,7 @@ public class Ukrainian implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
+        name = StringUtils.stripAccents(name);
         Optional<String> ukrainianName = checkUkrainianNames(name);
         if (ukrainianName.isPresent()) {
             return ukrainianName.get();
