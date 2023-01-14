@@ -72,7 +72,6 @@ public class Greek {
     public static final Map<String, String> ENDINGS = Map.ofEntries(
             Map.entry("ea", "ея"),
             Map.entry("aia", "ея"),
-            Map.entry("aía", "ея"),
             Map.entry("yi", "ьи"),
             Map.entry("gi", "ьи"),
             Map.entry("aiá", "еа")
@@ -80,5 +79,5 @@ public class Greek {
 
     public static final List<String> S_CASE_CONSONANTS = List.of("v", "g", "d", "m", "n");
     public static final List<String> VOICELESS_CONSONANTS = List.of("p", "t", "k", "f", "s");
-    public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u", "y");
+    public static final List<String> VOWELS = List.of("a", "á", "e", "i", "o", "u", "y", "а", "е", "и", "о");
 }

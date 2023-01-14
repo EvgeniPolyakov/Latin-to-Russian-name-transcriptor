@@ -21,7 +21,7 @@ class GreekTest {
                 aristidis asterios charalampos elias fotios giorgios grigorios grigoris lakis mimis nicolaos periklis \
                 sotiris spyridon tasos vassilios alexios anastasia dionisios efstratios efthymios eleftherios kyriaki \
                 lazaros leonidas mihail mihalis minas paraskevas savas sofia sokratis theocharis theofanis vangelis \
-                vassiliki zafiris achileas andreas""";
+                vassiliki zafiris achileas andreas goi gói goï goí""";
         String transcription = """
                 истиея вейос карье камени еракини йидес пирьи янница ахиллеас алкейос эмилиос вайония панаюда \
                 загливери гана анхиалос кардица криеза неа псара рихея эвдокия эввоикос ахея триа калимнос бамбис \
@@ -33,7 +33,7 @@ class GreekTest {
                 хараламбос кириакос лукас михалис сотириос танасис аристидис астериос хараламбос элиас фотиос йоргос \
                 григориос григорис лакис мимис николаос периклис сотирис спиридон тасос вассилиос алексиос анастасия \
                 дионисиос эфстратиос эфтимиос элефтериос кириаки лазарос леонидас михаил михалис минас параскевас \
-                савас софия сократис теохарис теофанис вангелис вассилики зафирис ахилеас андреас""";
+                савас софия сократис теохарис теофанис вангелис вассилики зафирис ахилеас андреас гои гои гои гои""";
         Greek service = new Greek();
 
         String[] words = text.split(" ");

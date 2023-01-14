@@ -1,6 +1,5 @@
 package polyakov.nametranscriptor.ruleset;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.ruleset.resources.popularnames.GreekNames;
 
@@ -15,7 +14,7 @@ public class Greek implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = StringUtils.stripAccents(name);
+        name = normalizeAccents(name);
         Optional<String> checkedName = checkPopularNames(name);
         if (checkedName.isPresent()) {
             return checkedName.get();
@@ -30,6 +29,7 @@ public class Greek implements Ruleset {
 
     private static String checkSingleChars(String name) {
         name = name.replace("a", "а");
+        name = name.replace("á", "а");
         name = name.replace("b", "б");
         name = name.replace("c", "к");
         name = name.replace("d", "д");
@@ -67,8 +67,6 @@ public class Greek implements Ruleset {
         name = name.replace("yai", "ье");
         name = name.replace("yi", "ьи");
         name = name.replace("yii", "ьи");
-        name = name.replace("yí", "ьи");
-        name = name.replace("yií", "ьи");
         name = name.replace("yia", "ья");
         name = name.replace("yiia", "ья");
         name = name.replace("yie", "ье");
@@ -84,20 +82,16 @@ public class Greek implements Ruleset {
         name = name.replace("ph", "ф");
         name = name.replace("kh", "х");
         name = name.replace("gk", "г");
-        name = name.replace("ói", "ои");
         name = name.replace("ou", "у");
         name = name.replace("yi", "йи");
         name = name.replace("yii", "йи");
-        name = name.replace("yí", "йи");
-        name = name.replace("yií", "йи");
-        name = name.replace("ío", "ьо");
         return name;
     }
 
     private static String checkVowels(String name) {
         for (String vowel : VOWELS) {
             name = checkAfterVowelCases(name, vowel);
-            if ((!vowel.equals("i")) && (!vowel.equals("y"))) {
+            if ((!vowel.equals("i")) && (!vowel.equals("y") && (!vowel.equals("и")))) {
                 name = name.replace(vowel + "e", vowel + "э");
                 name = name.replace(vowel + "ai", vowel + "э");
             }
@@ -162,6 +156,13 @@ public class Greek implements Ruleset {
                 name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
             }
         }
+        return name;
+    }
+
+    private static String normalizeAccents(String name) {
+        name = name.replace("ó", "o");
+        name = name.replace("ï", "i");
+        name = name.replace("í", "i");
         return name;
     }
 
