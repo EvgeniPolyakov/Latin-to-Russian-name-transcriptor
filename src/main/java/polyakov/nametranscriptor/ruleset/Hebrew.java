@@ -72,6 +72,7 @@ public class Hebrew implements Ruleset {
         name = name.replace("ph", "ф");
         name = name.replace("sh", "ш");
         name = name.replace("kh", "х");
+        name = name.replace("th", "т");
         name = name.replace("ts", "ц");
         name = name.replace("tz", "ц");
         name = name.replace("ou", "у");
