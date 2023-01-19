@@ -15,6 +15,7 @@ public enum RulesetName {
     GEORGIAN("Georgian"),
     GERMAN("German"),
     GREEK("Greek"),
+    HEBREW("Hebrew"),
     ITALIAN("Italian"),
     JAPANESE("Japanese"),
     KAZAKH("Kazakh"),
