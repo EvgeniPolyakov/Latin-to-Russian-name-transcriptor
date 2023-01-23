@@ -67,7 +67,9 @@ public class Hebrew implements Ruleset {
 
     private static String checkCombinations(String name) {
         name = name.replace("shch", "щ");
+        name = name.replace("tsch", "ч");
         name = name.replace("tch", "ч");
+        name = name.replace("sch", "ш");
         name = name.replace("ch", "х");
         name = name.replace("ph", "ф");
         name = name.replace("sh", "ш");
@@ -76,7 +78,6 @@ public class Hebrew implements Ruleset {
         name = name.replace("ts", "ц");
         name = name.replace("tz", "ц");
         name = name.replace("ou", "у");
-
         return name;
     }
 

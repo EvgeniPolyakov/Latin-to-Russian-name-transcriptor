@@ -6,6 +6,8 @@ public enum HebrewNames {
     BEEROT("beerot", "беерот"),
     COHEN("cohen", "коэн"),
     GUY("guy", "гай"),
+    HAIM("haim", "хаим"),
+    MEIR("meir", "меир"),
     NAIM("naim", "наим"),
     WAIL("wail", "ваиль"),
     YAIR("yair", "яир"),

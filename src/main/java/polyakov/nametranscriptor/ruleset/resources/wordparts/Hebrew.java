@@ -26,6 +26,6 @@ public class Hebrew {
     );
 
     public static final List<String> VOWELS = List.of(
-            "a", "e", "i", "o", "u", "е", "и", "о", "у", "э", "ю", "я"
+            "a", "e", "i", "o", "u", "y", "е", "и", "о", "у", "э", "ю", "я"
     );
 }
