@@ -17,51 +17,31 @@ public class Czech implements Ruleset {
         }
         name = checkVowels(name);
         name = checkCombinations(name);
-        name = checkSingleChars(name);
-        return name;
+        name = mapSingleChars(name);
+        return mapStandardChars(name);
     }
 
-    protected static String checkSingleChars(String name) {
-        name = name.replace("a", "а");
+    protected static String mapSingleChars(String name) {
         name = name.replace("á", "а");
-        name = name.replace("b", "б");
         name = name.replace("c", "ц");
         name = name.replace("č", "ч");
-        name = name.replace("d", "д");
         name = name.replace("ď", "дь");
-        name = name.replace("e", "е");
         name = name.replace("é", "е");
         name = name.replace("ě", "е");
-        name = name.replace("f", "ф");
-        name = name.replace("g", "г");
         name = name.replace("h", "г");
-        name = name.replace("i", "и");
         name = name.replace("í", "и");
         name = name.replace("j", "й");
-        name = name.replace("k", "к");
         name = name.replace("l", "л");
-        name = name.replace("m", "м");
-        name = name.replace("n", "н");
         name = name.replace("ň", "нь");
-        name = name.replace("o", "о");
         name = name.replace("ó", "о");
-        name = name.replace("p", "п");
-        name = name.replace("q", "к");
-        name = name.replace("r", "р");
         name = name.replace("ř", "рш");
-        name = name.replace("s", "с");
         name = name.replace("š", "ш");
-        name = name.replace("t", "т");
         name = name.replace("ť", "ть");
-        name = name.replace("u", "у");
         name = name.replace("ú", "у");
         name = name.replace("ů", "у");
-        name = name.replace("v", "в");
-        name = name.replace("w", "в");
         name = name.replace("x", "кс");
         name = name.replace("y", "ы");
         name = name.replace("ý", "ы");
-        name = name.replace("z", "з");
         name = name.replace("ž", "ж");
         return name;
     }

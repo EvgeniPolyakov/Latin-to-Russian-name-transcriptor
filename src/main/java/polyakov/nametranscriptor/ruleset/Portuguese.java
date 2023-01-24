@@ -23,48 +23,28 @@ public class Portuguese implements Ruleset {
         name = checkEnd(name);
         name = checkVowels(name);
         name = checkCombinations(name);
-        name = checkSingleChars(name);
-        return name;
+        name = mapSingleChars(name);
+        return mapStandardChars(name);
     }
 
-    protected String checkSingleChars(String name) {
-        name = name.replace("a", "а");
+    protected String mapSingleChars(String name) {
         name = name.replace("à", "а");
         name = name.replace("á", "а");
         name = name.replace("â", "а");
         name = name.replace("ã", "ан");
-        name = name.replace("b", "б");
         name = name.replace("c", "к");
         name = name.replace("ç", "с");
-        name = name.replace("d", "д");
-        name = name.replace("e", "е");
         name = name.replace("ê", "е");
         name = name.replace("é", "е");
-        name = name.replace("f", "ф");
-        name = name.replace("g", "г");
-        name = name.replace("h", "х");
-        name = name.replace("i", "и");
-        name = name.replace("í", "и");
+        name = name.replace("í", "и"); //TODO
         name = name.replace("j", "ж");
-        name = name.replace("k", "к");
         name = name.replace("l", "л");
         name = name.replace("m", "н");
-        name = name.replace("n", "н");
-        name = name.replace("o", "о");
         name = name.replace("ó", "о");
         name = name.replace("ô", "о");
-        name = name.replace("p", "п");
-        name = name.replace("r", "р");
-        name = name.replace("q", "к");
-        name = name.replace("s", "с");
-        name = name.replace("t", "т");
-        name = name.replace("u", "у");
         name = name.replace("ú", "у");
         name = name.replace("ü", "у");
-        name = name.replace("v", "в");
-        name = name.replace("w", "в");
         name = name.replace("x", "ш");
-        name = name.replace("z", "з");
         return name;
     }
 

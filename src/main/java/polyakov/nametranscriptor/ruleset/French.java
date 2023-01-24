@@ -26,82 +26,31 @@ public class French implements Ruleset {
         name = checkEndings(name);
         name = checkCombinations(name);
         name = checkCasesOfL(name);
-        name = checkSingleChars(name);
+        name = mapSingleChars(name);
+        name = mapStandardChars(name);
         return postcheck(name);
     }
 
-    private static String checkPrimaryCases(String name) {
-        name = name.replace("gueuil", "гейль");
-        name = name.replace("gueil", "гейль");
-        name = name.replace("cueuil", "сейль");
-        name = name.replace("cueil", "сейль");
-        for (String vowel : AOU_VOWELS) {
-            name = name.replace("cc" + vowel, "кк" + vowel);
-            name = name.replace("c" + vowel, "к" + vowel);
-            name = name.replace("ge" + vowel, "ж" + vowel);
-        }
-        name = name.replace("guen", "ген");
-        for (String vowel : EIY_VOWELS) {
-            name = name.replace("sc" + vowel, "с" + vowel);
-            name = name.replace("gu" + vowel, "г" + vowel);
-            name = name.replace("g" + vowel, "ж" + vowel);
-            name = name.replace("c" + vowel, "с" + vowel);
-        }
-        name = name.replace("aé", "аэ");
-        name = name.replace("aë", "аэ");
-        name = name.replace("iai", "ье");
-        name = name.replace("oun", "ун");
-        name = name.replace("oum", "ум");
-        name = name.replace("ein", "эн");
-        name = name.replace("eau", "о");
-        name = name.replace("au", "о");
-        name = name.replace("ea", "а");
-        name = checkVilleCases(name);
-        if (name.startsWith("eu")) {
-            name = name.replaceFirst("eu", "э");
-        }
-        name = name.replace("eu", "е");
-        return name;
-    }
-
-    private static String checkSingleChars(String name) {
-        name = name.replace("a", "а");
+    private static String mapSingleChars(String name) {
         name = name.replace("à", "а");
         name = name.replace("â", "а");
-        name = name.replace("b", "б");
         name = name.replace("c", "к");
         name = name.replace("ç", "с");
-        name = name.replace("d", "д");
-        name = name.replace("e", "е");
         name = name.replace("é", "е");
         name = name.replace("ë", "э");
         name = name.replace("è", "е");
         name = name.replace("ê", "е");
-        name = name.replace("f", "ф");
-        name = name.replace("g", "г");
         name = name.replace("h", "");
-        name = name.replace("i", "и");
         name = name.replace("î", "и");
         name = name.replace("ï", "и");
         name = name.replace("j", "ж");
-        name = name.replace("k", "к");
         name = name.replace("l", "ль");
-        name = name.replace("m", "м");
-        name = name.replace("n", "н");
-        name = name.replace("o", "о");
         name = name.replace("ô", "о");
         name = name.replace("œ", "е");
-        name = name.replace("p", "п");
-        name = name.replace("r", "р");
-        name = name.replace("s", "с");
-        name = name.replace("t", "т");
         name = name.replace("u", "ю");
         name = name.replace("û", "ю");
-        name = name.replace("v", "в");
-        name = name.replace("w", "в");
         name = name.replace("y", "и");
         name = name.replace("x", "кс");
-        name = name.replace("z", "з");
         return name;
     }
 
@@ -204,6 +153,40 @@ public class French implements Ruleset {
         name = name.replace("iо", "ьо");
         name = name.replace("eû", "е");
         name = name.replace("hен", "эн");
+        return name;
+    }
+
+    private static String checkPrimaryCases(String name) {
+        name = name.replace("gueuil", "гейль");
+        name = name.replace("gueil", "гейль");
+        name = name.replace("cueuil", "сейль");
+        name = name.replace("cueil", "сейль");
+        for (String vowel : AOU_VOWELS) {
+            name = name.replace("cc" + vowel, "кк" + vowel);
+            name = name.replace("c" + vowel, "к" + vowel);
+            name = name.replace("ge" + vowel, "ж" + vowel);
+        }
+        name = name.replace("guen", "ген");
+        for (String vowel : EIY_VOWELS) {
+            name = name.replace("sc" + vowel, "с" + vowel);
+            name = name.replace("gu" + vowel, "г" + vowel);
+            name = name.replace("g" + vowel, "ж" + vowel);
+            name = name.replace("c" + vowel, "с" + vowel);
+        }
+        name = name.replace("aé", "аэ");
+        name = name.replace("aë", "аэ");
+        name = name.replace("iai", "ье");
+        name = name.replace("oun", "ун");
+        name = name.replace("oum", "ум");
+        name = name.replace("ein", "эн");
+        name = name.replace("eau", "о");
+        name = name.replace("au", "о");
+        name = name.replace("ea", "а");
+        name = checkVilleCases(name);
+        if (name.startsWith("eu")) {
+            name = name.replaceFirst("eu", "э");
+        }
+        name = name.replace("eu", "е");
         return name;
     }
 
@@ -332,6 +315,7 @@ public class French implements Ruleset {
     }
 
     private static String checkCasesOfL(String name) {
+        name = name.replace("ll", "лl");
         name = name.replace("lа", "ла");
         name = name.replace("lе", "ле");
         name = name.replace("lи", "ли");
@@ -370,7 +354,6 @@ public class French implements Ruleset {
         name = name.replace("эь", "эй");
         name = name.replace("юь", "юй");
         name = name.replace("яь", "яй");
-        name = name.replace("льль", "лль");
         return name;
     }
 

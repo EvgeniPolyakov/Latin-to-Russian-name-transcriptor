@@ -15,8 +15,8 @@ public class Slovak extends Czech {
         name = checkSlovakCombinations(name);
         name = checkCombinations(name);
         name = checkSlovakChars(name);
-        name = checkSingleChars(name);
-        return name;
+        name = mapSingleChars(name);
+        return mapStandardChars(name);
     }
 
     private static String checkSlovakCombinations(String name) {

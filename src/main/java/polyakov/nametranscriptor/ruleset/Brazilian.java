@@ -96,9 +96,9 @@ public class Brazilian extends Portuguese {
     }
 
     @Override
-    protected String checkSingleChars(String name) {
+    protected String mapSingleChars(String name) {
         name = name.replace("x", "с");
-        return super.checkSingleChars(name);
+        return super.mapSingleChars(name);
     }
 
     private static Optional<String> checkPopularNames(String name) {

@@ -27,43 +27,24 @@ public class Albanian implements Ruleset {
         }
         name = checkVowels(name);
         name = checkCombinations(name);
-        name = checkSingleChars(name);
+        name = mapSingleChars(name);
+        name = mapStandardChars(name);
         return postCheck(name);
     }
 
-    private static String checkSingleChars(String name) {
-        name = name.replace("a", "а");
-        name = name.replace("b", "б");
+    private static String mapSingleChars(String name) {
         name = name.replace("c", "ц");
         name = name.replace("ç", "ч");
         name = name.replace("ç", "ч");
         name = name.replace("ć", "ч");
         name = name.replace("č", "ч");
-        name = name.replace("d", "д");
-        name = name.replace("e", "е");
         name = name.replace("ë", "е");
-        name = name.replace("f", "ф");
-        name = name.replace("g", "г");
-        name = name.replace("h", "х");
-        name = name.replace("i", "и");
         name = name.replace("j", "й");
-        name = name.replace("k", "к");
         name = name.replace("l", "ль");
-        name = name.replace("m", "м");
-        name = name.replace("n", "н");
-        name = name.replace("o", "о");
-        name = name.replace("p", "п");
         name = name.replace("q", "кь");
-        name = name.replace("r", "р");
-        name = name.replace("s", "с");
         name = name.replace("š", "ш");
-        name = name.replace("t", "т");
-        name = name.replace("u", "у");
-        name = name.replace("v", "в");
-        name = name.replace("w", "в");
         name = name.replace("x", "дз");
         name = name.replace("y", "ю");
-        name = name.replace("z", "з");
         name = name.replace("ž", "ж");
         return name;
     }

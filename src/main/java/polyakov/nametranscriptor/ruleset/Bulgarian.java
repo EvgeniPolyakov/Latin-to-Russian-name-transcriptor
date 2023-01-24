@@ -20,7 +20,8 @@ public class Bulgarian extends Russian {
         name = checkVowels(name);
         name = checkBulgarianChars(name);
         name = checkCombinations(name);
-        name = checkSingleChars(name);
+        name = mapSingleChars(name);
+        name = mapStandardChars(name);
         name = checkYerCases(name);
         return postcheck(name);
     }

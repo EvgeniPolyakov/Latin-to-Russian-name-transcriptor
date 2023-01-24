@@ -31,40 +31,20 @@ public class Dutch implements Ruleset {
         name = checkEndings(name);
         name = checkCombinations(name);
         name = checkSingleChars(name);
-        return name;
+        return mapStandardChars(name);
     }
 
     private static String checkSingleChars(String name) {
-        name = name.replace("a", "а");
         name = name.replace("ä", "а");
-        name = name.replace("b", "б");
         name = name.replace("c", "к");
-        name = name.replace("d", "д");
-        name = name.replace("e", "е");
         name = name.replace("ë", "е");
-        name = name.replace("f", "ф");
-        name = name.replace("g", "г");
-        name = name.replace("h", "х");
-        name = name.replace("i", "и");
         name = name.replace("ï", "и");
         name = name.replace("j", "й");
-        name = name.replace("k", "к");
         name = name.replace("l", "л");
-        name = name.replace("n", "н");
-        name = name.replace("m", "м");
-        name = name.replace("o", "о");
-        name = name.replace("p", "п");
-        name = name.replace("r", "р");
-        name = name.replace("s", "с");
-        name = name.replace("t", "т");
-        name = name.replace("q", "к");
         name = name.replace("u", "ю");
         name = name.replace("ü", "у");
-        name = name.replace("w", "в");
-        name = name.replace("v", "в");
         name = name.replace("x", "кс");
         name = name.replace("y", "и");
-        name = name.replace("z", "з");
         return name;
     }
 

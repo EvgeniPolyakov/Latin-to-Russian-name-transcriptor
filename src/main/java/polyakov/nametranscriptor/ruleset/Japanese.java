@@ -11,7 +11,7 @@ public class Japanese implements Ruleset {
         name = StringUtils.stripAccents(name);
         name = checkCombinations(name, mode);
         name = checkSingleChars(name);
-        return name;
+        return mapStandardChars(name);
     }
 
     private static String checkCombinations(String name, int mode) {
@@ -58,28 +58,10 @@ public class Japanese implements Ruleset {
     }
 
     private static String checkSingleChars(String name) {
-        name = name.replace("k", "к");
-        name = name.replace("s", "с");
-        name = name.replace("t", "т");
-        name = name.replace("n", "н");
-        name = name.replace("h", "х");
-        name = name.replace("m", "м");
-        name = name.replace("r", "р");
         name = name.replace("l", "р");
-        name = name.replace("p", "п");
-        name = name.replace("b", "б");
-        name = name.replace("g", "г");
-        name = name.replace("f", "ф");
-        name = name.replace("d", "д");
-        name = name.replace("w", "в");
-        name = name.replace("v", "в");
         name = name.replace("j", "дз");
         name = name.replace("z", "дз");
-        name = name.replace("a", "а");
-        name = name.replace("i", "и");
-        name = name.replace("u", "у");
         name = name.replace("e", "э");
-        name = name.replace("o", "о");
         return name;
     }
 
