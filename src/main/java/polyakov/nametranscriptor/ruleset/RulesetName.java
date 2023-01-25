@@ -28,6 +28,7 @@ public enum RulesetName {
     RUSSIAN("Russian"),
     SERBOCROAT("Serbocroat"),
     SLOVAK("Slovak"),
+    SPANISH("Spanish"),
     TURKISH("Turkish"),
     UKRAINIAN("Ukrainian");
 

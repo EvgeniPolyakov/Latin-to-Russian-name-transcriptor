@@ -52,6 +52,7 @@ List of currently supported languages:
 * 🇷🇴 Romanian / 🇲🇩 Moldovan
 * 🇷🇸🇭🇷 Serbo-Croatian
 * 🇸🇰 Slovak
+* 🇪🇸 Spanish
 * 🇹🇷 Turkish
 * 🇺🇦 Ukrainian (from Roman script back to Cyrillic)
 
@@ -64,9 +65,10 @@ Any feedback is kindly welcome.
 ## Launch
 
 Docker container can be built and launched by:
+
 1. cloning this project
 2. installing and running Docker (if it has been not already installed)
-3. running container in the terminal by command: `docker-compose up` 
+3. running container in the terminal by command: `docker-compose up`
 
 ---
 
@@ -113,6 +115,7 @@ Docker container can be built and launched by:
 * 🇬🇷 греческий (с латиницы на кириллицу)
 * 🇬🇪 грузинский (с латиницы на кириллицу)
 * 🇮🇱 иврит (с латиницы на кириллицу)
+* 🇪🇸 испанский
 * 🇮🇹 итальянский
 * 🇨🇳 китайский (с латиницы на кириллицу по системе Палладия)
 * 🇱🇻 латышский
@@ -141,6 +144,7 @@ Docker container can be built and launched by:
 ## Запуск
 
 Чтобы запустить Docker-контейнер, надо:
+
 1. склонировать проект
 2. установить и запустить Docker (если не установлен ранее)
 3. запустить контейнер в терминале посредством команды: `docker-compose up`
