@@ -13,8 +13,6 @@ import polyakov.nametranscriptor.ruleset.Ruleset;
 @Slf4j
 @AllArgsConstructor
 public class TranscriptionService {
-    private static final String REGEX = "[-–—!#@%^:;+._,?|/`’'{}~&№ ]";
-
     private RulesetFactory rulesetFactory;
 
     public OutgoingDto transcribe(IncomingDto dto, int mode) {
@@ -24,15 +22,16 @@ public class TranscriptionService {
             throw new BadRequestException("Ruleset for wrong or unsupported language requested");
         }
         log.info("Transcribing text. Mode: {}", mode);
-        String[] names = dto.getText().split(String.format("(?=%s)|(?<=%s)", REGEX, REGEX));
+        String regex = "[^\\w]";
+        String[] words = dto.getText().split(String.format("(?=%s)|(?<=%s)", regex, regex));
         StringBuilder result = new StringBuilder();
-        for (String w : names) {
-            if (w.equals(w.toLowerCase())) {
-                result.append(ruleset.transcribe(w, mode));
-            } else if (w.equals(w.toUpperCase())) {
-                result.append(ruleset.transcribe(w.toLowerCase(), mode).toUpperCase());
+        for (String word : words) {
+            if (word.equals(word.toLowerCase())) {
+                result.append(ruleset.transcribe(word, mode));
+            } else if (word.equals(word.toUpperCase())) {
+                result.append(ruleset.transcribe(word.toLowerCase(), mode).toUpperCase());
             } else {
-                result.append(StringUtils.capitalize(ruleset.transcribe(w.toLowerCase(), mode)));
+                result.append(StringUtils.capitalize(ruleset.transcribe(word.toLowerCase(), mode)));
             }
         }
         return new OutgoingDto(result.toString());
