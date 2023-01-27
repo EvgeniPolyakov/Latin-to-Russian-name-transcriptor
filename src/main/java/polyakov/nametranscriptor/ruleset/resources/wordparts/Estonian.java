@@ -2,13 +2,15 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.EstonianNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Estonian {
-
     public static final Map<String, String> STARTERS = Map.ofEntries(
             Map.entry("jää", "яэ"),
             Map.entry("jöö", "йеэ"),
@@ -47,4 +49,7 @@ public class Estonian {
     );
 
     public static final List<String> VOWELS = List.of("a", "ä", "e", "i", "o", "õ", "ö", "u", "ü", "э", "я");
+
+    public static final Map<String, String> NAMES = Arrays.stream(EstonianNames.values())
+            .collect(Collectors.toMap(EstonianNames::getLatinName, EstonianNames::getCyrillicName));
 }

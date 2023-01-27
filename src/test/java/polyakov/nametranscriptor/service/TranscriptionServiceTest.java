@@ -26,9 +26,9 @@ class TranscriptionServiceTest {
         TranscriptionService ts = new TranscriptionService(rf);
 
         assertNotNull(ts);
-        assertEquals("тест", ts.transcribe(lowCase, 0).getText());
-        assertEquals("ТЕСТ", ts.transcribe(allCaps, 0).getText());
-        assertEquals("Тест", ts.transcribe(capitalized, 0).getText());
-        assertEquals("Тест", ts.transcribe(mixedCase, 0).getText());
+        assertEquals("тест", ts.transcribe(lowCase, 0).getTranscription());
+        assertEquals("ТЕСТ", ts.transcribe(allCaps, 0).getTranscription());
+        assertEquals("Тест", ts.transcribe(capitalized, 0).getTranscription());
+        assertEquals("Тест", ts.transcribe(mixedCase, 0).getTranscription());
     }
 }

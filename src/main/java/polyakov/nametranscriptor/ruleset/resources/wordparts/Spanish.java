@@ -2,13 +2,15 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.SpanishNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Spanish {
-
     public static final Map<String, String> STARTERS = Map.ofEntries(
             Map.entry("e", "э"),
             Map.entry("ье", "е"),
@@ -53,4 +55,7 @@ public class Spanish {
 
     public static final List<String> VOWELS = List.of(
             "a", "e", "i", "í", "o", "u", "ü", "y", "е", "и", "о", "э", "ю", "я");
+
+    public static final Map<String, String> NAMES = Arrays.stream(SpanishNames.values())
+            .collect(Collectors.toMap(SpanishNames::getLatinName, SpanishNames::getCyrillicName));
 }

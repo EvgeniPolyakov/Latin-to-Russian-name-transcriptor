@@ -2,13 +2,15 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.RussianNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Russian {
-
     public static final Map<String, String> STARTERS = Map.ofEntries(
             Map.entry("ei", "эй"),
             Map.entry("ey", "эй"),
@@ -41,8 +43,15 @@ public class Russian {
             Map.entry("yu", "ю")
     );
 
-    public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u", "y", "е", "и", "й", "о", "ю", "я");
+    public static final List<String> VOWELS =
+            List.of("a", "e", "i", "o", "u", "y", "е", "и", "й", "о", "ю", "я");
+
     public static final List<String> CUSTOM_ENDINGS = List.of("y", "iy", "yy");
+
     public static final List<String> Y_CONSONANTS_TIER_ONE = List.of("v", "l", "t", "z", "p", "d", "m", "b", "n");
+
     public static final List<String> Y_CONSONANTS_TIER_TWO = List.of("g", "k", "h");
+
+    public static final Map<String, String> RUSSIAN_NAMES = Arrays.stream(RussianNames.values())
+            .collect(Collectors.toMap(RussianNames::getLatinName, RussianNames::getCyrillicName));
 }

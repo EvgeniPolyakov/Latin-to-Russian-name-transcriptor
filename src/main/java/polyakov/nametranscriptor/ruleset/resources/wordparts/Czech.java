@@ -10,7 +10,9 @@ import java.util.Map;
 public class Czech {
     public static final List<String> VOWELS =
             List.of("a", "á", "ä", "é", "e", "ě", "i", "í", "o", "ó", "ô", "u", "ů", "ú", "y", "ý");
+
     public static final List<String> VOICED_CONSONANTS = List.of("b", "v", "d", "ď", "z", "ž", "g", "h");
+
     public static final List<String> Y_CASE_CONSONANTS = List.of("g", "k", "h", "ch", "c", "č", "š");
 
     public static final Map<String, String> UTILITY_CONSONANTS = Map.ofEntries(

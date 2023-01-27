@@ -1,26 +1,24 @@
 package polyakov.nametranscriptor.ruleset;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.MoldovanNames;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.RussianNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
-import static polyakov.nametranscriptor.ruleset.resources.wordparts.Moldovan.PRIMARY_ENDINGS;
-import static polyakov.nametranscriptor.ruleset.resources.wordparts.Moldovan.SECONDARY_ENDINGS;
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Moldovan.*;
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.RUSSIAN_NAMES;
 
 @Component
 public class Moldovan extends Romanian {
 
     @Override
     protected String checkCustomCases(String name) {
-        Optional<String> russianName = checkRussianNames(name);
+        name = checkName(name);
+        Optional<String> russianName = Optional.ofNullable(RUSSIAN_NAMES.get(name));
         if (russianName.isPresent()) {
             return russianName.get();
         }
-        Optional<String> moldovanName = checkMoldovanNames(name);
+        Optional<String> moldovanName = Optional.ofNullable(MOLDOVAN_NAMES.get(name));
         if (moldovanName.isPresent()) {
             return moldovanName.get();
         }
@@ -47,18 +45,9 @@ public class Moldovan extends Romanian {
         return name;
     }
 
-    private static Optional<String> checkRussianNames(String name) {
-        return Arrays.stream(RussianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(RussianNames::getCyrillicName);
-    }
-
-    private static Optional<String> checkMoldovanNames(String name) {
-        return Arrays.stream(MoldovanNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(MoldovanNames::getCyrillicName);
+    private static String checkName(String name) {
+        Optional<String> russianNames = Optional.ofNullable(RUSSIAN_NAMES.get(name));
+        return russianNames.orElseGet(() -> Optional.ofNullable(MOLDOVAN_NAMES.get(name)).orElse(name));
     }
 
     @Override

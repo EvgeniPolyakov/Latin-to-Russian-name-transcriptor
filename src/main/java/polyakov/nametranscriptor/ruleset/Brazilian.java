@@ -6,6 +6,7 @@ import polyakov.nametranscriptor.ruleset.resources.popularnames.BrazilianNames;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Portuguese.*;
 
@@ -22,10 +23,7 @@ public class Brazilian extends Portuguese {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = checkVowels(name);
         name = checkEndings(name);
         name = checkConsonants(name);
@@ -95,17 +93,16 @@ public class Brazilian extends Portuguese {
         return name;
     }
 
+    private static String checkName(String name) {
+        Map<String, String> names = Arrays.stream(BrazilianNames.values())
+                .collect(Collectors.toMap(BrazilianNames::getLatinName, BrazilianNames::getCyrillicName));
+        return Optional.ofNullable(names.get(name)).orElse(name);
+    }
+
     @Override
     protected String mapSingleChars(String name) {
         name = name.replace("x", "с");
         return super.mapSingleChars(name);
-    }
-
-    private static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(BrazilianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(BrazilianNames::getCyrillicName);
     }
 
     @Override

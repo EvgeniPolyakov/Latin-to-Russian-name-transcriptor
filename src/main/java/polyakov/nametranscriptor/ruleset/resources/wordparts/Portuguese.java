@@ -2,9 +2,12 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.PortugueseNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Portuguese {
@@ -57,6 +60,10 @@ public class Portuguese {
     );
 
     public static final List<String> SOFT_CONSONANTS = List.of("lh", "nh");
+
     public static final List<String> VOICED_CONSONANTS =
             List.of("b", "d", "g", "m", "n", "l", "r", "v", "м", "л", "б", "ж");
+
+    public static final Map<String, String> NAMES = Arrays.stream(PortugueseNames.values())
+            .collect(Collectors.toMap(PortugueseNames::getLatinName, PortugueseNames::getCyrillicName));
 }

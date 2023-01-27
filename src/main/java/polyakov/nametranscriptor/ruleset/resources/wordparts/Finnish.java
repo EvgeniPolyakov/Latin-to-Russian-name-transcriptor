@@ -2,13 +2,15 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.FinnishNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Finnish {
-
     public static final Map<String, String> STARTERS = Map.ofEntries(
             Map.entry("ä", "э"),
             Map.entry("e", "э")
@@ -37,4 +39,7 @@ public class Finnish {
     public static final List<String> VOWELS = List.of(
             "a", "ä", "e", "i", "o", "ö", "u", "ü", "y", "е", "и", "о", "э", "ю", "я"
     );
+
+    public static final Map<String, String> NAMES = Arrays.stream(FinnishNames.values())
+            .collect(Collectors.toMap(FinnishNames::getLatinName, FinnishNames::getCyrillicName));
 }

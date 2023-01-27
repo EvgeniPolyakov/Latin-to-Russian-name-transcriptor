@@ -5,15 +5,14 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.RUSSIAN_NAMES;
+
 @Component
 public class Bulgarian extends Russian {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = checkPrimaryCases(name);
         name = checkStart(name);
         name = checkEndings(name);
@@ -60,6 +59,10 @@ public class Bulgarian extends Russian {
             name = name.substring(0, name.length() - 1);
         }
         return name;
+    }
+
+    private static String checkName(String name) {
+        return Optional.ofNullable(RUSSIAN_NAMES.get(name)).orElse(name);
     }
 
     @Override

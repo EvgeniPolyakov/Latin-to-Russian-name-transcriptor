@@ -1,9 +1,7 @@
 package polyakov.nametranscriptor.ruleset;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.AlbanianNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
@@ -14,10 +12,7 @@ public class Albanian implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = checkStart(name);
         if (name.contains("ë")) {
             name = checkCasesOfDiaeresisE(name);
@@ -130,11 +125,8 @@ public class Albanian implements Ruleset {
         return name;
     }
 
-    private static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(AlbanianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(AlbanianNames::getCyrillicName);
+    private static String checkName(String name) {
+        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

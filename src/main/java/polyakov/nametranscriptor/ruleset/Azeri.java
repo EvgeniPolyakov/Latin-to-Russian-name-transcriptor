@@ -2,13 +2,13 @@ package polyakov.nametranscriptor.ruleset;
 
 import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.ruleset.resources.popularnames.AzeriNames;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.RussianNames;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Azeri.*;
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.RUSSIAN_NAMES;
 
 @Component
 public class Azeri implements Ruleset {
@@ -106,7 +106,7 @@ public class Azeri implements Ruleset {
     }
 
     private static String checkName(String name) {
-        Optional<String> azeriName = checkAzeriNames(name);
+        Optional<String> azeriName = Optional.ofNullable(AZERI_NAMES.get(name));
         if (azeriName.isPresent()) {
             return azeriName.get();
         }
@@ -114,15 +114,8 @@ public class Azeri implements Ruleset {
         if (azeriSurname.isPresent()) {
             name = azeriSurname.get();
         }
-        Optional<String> russianName = checkRussianNames(name);
+        Optional<String> russianName = Optional.ofNullable(RUSSIAN_NAMES.get(name));
         return russianName.orElse(name);
-    }
-
-    private static Optional<String> checkAzeriNames(String name) {
-        return Arrays.stream(AzeriNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(AzeriNames::getCyrillicName);
     }
 
     private static Optional<String> checkAzeriSurname(String name) {
@@ -130,13 +123,6 @@ public class Azeri implements Ruleset {
                 .filter(s -> name.startsWith(s.getLatinName()))
                 .findAny()
                 .map(s -> name.replaceFirst(s.getLatinName(), s.getCyrillicName()));
-    }
-
-    private static Optional<String> checkRussianNames(String name) {
-        return Arrays.stream(RussianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(RussianNames::getCyrillicName);
     }
 
     @Override

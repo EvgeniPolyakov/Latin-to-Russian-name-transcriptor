@@ -1,23 +1,20 @@
 package polyakov.nametranscriptor.ruleset;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.ArmenianNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Armenian.ARMENIAN_NAMES;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Armenian.STARTERS;
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.RUSSIAN_NAMES;
 
 @Component
 public class Armenian extends Russian {
 
     @Override
     protected String checkPrimaryCases(String name) {
-        Optional<String> checkedName = checkArmenianNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         if (name.endsWith("ian") || name.endsWith("yan")) {
             name = name.substring(0, name.length() - 3) + "ян";
         }
@@ -40,11 +37,13 @@ public class Armenian extends Russian {
         return super.checkEndings(name);
     }
 
-    private static Optional<String> checkArmenianNames(String name) {
-        return Arrays.stream(ArmenianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(ArmenianNames::getCyrillicName);
+    private static String checkName(String name) {
+        Optional<String> armenianName = Optional.ofNullable(ARMENIAN_NAMES.get(name));
+        if (armenianName.isPresent()) {
+            return armenianName.get();
+        }
+        Optional<String> russianName = Optional.ofNullable(RUSSIAN_NAMES.get(name));
+        return russianName.orElse(name);
     }
 
     @Override

@@ -1,9 +1,7 @@
 package polyakov.nametranscriptor.ruleset;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.GermanNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
@@ -14,10 +12,7 @@ public class German implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = checkPrimaryCases(name);
         if (name.contains("j")) {
             name = checkCasesOfJ(name);
@@ -172,11 +167,8 @@ public class German implements Ruleset {
         return name;
     }
 
-    private static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(GermanNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(GermanNames::getCyrillicName);
+    private static String checkName(String name) {
+        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

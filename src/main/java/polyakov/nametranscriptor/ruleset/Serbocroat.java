@@ -1,9 +1,7 @@
 package polyakov.nametranscriptor.ruleset;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.BalkanNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
@@ -14,10 +12,7 @@ public class Serbocroat implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = checkPrimaryCases(name);
         name = checkEndings(name);
         if (name.contains("j")) {
@@ -85,11 +80,8 @@ public class Serbocroat implements Ruleset {
         return name;
     }
 
-    private static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(BalkanNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(BalkanNames::getCyrillicName);
+    private static String checkName(String name) {
+        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

@@ -2,15 +2,19 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.AzeriNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Azeri {
-
     public static final List<String> VOWELS = List.of("a", "e", "ə", "i", "ı", "o", "ö", "u", "ü");
+
     public static final List<String> UTILITY_VOWELS = List.of("a", "ı", "o", "u");
+
     public static final List<String> CYRILLIC_VOWELS = List.of("а", "е", "о", "у", "э", "ю", "я");
 
     public static final Map<String, String> ENDINGS = Map.ofEntries(
@@ -33,4 +37,7 @@ public class Azeri {
             Map.entry("yu", "ю"),
             Map.entry("yü", "ю")
     );
+
+    public static final Map<String, String> AZERI_NAMES = Arrays.stream(AzeriNames.values())
+            .collect(Collectors.toMap(AzeriNames::getLatinName, AzeriNames::getCyrillicName));
 }

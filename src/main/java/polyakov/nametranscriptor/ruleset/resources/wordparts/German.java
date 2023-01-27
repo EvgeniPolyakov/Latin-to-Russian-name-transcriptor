@@ -2,13 +2,15 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.GermanNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class German {
-
     public static final Map<String, String> ENDINGS = Map.ofEntries(
             Map.entry("ia", "ия"),
             Map.entry("rh", "р"),
@@ -60,4 +62,7 @@ public class German {
     public static final List<String> VOWELS = List.of(
             "a", "ä", "e", "i", "o", "ö", "u", "ü", "а", "е", "и", "о", "у", "э"
     );
+
+    public static final Map<String, String> NAMES = Arrays.stream(GermanNames.values())
+            .collect(Collectors.toMap(GermanNames::getLatinName, GermanNames::getCyrillicName));
 }

@@ -2,13 +2,15 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.ItalianNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Italian {
-
     public static final Map<String, String> STARTERS = Map.ofEntries(
             Map.entry("ia", "я"),
             Map.entry("e", "э"),
@@ -68,4 +70,7 @@ public class Italian {
     );
 
     public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u", "е", "и", "о", "э", "ю", "я");
+
+    public static final Map<String, String> NAMES = Arrays.stream(ItalianNames.values())
+            .collect(Collectors.toMap(ItalianNames::getLatinName, ItalianNames::getCyrillicName));
 }

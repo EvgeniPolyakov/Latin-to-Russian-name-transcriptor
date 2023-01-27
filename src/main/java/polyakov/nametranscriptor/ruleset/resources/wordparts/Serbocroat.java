@@ -2,9 +2,12 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.BalkanNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Serbocroat {
@@ -53,4 +56,7 @@ public class Serbocroat {
             Map.entry("o", "е"),
             Map.entry("u", "ю")
     );
+
+    public static final Map<String, String> NAMES = Arrays.stream(BalkanNames.values())
+            .collect(Collectors.toMap(BalkanNames::getLatinName, BalkanNames::getCyrillicName));
 }

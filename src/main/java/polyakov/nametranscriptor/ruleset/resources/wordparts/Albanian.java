@@ -2,9 +2,12 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.AlbanianNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Albanian {
@@ -36,4 +39,7 @@ public class Albanian {
             Map.entry("q", "к"),
             Map.entry("l", "л")
     );
+
+    public static final Map<String, String> NAMES = Arrays.stream(AlbanianNames.values())
+            .collect(Collectors.toMap(AlbanianNames::getLatinName, AlbanianNames::getCyrillicName));
 }

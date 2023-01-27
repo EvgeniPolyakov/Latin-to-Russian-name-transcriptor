@@ -2,9 +2,7 @@ package polyakov.nametranscriptor.ruleset;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.FrenchNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,10 +13,7 @@ public class French implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = checkPrimaryCases(name);
         name = checkStart(name);
         name = checkVowels(name);
@@ -357,11 +352,8 @@ public class French implements Ruleset {
         return name;
     }
 
-    protected static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(FrenchNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(FrenchNames::getCyrillicName);
+    private static String checkName(String name) {
+        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

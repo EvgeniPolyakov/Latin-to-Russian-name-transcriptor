@@ -2,13 +2,15 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.LatvianNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Latvian {
-
     public static final Map<String, String> AFTER_SOFT_CONSONANTS = Map.ofEntries(
             Map.entry("a", "я"),
             Map.entry("e", "е"),
@@ -46,4 +48,7 @@ public class Latvian {
     );
 
     public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u");
+
+    public static final Map<String, String> NAMES = Arrays.stream(LatvianNames.values())
+            .collect(Collectors.toMap(LatvianNames::getLatinName, LatvianNames::getCyrillicName));
 }

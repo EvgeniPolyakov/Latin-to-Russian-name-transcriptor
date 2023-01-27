@@ -2,9 +2,12 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.GreekNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Greek {
@@ -78,6 +81,11 @@ public class Greek {
     );
 
     public static final List<String> S_CASE_CONSONANTS = List.of("v", "g", "d", "m", "n");
+
     public static final List<String> VOICELESS_CONSONANTS = List.of("p", "t", "k", "f", "s");
+
     public static final List<String> VOWELS = List.of("a", "á", "e", "i", "o", "u", "y", "а", "е", "и", "о");
+
+    public static final Map<String, String> NAMES = Arrays.stream(GreekNames.values())
+            .collect(Collectors.toMap(GreekNames::getLatinName, GreekNames::getCyrillicName));
 }

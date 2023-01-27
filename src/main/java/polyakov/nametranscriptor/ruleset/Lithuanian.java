@@ -1,9 +1,7 @@
 package polyakov.nametranscriptor.ruleset;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.LithuanianNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
@@ -13,10 +11,7 @@ import static polyakov.nametranscriptor.ruleset.resources.wordparts.Lithuanian.*
 public class Lithuanian implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = checkPrimaryCases(name);
         name = checkCustomCases(name);
         if (name.contains("j")) {
@@ -135,11 +130,8 @@ public class Lithuanian implements Ruleset {
         return name;
     }
 
-    private static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(LithuanianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(LithuanianNames::getCyrillicName);
+    private static String checkName(String name) {
+        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

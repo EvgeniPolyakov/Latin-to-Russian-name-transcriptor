@@ -2,9 +2,7 @@ package polyakov.nametranscriptor.ruleset;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.SpanishNames;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -15,10 +13,7 @@ import static polyakov.nametranscriptor.ruleset.resources.wordparts.Spanish.*;
 public class Spanish implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
-        Optional<String> checkedName = checkPopularNames(StringUtils.stripAccents(name));
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = normalizeAccents(name);
         name = checkPrimaryCases(name);
         name = checkSoftenedVowels(name);
@@ -182,11 +177,8 @@ public class Spanish implements Ruleset {
         return name;
     }
 
-    private static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(SpanishNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(SpanishNames::getCyrillicName);
+    private static String checkName(String name) {
+        return Optional.ofNullable(NAMES.get(StringUtils.stripAccents(name))).orElse(name);
     }
 
     @Override

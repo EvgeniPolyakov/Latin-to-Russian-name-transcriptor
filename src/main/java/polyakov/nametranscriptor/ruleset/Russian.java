@@ -2,9 +2,7 @@ package polyakov.nametranscriptor.ruleset;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.RussianNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,10 +15,7 @@ public class Russian implements Ruleset {
     public String transcribe(String name, int mode) {
         name = StringUtils.stripAccents(name);
         name = checkPrimaryCases(name);
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = checkStart(name);
         name = checkEndings(name);
         if (name.contains("i") || name.contains("y")) {
@@ -134,11 +129,8 @@ public class Russian implements Ruleset {
         return name;
     }
 
-    protected static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(RussianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(RussianNames::getCyrillicName);
+    private static String checkName(String name) {
+        return Optional.ofNullable(RUSSIAN_NAMES.get(name)).orElse(name);
     }
 
     @Override

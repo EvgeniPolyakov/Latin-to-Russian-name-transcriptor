@@ -1,9 +1,7 @@
 package polyakov.nametranscriptor.ruleset;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.GreekNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,10 +13,7 @@ public class Greek implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
         name = normalizeAccents(name);
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = checkStart(name);
         name = checkCombinations(name);
         name = checkConsonants(name);
@@ -146,11 +141,8 @@ public class Greek implements Ruleset {
         return name;
     }
 
-    private static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(GreekNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(GreekNames::getCyrillicName);
+    private static String checkName(String name) {
+        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

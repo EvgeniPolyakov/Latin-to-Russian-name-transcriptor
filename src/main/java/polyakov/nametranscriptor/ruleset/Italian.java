@@ -2,9 +2,7 @@ package polyakov.nametranscriptor.ruleset;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.ItalianNames;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,10 +14,7 @@ public class Italian implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
         name = StringUtils.stripAccents(name);
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = checkPrimaryCases(name);
         name = checkSoftenedVowels(name);
         name = checkVowels(name);
@@ -180,11 +175,8 @@ public class Italian implements Ruleset {
         return name;
     }
 
-    private static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(ItalianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(ItalianNames::getCyrillicName);
+    private static String checkName(String name) {
+        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

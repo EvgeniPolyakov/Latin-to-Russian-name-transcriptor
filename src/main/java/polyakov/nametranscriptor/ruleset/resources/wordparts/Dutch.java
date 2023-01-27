@@ -2,13 +2,15 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.DutchNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Dutch {
-
     public static final Map<String, String> ENDINGS = Map.ofEntries(
             Map.entry("sch", "с"),
             Map.entry("w", "")
@@ -52,4 +54,7 @@ public class Dutch {
     );
 
     public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u", "а", "у", "э");
+
+    public static final Map<String, String> NAMES = Arrays.stream(DutchNames.values())
+            .collect(Collectors.toMap(DutchNames::getLatinName, DutchNames::getCyrillicName));
 }

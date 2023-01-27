@@ -8,7 +8,6 @@ import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Romanian {
-
     public static final Map<String, String> CUSTOM_CONSONANTS = Map.ofEntries(
             Map.entry("ch", "к"),
             Map.entry("gh", "г"),

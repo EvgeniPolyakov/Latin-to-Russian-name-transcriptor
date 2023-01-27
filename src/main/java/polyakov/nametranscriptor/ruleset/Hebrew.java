@@ -2,9 +2,7 @@ package polyakov.nametranscriptor.ruleset;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.HebrewNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,10 +14,7 @@ public class Hebrew implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
         name = StringUtils.stripAccents(name);
-        Optional<String> checkedName = checkPopularNames(name);
-        if (checkedName.isPresent()) {
-            return checkedName.get();
-        }
+        name = checkName(name);
         name = name.replace("ou", "u");
         if (name.contains("y")) {
             name = checkCasesOfY(name);
@@ -115,11 +110,8 @@ public class Hebrew implements Ruleset {
         return name;
     }
 
-    private static Optional<String> checkPopularNames(String name) {
-        return Arrays.stream(HebrewNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(HebrewNames::getCyrillicName);
+    private static String checkName(String name) {
+        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

@@ -2,13 +2,15 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.FrenchNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class French {
-
     public static final Map<String, String> FIRST_TIER_ENDINGS = Map.ofEntries(
             Map.entry("eille", "ей"),
             Map.entry("euil", "ей"),
@@ -123,9 +125,16 @@ public class French {
     );
 
     public static final List<String> EMPTY_ENDINGS = List.of("e", "g", "s", "c", "d", "t", "p");
+
     public static final List<String> BMP_CONSONANTS = List.of("b", "m", "б", "м");
+
     public static final List<String> AOU_VOWELS = List.of("a", "o", "u", "а", "о");
+
     public static final List<String> EIY_VOWELS = List.of("e", "é", "è", "ê", "ë", "i", "y", "э");
+
     public static final List<String> VOWELS = List.of("a", "à", "â", "e", "é", "é", "ë", "è", "ê", "i", "î",
             "ï", "o", "ô", "u", "û", "y", "а", "е", "и", "о", "э", "ю", "я");
+
+    public static final Map<String, String> NAMES = Arrays.stream(FrenchNames.values())
+            .collect(Collectors.toMap(FrenchNames::getLatinName, FrenchNames::getCyrillicName));
 }

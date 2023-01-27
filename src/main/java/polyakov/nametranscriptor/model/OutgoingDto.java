@@ -8,5 +8,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class OutgoingDto {
     @Schema(description = "Transcribed text", example = "Сунь Цзы Кун Лао Юнлэ")
-    private String text;
+    private String transcription;
 }

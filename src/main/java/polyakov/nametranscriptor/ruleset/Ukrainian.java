@@ -2,15 +2,12 @@ package polyakov.nametranscriptor.ruleset;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.RussianNames;
-import polyakov.nametranscriptor.ruleset.resources.popularnames.UkrainianNames;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
-import static polyakov.nametranscriptor.ruleset.resources.wordparts.Ukrainian.ENDINGS;
-import static polyakov.nametranscriptor.ruleset.resources.wordparts.Ukrainian.STARTERS;
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.RUSSIAN_NAMES;
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Ukrainian.*;
 
 @Component
 public class Ukrainian implements Ruleset {
@@ -18,11 +15,12 @@ public class Ukrainian implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
         name = StringUtils.stripAccents(name);
-        Optional<String> ukrainianName = checkUkrainianNames(name);
+        name = checkName(name);
+        Optional<String> ukrainianName = Optional.ofNullable(UKRAINIAN_NAMES.get(name));
         if (ukrainianName.isPresent()) {
             return ukrainianName.get();
         }
-        Optional<String> russianName = checkRussianNames(name);
+        Optional<String> russianName = Optional.ofNullable(RUSSIAN_NAMES.get(name));
         if (russianName.isPresent()) {
             return russianName.get();
         }
@@ -116,18 +114,9 @@ public class Ukrainian implements Ruleset {
         return name;
     }
 
-    private static Optional<String> checkUkrainianNames(String name) {
-        return Arrays.stream(UkrainianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(UkrainianNames::getCyrillicName);
-    }
-
-    private static Optional<String> checkRussianNames(String name) {
-        return Arrays.stream(RussianNames.values())
-                .filter(s -> s.getLatinName().equals(name))
-                .findAny()
-                .map(RussianNames::getCyrillicName);
+    private static String checkName(String name) {
+        Optional<String> russianNames = Optional.ofNullable(UKRAINIAN_NAMES.get(name));
+        return russianNames.orElseGet(() -> Optional.ofNullable(RUSSIAN_NAMES.get(name)).orElse(name));
     }
 
     @Override
