@@ -15,7 +15,7 @@ public class Russian implements Ruleset {
     public String transcribe(String name, int mode) {
         name = StringUtils.stripAccents(name);
         name = checkPrimaryCases(name);
-        name = checkName(name);
+        name = checkExceptions(name);
         name = checkStart(name);
         name = checkEndings(name);
         if (name.contains("i") || name.contains("y")) {
@@ -129,7 +129,7 @@ public class Russian implements Ruleset {
         return name;
     }
 
-    private static String checkName(String name) {
+    private static String checkExceptions(String name) {
         return Optional.ofNullable(RUSSIAN_NAMES.get(name)).orElse(name);
     }
 

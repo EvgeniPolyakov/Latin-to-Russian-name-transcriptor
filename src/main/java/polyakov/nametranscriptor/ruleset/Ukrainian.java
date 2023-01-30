@@ -15,7 +15,7 @@ public class Ukrainian implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
         name = StringUtils.stripAccents(name);
-        name = checkName(name);
+        name = checkExceptions(name);
         Optional<String> ukrainianName = Optional.ofNullable(UKRAINIAN_NAMES.get(name));
         if (ukrainianName.isPresent()) {
             return ukrainianName.get();
@@ -114,9 +114,10 @@ public class Ukrainian implements Ruleset {
         return name;
     }
 
-    private static String checkName(String name) {
-        Optional<String> russianNames = Optional.ofNullable(UKRAINIAN_NAMES.get(name));
-        return russianNames.orElseGet(() -> Optional.ofNullable(RUSSIAN_NAMES.get(name)).orElse(name));
+    private static String checkExceptions(String name) {
+        String nameWithNoAccents = StringUtils.stripAccents(name);
+        Optional<String> russianNames = Optional.ofNullable(UKRAINIAN_NAMES.get(nameWithNoAccents));
+        return russianNames.orElseGet(() -> Optional.ofNullable(RUSSIAN_NAMES.get(nameWithNoAccents)).orElse(name));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package polyakov.nametranscriptor.ruleset;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -11,7 +12,7 @@ import static polyakov.nametranscriptor.ruleset.resources.wordparts.Lithuanian.*
 public class Lithuanian implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
-        name = checkName(name);
+        name = checkExceptions(name);
         name = checkPrimaryCases(name);
         name = checkCustomCases(name);
         if (name.contains("j")) {
@@ -130,8 +131,9 @@ public class Lithuanian implements Ruleset {
         return name;
     }
 
-    private static String checkName(String name) {
-        return Optional.ofNullable(NAMES.get(name)).orElse(name);
+    private static String checkExceptions(String name) {
+        String nameWithNoAccents = StringUtils.stripAccents(name);
+        return Optional.ofNullable(NAMES.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override

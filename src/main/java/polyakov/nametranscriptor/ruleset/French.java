@@ -13,7 +13,7 @@ public class French implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkName(name);
+        name = checkExceptions(name);
         name = checkPrimaryCases(name);
         name = checkStart(name);
         name = checkVowels(name);
@@ -352,8 +352,9 @@ public class French implements Ruleset {
         return name;
     }
 
-    private static String checkName(String name) {
-        return Optional.ofNullable(NAMES.get(name)).orElse(name);
+    private static String checkExceptions(String name) {
+        String nameWithNoAccents = StringUtils.stripAccents(name);
+        return Optional.ofNullable(NAMES.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override

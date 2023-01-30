@@ -13,7 +13,7 @@ public class Finnish implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkName(name);
+        name = checkExceptions(name);
         if (name.contains("c")) {
             name = checkCasesOfC(name);
         }
@@ -138,7 +138,7 @@ public class Finnish implements Ruleset {
         return name;
     }
 
-    private static String checkName(String name) {
+    private static String checkExceptions(String name) {
         return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 

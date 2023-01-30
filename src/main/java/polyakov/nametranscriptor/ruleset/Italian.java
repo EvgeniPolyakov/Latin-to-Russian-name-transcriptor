@@ -14,7 +14,7 @@ public class Italian implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
         name = StringUtils.stripAccents(name);
-        name = checkName(name);
+        name = checkExceptions(name);
         name = checkPrimaryCases(name);
         name = checkSoftenedVowels(name);
         name = checkVowels(name);
@@ -175,7 +175,7 @@ public class Italian implements Ruleset {
         return name;
     }
 
-    private static String checkName(String name) {
+    private static String checkExceptions(String name) {
         return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 

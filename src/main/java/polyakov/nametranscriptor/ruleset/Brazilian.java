@@ -1,5 +1,6 @@
 package polyakov.nametranscriptor.ruleset;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.ruleset.resources.popularnames.BrazilianNames;
 
@@ -23,7 +24,7 @@ public class Brazilian extends Portuguese {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkName(name);
+        name = checkExceptions(name);
         name = checkVowels(name);
         name = checkEndings(name);
         name = checkConsonants(name);
@@ -93,10 +94,11 @@ public class Brazilian extends Portuguese {
         return name;
     }
 
-    private static String checkName(String name) {
+    private static String checkExceptions(String name) {
+        String nameWithNoAccents = StringUtils.stripAccents(name);
         Map<String, String> names = Arrays.stream(BrazilianNames.values())
                 .collect(Collectors.toMap(BrazilianNames::getLatinName, BrazilianNames::getCyrillicName));
-        return Optional.ofNullable(names.get(name)).orElse(name);
+        return Optional.ofNullable(names.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override

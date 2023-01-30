@@ -2,11 +2,10 @@ package polyakov.nametranscriptor.ruleset.resources.popularnames;
 
 public enum BrazilianNames {
     ALEX("alex", "алекс"),
-    BRASILIA("brasília", "бразилиа"),
+    BRASILIA("brasilia", "бразилиа"),
     DO("do", "до"),
     DOS("dos", "дос"),
     E("e", "и"),
-    JOAAO("joão", "жоао"),
     JOAO("joao", "жоао"),
     O("o", "о"),
     OS("os", "ос"),

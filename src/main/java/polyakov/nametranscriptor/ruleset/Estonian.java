@@ -12,7 +12,7 @@ public class Estonian implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkName(name);
+        name = checkExceptions(name);
         name = checkEndings(name);
         name = checkVowels(name);
         name = checkStart(name);
@@ -120,7 +120,7 @@ public class Estonian implements Ruleset {
         return name;
     }
 
-    private static String checkName(String name) {
+    private static String checkExceptions(String name) {
         return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 

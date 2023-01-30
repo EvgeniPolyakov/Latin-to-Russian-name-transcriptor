@@ -22,7 +22,7 @@ class LithuanianTest {
                 rugilė butkutė rimantė jonušaitė tereza romanovskaja austė bernotaitė aušrinė bikutė eva gecevičiūtė \
                 iveta inčytė neonila ivanovskaja laura kubiliūtė gabija sinkevičiūtė ugnė slankauskaitė donata \
                 švarcaitė ligita toropovaitė veronika zelenina livija gedgaudaitė emilija kaselytė agneta patilskyte \
-                urtė šmigelskaitė vitovskytė simona bagavičiūtė bajorinaitė gintarė blažytė deventinaitė odeta \
+                urtė šmigelskaitė vitovskytė simona bagavičiūtė bajorinaitė gintarė blažytė deventinaitė danielė \
                 kalendauskaitė rugilė lygnugarytė monika markevičiūtė kamilė pranulytė gabrielė ragauskaitė loreta \
                 rogačiova vaida rutkauskaitė silvija šafronovič sarkanaitė lnilnolnelniulnialnylnalntlnulnelnelne""";
         String transcription = """
@@ -38,7 +38,7 @@ class LithuanianTest {
                 йонушайте тереза романовская аусте бернотайте аушрине бикуте эва гецявичюте ивета инчите неонила \
                 ивановская лаура кубилюте габия синкявичюте угне сланкаускайте доната шварцайте лигита тороповайте \
                 вероника зеленина ливия гедгаудайте эмилия каселите агнета патилските урте шмигелскайте витовските \
-                симона багавичюте байоринайте гинтаре блажите девентинайте одета календаускайте ругиле лигнугарите \
+                симона багавичюте байоринайте гинтаре блажите девентинайте даниэле календаускайте ругиле лигнугарите \
                 моника маркявичюте камиле пранулите габриэле рагаускайте лорета рогачева вайда руткаускайте сильвия \
                 шафронович сарканайте льнилнольнельнюльняльнилналнтлнульнельнельне""";
         Lithuanian service = new Lithuanian();

@@ -18,7 +18,7 @@ public enum BalkanNames {
     TIA("tia", "тия"),
     RUNJE("runje", "рунье"),
     SOFIA("sofia", "софия"),
-    VRANJES("vranješ", "враньеш");
+    VRANJES("vranjes", "враньеш");
 
     private final String latinName;
     private final String cyrillicName;

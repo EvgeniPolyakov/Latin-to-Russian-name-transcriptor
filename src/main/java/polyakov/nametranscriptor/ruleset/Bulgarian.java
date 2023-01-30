@@ -1,5 +1,6 @@
 package polyakov.nametranscriptor.ruleset;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class Bulgarian extends Russian {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkName(name);
+        name = checkExceptions(name);
         name = checkPrimaryCases(name);
         name = checkStart(name);
         name = checkEndings(name);
@@ -61,8 +62,9 @@ public class Bulgarian extends Russian {
         return name;
     }
 
-    private static String checkName(String name) {
-        return Optional.ofNullable(RUSSIAN_NAMES.get(name)).orElse(name);
+    private static String checkExceptions(String name) {
+        String nameWithNoAccents = StringUtils.stripAccents(name);
+        return Optional.ofNullable(RUSSIAN_NAMES.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override

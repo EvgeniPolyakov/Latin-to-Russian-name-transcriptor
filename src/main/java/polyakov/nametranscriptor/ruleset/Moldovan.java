@@ -1,5 +1,6 @@
 package polyakov.nametranscriptor.ruleset;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -13,7 +14,7 @@ public class Moldovan extends Romanian {
 
     @Override
     protected String checkCustomCases(String name) {
-        name = checkName(name);
+        name = checkExceptions(name);
         Optional<String> russianName = Optional.ofNullable(RUSSIAN_NAMES.get(name));
         if (russianName.isPresent()) {
             return russianName.get();
@@ -45,9 +46,10 @@ public class Moldovan extends Romanian {
         return name;
     }
 
-    private static String checkName(String name) {
-        Optional<String> russianNames = Optional.ofNullable(RUSSIAN_NAMES.get(name));
-        return russianNames.orElseGet(() -> Optional.ofNullable(MOLDOVAN_NAMES.get(name)).orElse(name));
+    private static String checkExceptions(String name) {
+        String nameWithNoAccents = StringUtils.stripAccents(name);
+        Optional<String> russianNames = Optional.ofNullable(RUSSIAN_NAMES.get(nameWithNoAccents));
+        return russianNames.orElseGet(() -> Optional.ofNullable(MOLDOVAN_NAMES.get(nameWithNoAccents)).orElse(name));
     }
 
     @Override

@@ -6,7 +6,6 @@ public enum PortugueseNames {
     DO("do", "ду"),
     DOS("dos", "душ"),
     E("e", "и"),
-    JOAAO("joão", "жуан"),
     JOAO("joao", "жуан"),
     O("o", "у"),
     OS("os", "уш"),

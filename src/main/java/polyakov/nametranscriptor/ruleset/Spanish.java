@@ -13,7 +13,7 @@ import static polyakov.nametranscriptor.ruleset.resources.wordparts.Spanish.*;
 public class Spanish implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
-        name = checkName(name);
+        name = checkExceptions(name);
         name = normalizeAccents(name);
         name = checkPrimaryCases(name);
         name = checkSoftenedVowels(name);
@@ -177,8 +177,9 @@ public class Spanish implements Ruleset {
         return name;
     }
 
-    private static String checkName(String name) {
-        return Optional.ofNullable(NAMES.get(StringUtils.stripAccents(name))).orElse(name);
+    private static String checkExceptions(String name) {
+        String nameWithNoAccents = StringUtils.stripAccents(name);
+        return Optional.ofNullable(NAMES.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override

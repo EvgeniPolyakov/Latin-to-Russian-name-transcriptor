@@ -1,5 +1,6 @@
 package polyakov.nametranscriptor.ruleset;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.ruleset.resources.popularnames.AzeriNames;
 
@@ -15,7 +16,7 @@ public class Azeri implements Ruleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkName(name);
+        name = checkExceptions(name);
         name = checkEndings(name);
         if (name.contains("l")) {
             name = checkCasesOfL(name);
@@ -105,16 +106,17 @@ public class Azeri implements Ruleset {
         return name;
     }
 
-    private static String checkName(String name) {
-        Optional<String> azeriName = Optional.ofNullable(AZERI_NAMES.get(name));
+    private static String checkExceptions(String name) {
+        String nameWithNoAccents = StringUtils.stripAccents(name);
+        Optional<String> azeriName = Optional.ofNullable(AZERI_NAMES.get(nameWithNoAccents));
         if (azeriName.isPresent()) {
             return azeriName.get();
         }
-        Optional<String> azeriSurname = checkAzeriSurname(name);
+        Optional<String> azeriSurname = checkAzeriSurname(nameWithNoAccents);
         if (azeriSurname.isPresent()) {
             name = azeriSurname.get();
         }
-        Optional<String> russianName = Optional.ofNullable(RUSSIAN_NAMES.get(name));
+        Optional<String> russianName = Optional.ofNullable(RUSSIAN_NAMES.get(nameWithNoAccents));
         return russianName.orElse(name);
     }
 
