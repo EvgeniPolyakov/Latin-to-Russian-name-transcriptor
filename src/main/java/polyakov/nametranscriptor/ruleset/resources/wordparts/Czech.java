@@ -2,14 +2,16 @@ package polyakov.nametranscriptor.ruleset.resources.wordparts;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.CzechoslovakNames;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Czech {
-    public static final List<String> VOWELS =
-            List.of("a", "á", "ä", "é", "e", "ě", "i", "í", "o", "ó", "ô", "u", "ů", "ú", "y", "ý");
+    public static final List<String> VOWELS = List.of("a", "ä", "e", "ě", "i", "o", "ô", "u", "y");
 
     public static final List<String> VOICED_CONSONANTS = List.of("b", "v", "d", "ď", "z", "ž", "g", "h");
 
@@ -45,21 +47,16 @@ public class Czech {
     );
 
     public static final Map<String, String> ENDINGS = Map.ofEntries(
-            Map.entry("cký", "цкий"),
             Map.entry("cky", "цкий"),
-            Map.entry("ský", "ский"),
             Map.entry("sky", "ский"),
-            Map.entry("lý", "лы"),
             Map.entry("ly", "лы"),
-            Map.entry("ĺý", "лы"),
             Map.entry("ĺy", "лы"),
-            Map.entry("vý", "вы"),
             Map.entry("vy", "вы"),
-            Map.entry("ný", "ны"),
             Map.entry("ny", "ны"),
-            Map.entry("ší", "ший"),
             Map.entry("ši", "ший"),
-            Map.entry("čí", "чий"),
             Map.entry("či", "чий")
     );
+
+    public static final Map<String, String> NAMES = Arrays.stream(CzechoslovakNames.values())
+            .collect(Collectors.toMap(CzechoslovakNames::getLatinName, CzechoslovakNames::getCyrillicName));
 }

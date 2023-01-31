@@ -7,6 +7,8 @@ public class Slovak extends Czech {
 
     @Override
     public String transcribe(String name, int mode) {
+        name = checkExceptions(name);
+        name = normalizeAccents(name);
         name = checkStart(name);
         if (mode == 1) {
             name = checkEndings(name);
@@ -22,9 +24,7 @@ public class Slovak extends Czech {
     private static String checkSlovakCombinations(String name) {
         name = name.replace("ľa", "ля");
         name = name.replace("ľo", "ле");
-        name = name.replace("ľó", "ле");
         name = name.replace("ľu", "лю");
-        name = name.replace("ľú", "лю");
         name = name.replace("čia", "ча");
         name = name.replace("šia", "ша");
         name = name.replace("ia", "ья");
