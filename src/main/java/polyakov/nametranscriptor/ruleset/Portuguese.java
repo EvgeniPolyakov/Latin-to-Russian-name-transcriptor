@@ -15,6 +15,7 @@ public class Portuguese implements Ruleset {
     public String transcribe(String name, int mode) {
         name = checkExceptions(name);
         name = checkPrimaryCases(name);
+        name = normalizeAccents(name);
         name = checkStart(name);
         name = checkEnd(name);
         name = checkVowels(name);
@@ -24,16 +25,13 @@ public class Portuguese implements Ruleset {
     }
 
     protected String mapSingleChars(String name) {
-        name = name.replace("à", "а");
-        name = name.replace("á", "а");
-        name = name.replace("â", "а");
         name = name.replace("ã", "ан");
         name = name.replace("c", "к");
         name = name.replace("ç", "с");
         name = name.replace("ê", "е");
         name = name.replace("é", "е");
-        name = name.replace("í", "и");
         name = name.replace("j", "ж");
+        name = name.replace("í", "и");
         name = name.replace("l", "л");
         name = name.replace("m", "н");
         name = name.replace("ó", "о");
@@ -87,6 +85,14 @@ public class Portuguese implements Ruleset {
             name = name.replace("z" + consonant, "ж" + consonant);
             name = name.replace("s" + consonant, "з" + consonant);
         }
+        return name;
+    }
+
+    private static String normalizeAccents(String name) {
+        name = name.replace("à", "a");
+        name = name.replace("á", "a");
+        name = name.replace("â", "a");
+        name = name.replace("ì", "í");
         return name;
     }
 

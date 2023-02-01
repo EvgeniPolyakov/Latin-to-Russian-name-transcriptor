@@ -13,7 +13,7 @@ public class Albanian implements Ruleset {
     @Override
     public String transcribe(String name, int mode) {
         name = checkExceptions(name);
-        name = checkStart(name);
+        name = checkPrimaryCases(name);
         if (name.contains("ë")) {
             name = checkCasesOfDiaeresisE(name);
         }
@@ -30,9 +30,6 @@ public class Albanian implements Ruleset {
     private static String mapSingleChars(String name) {
         name = name.replace("c", "ц");
         name = name.replace("ç", "ч");
-        name = name.replace("ç", "ч");
-        name = name.replace("ć", "ч");
-        name = name.replace("č", "ч");
         name = name.replace("ë", "е");
         name = name.replace("j", "й");
         name = name.replace("l", "ль");
@@ -63,8 +60,11 @@ public class Albanian implements Ruleset {
         return name;
     }
 
-    private static String checkStart(String name) {
+    private static String checkPrimaryCases(String name) {
         name = name.replace("ll", "л");
+        name = name.replace("ҫ", "ç");
+        name = name.replace("ć", "ç");
+        name = name.replace("č", "ç");
         if (name.startsWith("ë")) {
             name = name.replaceFirst("ë", "э");
         }
