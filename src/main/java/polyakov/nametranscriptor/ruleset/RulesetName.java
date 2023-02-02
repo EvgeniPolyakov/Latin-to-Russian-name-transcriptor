@@ -23,6 +23,7 @@ public enum RulesetName {
     LITHUANIAN("Lithuanian"),
     MACEDONIAN("Macedonian"),
     MOLDOVAN("Moldovan"),
+    POLISH("Polish"),
     PORTUGUESE("Portuguese"),
     ROMANIAN("Romanian"),
     RUSSIAN("Russian"),
