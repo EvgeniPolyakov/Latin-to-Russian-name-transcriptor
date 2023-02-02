@@ -205,6 +205,8 @@ public class Polish implements Ruleset {
     }
 
     private static String checkCasesOfL(String name) {
+        name = name.replace("ll", "лl");
+        name = name.replace("lь", "ль");
         name = name.replace("ląb", "лемб");
         name = name.replace("ląp", "лемп");
         for (Map.Entry<String, String> entry : L_CASES.entrySet()) {

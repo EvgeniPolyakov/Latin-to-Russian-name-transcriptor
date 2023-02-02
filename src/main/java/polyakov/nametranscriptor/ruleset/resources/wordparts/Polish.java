@@ -71,8 +71,6 @@ public class Polish {
     );
 
     public static final Map<String, String> L_CASES = Map.ofEntries(
-            Map.entry("ll", "лl"),
-            Map.entry("lь", "ль"),
             Map.entry("la", "ля"),
             Map.entry("lą", "лен"),
             Map.entry("le", "ле"),
