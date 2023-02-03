@@ -65,6 +65,7 @@ public enum PolishNames {
     LILIANA("liliana", "лилиана"),
     LUIS("luis", "луис"),
     LUIZA("luiza", "луиза"),
+    LUKASZ("lukasz", "лукаш"),
     MAKARY("makary", "макарий"),
     MAKSYMILIAN("maksymilian", "максимилиан"),
     MARCELI("marceli", "марцелий"),
@@ -82,6 +83,7 @@ public enum PolishNames {
     MELANIA("melania", "мелания"),
     MIECZYSLAW("mieczyslaw", "мечислав"),
     NATALIA("natalia", "наталья"),
+    OKTAWIAN("oktawian", "октавиан"),
     OLIWIA("oliwia", "оливия"),
     PAFNUCY("pafnucy", "пафнуций"),
     PATRYCJA("patrycja", "патрицья"),
@@ -96,6 +98,7 @@ public enum PolishNames {
     TYMON("tymon", "тимон"),
     TYMOTEUSZ("tymoteusz", "тимотеуш"),
     TYTUS("tytus", "титус"),
+    URSZULA("urszula", "уршула"),
     WALENTY("walenty", "валентий"),
     WIKTORIA("wiktoria", "виктория"),
     WINCENTY("wincenty", "винцентий"),
@@ -105,6 +108,7 @@ public enum PolishNames {
     ZYGMUNT("zygmunt", "зигмунт"),
     ZYTOMIR("zytomir", "житомир"),
     WALENTYNA("walentyna", "валентина"),
+    ZOFIA("zofia", "зофия"),
     ZYGFRYDA("zygfryda", "зигфрида"),
     ZYWIA("zywia", "живя");
 

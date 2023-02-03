@@ -62,6 +62,7 @@ public class Polish implements Ruleset {
         name = name.replace("жy", "жи");
         name = name.replace("чy", "чи");
         name = name.replace("шy", "ши");
+        name = name.replace("щy", "щи");
         name = name.replace("cz", "ч");
         name = name.replace("sz", "ш");
         name = name.replace("rz", "ж");
