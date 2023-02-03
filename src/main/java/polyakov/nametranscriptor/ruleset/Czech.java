@@ -16,7 +16,7 @@ public class Czech implements Ruleset {
         name = checkExceptions(name);
         name = normalizeAccents(name);
         name = checkStart(name);
-        if (mode == 1) {
+        if (mode != 1) {
             name = checkEndings(name);
         }
         name = checkVowels(name);
