@@ -31,6 +31,7 @@ public class Controller {
                     @Content(mediaType = "string", schema = @Schema(type = "string", example = "Сунь Цзы Кун Лао Юнлэ"))
             })
     })
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public OutgoingDto transcribe(
             @Valid @RequestBody IncomingDto dto,
