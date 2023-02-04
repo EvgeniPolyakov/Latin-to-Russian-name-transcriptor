@@ -9,8 +9,6 @@ import polyakov.nametranscriptor.model.IncomingDto;
 import polyakov.nametranscriptor.model.OutgoingDto;
 import polyakov.nametranscriptor.ruleset.Ruleset;
 
-import java.util.Locale;
-
 @Service
 @Slf4j
 @AllArgsConstructor
@@ -24,17 +22,16 @@ public class TranscriptionService {
             throw new BadRequestException("Ruleset for wrong or unsupported language requested");
         }
         log.info("Transcribing text. Mode: {}", mode);
-        String regex = "[^\\p{L}]";
+        String regex = "[^\\w]";
         String[] words = dto.getText().split(String.format("(?=%s)|(?<=%s)", regex, regex));
         StringBuilder result = new StringBuilder();
         for (String word : words) {
-            String transcription = ruleset.transcribe(word.toLowerCase(Locale.ROOT), mode);
-            if (word.equals(word.toLowerCase(Locale.ROOT))) {
-                result.append(transcription);
-            } else if (word.equals(word.toUpperCase(Locale.ROOT))) {
-                result.append(transcription.toUpperCase(Locale.ROOT));
+            if (word.equals(word.toLowerCase())) {
+                result.append(ruleset.transcribe(word, mode));
+            } else if (word.equals(word.toUpperCase())) {
+                result.append(ruleset.transcribe(word.toLowerCase(), mode).toUpperCase());
             } else {
-                result.append(StringUtils.capitalize(transcription));
+                result.append(StringUtils.capitalize(ruleset.transcribe(word.toLowerCase(), mode)));
             }
         }
         return new OutgoingDto(result.toString());
