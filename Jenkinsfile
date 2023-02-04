@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/vdespa-collab/java-rest-api-calculator.git'
+                git 'https://github.com/EvgeniPolyakov/Latin-to-Russian-name-transcriptor.git'
                 sh './mvnw clean compile'
             }
         }
