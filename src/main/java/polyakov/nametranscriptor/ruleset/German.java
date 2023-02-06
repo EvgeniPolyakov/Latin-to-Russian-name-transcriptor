@@ -110,6 +110,7 @@ public class German implements Ruleset {
         name = name.replace("ce", "цe");
         name = name.replace("ci", "цi");
         name = name.replace("ye", "ие");
+        name = name.replace("lь", "ль");
         return name;
     }
 
