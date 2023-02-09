@@ -1,29 +1,29 @@
 # Latin to Russian name transcriptor
 
-**L2R Name transcriptor** is a tool for proper name orthographic transcription from various Latin-script using languages
-into Russian. It turns proper name spelling from Latin script to Cyrillic script using standard spelling system of
-respective language. L2R also supports Latin to Russian transliteration for a few non-Roman alphabet based languages
-like Greek or Chinese. Full list can be found below.
+**L2R Name transcriptor** is a tool for converting proper name spellings from Latin script to Cyrillic script. It turns
+proper name spelling from Latin script to Cyrillic script using standard spelling system of respective language.
 
-**Name transcriptor** is a project in process. As for now it presents only the back-end logics for name transcription.
-Basic GUI support will be introduced at a later point. At this time app supports 30 languages and new ones are
-added on a weekly basis.
+You can access the tool through
+a [basic user-friendly GUI](http://l2rfrontend-env.eba-jyypjt3v.eu-north-1.elasticbeanstalk.com/) or utilize the API (
+details provided in the specification below).
 
 ## Features
 
-Since service is primarily intended to transcribe proper names (like personal or geographical names) it implies words
-are provided in either of three conventional character cases: lower case, Title case and ALLCAPS. Words in MiXeD case
-are automatically cast to Title case.
+**L2R** supports over 30 languages, including non-Roman alphabet-based languages such as Greek and Chinese, with new
+languages added regularly. Full list can be found below.
 
-Automatic transcription by its very nature can not offer flawless result at all times but aims to be as close to it as
-possible.
+The tool primarily transcribes proper names (such as personal or geographical names) and can handle words in lower case,
+Title case, and ALLCAPS. Words in MiXeD case are automatically cast to Title case.
 
-When working with languages that do not use Latin-based alphabets, app transcribes names on the basis of spelling given
-in Latin, so it is unable to respect custom aspects of the original spelling and/or other special rules of transcription
-from the respective language to Russian.
+Automatic transcription by its very nature can not offer flawless result at all times but the goal is to provide results
+that are as close to the correct spelling as possible.
 
-By default, app does not use letter "ё" when transcribing into Russian (replaced by "e"), but for certain languages
-there is a dedicated transcription mode for this purpose.
+For languages that do not use a Latin-based alphabet, the app transcribes names based on their Latin spelling, so it may
+not accurately reflect the original spelling or any special rules for transcribing from the original language to
+Russian.
+
+By default, the app does not use the letter "ё" when transcribing into Russian (it is replaced with "e"), but there is a
+dedicated mode for certain languages where this letter is used.
 
 List of currently supported languages:
 
@@ -40,6 +40,7 @@ List of currently supported languages:
 * 🇫🇮 Finnish
 * 🇫🇷 French
 * 🇮🇱 Hebrew (from Roman script to Cyrillic)
+* 🇭🇺 Hungarian
 * 🇬🇪 Georgian (from Roman script to Cyrillic)
 * 🇩🇪 German
 * 🇬🇷 Greek (from Roman script to Cyrillic)
@@ -77,16 +78,18 @@ Docker container can be built and launched by:
 
 # Транскриптор имен с латиницы на русский
 
-**Транскриптор L2R** - это инструмент орфографической транскрипции на русский. Он транскрибирует с языков, использующих
-алфавиты на основе латиницы, но также поддерживает транскрипцию с латиницы на русский для ряда языков, которые
-используют иные алфавиты и системы письменности (например, греческий или китайский). Он переводит написание имен
-собственных с латиницы на кириллицу, используя стандартную систему транскрипции для соответствующих языков.
+**Транскриптор L2R** - это инструмент орфографической транскрипции на русский. Он переводит написание имен собственных с
+латиницы на кириллицу, используя стандартную систему транскрипции для соответствующих языков.
 
-**Транскриптор L2R** все еще находится в стадии разработки. На данный момент он представляет только внутреннюю логику
-транскрипции имен. Базовый графический интерфейс будет представлена позже. На данный момент приложение поддерживает
-30 языков. Новые языки добавляются еженедельно. Полный пречень доступен ниже.
+Инструмент доступен
+через [базовый графический интерфейс](http://l2rfrontend-env.eba-jyypjt3v.eu-north-1.elasticbeanstalk.com/), или можно
+использовать API (подробности приведены в спецификации ниже).
 
 ## Рабочие характеристики
+
+**L2R** транскрибирует с языков, использующих алфавиты на основе латиницы, но также поддерживает транскрипцию с латиницы
+на русский для ряда языков, которые используют иные алфавиты и системы письменности (например, греческий или китайский).
+Приложение поддерживает более 30 языков. Полный пречень доступен ниже.
 
 Поскольку приложение в первую очередь предназначено для транскрипции имен собственных (например, личных имен или
 географических названий), оно подразумевает, что те приходят в одном из трех стандартных регистров: строчными буквами, с
@@ -94,12 +97,12 @@ Docker container can be built and launched by:
 прописной.
 
 Автоматическая транскрипция по своей сути не может гарантировать безупречную транскрипцию во всех случаях, но стремится
-к этому в пределах возможного. Список частных случаев и исключения для различных языков, не поддерживаемых
+к этому в пределах возможного. Список частных случаев и исключений для различных языков, не поддерживаемых
 транскриптором L2R, можно
 найти [здесь](https://github.com/EvgeniPolyakov/L2R-name-transcriptor/blob/main/docs/CustomCases.md).
 
-При работе с языками, не использующими алфавит на основе латинского, программа транскрибирует имена на основе имеющегося
-написания (латиницей) и не способна учитывать тонкости изначального правописания таких слов и/или другие особые правила
+При работе с языками, не использующими алфавит на основе латинского, программа транскрибирует имена на основе их
+написания латиницей и не способна учитывать тонкости изначального правописания таких слов и/или другие особые правила
 их передачи на русский с языка оригинала.
 
 По умолчанию программа не использует букву "ё" при транскрипции на русский (заменяется на "е"), но для отдельных языков
@@ -113,6 +116,7 @@ Docker container can be built and launched by:
 * 🇦🇿 азербайджанский (с английской транскрипции на русский)
 * 🇧🇬 болгарский (с латиницы на кириллицу с транскрипцией на русский)
 * 🇧🇷 бразильский португальский
+* 🇭🇺 венгерский
 * 🇬🇷 греческий (с латиницы на кириллицу)
 * 🇬🇪 грузинский (с латиницы на кириллицу)
 * 🇮🇱 иврит (с латиницы на кириллицу)
