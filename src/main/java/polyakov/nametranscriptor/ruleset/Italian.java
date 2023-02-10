@@ -95,7 +95,6 @@ public class Italian implements Ruleset {
             name = name.replace("ggi" + vowel, "дж" + vowel);
             name = name.replace("cci" + vowel, "чи" + vowel);
             name = name.replace("шi" + vowel, "ш" + vowel);
-            name = name.replace("l" + vowel, "л" + vowel);
             for (Map.Entry<String, String> beforeVowel : BEFORE_VOWELS.entrySet()) {
                 name = name.replace(beforeVowel.getKey() + vowel, beforeVowel.getValue() + vowel);
             }
@@ -152,12 +151,11 @@ public class Italian implements Ruleset {
     }
 
     private static String checkCasesOfL(String name) {
-        if (name.endsWith("ll")) {
-            return name.substring(0, name.length() - 2) + "ль";
-        }
-        name = name.replace("ll", "лл");
-        name = name.replace("lл", "лл");
+        name = name.replace("ll", "лl");
         name = name.replace("lь", "ль");
+        for (String vowel : VOWELS) {
+            name = name.replace("l" + vowel, "л" + vowel);
+        }
         return name;
     }
 

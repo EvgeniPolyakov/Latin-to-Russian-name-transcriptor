@@ -39,8 +39,7 @@ public class Italian {
             Map.entry("чi", "ч"),
             Map.entry("chi", "кь"),
             Map.entry("джi", "дж"),
-            Map.entry("льi", "ль"),
-            Map.entry("l", "л")
+            Map.entry("льi", "ль")
     );
 
     public static final Map<String, String> AFTER_VOWELS = Map.ofEntries(
