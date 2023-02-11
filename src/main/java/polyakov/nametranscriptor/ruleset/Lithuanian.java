@@ -108,12 +108,13 @@ public class Lithuanian implements Ruleset {
     }
 
     private static String checkCasesOfL(String name) {
-        if (name.endsWith("ll")) {
-            name = name.substring(0, name.length() - 2) + "лль";
-        }
-        if (name.endsWith("l")) {
-            name = name.substring(0, name.length() - 1) + "ль";
-        }
+        name = name.replace("lь", "ль");
+        name = name.replace("ll", "лl");
+        name = checkSoftVowelsAfterL(name);
+        return name;
+    }
+
+    private static String checkSoftVowelsAfterL(String name) {
         while (name.contains("l")) {
             int indexOfL = name.indexOf("l");
             if (indexOfL + 2 >= name.length()) {

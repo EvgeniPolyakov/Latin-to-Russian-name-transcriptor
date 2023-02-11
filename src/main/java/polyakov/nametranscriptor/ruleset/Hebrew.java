@@ -97,9 +97,6 @@ public class Hebrew implements Ruleset {
         for (String vowel : VOWELS) {
             name = name.replace("l" + vowel, "л" + vowel);
         }
-        if (name.endsWith("l")) {
-            return name.substring(0, name.length() - 1) + "ль";
-        }
         return name;
     }
 
