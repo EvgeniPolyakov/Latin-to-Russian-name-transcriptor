@@ -50,11 +50,7 @@ public class Dutch implements Ruleset {
         }
         name = name.replaceFirst("eeu", "еу");
         if (mode != 1) {
-            name = name.replace("aa", "a");
-            name = name.replace("ee", "e");
-            name = name.replace("ii", "i");
-            name = name.replace("oo", "o");
-            name = name.replace("uu", "u");
+            name = trimDoubleVowels(name);
         }
         name = name.replace("aeu", "ау");
         name = name.replace("ae", "а");
@@ -65,6 +61,15 @@ public class Dutch implements Ruleset {
         name = name.replace("qu", "кв");
         name = name.replace("schen", "сен");
         name = name.replace("sche", "се");
+        return name;
+    }
+
+    private static String trimDoubleVowels(String name) {
+        name = name.replace("aa", "a");
+        name = name.replace("ee", "e");
+        name = name.replace("ii", "i");
+        name = name.replace("oo", "o");
+        name = name.replace("uu", "u");
         return name;
     }
 

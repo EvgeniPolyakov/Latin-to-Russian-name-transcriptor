@@ -169,6 +169,11 @@ public class Portuguese implements Ruleset {
             }
             name = name.replace(vowel + "i", vowel + "й");
         }
+        name = checkSoftenedVowels(name);
+        return name;
+    }
+
+    private static String checkSoftenedVowels(String name) {
         for (String consonant : SOFT_CONSONANTS) {
             for (Map.Entry<String, String> vowel : SOFTENED_VOWELS.entrySet()) {
                 name = name.replace(consonant + vowel.getKey(), consonant + vowel.getValue());
