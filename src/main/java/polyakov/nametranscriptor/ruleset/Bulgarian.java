@@ -3,7 +3,6 @@ package polyakov.nametranscriptor.ruleset;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.RUSSIAN_NAMES;
@@ -38,16 +37,14 @@ public class Bulgarian extends Russian {
     }
 
     private static String checkYerCases(String name) {
-        List<String> yers = List.of("â", "ă", "`a");
-        for (String yer : yers) {
-            if (name.startsWith(yer)) {
-                name = name.replaceFirst(yer, "и");
-            }
-            name = name.replace("ж" + yer, "же");
-            name = name.replace("ш" + yer, "ше");
-            name = name.replace("ц" + yer, "це");
-            name = name.replace(yer, "ы");
+        name = name.replace("ă", "â");
+        if (name.startsWith("â")) {
+            name = name.replaceFirst("â", "и");
         }
+        name = name.replace("жâ", "же");
+        name = name.replace("шâ", "ше");
+        name = name.replace("цâ", "це");
+        name = name.replace("â", "ы");
         return name;
     }
 
