@@ -4,7 +4,7 @@
 proper name spelling from Latin script to Cyrillic script using standard spelling system of respective language.
 
 You can access the tool through
-a [basic user-friendly GUI](http://l2rfrontend-env.eba-jyypjt3v.eu-north-1.elasticbeanstalk.com/) or utilize the API (
+a [basic GUI](http://l2rfrontend-env.eba-jyypjt3v.eu-north-1.elasticbeanstalk.com/) or utilize the API (
 details provided in the specification below).
 
 ## Features
@@ -44,6 +44,7 @@ List of currently supported languages:
 * 🇬🇪 Georgian (from Roman script to Cyrillic)
 * 🇩🇪 German
 * 🇬🇷 Greek (from Roman script to Cyrillic)
+* 🇮🇸 Icelandic
 * 🇮🇹 Italian
 * 🇯🇵 Japanese (from Hepburn romanization system to Cyrillic)
 * 🇱🇹 Lithuanian
@@ -120,6 +121,7 @@ Docker container can be built and launched by:
 * 🇬🇷 греческий (с латиницы на кириллицу)
 * 🇬🇪 грузинский (с латиницы на кириллицу)
 * 🇮🇱 иврит (с латиницы на кириллицу)
+* 🇮🇸 исландский
 * 🇪🇸 испанский
 * 🇮🇹 итальянский
 * 🇨🇳 китайский (с латиницы на кириллицу по системе Палладия)
