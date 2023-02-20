@@ -36,6 +36,12 @@ public class Romanian {
             Map.entry("y", "и")
     );
 
+    public static final Map<String, String> IOTATED_PARTS = Map.ofEntries(
+            Map.entry("ia", "я"),
+            Map.entry("ie", "е"),
+            Map.entry("iu", "ю")
+    );
+
     public static final Map<String, String> STARTERS = Map.ofEntries(
             Map.entry("ia", "я"),
             Map.entry("ie", "е"),

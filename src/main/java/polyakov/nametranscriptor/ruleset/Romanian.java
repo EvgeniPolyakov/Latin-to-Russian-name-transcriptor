@@ -48,7 +48,7 @@ public class Romanian implements Ruleset {
         name = name.replace("giu", "джу");
         name = name.replace("ea", "я");
         if (name.contains("i")) {
-            name = checkVowels(name);
+            name = checkIotation(name);
         }
         name = checkEndings(name);
         name = checkConsonants(name);
@@ -78,13 +78,11 @@ public class Romanian implements Ruleset {
         return name;
     }
 
-    private static String checkVowels(String name) {
+    private static String checkIotation(String name) {
         for (Map.Entry<String, String> vowel : VOWELS.entrySet()) {
-            name = name.replace(vowel.getKey() + "ia", vowel.getValue() + "я");
-            name = name.replace(vowel.getKey() + "ie", vowel.getValue() + "е");
-            name = name.replace(vowel.getKey() + "io", vowel.getValue() + "йо");
-            name = name.replace(vowel.getKey() + "iu", vowel.getValue() + "ю");
-            name = name.replace(vowel.getKey() + "i", vowel.getValue() + "й");
+            for (Map.Entry<String, String> ip : IOTATED_PARTS.entrySet()) {
+                name = name.replace(vowel.getKey() + ip.getKey(), vowel.getValue() + ip.getValue());
+            }
             name = name.replace(vowel.getKey() + "i", vowel.getValue() + "й");
         }
         return name;
