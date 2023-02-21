@@ -17,6 +17,7 @@ class TranscriptionServiceTest {
         RulesetFactory rf = mock(RulesetFactory.class);
         Ruleset ruleset = mock(Ruleset.class);
         when(rf.findStrategy(any())).thenReturn(ruleset);
+        when(ruleset.getName()).thenReturn("[^\\p{L}]");
         when(ruleset.transcribe(anyString(), anyInt())).thenReturn("тест");
 
         IncomingDto lowCase = new IncomingDto("test", "language");
