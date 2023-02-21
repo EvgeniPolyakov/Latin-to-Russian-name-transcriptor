@@ -24,8 +24,20 @@ public class TranscriptionService {
             throw new BadRequestException("Ruleset for wrong or unsupported language requested");
         }
         log.info("Transcribing text. Mode: {}", mode);
-        String regex = "[^\\p{L}]";
+        String regex = getRegex(ruleset);
         String[] words = dto.getText().split(String.format("(?=%s)|(?<=%s)", regex, regex));
+        StringBuilder result = transcribeWithRuleset(mode, ruleset, words);
+        return new OutgoingDto(result.toString());
+    }
+
+    private static String getRegex(Ruleset ruleset) {
+        if (ruleset.getName().equals("Russian")) {
+            return "[^\\p{L}+'*\\p{L}*]"; // letters and apostrophe (used to transmit soft sign)
+        }
+        return "[^\\p{L}]"; // letters only
+    }
+
+    private static StringBuilder transcribeWithRuleset(int mode, Ruleset ruleset, String[] words) {
         StringBuilder result = new StringBuilder();
         for (String word : words) {
             String transcription = ruleset.transcribe(word.toLowerCase(Locale.ROOT), mode);
@@ -37,6 +49,6 @@ public class TranscriptionService {
                 result.append(StringUtils.capitalize(transcription));
             }
         }
-        return new OutgoingDto(result.toString());
+        return result;
     }
 }
