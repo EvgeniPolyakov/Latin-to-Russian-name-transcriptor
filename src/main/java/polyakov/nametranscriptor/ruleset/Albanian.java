@@ -119,9 +119,9 @@ public class Albanian implements Ruleset {
 
     private static String postCheck(String name) {
         if (name.endsWith("кь")) {
-            return name.replace("кь", "ч");
+            return name.substring(0, name.length() - 2) + "ч";
         }
-        name = name.replaceFirst("льь", "ль");
+        name = name.replace("льь", "ль");
         return name;
     }
 

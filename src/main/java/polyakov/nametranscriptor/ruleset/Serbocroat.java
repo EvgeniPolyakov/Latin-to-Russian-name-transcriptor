@@ -50,7 +50,8 @@ public class Serbocroat implements Ruleset {
     private static String checkEndings(String name) {
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
-                return name.replace(ending.getKey(), ending.getValue());
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                return sub + ending.getValue();
             }
         }
         return name;

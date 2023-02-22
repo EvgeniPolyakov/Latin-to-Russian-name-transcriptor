@@ -77,7 +77,7 @@ public class Czech implements Ruleset {
 
     protected static String checkVowels(String name) {
         if (name.endsWith("ia")) {
-            name = name.replaceFirst("ia", "ия");
+            name = name.substring(0, name.length() - 2) + "ия";
         }
         for (String vowel : VOWELS) {
             for (Map.Entry<String, String> afterVowel : STARTERS.entrySet()) {
@@ -111,7 +111,8 @@ public class Czech implements Ruleset {
     protected static String checkEndings(String name) {
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
-                return name.replace(ending.getKey(), ending.getValue());
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                return sub + ending.getValue();
             }
         }
         return name;

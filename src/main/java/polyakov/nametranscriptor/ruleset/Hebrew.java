@@ -68,7 +68,7 @@ public class Hebrew implements Ruleset {
         }
         name = name.replace("y", "i");
         if (name.endsWith("ich")) {
-            return name.replace("ich", "ич");
+            return name.substring(0, name.length() - 3) + "ич";
         }
         return name;
     }
