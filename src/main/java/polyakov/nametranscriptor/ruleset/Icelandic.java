@@ -1,6 +1,5 @@
 package polyakov.nametranscriptor.ruleset;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -166,8 +165,7 @@ public class Icelandic implements Ruleset {
     }
 
     private static String checkExceptions(String name) {
-        String nameWithNoAccents = StringUtils.stripAccents(name);
-        return Optional.ofNullable(NAMES.get(nameWithNoAccents)).orElse(name);
+        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override
