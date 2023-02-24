@@ -26,6 +26,7 @@ public class Greek implements Ruleset {
     private static String mapSingleChars(String name) {
         name = name.replace("á", "а");
         name = name.replace("c", "к");
+        name = name.replace("j", "й");
         name = name.replace("l", "л");
         name = name.replace("x", "кс");
         name = name.replace("y", "и");
@@ -51,6 +52,7 @@ public class Greek implements Ruleset {
         name = name.replace("yiio", "ьо");
         name = name.replace("yiou", "ью");
         name = name.replace("yiiou", "ью");
+        name = name.replace("dj", "дж");
         name = name.replace("ch", "х");
         name = name.replace("ts", "ц");
         name = name.replace("tz", "дз");
