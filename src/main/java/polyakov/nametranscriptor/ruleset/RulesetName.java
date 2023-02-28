@@ -9,6 +9,7 @@ public enum RulesetName {
     CHINESE("Chinese"),
     CZECH("Czech"),
     ESTONIAN("Estonian"),
+    DANISH("Danish"),
     DUTCH("Dutch"),
     FRENCH("French"),
     FINNISH("Finnish"),
@@ -25,6 +26,7 @@ public enum RulesetName {
     LITHUANIAN("Lithuanian"),
     MACEDONIAN("Macedonian"),
     MOLDOVAN("Moldovan"),
+    NORWEGIAN("Norwegian"),
     POLISH("Polish"),
     PORTUGUESE("Portuguese"),
     ROMANIAN("Romanian"),
@@ -32,6 +34,7 @@ public enum RulesetName {
     SERBOCROAT("Serbocroat"),
     SLOVAK("Slovak"),
     SPANISH("Spanish"),
+    SWEDISH("Swedish"),
     TURKISH("Turkish"),
     UKRAINIAN("Ukrainian");
 

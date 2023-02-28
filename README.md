@@ -35,6 +35,7 @@ List of currently supported languages:
 * 🇧🇬 Bulgarian (from Roman script back to Cyrillic)
 * 🇨🇳 Chinese (from Roman script to Cyrillic)
 * 🇨🇿 Czech
+* 🇩🇰 Danish
 * 🇳🇱 Dutch
 * 🇪🇪 Estonian
 * 🇫🇮 Finnish
@@ -120,6 +121,7 @@ Docker container can be built and launched by:
 * 🇭🇺 венгерский
 * 🇬🇷 греческий (с латиницы на кириллицу)
 * 🇬🇪 грузинский (с латиницы на кириллицу)
+* 🇩🇰 датский
 * 🇮🇱 иврит (с латиницы на кириллицу)
 * 🇮🇸 исландский
 * 🇪🇸 испанский
