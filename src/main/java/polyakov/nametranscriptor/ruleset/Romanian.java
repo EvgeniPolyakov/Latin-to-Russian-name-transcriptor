@@ -7,7 +7,7 @@ import java.util.Map;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Romanian.*;
 
 @Component
-public class Romanian implements Ruleset {
+public class Romanian extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {

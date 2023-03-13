@@ -4,16 +4,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Finnish.*;
 
 @Component
-public class Finnish implements Ruleset {
+public class Finnish extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, FALSE);
         if (name.contains("c")) {
             name = checkCasesOfC(name);
         }
@@ -136,10 +136,6 @@ public class Finnish implements Ruleset {
             name = name.replace(jCombination.getKey(), jCombination.getValue());
         }
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

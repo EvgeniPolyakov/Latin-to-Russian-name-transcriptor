@@ -1,19 +1,18 @@
 package polyakov.nametranscriptor.ruleset;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.TRUE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Portuguese.*;
 
 @Component
-public class Portuguese implements Ruleset {
+public class Portuguese extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, TRUE);
         name = checkPrimaryCases(name);
         name = normalizeAccents(name);
         name = checkStart(name);
@@ -182,11 +181,6 @@ public class Portuguese implements Ruleset {
             name = name.replace(consonant + "ã", consonant + "ян");
         }
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        String nameWithNoAccents = StringUtils.stripAccents(name);
-        return Optional.ofNullable(NAMES.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override

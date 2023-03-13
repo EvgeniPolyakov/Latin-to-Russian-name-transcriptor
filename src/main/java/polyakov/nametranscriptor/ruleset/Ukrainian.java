@@ -10,7 +10,7 @@ import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.RUSS
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Ukrainian.*;
 
 @Component
-public class Ukrainian implements Ruleset {
+public class Ukrainian extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {

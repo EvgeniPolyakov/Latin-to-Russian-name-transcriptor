@@ -3,16 +3,16 @@ package polyakov.nametranscriptor.ruleset;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Estonian.*;
 
 @Component
-public class Estonian implements Ruleset {
+public class Estonian extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, FALSE);
         name = checkEndings(name);
         name = checkVowels(name);
         name = checkStart(name);
@@ -118,10 +118,6 @@ public class Estonian implements Ruleset {
             }
         }
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

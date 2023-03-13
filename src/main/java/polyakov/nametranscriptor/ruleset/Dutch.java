@@ -1,20 +1,19 @@
 package polyakov.nametranscriptor.ruleset;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.TRUE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Dutch.*;
 
 @Component
-public class Dutch implements Ruleset {
+public class Dutch extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, TRUE);
         name = checkPrimaryCases(name, mode);
         if (name.contains("c")) {
             name = checkCasesOfC(name);
@@ -183,11 +182,6 @@ public class Dutch implements Ruleset {
         name = name.replace("uэ", "ей");
         name = name.replace("uй", "ей");
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        String nameWithNoAccents = StringUtils.stripAccents(name);
-        return Optional.ofNullable(NAMES.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override

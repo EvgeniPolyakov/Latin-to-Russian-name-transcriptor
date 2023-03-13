@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Japanese implements Ruleset {
+public class Japanese extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {

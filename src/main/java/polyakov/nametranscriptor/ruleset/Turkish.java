@@ -7,7 +7,7 @@ import java.util.Map;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Turkish.*;
 
 @Component
-public class Turkish implements Ruleset {
+public class Turkish extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {

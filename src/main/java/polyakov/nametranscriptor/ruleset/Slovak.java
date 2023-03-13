@@ -2,12 +2,15 @@ package polyakov.nametranscriptor.ruleset;
 
 import org.springframework.stereotype.Component;
 
+import static java.lang.Boolean.TRUE;
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Czech.NAMES;
+
 @Component
 public class Slovak extends Czech {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, TRUE);
         name = normalizeAccents(name);
         name = checkStart(name);
         if (mode != 1) {

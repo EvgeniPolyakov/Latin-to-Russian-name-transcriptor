@@ -4,17 +4,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Hebrew.*;
 
 @Component
-public class Hebrew implements Ruleset {
+public class Hebrew extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
         name = StringUtils.stripAccents(name);
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, FALSE);
         name = name.replace("ou", "u");
         if (name.contains("y")) {
             name = checkCasesOfY(name);
@@ -105,10 +105,6 @@ public class Hebrew implements Ruleset {
             name = name.replace(vowel + "i", vowel + "й");
         }
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

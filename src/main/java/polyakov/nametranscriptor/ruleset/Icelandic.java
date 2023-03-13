@@ -4,16 +4,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Icelandic.*;
 
 @Component
-public class Icelandic implements Ruleset {
+public class Icelandic extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, FALSE);
         name = checkPrimaryCases(name);
         name = checkStart(name);
         if (name.contains("g")) {
@@ -162,10 +162,6 @@ public class Icelandic implements Ruleset {
             name = name.replace(vowel + "é", vowel + "э");
         }
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

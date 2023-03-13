@@ -12,7 +12,7 @@ import static polyakov.nametranscriptor.ruleset.resources.wordparts.Azeri.*;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.RUSSIAN_NAMES;
 
 @Component
-public class Azeri implements Ruleset {
+public class Azeri extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {

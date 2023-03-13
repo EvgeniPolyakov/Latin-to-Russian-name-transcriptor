@@ -4,16 +4,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Danish.*;
 
 @Component
-public class Danish implements Ruleset {
+public class Danish extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, FALSE);
         name = checkPrimaryCases(name);
         name = checkStart(name);
         name = checkEndings(name);
@@ -159,10 +159,6 @@ public class Danish implements Ruleset {
             }
         }
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

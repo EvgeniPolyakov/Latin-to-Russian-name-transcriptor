@@ -4,16 +4,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.TRUE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.French.*;
 
 @Component
-public class French implements Ruleset {
+public class French extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, TRUE);
         name = checkPrimaryCases(name);
         name = checkStart(name);
         name = checkVowels(name);
@@ -350,11 +350,6 @@ public class French implements Ruleset {
         name = name.replace("юь", "юй");
         name = name.replace("яь", "яй");
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        String nameWithNoAccents = StringUtils.stripAccents(name);
-        return Optional.ofNullable(NAMES.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override

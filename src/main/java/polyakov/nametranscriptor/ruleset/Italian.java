@@ -5,16 +5,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Italian.*;
 
 @Component
-public class Italian implements Ruleset {
+public class Italian extends RulesetImpl {
     @Override
     public String transcribe(String name, int mode) {
         name = StringUtils.stripAccents(name);
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, FALSE);
         name = checkPrimaryCases(name);
         name = checkSoftenedVowels(name);
         name = checkVowels(name);
@@ -171,10 +171,6 @@ public class Italian implements Ruleset {
             name = name.replace(vowel + "i", vowel + "й");
         }
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override

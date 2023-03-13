@@ -4,18 +4,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.*;
 
 @Component
-public class Russian implements Ruleset {
+public class Russian extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
         name = StringUtils.stripAccents(name);
         name = checkPrimaryCases(name);
-        name = checkExceptions(name);
+        name = checkExceptions(name, RUSSIAN_NAMES, FALSE);
         name = checkStart(name);
         name = checkEndings(name);
         if (name.contains("i") || name.contains("y")) {
@@ -127,10 +127,6 @@ public class Russian implements Ruleset {
             name = name.replace(vowel + "y", vowel + "й");
         }
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        return Optional.ofNullable(RUSSIAN_NAMES.get(name)).orElse(name);
     }
 
     @Override

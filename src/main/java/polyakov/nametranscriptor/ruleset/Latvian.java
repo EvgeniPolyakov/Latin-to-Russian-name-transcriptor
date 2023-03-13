@@ -1,18 +1,17 @@
 package polyakov.nametranscriptor.ruleset;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.TRUE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Latvian.*;
 
 @Component
-public class Latvian implements Ruleset {
+public class Latvian extends RulesetImpl {
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, TRUE);
         name = checkPrimaryCases(name);
         name = checkCustomCases(name);
         name = checkSoftConsonants(name, mode);
@@ -99,11 +98,6 @@ public class Latvian implements Ruleset {
             name = name.replace(jCombination.getKey(), jCombination.getValue());
         }
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        String nameWithNoAccents = StringUtils.stripAccents(name);
-        return Optional.ofNullable(NAMES.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override

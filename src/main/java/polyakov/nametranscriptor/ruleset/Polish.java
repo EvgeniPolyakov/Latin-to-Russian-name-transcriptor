@@ -1,22 +1,21 @@
 package polyakov.nametranscriptor.ruleset;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.TRUE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Polish.*;
 
 @Component
-public class Polish implements Ruleset {
+public class Polish extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, TRUE);
         if (mode != 1) {
-            name = checkSurnameEndings(name);
+            name = checkEndings(name);
         }
         name = checkSoftConsonants(name);
         if (name.contains("j")) {
@@ -223,7 +222,7 @@ public class Polish implements Ruleset {
         return name;
     }
 
-    private static String checkSurnameEndings(String name) {
+    private static String checkEndings(String name) {
         for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
             if (name.endsWith(ending.getKey())) {
                 String sub = name.substring(0, name.length() - ending.getKey().length());
@@ -231,11 +230,6 @@ public class Polish implements Ruleset {
             }
         }
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        String nameWithNoAccents = StringUtils.stripAccents(name);
-        return Optional.ofNullable(NAMES.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override

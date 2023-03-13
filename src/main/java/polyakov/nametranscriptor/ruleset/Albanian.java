@@ -3,16 +3,16 @@ package polyakov.nametranscriptor.ruleset;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Optional;
 
+import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Albanian.*;
 
 @Component
-public class Albanian implements Ruleset {
+public class Albanian extends RulesetImpl {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkExceptions(name);
+        name = checkExceptions(name, NAMES, FALSE);
         name = checkPrimaryCases(name);
         if (name.contains("ë")) {
             name = checkCasesOfDiaeresisE(name);
@@ -123,10 +123,6 @@ public class Albanian implements Ruleset {
         }
         name = name.replace("льь", "ль");
         return name;
-    }
-
-    private static String checkExceptions(String name) {
-        return Optional.ofNullable(NAMES.get(name)).orElse(name);
     }
 
     @Override
