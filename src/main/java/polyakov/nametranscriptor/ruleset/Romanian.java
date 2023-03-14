@@ -50,7 +50,7 @@ public class Romanian extends RulesetImpl {
         if (name.contains("i")) {
             name = checkIotation(name);
         }
-        name = checkEndings(name);
+        name = checkEndings(name, ENDINGS);
         name = checkConsonants(name);
         name = name.replace("ia", "ья");
         name = name.replace("ie", "ье");
@@ -63,16 +63,6 @@ public class Romanian extends RulesetImpl {
         for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
             if (name.startsWith(starter.getKey())) {
                 return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
-        return name;
-    }
-
-    private static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
             }
         }
         return name;

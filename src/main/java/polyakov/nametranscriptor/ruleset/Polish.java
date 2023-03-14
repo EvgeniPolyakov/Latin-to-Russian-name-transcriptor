@@ -15,7 +15,7 @@ public class Polish extends RulesetImpl {
     public String transcribe(String name, int mode) {
         name = checkExceptions(name, NAMES, TRUE);
         if (mode != 1) {
-            name = checkEndings(name);
+            name = checkEndings(name, ENDINGS);
         }
         name = checkSoftConsonants(name);
         if (name.contains("j")) {
@@ -218,16 +218,6 @@ public class Polish extends RulesetImpl {
     private static String checkIotation(String name) {
         for (String vowel : VOWELS) {
             name = name.replace(vowel + "i", vowel + "й");
-        }
-        return name;
-    }
-
-    private static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
         }
         return name;
     }

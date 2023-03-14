@@ -16,7 +16,7 @@ public class Czech extends RulesetImpl {
         name = normalizeAccents(name);
         name = checkStart(name);
         if (mode != 1) {
-            name = checkEndings(name);
+            name = checkEndings(name, ENDINGS);
         }
         name = checkVowels(name);
         name = checkCombinations(name);
@@ -103,16 +103,6 @@ public class Czech extends RulesetImpl {
         }
         if (name.startsWith("ř")) {
             return name.replaceFirst("ř", "рж");
-        }
-        return name;
-    }
-
-    protected static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
         }
         return name;
     }

@@ -16,7 +16,7 @@ public class Danish extends RulesetImpl {
         name = checkExceptions(name, NAMES, FALSE);
         name = checkPrimaryCases(name);
         name = checkStart(name);
-        name = checkEndings(name);
+        name = checkEndings(name, ENDINGS);
         if (name.contains("j")) {
             name = checkCasesOfJ(name);
         }
@@ -79,16 +79,6 @@ public class Danish extends RulesetImpl {
         }
         if (name.startsWith("e")) {
             return name.replaceFirst("e", "э");
-        }
-        return name;
-    }
-
-    private static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
         }
         return name;
     }

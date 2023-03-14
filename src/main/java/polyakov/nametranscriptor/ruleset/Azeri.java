@@ -17,7 +17,7 @@ public class Azeri extends RulesetImpl {
     @Override
     public String transcribe(String name, int mode) {
         name = checkExceptions(name);
-        name = checkEndings(name);
+        name = checkEndings(name, ENDINGS);
         if (name.contains("l")) {
             name = checkCasesOfL(name);
         }
@@ -73,16 +73,6 @@ public class Azeri extends RulesetImpl {
         name = name.replace("ch", "ч");
         name = name.replace("sh", "ш");
         name = name.replace("zh", "ж");
-        return name;
-    }
-
-    private static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
-        }
         return name;
     }
 

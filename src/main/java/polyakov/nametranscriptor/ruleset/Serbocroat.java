@@ -14,7 +14,7 @@ public class Serbocroat extends RulesetImpl {
     public String transcribe(String name, int mode) {
         name = checkExceptions(name, NAMES, TRUE);
         name = checkPrimaryCases(name);
-        name = checkEndings(name);
+        name = checkEndings(name, ENDINGS);
         if (name.contains("j")) {
             name = checkCasesOfJ(name);
         }
@@ -42,16 +42,6 @@ public class Serbocroat extends RulesetImpl {
         }
         if (name.startsWith("e")) {
             return name.replaceFirst("e", "э");
-        }
-        return name;
-    }
-
-    private static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
         }
         return name;
     }

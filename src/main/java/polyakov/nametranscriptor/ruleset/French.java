@@ -251,26 +251,21 @@ public class French extends RulesetImpl {
     }
 
     private static String checkEndings(String name) {
+        String originalName = name;
         if (name.endsWith("уайes") || name.endsWith("уайés")) {
             return name.substring(0, name.length() - 3);
         }
-        for (Map.Entry<String, String> ending : FIRST_TIER_ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
+        name = checkEndings(name, FIRST_TIER_ENDINGS);
+        if (!name.equals(originalName)) {
+            return name;
         }
-        for (Map.Entry<String, String> ending : SECOND_TIER_ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
+        name = checkEndings(name, SECOND_TIER_ENDINGS);
+        if (!name.equals(originalName)) {
+            return name;
         }
-        for (Map.Entry<String, String> ending : THIRD_TIER_ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
+        name = checkEndings(name, THIRD_TIER_ENDINGS);
+        if (!name.equals(originalName)) {
+            return name;
         }
         if (name.endsWith("ien")) {
             return name.substring(0, name.length() - 3) + "ьен";

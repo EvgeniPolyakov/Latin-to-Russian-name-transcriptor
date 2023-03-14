@@ -18,7 +18,7 @@ public class German extends RulesetImpl {
             name = checkCasesOfJ(name);
         }
         name = checkStart(name);
-        name = checkEndings(name);
+        name = checkEndings(name, ENDINGS);
         name = checkVowels(name);
         name = checkCombinations(name);
         name = mapSingleChars(name);
@@ -117,16 +117,6 @@ public class German extends RulesetImpl {
         for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
             if (name.startsWith(starter.getKey())) {
                 return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
-        return name;
-    }
-
-    private static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
             }
         }
         return name;

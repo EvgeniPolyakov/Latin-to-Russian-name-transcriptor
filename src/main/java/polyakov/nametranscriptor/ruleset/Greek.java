@@ -103,13 +103,7 @@ public class Greek extends RulesetImpl {
     }
 
     private static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
-                break;
-            }
-        }
+        name = checkEndings(name, ENDINGS);
         if (name.endsWith("ia")) {
             name = name.substring(0, name.length() - 2) + "ия";
         }

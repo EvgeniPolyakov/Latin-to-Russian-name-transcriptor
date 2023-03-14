@@ -32,6 +32,16 @@ public abstract class RulesetImpl implements Ruleset {
         return name;
     }
 
+    protected static String checkEndings(String name, Map<String, String> endings) {
+        for (Map.Entry<String, String> ending : endings.entrySet()) {
+            if (name.endsWith(ending.getKey())) {
+                String sub = name.substring(0, name.length() - ending.getKey().length());
+                return sub + ending.getValue();
+            }
+        }
+        return name;
+    }
+
     protected static String checkExceptions(String name, Map<String, String> popularNames, boolean stripAccents) {
         String tempString = name;
         if (stripAccents) {

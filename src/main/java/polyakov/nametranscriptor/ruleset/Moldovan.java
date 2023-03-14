@@ -3,7 +3,6 @@ package polyakov.nametranscriptor.ruleset;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
 import java.util.Optional;
 
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Moldovan.*;
@@ -31,18 +30,8 @@ public class Moldovan extends Romanian {
     }
 
     private static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : PRIMARY_ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
-        }
-        for (Map.Entry<String, String> ending : SECONDARY_ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
-        }
+        name = checkEndings(name, PRIMARY_ENDINGS);
+        name = checkEndings(name, SECONDARY_ENDINGS);
         return name;
     }
 

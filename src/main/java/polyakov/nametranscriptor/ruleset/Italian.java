@@ -135,18 +135,8 @@ public class Italian extends RulesetImpl {
     }
 
     private static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : FIRST_TIER_ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
-        }
-        for (Map.Entry<String, String> ending : SECOND_TIER_ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
-        }
+        name = checkEndings(name, FIRST_TIER_ENDINGS);
+        name = checkEndings(name, SECOND_TIER_ENDINGS);
         return name;
     }
 

@@ -53,13 +53,7 @@ public class Latvian extends RulesetImpl {
         if (name.startsWith("e")) {
             name = name.replaceFirst("e", "э");
         }
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                name = sub + ending.getValue();
-                break;
-            }
-        }
+        name = checkEndings(name, ENDINGS);
         for (String vowel : VOWELS) {
             if (!vowel.equals("i")) {
                 name = name.replace(vowel + "e", vowel + "э");

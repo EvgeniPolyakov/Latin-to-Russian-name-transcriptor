@@ -3,6 +3,7 @@ package polyakov.nametranscriptor.ruleset;
 import org.springframework.stereotype.Component;
 
 import static java.lang.Boolean.TRUE;
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Czech.ENDINGS;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Czech.NAMES;
 
 @Component
@@ -14,7 +15,7 @@ public class Slovak extends Czech {
         name = normalizeAccents(name);
         name = checkStart(name);
         if (mode != 1) {
-            name = checkEndings(name);
+            name = checkEndings(name, ENDINGS);
         }
         name = checkVowels(name);
         name = checkSlovakCombinations(name);

@@ -98,13 +98,7 @@ public class Ukrainian extends RulesetImpl {
         name = name.replace("tskiy", "цкий");
         name = name.replace("tskii", "цкий");
         name = name.replace("tsky", "цкий");
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
-        }
-        return name;
+        return checkEndings(name, ENDINGS);
     }
 
     private static String postcheck(String name) {

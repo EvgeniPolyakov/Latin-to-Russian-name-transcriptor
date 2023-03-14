@@ -55,12 +55,7 @@ public class Brazilian extends Portuguese {
     }
 
     private static String checkEndings(String name) {
-        for (Map.Entry<String, String> ending : ENDINGS.entrySet()) {
-            if (name.endsWith(ending.getKey())) {
-                String sub = name.substring(0, name.length() - ending.getKey().length());
-                return sub + ending.getValue();
-            }
-        }
+        name = checkEndings(name, ENDINGS);
         if (name.endsWith("s")) {
             return name.substring(0, name.length() - 1) + "с";
         }
