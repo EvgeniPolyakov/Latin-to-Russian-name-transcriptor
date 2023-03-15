@@ -1,6 +1,7 @@
 package polyakov.nametranscriptor.ruleset;
 
 import org.junit.jupiter.api.Test;
+import polyakov.nametranscriptor.ruleset.rulsets.Spanish;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
