@@ -1,8 +1,8 @@
 package polyakov.nametranscriptor.ruleset.rulsets;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.DefaultRuleset;
 import polyakov.nametranscriptor.ruleset.RulesetName;
+import polyakov.nametranscriptor.ruleset.RulesetWithIotation;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +11,7 @@ import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Finnish.*;
 
 @Component
-public class Finnish extends DefaultRuleset {
+public class Finnish extends RulesetWithIotation {
 
     @Override
     public String transcribe(String name, int mode) {
@@ -123,20 +123,7 @@ public class Finnish extends DefaultRuleset {
         name = name.replace("jii", "йий");
         name = name.replace("ji", "йи");
         name = name.replace("jo", "йо");
-        for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
-            if (name.startsWith(jCombination.getKey())) {
-                name = name.replaceFirst(jCombination.getKey(), jCombination.getValue());
-                break;
-            }
-        }
-        for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
-                name = name.replace(vowel + jCombination.getKey(), vowel + jCombination.getValue());
-            }
-        }
-        for (Map.Entry<String, String> jCombination : J_CASES_AFTER_CONSONANTS.entrySet()) {
-            name = name.replace(jCombination.getKey(), jCombination.getValue());
-        }
+        name = checkIotation(name, VOWELS, J_CASES, J_CASES_AFTER_CONSONANTS);
         return name;
     }
 

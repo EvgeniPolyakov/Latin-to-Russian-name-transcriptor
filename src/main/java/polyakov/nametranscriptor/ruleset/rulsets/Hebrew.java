@@ -2,16 +2,14 @@ package polyakov.nametranscriptor.ruleset.rulsets;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.DefaultRuleset;
 import polyakov.nametranscriptor.ruleset.RulesetName;
-
-import java.util.Map;
+import polyakov.nametranscriptor.ruleset.RulesetWithIotation;
 
 import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Hebrew.*;
 
 @Component
-public class Hebrew extends DefaultRuleset {
+public class Hebrew extends RulesetWithIotation {
 
     @Override
     public String transcribe(String name, int mode) {
@@ -19,7 +17,7 @@ public class Hebrew extends DefaultRuleset {
         name = checkExceptions(name, NAMES, FALSE);
         name = name.replace("ou", "u");
         if (name.contains("y")) {
-            name = checkCasesOfY(name);
+            name = checkIotation(name, VOWELS, Y_CASES, Y_CASES_AFTER_CONSONANTS);
         }
         if (name.contains("l")) {
             name = checkCasesOfL(name);
@@ -71,24 +69,6 @@ public class Hebrew extends DefaultRuleset {
         name = name.replace("y", "i");
         if (name.endsWith("ich")) {
             return name.substring(0, name.length() - 3) + "ич";
-        }
-        return name;
-    }
-
-    private static String checkCasesOfY(String name) {
-        for (Map.Entry<String, String> yCombination : Y_CASES.entrySet()) {
-            if (name.startsWith(yCombination.getKey())) {
-                name = name.replaceFirst(yCombination.getKey(), yCombination.getValue());
-                break;
-            }
-        }
-        for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> yCombination : Y_CASES.entrySet()) {
-                name = name.replace(vowel + yCombination.getKey(), vowel + yCombination.getValue());
-            }
-        }
-        for (Map.Entry<String, String> yCombination : Y_CASES_AFTER_CONSONANTS.entrySet()) {
-            name = name.replace(yCombination.getKey(), yCombination.getValue());
         }
         return name;
     }

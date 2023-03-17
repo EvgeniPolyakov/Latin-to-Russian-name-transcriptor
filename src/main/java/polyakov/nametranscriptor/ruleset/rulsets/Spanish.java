@@ -1,8 +1,8 @@
 package polyakov.nametranscriptor.ruleset.rulsets;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.DefaultRuleset;
 import polyakov.nametranscriptor.ruleset.RulesetName;
+import polyakov.nametranscriptor.ruleset.RulesetWithIotation;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +11,7 @@ import static java.lang.Boolean.TRUE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Spanish.*;
 
 @Component
-public class Spanish extends DefaultRuleset {
+public class Spanish extends RulesetWithIotation {
     @Override
     public String transcribe(String name, int mode) {
         name = checkExceptions(name, NAMES, TRUE);
@@ -139,21 +139,10 @@ public class Spanish extends DefaultRuleset {
 
     private static String checkCasesOfY(String name) {
         name = name.replace("yu", "ю");
-        for (Map.Entry<String, String> yCombination : Y_CASES.entrySet()) {
-            if (name.startsWith(yCombination.getKey())) {
-                name = name.replaceFirst(yCombination.getKey(), yCombination.getValue());
-                break;
-            }
-        }
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> yCombination : Y_CASES.entrySet()) {
-                name = name.replace(vowel + yCombination.getKey(), vowel + yCombination.getValue());
-            }
             name = name.replace(vowel + "ya", vowel + "йя");
         }
-        for (Map.Entry<String, String> yCombination : Y_CASES_AFTER_CONSONANTS.entrySet()) {
-            name = name.replace(yCombination.getKey(), yCombination.getValue());
-        }
+        name = checkIotation(name, VOWELS, Y_CASES, Y_CASES_AFTER_CONSONANTS);
         name = name.replace("ya", "я");
         if (name.contains("y")) {
             for (String vowel : VOWELS) {

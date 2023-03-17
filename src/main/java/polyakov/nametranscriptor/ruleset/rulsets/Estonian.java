@@ -1,8 +1,8 @@
 package polyakov.nametranscriptor.ruleset.rulsets;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.DefaultRuleset;
 import polyakov.nametranscriptor.ruleset.RulesetName;
+import polyakov.nametranscriptor.ruleset.RulesetWithIotation;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Estonian.*;
 
 @Component
-public class Estonian extends DefaultRuleset {
+public class Estonian extends RulesetWithIotation {
 
     @Override
     public String transcribe(String name, int mode) {
@@ -18,7 +18,9 @@ public class Estonian extends DefaultRuleset {
         name = checkEndings(name);
         name = checkVowels(name);
         name = checkStart(name);
-        name = checkCasesOfJ(name);
+        if (name.contains("j")) {
+            name = checkIotation(name, VOWELS, J_CASES, J_CASES_AFTER_CONSONANTS);
+        }
         name = checkIotation(name);
         name = checkCombinations(name);
         name = mapSingleChars(name);
@@ -85,24 +87,6 @@ public class Estonian extends DefaultRuleset {
             if (name.endsWith(vowel + "ss")) {
                 return name.substring(0, name.length() - 2) + "с";
             }
-        }
-        return name;
-    }
-
-    private static String checkCasesOfJ(String name) {
-        for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
-            if (name.startsWith(jCombination.getKey())) {
-                name = name.replaceFirst(jCombination.getKey(), jCombination.getValue());
-                break;
-            }
-        }
-        for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
-                name = name.replace(vowel + jCombination.getKey(), vowel + jCombination.getValue());
-            }
-        }
-        for (Map.Entry<String, String> jCombination : J_CASES_AFTER_CONSONANTS.entrySet()) {
-            name = name.replace(jCombination.getKey(), jCombination.getValue());
         }
         return name;
     }

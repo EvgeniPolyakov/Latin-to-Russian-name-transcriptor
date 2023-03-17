@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Serbocroat {
-    public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u", "э");
+    public static final List<String> VOWELS = List.of("a", "e", "i", "o", "u", "е", "и", "о", "э", "ю", "я");
 
-    public static final Map<String, String> J_CASES_AFTER_VOWELS = Map.ofEntries(
+    public static final Map<String, String> J_CASES = Map.ofEntries(
             Map.entry("ja", "я"),
             Map.entry("je", "е"),
             Map.entry("ji", "и"),
@@ -27,14 +27,6 @@ public class Serbocroat {
             Map.entry("ji", "ьи"),
             Map.entry("jo", "ьо"),
             Map.entry("ju", "ью")
-    );
-
-    public static final Map<String, String> J_FIRST_CASE = Map.ofEntries(
-            Map.entry("ja", "я"),
-            Map.entry("je", "е"),
-            Map.entry("ji", "и"),
-            Map.entry("jo", "йо"),
-            Map.entry("ju", "ю")
     );
 
     public static final Map<String, String> ENDINGS = Map.ofEntries(

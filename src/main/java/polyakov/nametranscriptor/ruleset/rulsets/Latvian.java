@@ -1,8 +1,8 @@
 package polyakov.nametranscriptor.ruleset.rulsets;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.DefaultRuleset;
 import polyakov.nametranscriptor.ruleset.RulesetName;
+import polyakov.nametranscriptor.ruleset.RulesetWithIotation;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ import static java.lang.Boolean.TRUE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Latvian.*;
 
 @Component
-public class Latvian extends DefaultRuleset {
+public class Latvian extends RulesetWithIotation {
     @Override
     public String transcribe(String name, int mode) {
         name = checkExceptions(name, NAMES, TRUE);
@@ -18,7 +18,7 @@ public class Latvian extends DefaultRuleset {
         name = checkCustomCases(name);
         name = checkSoftConsonants(name, mode);
         if (name.contains("j")) {
-            name = checkCasesOfJ(name);
+            name = checkIotation(name, VOWELS, J_CASES, J_CASES_AFTER_CONSONANTS);
         }
         name = mapSingleChars(name);
         return mapStandardChars(name);
@@ -74,24 +74,6 @@ public class Latvian extends DefaultRuleset {
                 name = name.replace(cons.getKey() + asc.getKey(), cons.getValue() + asc.getValue());
             }
             name = name.replace(cons.getKey() + "j", cons.getValue() + "j");
-        }
-        return name;
-    }
-
-    private static String checkCasesOfJ(String name) {
-        for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
-            if (name.startsWith(jCombination.getKey())) {
-                name = name.replaceFirst(jCombination.getKey(), jCombination.getValue());
-                break;
-            }
-        }
-        for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
-                name = name.replace(vowel + jCombination.getKey(), vowel + jCombination.getValue());
-            }
-        }
-        for (Map.Entry<String, String> jCombination : J_CASES_AFTER_CONSONANTS.entrySet()) {
-            name = name.replace(jCombination.getKey(), jCombination.getValue());
         }
         return name;
     }

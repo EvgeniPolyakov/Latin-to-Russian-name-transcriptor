@@ -1,8 +1,8 @@
 package polyakov.nametranscriptor.ruleset.rulsets;
 
 import org.springframework.stereotype.Component;
-import polyakov.nametranscriptor.ruleset.DefaultRuleset;
 import polyakov.nametranscriptor.ruleset.RulesetName;
+import polyakov.nametranscriptor.ruleset.RulesetWithIotation;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +11,7 @@ import static java.lang.Boolean.TRUE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Dutch.*;
 
 @Component
-public class Dutch extends DefaultRuleset {
+public class Dutch extends RulesetWithIotation {
 
     @Override
     public String transcribe(String name, int mode) {
@@ -133,24 +133,11 @@ public class Dutch extends DefaultRuleset {
         if (name.startsWith("jou")) {
             name = name.replaceFirst("jou", "яу");
         }
-        for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
-            if (name.startsWith(jCombination.getKey())) {
-                name = name.replaceFirst(jCombination.getKey(), jCombination.getValue());
-                break;
-            }
-        }
         for (String vowel : VOWELS) {
-            if (name.startsWith("jou")) {
-                name = name.replace(vowel + "jou", vowel + "яу");
-            }
-            for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
-                name = name.replace(vowel + jCombination.getKey(), vowel + jCombination.getValue());
-            }
+            name = name.replace(vowel + "jou", vowel + "яу");
         }
         name = name.replace("jou", "ьяу");
-        for (Map.Entry<String, String> jCombination : J_CASES_AFTER_CONSONANTS.entrySet()) {
-            name = name.replace(jCombination.getKey(), jCombination.getValue());
-        }
+        name = checkIotation(name, VOWELS, J_CASES, J_CASES_AFTER_CONSONANTS);
         return name;
     }
 
