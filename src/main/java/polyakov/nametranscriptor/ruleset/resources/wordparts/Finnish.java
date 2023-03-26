@@ -11,7 +11,12 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Finnish {
-    public static final Map<String, String> STARTERS = Map.ofEntries(
+    public static final Map<String, String> PRIMARY_STARTERS = Map.ofEntries(
+            Map.entry("ää", "ээ"),
+            Map.entry("äy", "эу")
+    );
+
+    public static final Map<String, String> SECONDARY_STARTERS = Map.ofEntries(
             Map.entry("ä", "э"),
             Map.entry("e", "э")
     );

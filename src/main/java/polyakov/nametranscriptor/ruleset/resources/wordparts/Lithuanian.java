@@ -11,6 +11,11 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Lithuanian {
+    public static final Map<String, String> STARTERS = Map.ofEntries(
+            Map.entry("e", "э"),
+            Map.entry("ė", "э")
+    );
+
     public static final Map<String, String> J_CASES = Map.ofEntries(
             Map.entry("ja", "я"),
             Map.entry("je", "е"),

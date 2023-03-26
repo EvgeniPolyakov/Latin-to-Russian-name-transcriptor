@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Danish {
-
     public static final Map<String, String> PRIMARY_STARTERS = Map.ofEntries(
             Map.entry("af", "ау"),
             Map.entry("ej", "ай"),
@@ -19,6 +18,11 @@ public class Danish {
             Map.entry("øj", "ой"),
             Map.entry("nord", "нор"),
             Map.entry("y", "и")
+    );
+
+    public static final Map<String, String> SECONDARY_STARTERS = Map.ofEntries(
+            Map.entry("ø", "э"),
+            Map.entry("e", "э")
     );
 
     public static final Map<String, String> ENDINGS = Map.ofEntries(

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Greek {
-    public static final Map<String, String> FIRST_TIER_STARTERS = Map.ofEntries(
+    public static final Map<String, String> PRIMARY_STARTERS = Map.ofEntries(
             Map.entry("ai", "э"),
             Map.entry("e", "э"),
             Map.entry("ie", "ие"),
@@ -34,7 +34,7 @@ public class Greek {
             Map.entry("giiou", "ю")
     );
 
-    public static final Map<String, String> SECOND_TIER_STARTERS = Map.ofEntries(
+    public static final Map<String, String> SECONDARY_STARTERS = Map.ofEntries(
             Map.entry("gia", "я"),
             Map.entry("gii", "е"),
             Map.entry("gio", "йо"),

@@ -5,8 +5,7 @@ import polyakov.nametranscriptor.ruleset.DefaultRuleset;
 import polyakov.nametranscriptor.ruleset.RulesetName;
 
 import static java.lang.Boolean.TRUE;
-import static polyakov.nametranscriptor.ruleset.resources.wordparts.Czech.ENDINGS;
-import static polyakov.nametranscriptor.ruleset.resources.wordparts.Czech.NAMES;
+import static polyakov.nametranscriptor.ruleset.resources.wordparts.Czech.*;
 
 @Component
 public class Slovak extends Czech {
@@ -15,7 +14,7 @@ public class Slovak extends Czech {
     public String transcribe(String name, int mode) {
         name = DefaultRuleset.checkExceptions(name, NAMES, TRUE);
         name = normalizeAccents(name);
-        name = checkStart(name);
+        name = checkStart(name, STARTERS);
         if (mode != 1) {
             name = DefaultRuleset.checkEndings(name, ENDINGS);
         }

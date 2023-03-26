@@ -16,7 +16,7 @@ public class Czech extends DefaultRuleset {
     public String transcribe(String name, int mode) {
         name = checkExceptions(name, NAMES, TRUE);
         name = normalizeAccents(name);
-        name = checkStart(name);
+        name = checkStart(name, STARTERS);
         if (mode != 1) {
             name = checkEndings(name, ENDINGS);
         }
@@ -81,7 +81,7 @@ public class Czech extends DefaultRuleset {
             name = name.substring(0, name.length() - 2) + "ия";
         }
         for (String vowel : VOWELS) {
-            for (Map.Entry<String, String> afterVowel : STARTERS.entrySet()) {
+            for (Map.Entry<String, String> afterVowel : AFTER_VOWELS.entrySet()) {
                 name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
             }
             name = name.replace(vowel + "jo", vowel + "е");
@@ -90,21 +90,6 @@ public class Czech extends DefaultRuleset {
         }
         for (String consonant : Y_CASE_CONSONANTS) {
             name = name.replace(consonant + "y", consonant + "и");
-        }
-        return name;
-    }
-
-    protected static String checkStart(String name) {
-        for (Map.Entry<String, String> startingPart : STARTERS.entrySet()) {
-            if (name.startsWith(startingPart.getKey())) {
-                return name.replaceFirst(startingPart.getKey(), startingPart.getValue());
-            }
-        }
-        if (name.startsWith("jo")) {
-            return name.replaceFirst("jo", "йо");
-        }
-        if (name.startsWith("ř")) {
-            return name.replaceFirst("ř", "рж");
         }
         return name;
     }

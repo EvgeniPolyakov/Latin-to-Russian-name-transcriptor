@@ -23,7 +23,7 @@ public class Hungarian extends DefaultRuleset {
         if (name.contains("l")) {
             name = checkCasesOfL(name);
         }
-        name = checkStart(name);
+        name = checkStart(name, STARTERS);
         name = checkCombinations(name);
         name = mapSingleChars(name);
         return mapStandardChars(name);
@@ -140,15 +140,6 @@ public class Hungarian extends DefaultRuleset {
         name = name.replace("ll", "лl");
         for (String vowel : VOWELS) {
             name = name.replace("l" + vowel, "л" + vowel);
-        }
-        return name;
-    }
-
-    private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
         }
         return name;
     }

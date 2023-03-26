@@ -5,7 +5,6 @@ import polyakov.nametranscriptor.ruleset.RulesetName;
 import polyakov.nametranscriptor.ruleset.RulesetWithIotation;
 
 import java.util.List;
-import java.util.Map;
 
 import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Finnish.*;
@@ -72,17 +71,8 @@ public class Finnish extends RulesetWithIotation {
     }
 
     private static String checkStart(String name) {
-        if (name.startsWith("äy")) {
-            return name.replaceFirst("äy", "эу");
-        }
-        if (name.startsWith("ää")) {
-            return name.replaceFirst("ää", "ээ");
-        }
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
+        name = checkStart(name, PRIMARY_STARTERS);
+        name = checkStart(name, SECONDARY_STARTERS);
         return name;
     }
 

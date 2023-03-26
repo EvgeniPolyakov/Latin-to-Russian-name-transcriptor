@@ -167,18 +167,8 @@ public class Polish extends DefaultRuleset {
     }
 
     private static String checkStartCasesOfJ(String name) {
-        for (Map.Entry<String, String> jCombination : J_PRIMARY_START_CASES.entrySet()) {
-            if (name.startsWith(jCombination.getKey())) {
-                name = name.replaceFirst(jCombination.getKey(), jCombination.getValue());
-                break;
-            }
-        }
-        for (Map.Entry<String, String> jCombination : J_CASES.entrySet()) {
-            if (name.startsWith(jCombination.getKey())) {
-                name = name.replaceFirst(jCombination.getKey(), jCombination.getValue());
-                break;
-            }
-        }
+        name = checkStart(name, J_PRIMARY_START_CASES);
+        name = checkStart(name, J_CASES);
         return name;
     }
 

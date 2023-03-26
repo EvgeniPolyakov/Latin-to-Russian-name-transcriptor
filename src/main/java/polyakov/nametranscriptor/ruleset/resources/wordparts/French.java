@@ -65,7 +65,7 @@ public class French {
             Map.entry("ct", "")
     );
 
-    public static final Map<String, String> FIRST_TIER_STARTERS = Map.ofEntries(
+    public static final Map<String, String> PRIMARY_STARTERS = Map.ofEntries(
             Map.entry("hin", "эн"),
             Map.entry("un", "эн"),
             Map.entry("ey", "э"),
@@ -81,7 +81,7 @@ public class French {
             Map.entry("ya", "я")
     );
 
-    public static final Map<String, String> SECOND_TIER_STARTERS = Map.ofEntries(
+    public static final Map<String, String> SECONDARY_STARTERS = Map.ofEntries(
             Map.entry("é", "э"),
             Map.entry("œ", "э"),
             Map.entry("e", "э"),

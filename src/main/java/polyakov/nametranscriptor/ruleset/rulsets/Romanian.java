@@ -38,7 +38,7 @@ public class Romanian extends DefaultRuleset {
     protected String checkCustomCases(String name) {
         name = name.replace("ii", "ий");
         name = name.replace("îi", "ый");
-        name = checkStart(name);
+        name = checkStart(name, STARTERS);
         name = name.replace("cea", "ча");
         name = name.replace("cia", "ча");
         name = name.replace("cio", "чо");
@@ -58,15 +58,6 @@ public class Romanian extends DefaultRuleset {
         name = name.replace("ie", "ье");
         name = name.replace("io", "ьо");
         name = name.replace("iu", "ью");
-        return name;
-    }
-
-    private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
         return name;
     }
 

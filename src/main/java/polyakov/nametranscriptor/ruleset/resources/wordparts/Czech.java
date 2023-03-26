@@ -33,7 +33,7 @@ public class Czech {
             Map.entry("ů", "ю")
     );
 
-    public static final Map<String, String> STARTERS = Map.ofEntries(
+    public static final Map<String, String> AFTER_VOWELS = Map.ofEntries(
             Map.entry("e", "э"),
             Map.entry("é", "э"),
             Map.entry("ja", "я"),
@@ -44,6 +44,21 @@ public class Czech {
             Map.entry("ju", "ю"),
             Map.entry("jú", "ю"),
             Map.entry("jů", "ю")
+    );
+
+    public static final Map<String, String> STARTERS = Map.ofEntries(
+            Map.entry("e", "э"),
+            Map.entry("é", "э"),
+            Map.entry("ja", "я"),
+            Map.entry("já", "я"),
+            Map.entry("je", "е"),
+            Map.entry("jé", "е"),
+            Map.entry("ji", "йи"),
+            Map.entry("jo", "йо"),
+            Map.entry("ju", "ю"),
+            Map.entry("jú", "ю"),
+            Map.entry("jů", "ю"),
+            Map.entry("ř", "рж")
     );
 
     public static final Map<String, String> ENDINGS = Map.ofEntries(

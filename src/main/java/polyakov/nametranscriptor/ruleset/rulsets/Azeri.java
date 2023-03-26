@@ -23,7 +23,7 @@ public class Azeri extends DefaultRuleset {
         if (name.contains("l")) {
             name = checkCasesOfL(name);
         }
-        name = checkStart(name);
+        name = checkStart(name, STARTERS_AND_AFTER_VOWELS);
         name = checkCombinations(name);
         name = mapSingleChars(name);
         return mapStandardChars(name);
@@ -85,15 +85,6 @@ public class Azeri extends DefaultRuleset {
         }
         for (String vowel : UTILITY_VOWELS) {
             name = name.replace(vowel + "l", vowel + "л");
-        }
-        return name;
-    }
-
-    private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : STARTERS_AND_AFTER_VOWELS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
         }
         return name;
     }

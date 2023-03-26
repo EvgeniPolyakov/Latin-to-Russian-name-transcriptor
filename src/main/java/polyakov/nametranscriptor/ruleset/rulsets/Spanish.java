@@ -129,11 +129,7 @@ public class Spanish extends RulesetWithIotation {
         if (name.startsWith("h")) {
             name = name.substring(1);
         }
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
+        name = checkStart(name, STARTERS);
         return name;
     }
 

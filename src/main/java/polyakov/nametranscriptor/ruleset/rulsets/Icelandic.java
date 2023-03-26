@@ -5,7 +5,6 @@ import polyakov.nametranscriptor.ruleset.RulesetName;
 import polyakov.nametranscriptor.ruleset.RulesetWithIotation;
 
 import java.util.List;
-import java.util.Map;
 
 import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Icelandic.*;
@@ -78,16 +77,8 @@ public class Icelandic extends RulesetWithIotation {
     }
 
     private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : PRIMARY_STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
-        for (Map.Entry<String, String> starter : SECONDARY_STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
+        name = checkStart(name, PRIMARY_STARTERS);
+        name = checkStart(name, SECONDARY_STARTERS);
         return name;
     }
 

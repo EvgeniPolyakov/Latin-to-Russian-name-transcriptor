@@ -13,7 +13,7 @@ public class Lithuanian extends RulesetWithIotation {
     public String transcribe(String name, int mode) {
         name = checkExceptions(name, NAMES, TRUE);
         name = checkPrimaryCases(name);
-        name = checkStart(name);
+        name = checkStart(name, STARTERS);
         name = checkVowels(name);
         if (name.contains("j")) {
             name = checkIotation(name, VOWELS, J_CASES, J_CASES_AFTER_CONSONANTS);
@@ -53,14 +53,6 @@ public class Lithuanian extends RulesetWithIotation {
         name = name.replace("nevič", "нявич");
         name = name.replace("sevič", "сявич");
         return name;
-    }
-
-    private static String checkStart(String name) {
-        return switch (name.charAt(0)) {
-            case 'e' -> name.replaceFirst("e", "э");
-            case 'ė' -> name.replaceFirst("ė", "э");
-            default -> name;
-        };
     }
 
     private static String checkVowels(String name) {

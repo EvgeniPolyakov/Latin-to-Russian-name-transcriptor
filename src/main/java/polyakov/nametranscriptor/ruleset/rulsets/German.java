@@ -19,7 +19,7 @@ public class German extends RulesetWithIotation {
         if (name.contains("j")) {
             name = checkIotation(name, VOWELS, J_CASES, J_CASES_AFTER_CONSONANTS);
         }
-        name = checkStart(name);
+        name = checkStart(name, STARTERS);
         name = checkEndings(name, ENDINGS);
         name = checkVowels(name);
         name = checkCombinations(name);
@@ -112,15 +112,6 @@ public class German extends RulesetWithIotation {
         name = name.replace("ci", "цi");
         name = name.replace("ye", "ие");
         name = name.replace("lь", "ль");
-        return name;
-    }
-
-    private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
         return name;
     }
 

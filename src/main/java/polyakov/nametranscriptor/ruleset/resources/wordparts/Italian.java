@@ -11,7 +11,12 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Italian {
-    public static final Map<String, String> STARTERS = Map.ofEntries(
+    public static final Map<String, String> PRIMARY_STARTERS = Map.ofEntries(
+            Map.entry("zz", "дз"),
+            Map.entry("h", "")
+    );
+
+    public static final Map<String, String> SECONDARY_STARTERS = Map.ofEntries(
             Map.entry("ia", "я"),
             Map.entry("e", "э"),
             Map.entry("ie", "е"),

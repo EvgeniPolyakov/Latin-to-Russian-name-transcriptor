@@ -64,11 +64,7 @@ public class Russian extends DefaultRuleset {
     }
 
     protected static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
+        name = checkStart(name, STARTERS);
         if (name.startsWith("e")) {
             return name.replaceFirst("e", "э");
         }

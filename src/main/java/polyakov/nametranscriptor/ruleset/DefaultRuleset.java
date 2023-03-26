@@ -32,6 +32,15 @@ public abstract class DefaultRuleset implements Ruleset {
         return name;
     }
 
+    protected static String checkStart(String name, Map<String, String> starters) {
+        for (Map.Entry<String, String> startingPart : starters.entrySet()) {
+            if (name.startsWith(startingPart.getKey())) {
+                return name.replaceFirst(startingPart.getKey(), startingPart.getValue());
+            }
+        }
+        return name;
+    }
+
     protected static String checkEndings(String name, Map<String, String> endings) {
         for (Map.Entry<String, String> ending : endings.entrySet()) {
             if (name.endsWith(ending.getKey())) {

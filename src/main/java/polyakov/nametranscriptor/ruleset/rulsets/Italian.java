@@ -122,17 +122,8 @@ public class Italian extends DefaultRuleset {
     }
 
     private static String checkStart(String name) {
-        if (name.startsWith("zz")) {
-            return name.replaceFirst("zz", "дз");
-        }
-        if (name.startsWith("h")) {
-            name = name.replaceFirst("h", "");
-        }
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
+        name = checkStart(name, PRIMARY_STARTERS);
+        name = checkStart(name, SECONDARY_STARTERS);
         return name;
     }
 

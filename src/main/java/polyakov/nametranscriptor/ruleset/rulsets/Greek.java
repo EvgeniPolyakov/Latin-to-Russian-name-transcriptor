@@ -91,16 +91,8 @@ public class Greek extends DefaultRuleset {
     }
 
     private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : FIRST_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
-        for (Map.Entry<String, String> starter : SECOND_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
+        name = checkStart(name, PRIMARY_STARTERS);
+        name = checkStart(name, SECONDARY_STARTERS);
         return name;
     }
 

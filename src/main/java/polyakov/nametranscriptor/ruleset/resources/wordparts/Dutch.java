@@ -16,18 +16,23 @@ public class Dutch {
             Map.entry("w", "")
     );
 
-    public static final Map<String, String> FIRST_TIER_STARTERS = Map.ofEntries(
+    public static final Map<String, String> PRIMARY_STARTERS = Map.ofEntries(
             Map.entry("eij", "эй"),
             Map.entry("uij", "эй"),
             Map.entry("ij", "эй")
     );
 
-    public static final Map<String, String> SECOND_TIER_STARTERS = Map.ofEntries(
+    public static final Map<String, String> SECONDARY_STARTERS = Map.ofEntries(
             Map.entry("ei", "эй"),
             Map.entry("ey", "эй"),
             Map.entry("eu", "эй"),
             Map.entry("ui", "эй"),
             Map.entry("uy", "эй")
+    );
+
+    public static final Map<String, String> TERTIARY_STARTERS = Map.ofEntries(
+            Map.entry("e", "э"),
+            Map.entry("u", "у")
     );
 
     public static final Map<String, String> AFTER_VOWELS = Map.ofEntries(

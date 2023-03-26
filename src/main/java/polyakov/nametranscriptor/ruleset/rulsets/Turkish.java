@@ -13,7 +13,7 @@ public class Turkish extends DefaultRuleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkStart(name);
+        name = checkStart(name, STARTERS_AND_AFTER_VOWELS);
         name = checkCombinations(name);
         name = mapSingleChars(name);
         return mapStandardChars(name);
@@ -61,15 +61,6 @@ public class Turkish extends DefaultRuleset {
         name = name.replace("yö", "ье");
         name = name.replace("yu", "ью");
         name = name.replace("yü", "ью");
-        return name;
-    }
-
-    private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : STARTERS_AND_AFTER_VOWELS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
         return name;
     }
 

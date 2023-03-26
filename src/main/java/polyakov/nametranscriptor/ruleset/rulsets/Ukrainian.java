@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.ruleset.DefaultRuleset;
 import polyakov.nametranscriptor.ruleset.RulesetName;
 
-import java.util.Map;
 import java.util.Optional;
 
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.RUSSIAN_NAMES;
@@ -80,11 +79,7 @@ public class Ukrainian extends DefaultRuleset {
     }
 
     private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replace(starter.getKey(), starter.getValue());
-            }
-        }
+        name = checkStart(name, STARTERS);
         if (name.startsWith("e")) {
             return name.replaceFirst("e", "э");
         }

@@ -4,8 +4,6 @@ import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.ruleset.RulesetName;
 import polyakov.nametranscriptor.ruleset.RulesetWithIotation;
 
-import java.util.Map;
-
 import static java.lang.Boolean.FALSE;
 import static polyakov.nametranscriptor.ruleset.resources.wordparts.Estonian.*;
 
@@ -64,17 +62,8 @@ public class Estonian extends RulesetWithIotation {
     }
 
     private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
-        if (name.startsWith("ä")) {
-            return name.replaceFirst("ä", "э");
-        }
-        if (name.startsWith("ö")) {
-            return name.replaceFirst("ö", "э");
-        }
+        name = checkStart(name, PRIMARY_STARTERS);
+        name = checkStart(name, SECONDARY_STARTERS);
         return name;
     }
 

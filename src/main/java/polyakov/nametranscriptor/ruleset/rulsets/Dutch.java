@@ -100,24 +100,9 @@ public class Dutch extends RulesetWithIotation {
     }
 
     private static String checkStart(String name) {
-        for (Map.Entry<String, String> starter : FIRST_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
-        for (Map.Entry<String, String> starter : SECOND_TIER_STARTERS.entrySet()) {
-            if (name.startsWith(starter.getKey())) {
-                return name.replaceFirst(starter.getKey(), starter.getValue());
-            }
-        }
-        if (name.startsWith("u")) {
-            name = name.replaceFirst("u", "у");
-            return name;
-        }
-        if (name.startsWith("e")) {
-            name = name.replaceFirst("e", "э");
-            return name;
-        }
+        name = checkStart(name, PRIMARY_STARTERS);
+        name = checkStart(name, SECONDARY_STARTERS);
+        name = checkStart(name, TERTIARY_STARTERS);
         return name;
     }
 

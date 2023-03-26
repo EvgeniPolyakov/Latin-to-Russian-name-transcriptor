@@ -11,13 +11,18 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Estonian {
-    public static final Map<String, String> STARTERS = Map.ofEntries(
+    public static final Map<String, String> PRIMARY_STARTERS = Map.ofEntries(
             Map.entry("jää", "яэ"),
             Map.entry("jöö", "йеэ"),
             Map.entry("jüü", "юй"),
             Map.entry("öö", "ээ"),
             Map.entry("ää", "ээ"),
             Map.entry("e", "э")
+    );
+
+    public static final Map<String, String> SECONDARY_STARTERS = Map.ofEntries(
+            Map.entry("ä", "э"),
+            Map.entry("ö", "э")
     );
 
     public static final Map<String, String> ENDINGS = Map.ofEntries(
