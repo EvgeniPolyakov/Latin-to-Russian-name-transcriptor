@@ -1,19 +1,17 @@
 package polyakov.nametranscriptor.ruleset.rulsets;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import polyakov.nametranscriptor.ruleset.RulesetName;
+import polyakov.nametranscriptor.ruleset.resources.popularnames.GeorgianNames;
 
+import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class Georgian extends Russian {
-    public static final Map<String, String> NAMES = Map.ofEntries(
-            Map.entry("aleksandre", "александр"),
-            Map.entry("davit", "давид"),
-            Map.entry("mikheil", "михаил"),
-            Map.entry("giorgi", "георгий"),
-            Map.entry("teimuraz", "теймураз")
-    );
 
     @Override
     protected String checkPrimaryCases(String name) {
@@ -23,12 +21,12 @@ public class Georgian extends Russian {
         if (name.endsWith("ia")) {
             name = name.substring(0, name.length() - 2) + "ия";
         }
-        for (Map.Entry<String, String> firstName : NAMES.entrySet()) {
-            if (name.equals(firstName.getKey())) {
-                name = name.replace(firstName.getKey(), firstName.getValue());
-                break;
-            }
-        }
+        name = checkExceptions(name);
+        name = checkGeorgianCases(name);
+        return name;
+    }
+
+    private static String checkGeorgianCases(String name) {
         name = name.replace("mja", "мжа");
         name = name.replace("bja", "бжа");
         name = name.replace("q", "к");
@@ -37,10 +35,16 @@ public class Georgian extends Russian {
         name = name.replace("ei", "еи");
         name = name.replace("dj", "дж");
         name = name.replace("j", "дж");
-        name = name.replace("J", "Дж");
         name = name.replace("ghe", "ге");
         name = name.replace("tch", "ч");
         return name;
+    }
+
+    private static String checkExceptions(String name) {
+        String nameWithNoAccents = StringUtils.stripAccents(name);
+        Map<String, String> names = Arrays.stream(GeorgianNames.values())
+                .collect(Collectors.toMap(GeorgianNames::getLatinName, GeorgianNames::getCyrillicName));
+        return Optional.ofNullable(names.get(nameWithNoAccents)).orElse(name);
     }
 
     @Override
