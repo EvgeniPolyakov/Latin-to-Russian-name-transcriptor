@@ -26,6 +26,8 @@ public class Latvian {
             Map.entry("ņ", "н")
     );
 
+    public static final Map<String, String> STARTERS = Map.of("e", "э");
+
     public static final Map<String, String> ENDINGS = Map.ofEntries(
             Map.entry("ezers", "эзерс"),
             Map.entry("ni", "ны"),

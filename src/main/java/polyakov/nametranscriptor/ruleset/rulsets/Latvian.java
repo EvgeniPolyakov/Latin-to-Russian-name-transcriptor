@@ -15,7 +15,9 @@ public class Latvian extends RulesetWithIotation {
     public String transcribe(String name, int mode) {
         name = checkExceptions(name, NAMES, TRUE);
         name = checkPrimaryCases(name);
-        name = checkCustomCases(name);
+        name = checkStart(name, STARTERS);
+        name = checkEndings(name, ENDINGS);
+        name = checkVowels(name);
         name = checkSoftConsonants(name, mode);
         if (name.contains("j")) {
             name = checkIotation(name, VOWELS, J_CASES, J_CASES_AFTER_CONSONANTS);
@@ -51,11 +53,7 @@ public class Latvian extends RulesetWithIotation {
         return name;
     }
 
-    private static String checkCustomCases(String name) {
-        if (name.startsWith("e")) {
-            name = name.replaceFirst("e", "э");
-        }
-        name = checkEndings(name, ENDINGS);
+    private static String checkVowels(String name) {
         for (String vowel : VOWELS) {
             if (!vowel.equals("i")) {
                 name = name.replace(vowel + "e", vowel + "э");
