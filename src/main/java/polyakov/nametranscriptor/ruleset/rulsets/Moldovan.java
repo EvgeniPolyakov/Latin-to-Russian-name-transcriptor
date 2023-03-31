@@ -13,21 +13,13 @@ import static polyakov.nametranscriptor.ruleset.resources.wordparts.Russian.RUSS
 public class Moldovan extends Romanian {
 
     @Override
-    protected String checkCustomCases(String name) {
+    public String transcribe(String name, int mode) {
         name = checkExceptions(name);
-        Optional<String> russianName = Optional.ofNullable(RUSSIAN_NAMES.get(name));
-        if (russianName.isPresent()) {
-            return russianName.get();
-        }
-        Optional<String> moldovanName = Optional.ofNullable(MOLDOVAN_NAMES.get(name));
-        if (moldovanName.isPresent()) {
-            return moldovanName.get();
-        }
         name = checkEndings(name);
         name = name.replace("şciu", "щу");
         name = name.replace("şcia", "ща");
         name = name.replace("şc", "щ");
-        return super.checkCustomCases(name);
+        return super.transcribe(name, mode);
     }
 
     private static String checkEndings(String name) {
