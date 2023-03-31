@@ -13,7 +13,14 @@ public class Romanian extends DefaultRuleset {
 
     @Override
     public String transcribe(String name, int mode) {
-        name = checkCustomCases(name);
+        name = checkStart(name, STARTERS);
+        name = checkCombinations(name);
+        if (name.contains("i")) {
+            name = checkIotation(name);
+        }
+        name = checkEndings(name, ENDINGS);
+        name = checkConsonants(name);
+        name = checkDiphthongs(name);
         name = mapSingleChars(name);
         return mapStandardChars(name);
     }
@@ -35,10 +42,7 @@ public class Romanian extends DefaultRuleset {
         return name;
     }
 
-    protected String checkCustomCases(String name) {
-        name = name.replace("ii", "ий");
-        name = name.replace("îi", "ый");
-        name = checkStart(name, STARTERS);
+    protected String checkCombinations(String name) {
         name = name.replace("cea", "ча");
         name = name.replace("cia", "ча");
         name = name.replace("cio", "чо");
@@ -49,19 +53,12 @@ public class Romanian extends DefaultRuleset {
         name = name.replace("gio", "джо");
         name = name.replace("giu", "джу");
         name = name.replace("ea", "я");
-        if (name.contains("i")) {
-            name = checkIotation(name);
-        }
-        name = checkEndings(name, ENDINGS);
-        name = checkConsonants(name);
-        name = name.replace("ia", "ья");
-        name = name.replace("ie", "ье");
-        name = name.replace("io", "ьо");
-        name = name.replace("iu", "ью");
         return name;
     }
 
     private static String checkIotation(String name) {
+        name = name.replace("ii", "ий");
+        name = name.replace("îi", "ый");
         for (Map.Entry<String, String> vowel : VOWELS.entrySet()) {
             for (Map.Entry<String, String> ip : IOTATED_PARTS.entrySet()) {
                 name = name.replace(vowel.getKey() + ip.getKey(), vowel.getValue() + ip.getValue());
@@ -77,6 +74,14 @@ public class Romanian extends DefaultRuleset {
                 name = name.replace(consonant.getKey() + vowel, consonant.getValue() + vowel);
             }
         }
+        return name;
+    }
+
+    private static String checkDiphthongs(String name) {
+        name = name.replace("ia", "ья");
+        name = name.replace("ie", "ье");
+        name = name.replace("io", "ьо");
+        name = name.replace("iu", "ью");
         return name;
     }
 
