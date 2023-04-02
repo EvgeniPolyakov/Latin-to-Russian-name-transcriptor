@@ -18,7 +18,7 @@ public class Portuguese extends DefaultRuleset {
         name = checkPrimaryCases(name);
         name = normalizeAccents(name);
         name = checkStart(name);
-        name = checkEnd(name);
+        name = checkEndings(name);
         name = checkVowels(name);
         name = checkCombinations(name);
         name = mapSingleChars(name);
@@ -121,7 +121,7 @@ public class Portuguese extends DefaultRuleset {
         return name;
     }
 
-    private static String checkEnd(String name) {
+    private static String checkEndings(String name) {
         for (String vowel : VOWELS) {
             for (Map.Entry<String, String> afterVowel : ENDINGS_AFTER_VOWELS.entrySet()) {
                 if (name.endsWith(vowel + afterVowel.getKey())) {
