@@ -24,6 +24,7 @@ public class Azeri extends DefaultRuleset {
             name = checkCasesOfL(name);
         }
         name = checkStart(name, STARTERS_AND_AFTER_VOWELS);
+        name = checkAfterVowels(name);
         name = checkCombinations(name);
         name = mapSingleChars(name);
         return mapStandardChars(name);
@@ -50,16 +51,6 @@ public class Azeri extends DefaultRuleset {
     }
 
     private static String checkCombinations(String name) {
-        for (Map.Entry<String, String> afterVowel : STARTERS_AND_AFTER_VOWELS.entrySet()) {
-            for (String vowel : VOWELS) {
-                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
-            }
-        }
-        for (Map.Entry<String, String> afterVowel : STARTERS_AND_AFTER_VOWELS.entrySet()) {
-            for (String vowel : CYRILLIC_VOWELS) {
-                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
-            }
-        }
         name = name.replace("yı", "йы");
         name = name.replace("yi", "йи");
         name = name.replace("ya", "ья");
@@ -75,6 +66,20 @@ public class Azeri extends DefaultRuleset {
         name = name.replace("ch", "ч");
         name = name.replace("sh", "ш");
         name = name.replace("zh", "ж");
+        return name;
+    }
+
+    private static String checkAfterVowels(String name) {
+        for (Map.Entry<String, String> afterVowel : STARTERS_AND_AFTER_VOWELS.entrySet()) {
+            for (String vowel : VOWELS) {
+                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
+            }
+        }
+        for (Map.Entry<String, String> afterVowel : STARTERS_AND_AFTER_VOWELS.entrySet()) {
+            for (String vowel : CYRILLIC_VOWELS) {
+                name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
+            }
+        }
         return name;
     }
 
