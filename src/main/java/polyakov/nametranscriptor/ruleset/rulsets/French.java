@@ -199,12 +199,6 @@ public class French extends DefaultRuleset {
                 name = name.replace(vowel + "e", vowel + "э");
                 name = name.replace(vowel + "un", vowel + "эн");
             }
-            if (name.startsWith("em" + vowel)) {
-                name = name.replace("em" + vowel, "эм" + vowel);
-            }
-            if (name.startsWith("en" + vowel)) {
-                name = name.replace("en" + vowel, "эн" + vowel);
-            }
             if (name.endsWith(vowel + "c")) {
                 name = name.substring(0, name.length() - 1) + "к";
             }
@@ -240,6 +234,14 @@ public class French extends DefaultRuleset {
         name = checkStart(name, SECONDARY_STARTERS);
         if (name.startsWith("in") && !name.startsWith("inn")) {
             return name.replaceFirst("in", "эн");
+        }
+        for (String vowel : VOWELS) {
+            if (name.startsWith("em" + vowel)) {
+                name = name.replace("em" + vowel, "эм" + vowel);
+            }
+            if (name.startsWith("en" + vowel)) {
+                name = name.replace("en" + vowel, "эн" + vowel);
+            }
         }
         return name;
     }
