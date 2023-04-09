@@ -21,6 +21,7 @@ public class Czech extends DefaultRuleset {
             name = checkEndings(name, ENDINGS);
         }
         name = checkVowels(name);
+        name = checkConsonants(name);
         name = checkCombinations(name);
         name = mapSingleChars(name);
         return mapStandardChars(name);
@@ -45,14 +46,6 @@ public class Czech extends DefaultRuleset {
     }
 
     protected static String checkCombinations(String name) {
-        for (Map.Entry<String, String> cons : UTILITY_CONSONANTS.entrySet()) {
-            for (Map.Entry<String, String> vowel : AFTER_DNT.entrySet()) {
-                name = name.replace(cons.getKey() + vowel.getKey(), cons.getValue() + vowel.getValue());
-            }
-        }
-        for (String consonant : VOICED_CONSONANTS) {
-            name = name.replace(consonant + "ř", consonant + "рж");
-        }
         name = name.replace("ch", "х");
         name = name.replace("qu", "ку");
         name = name.replace("th", "т");
@@ -62,6 +55,18 @@ public class Czech extends DefaultRuleset {
         name = name.replace("jo", "ье");
         name = name.replace("ju", "ью");
         name = name.replace("ya", "иа");
+        return name;
+    }
+
+    protected static String checkConsonants(String name) {
+        for (Map.Entry<String, String> cons : UTILITY_CONSONANTS.entrySet()) {
+            for (Map.Entry<String, String> vowel : AFTER_DNT.entrySet()) {
+                name = name.replace(cons.getKey() + vowel.getKey(), cons.getValue() + vowel.getValue());
+            }
+        }
+        for (String consonant : VOICED_CONSONANTS) {
+            name = name.replace(consonant + "ř", consonant + "рж");
+        }
         return name;
     }
 

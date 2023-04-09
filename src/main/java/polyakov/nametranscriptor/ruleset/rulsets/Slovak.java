@@ -20,6 +20,7 @@ public class Slovak extends Czech {
         }
         name = checkVowels(name);
         name = checkSlovakCombinations(name);
+        name = checkConsonants(name);
         name = checkCombinations(name);
         name = checkSlovakChars(name);
         name = mapSingleChars(name);
