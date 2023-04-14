@@ -14,6 +14,7 @@ public class Turkish extends DefaultRuleset {
     @Override
     public String transcribe(String name, int mode) {
         name = checkStart(name, STARTERS_AND_AFTER_VOWELS);
+        name = checkVowels(name);
         name = checkCombinations(name);
         name = mapSingleChars(name);
         return mapStandardChars(name);
@@ -36,7 +37,7 @@ public class Turkish extends DefaultRuleset {
         return name;
     }
 
-    private static String checkCombinations(String name) {
+    private static String checkVowels(String name) {
         for (Map.Entry<String, String> av : STARTERS_AND_AFTER_VOWELS.entrySet()) {
             for (Map.Entry<String, String> vowel : VOWELS.entrySet()) {
                 name = name.replace(vowel.getKey() + av.getKey(), vowel.getValue() + av.getValue());
@@ -47,6 +48,10 @@ public class Turkish extends DefaultRuleset {
                 name = name.replace(vowel + afterVowel.getKey(), vowel + afterVowel.getValue());
             }
         }
+        return name;
+    }
+
+    private static String checkCombinations(String name) {
         name = name.replace("gâ", "гя");
         name = name.replace("kâ", "кя");
         name = name.replace("lâ", "ля");
