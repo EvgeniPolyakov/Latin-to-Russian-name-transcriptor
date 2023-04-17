@@ -35,9 +35,6 @@ public class Greek extends DefaultRuleset {
     }
 
     private static String checkCombinations(String name) {
-        if (name.startsWith("yi")) {
-            name = name.replaceFirst("yi", "йи");
-        }
         name = name.replace("aioa", "аиоа");
         name = name.replace("aio", "ейо");
         name = checkVowels(name);
@@ -93,6 +90,9 @@ public class Greek extends DefaultRuleset {
     private static String checkStart(String name) {
         name = checkStart(name, PRIMARY_STARTERS);
         name = checkStart(name, SECONDARY_STARTERS);
+        if (name.startsWith("yi")) {
+            name = name.replaceFirst("yi", "йи");
+        }
         return name;
     }
 
