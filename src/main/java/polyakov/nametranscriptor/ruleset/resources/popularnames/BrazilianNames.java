@@ -6,6 +6,8 @@ public enum BrazilianNames {
     DO("do", "до"),
     DOS("dos", "дос"),
     E("e", "и"),
+    GIOVANI("giovani", "джовани"),
+    GIOVANNI("giovanni", "джованни"),
     JOAO("joao", "жоао"),
     O("o", "о"),
     OS("os", "ос"),
