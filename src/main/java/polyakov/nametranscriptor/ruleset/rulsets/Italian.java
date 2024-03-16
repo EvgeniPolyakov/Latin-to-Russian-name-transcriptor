@@ -49,6 +49,7 @@ public class Italian extends DefaultRuleset {
 
     private static String checkPrimaryCases(String name) {
         name = name.replace("aqua", "акуa");
+        name = name.replace("aqui", "акви");
         name = name.replace("cce", "ччe");
         name = name.replace("sce", "шe");
         name = name.replace("sci", "шi");
