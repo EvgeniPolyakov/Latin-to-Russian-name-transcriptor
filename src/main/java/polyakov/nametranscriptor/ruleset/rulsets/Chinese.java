@@ -51,6 +51,7 @@ public class Chinese implements Ruleset {
         name = name.replace("za", "цза");
         name = name.replace("yun", "юнь");
         name = name.replace("yue", "юэ");
+        name = name.replace("yuang", "юан");
         name = name.replace("yuan", "юань");
         name = name.replace("yu", "юй");
         name = name.replace("you", "ю");
